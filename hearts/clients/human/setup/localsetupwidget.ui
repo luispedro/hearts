@@ -9,8 +9,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>247</width>
-            <height>594</height>
+            <width>428</width>
+            <height>592</height>
         </rect>
     </property>
     <property name="caption">
@@ -40,7 +40,7 @@
                     <string>Player on the &amp;left</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>lineEdit1</cstring>
+                    <cstring>left_</cstring>
                 </property>
             </widget>
             <widget class="QLineEdit" row="1" column="1">
@@ -67,7 +67,7 @@
                     <string>Player on the &amp;right</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>lineEdit1_2</cstring>
+                    <cstring>right_</cstring>
                 </property>
             </widget>
             <widget class="QLabel" row="3" column="0">
@@ -78,7 +78,7 @@
                     <string>Player in &amp;front</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>lineEdit1_2_2</cstring>
+                    <cstring>front_</cstring>
                 </property>
             </widget>
             <widget class="QLabel" row="0" column="0">
@@ -89,7 +89,7 @@
                     <string>Your &amp;name</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>lineEdit1_2_3</cstring>
+                    <cstring>self_</cstring>
                 </property>
             </widget>
             <widget class="QLineEdit" row="3" column="1">

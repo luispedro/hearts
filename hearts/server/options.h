@@ -70,6 +70,7 @@ extern  const Options* &options;
 		static void init(int,char**);
 
 		bool wait_zero() const { return wait_zero_; }
+		bool daemon() const { return daemon_; }
 
 		short tcp_port() const { return tcp_port_; }
 		const char* unix_address() const { return unix_address_.c_str(); } 
@@ -81,6 +82,7 @@ extern  const Options* &options;
 		short tcp_port_;
 		std::string unix_address_;
 		bool wait_zero_;
+		bool daemon_;
 		
                 static Options* singleton;
         /** returns the non const singleton. It is to be used by OptionsSelectionDialog. */

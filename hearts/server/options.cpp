@@ -30,7 +30,8 @@ namespace {
 }
 
 Options::Options()
-	:wait_zero_( false )
+	:wait_zero_( false ),
+	 daemon_( false )
 {
 }
 
@@ -56,12 +57,13 @@ void Options::init(int argc ,char** argv)
 {
 	single = new Options;
 	// copy & paste from man:getopt 
-	enum { fds = 1, tport, uport, wait_zero };
+	enum { fds = 1, tport, uport, wait_zero, daemon };
 	static const struct option long_options[] = {
 		{ "fds", 1, 0, fds },
 		{ "tcp-port", 1, 0, tport },
 		{ "unix-port", 1, 0, uport },
 		{ "wait-zero", 0, 0, wait_zero },
+		{ "daemon", 0, 0, daemon },
 		{ 0, 0, 0, 0 }
 	};
 	int option_index = 0;
@@ -102,6 +104,9 @@ void Options::init(int argc ,char** argv)
 			break;
 			case wait_zero:
 				single->wait_zero_ = true;
+				break;
+			case daemon:
+				single->daemon_ = true;
 				break;
 			default:
 				LOG_PLACE_NL();

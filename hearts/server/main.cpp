@@ -41,6 +41,12 @@
 int main(int argc, char **argv)
 {
 	Options::init(argc,argv);
+	if ( options->daemon() ) {
+		if ( daemon( 0, 0 ) < 0 ) {
+			std::cerr << "Error in daemon(): " << strerror( errno ) << ".\n";
+		}
+	}
+		
 	if ( !all_registered() ) open_connections();
 	Server serv;
 	return serv.exec();

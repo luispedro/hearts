@@ -34,7 +34,7 @@ function do_header($title) {
 <p>
 Luís Pedro Coelho <br />
 <a href="mailto:luis@luispedro.org">luis@luispedro.org</a> <br />
-<a href="http://luispedro.org/">Home Page
+<a href="http://luispedro.org/">Home Page</a>
 </div>
 <div id="content">
 <?php 

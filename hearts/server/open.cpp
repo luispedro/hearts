@@ -50,7 +50,7 @@ void open_connections()
 	bool tcp_ok = false;
 	bool local_ok = false;
 	int listen_tcp_fd = socket(PF_INET,SOCK_STREAM,0);
-	{
+	if ( options->tcp_port() ) {
 		sockaddr_in addr;
 		memset(&addr,0,sizeof(addr));
 		addr.sin_family = AF_INET;

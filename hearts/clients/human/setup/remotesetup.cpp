@@ -17,6 +17,7 @@ RemoteSetup::RemoteSetup( QWidget* p, const char* n )
 	: QWidget( p, n ),
 	widget_( new RemoteSetupWidget( this, "remote-setup-widget" ) )
 {
+	widget_->selfName->setText( Options::playerName( player_id::self ) );
 }
 
 void RemoteSetup::execute()

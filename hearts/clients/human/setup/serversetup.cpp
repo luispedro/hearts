@@ -10,6 +10,8 @@
 #include <qpushbutton.h>
 #include <qcombobox.h>
 #include <qlabel.h>
+#include <qlineedit.h>
+
 #include <klocale.h>
 #include <kprocess.h>
 #include <kmessagebox.h>
@@ -31,6 +33,8 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 		QWidget( parent, name )
 {
 	widget_ = new ServerSetupWidget( this, "server-setup-widget" );
+
+	widget_->selfName->setText( Options::playerName( player_id::self ) );
 
 	connect( widget_->options1, SIGNAL( clicked() ), SLOT( optionsRight() ) );
 	connect( widget_->options2, SIGNAL( clicked() ), SLOT( optionsFront() ) );
@@ -61,6 +65,8 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 void ServerSetup::execute()
 {
 	execute_server();
+	Options::savePlayerName( player_id::self, widget_->selfName->text() );
+
 	sleep( 1 ); // FIXME: hack
 	execute( player_id::right, widget_->type1 );
 	execute( player_id::front, widget_->type2 );

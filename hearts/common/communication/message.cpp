@@ -18,7 +18,6 @@ email                : luis@luispedro.org
 #include "message.h"
 #include "general/helper.h"
 #include "protocol.h"
-#include <strstream>
 #include <string>
 #include <cstring>
 #include <errno.h>

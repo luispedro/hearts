@@ -1,8 +1,5 @@
 #include <qstring.h>
-#include <kconfig.h>
-#include <kglobal.h>
 
-#include "general/helper.h"
 #include "hearts/player_id.h"
 
 namespace Options

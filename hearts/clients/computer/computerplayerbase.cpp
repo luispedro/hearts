@@ -16,10 +16,10 @@ email                : luis@luispedro.org
  ***************************************************************************/
 
 #include "computerplayerbase.h"
-#include <strstream>
-#include <iterator>
 #include "general/min_time.h"
 #include "hearts/cards.h"
+
+#include <iterator>
 
 
 void ComputerPlayerBase::inform( const Card c, const player_id::type from )

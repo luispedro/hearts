@@ -19,8 +19,6 @@ class SetupWindow : public QWizard
 	signals:
 		void connected_to( int );
 		void execute();
-	private:
-		QWidget* nothing; // a place-holder
 };
 
 

@@ -15,9 +15,9 @@ email                : luis@luispedro.org
  *                                                                         *
  ***************************************************************************/
 
-#include <kapplication.h>
 #include "tabledisplayer.h"
 #include "general/helper.h"
+#include <kapplication.h>
 
 
 
@@ -79,12 +79,12 @@ void TableDisplay::setCard( player_id::type who, Card which )
 {
 
 #define CASE(x) \
-                case player_id::x: \
-                {       \
-                        x->setCard(which);\
-                         x->show();\
-                          break;\
-                }
+		case player_id::x: \
+				{       \
+					x->setCard(which);\
+					x->show();\
+					break;\
+		}
 
 	switch ( who ) {
 		CASE( left )
@@ -100,3 +100,4 @@ void TableDisplay::setCard( player_id::type who, Card which )
 
 
 #include "tabledisplayer.moc"
+

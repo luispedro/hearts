@@ -9,8 +9,6 @@
 #include "pointsbox.h"
 #include "hearts/card.h"
 
-#include <vector>
-
 class SetupWindow;
 
 class HumanClient : public KMainWindow

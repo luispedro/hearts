@@ -1,15 +1,11 @@
 #include "initialchoice.h"
 #include "localsetup.h"
-#include "remotesetup.h"
-#include "serversetup.h"
 #include "networksetup.h"
 #include "privatesetup.h"
 
 #include "setupwindow.h"
 #include "general/helper.h"
 #include "initialchoicewidget.h"
-
-#include "remotesetup.h"
 
 #include <cassert>
 

@@ -1,7 +1,7 @@
 #include "networksetup.h"
 
 #include <qlistview.h>
-#include <qtimer.h>
+#include <qtimer.h> // singleShot
 #include <qpushbutton.h>
 #include <kextsock.h>
 #include <klocale.h>
@@ -10,8 +10,6 @@
 #include <klineedit.h>
 #include <kdebug.h>
 
-#include <string.h>
-#include <errno.h>
 #include <unistd.h>
 
 #include <cassert>

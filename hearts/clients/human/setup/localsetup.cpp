@@ -3,21 +3,15 @@
 
 #include "hearts/player_id.h"
 #include "general/helper.h"
-#include "communication/constants.h"
-#include "communication/open_connections.h"
 
 #include "../options.h"
 
 #include "localsetupwidget.h"
 
 #include <qpushbutton.h>
-#include <qlabel.h>
 #include <qlineedit.h>
 #include <klocale.h>
-#include <kapplication.h>
-#include <qtimer.h>
 #include <kdebug.h>
-#include <kprocess.h>
 #include <kmessagebox.h>
 
 #include <sys/socket.h>

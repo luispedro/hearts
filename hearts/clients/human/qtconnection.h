@@ -6,11 +6,14 @@
 #include "communication/typicalclient.h"
 #include "communication/fdconnection.h"
 
-#include <cassert>
 #include <qobject.h>
 #include <klocale.h>
+
+#include <sys/poll.h> // pollfd
+
+#include <string> // std::string
+#include <cassert>
 #include <memory>
-#include <sys/poll.h>
 
 class KSocket;
 

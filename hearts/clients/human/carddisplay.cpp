@@ -17,11 +17,14 @@ email                : luis@luispedro.org
 
 #include "general/helper.h" // must be before Qt's headers
 #include "carddisplay.h"
+
 #include <qpainter.h>
-#include <strstream>
+
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <kstandarddirs.h>
+
+#include <strstream>
 
 CardDisplay::cache_t CardDisplay::images;
 CardDisplay::cache_t CardDisplay::selected_images;

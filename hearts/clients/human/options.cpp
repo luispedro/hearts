@@ -2,6 +2,9 @@
 
 #include "general/helper.h"
 
+#include <kconfig.h>
+#include <kglobal.h>
+
 QString Options::playerName( player_id::type who )
 {
 	KConfig * c = KGlobal::config();

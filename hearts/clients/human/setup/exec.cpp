@@ -6,7 +6,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 
-#include <stdio.h>
+#include <stdio.h> // snprintf
 
 #include <sys/types.h>
 #include <sys/socket.h>

@@ -1,8 +1,9 @@
 #include "privatesetup.h"
 #include "remotesetup.h"
 #include "serversetup.h"
-#include <klocale.h>
 #include "general/helper.h"
+
+#include <klocale.h>
 #include <kdebug.h>
 
 PrivateSetup::PrivateSetup( SetupWindow* parent, const char* name )

@@ -1,4 +1,3 @@
-
 /***************************************************************************
                           open.cpp  -  description
                              -------------------
@@ -25,16 +24,17 @@
 #include "general/error.h"
 #include "communication/constants.h"
 #include "id_to_fd.h"
-#include <cstdlib>
+
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <netinet/in.h>
 #include <sys/un.h>
-#include <unistd.h>
-#include <cstring>
+#include <unistd.h> // unlink
+
+#include <cstring> // strerror, memset
 #include <cstdlib>
 #include <ctime>
-#include <cerrno>
+#include <cerrno> // errno
 #include <cstdio>
 
 void set_sock_options( int fd )
@@ -82,7 +82,7 @@ void open_connections()
 
 	if ( !( tcp_ok || local_ok ) ) {
 		std::cerr << "Unable to bind on any socket.\n"
-		<< "exiting.\n";
+				<< "exiting.\n";
 		exit( 1 );
 	}
 	pollfd listen[ 2 ];

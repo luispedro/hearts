@@ -7,6 +7,7 @@
 
 #include <klocale.h>
 #include <kprocess.h>
+#include <kconfig.h>
 #include <kmessagebox.h>
 #include <kapplication.h>
 

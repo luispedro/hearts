@@ -1,10 +1,8 @@
 #include "humanclient.h"
 #include "options.h"
 #include "general/helper.h"
-#include "communication/open_connections.h"
 #include "setup/setupwindow.h"
 
-#include <strstream>
 #include <iomanip>
 
 #include <qtimer.h>
@@ -177,3 +175,4 @@ void HumanClient::invalidMove( QString reason )
 }
 
 #include "humanclient.moc"
+

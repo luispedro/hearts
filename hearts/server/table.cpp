@@ -29,3 +29,4 @@ unsigned winner( const Table& tab ) throw()
 
 	return res;
 }
+

@@ -20,13 +20,10 @@
 
 #include <qwidget.h>
 #include <qdialog.h>
-#include <qmultilineedit.h>
-#include <qpushbutton.h>
 #include <qlabel.h>
 #include <qlayout.h>
 #include <qguardedptr.h>
 #include <qptrlist.h>
-#include <kmainwindow.h>
 #include <kdialogbase.h>
 
 #include "hearts/player_id.h"

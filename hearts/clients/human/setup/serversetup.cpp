@@ -2,7 +2,6 @@
 #include "exec.h"
 #include "serversetupwidget.h"
 #include "general/helper.h"
-#include "communication/constants.h"
 #include "communication/open_connections.h"
 
 #include "../options.h"
@@ -13,14 +12,12 @@
 #include <qlineedit.h>
 
 #include <klocale.h>
-#include <kprocess.h>
 #include <kmessagebox.h>
-#include <kapplication.h>
 
-#include <errno.h>
-#include <string.h>
+#include <errno.h> // errno
+#include <string.h> // strerror
 
-// For hostname discovery
+// For hostname discovery:
 #include <unistd.h>
 #include <netdb.h>
 #include <sys/socket.h>

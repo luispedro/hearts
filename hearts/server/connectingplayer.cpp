@@ -43,7 +43,6 @@ void ConnectingPlayer::invalidPlay( std::string reason )
 
 void ConnectingPlayer::inform( Card c, player_id::type who )
 {
-	LOG_PLACE() << " informing of " << c << ".\n";
 	write( Factory::Server::inform( c, who ) );
 }
 

@@ -30,8 +30,6 @@
 #include <qpushbutton.h>
 #include <qlabel.h>
 
-#include <string>
-
 
 /**
   *@author Luis Pedro Coelho

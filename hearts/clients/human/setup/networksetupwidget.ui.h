@@ -46,9 +46,9 @@ void NetworkSetupWidget::insertTable( QListViewItem * t )
 }
 
 void NetworkSetupWidget::server_returnPressed( const QString & )
-									  {
-										  emit serverChange( server->text() );
-									  }
+{
+	emit serverChange( server->text() );
+}
 
 
 #endif /* DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_ */

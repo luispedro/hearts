@@ -21,27 +21,21 @@ email                : luis@luispedro.org
 
 #include "server.h"
 #include "options.h"
-#include "general/error.h"
 #include "open.h"
-#include "communication/constants.h"
 #include "id_to_fd.h"
-#include <cstdlib>
-#include <sys/types.h>
-#include <sys/socket.h>
-#include <netinet/in.h>
-#include <sys/un.h>
-#include <unistd.h>
-#include <cstring>
-#include <cstdlib>
-#include <ctime>
-#include <cerrno>
-#include <cstdio>
+
+#include <cstring> // strerror
+#include <cstdlib> // srand
+#include <ctime> // time()
+#include <cerrno> // errno
+
+#include <unistd.h> // daemon
 
 
 int main( int argc, char **argv )
 {
 	Options::init( argc, argv );
-	srand( time( 0 ) );
+	std::srand( time( 0 ) );
 	if ( options->daemon() ) {
 		if ( daemon( 0, 0 ) < 0 ) {
 			std::cerr << "Error in daemon(): " << strerror( errno ) << ".\n";

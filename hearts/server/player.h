@@ -17,13 +17,13 @@
  *   (at your option) any later version.                                   *
  *                                                                         *
  ***************************************************************************/
-#include <string>
- #include <memory>
+#include <string> // std::string
+#include <memory> // std::auto_ptr
 
 #include "hearts/card.h"
- #include "hearts/holder3.h"
- #include "hearts/player_id.h"
- #include "hearts/player_status.h"
+#include "hearts/holder3.h"
+#include "hearts/player_id.h"
+#include "hearts/player_status.h"
 
 /** @short this is the basic player functions
   * This all works in an assyncrounous fashion. You call x_query() and a 

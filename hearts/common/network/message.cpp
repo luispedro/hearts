@@ -30,7 +30,7 @@ Message::Message( const MessageConstructor& c )
 Message::Message( QString rep )
 		:pieces_( QStringList::split( " ", rep ) )
 {
-		LOG_PLACE() << " Message::Message(" << rep.utf8() << ")" << endl;
+		LOG_PLACE() << " Message::Message(" << rep.utf8() << ")" << std::endl;
 		type_ = fromString( *pieces_.at( 0 ) );
 }
 

@@ -19,7 +19,7 @@ int open_client_connection(int argc,char* argv[])
 		const char* address = local_address;
 		for (int i = 0; i != argc; ++i)
 		{
-				if (string(argv[i]) == "--address")
+				if (std::string(argv[i]) == "--address")
 				{
 						address = argv[i + 1];
 						if (!address)

@@ -46,7 +46,7 @@ namespace MessageTypes {
 				Reset,
 				Unknown 
 		};
-		ostream& operator << (ostream&,type);
+		std::ostream& operator << (std::ostream&,type);
 }
 
 /** This is a value based class which only holds a pair which is the type and 

@@ -53,7 +53,7 @@ class Message {
 };
 
 inline 
-ostream& operator <<( ostream& out, Message in ) { return out << in.asString().utf8(); }
+std::ostream& operator <<( std::ostream& out, Message in ) { return out << in.asString().utf8(); }
 
 Message::typeEnum fromString( QString );
 QString toString( Message::typeEnum );

@@ -174,6 +174,7 @@ void HumanInterface::gotSelected(Card c)
 
 void HumanInterface::resizeEvent(QResizeEvent* ev)
 {
+		using std::max;
 		const int tableX = max(width() / 2 - table->width() / 2, 0);
 		const int tableY = frontLabel->height() + frontLabel->y() + 5;
 		const int handY = max(height() - status->height() - hand->height() - selfLabel->height() - 20, 0);

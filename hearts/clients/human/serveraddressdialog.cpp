@@ -18,7 +18,7 @@ ServerAddressDialog::ServerAddressDialog(const QString& def, QWidget* p, const c
 		address->move(10,below(text) + 10);
 		address->resize(address->sizeHint());
 		connectButton->move(10, below(address) + 10);
-		setMinimumSize(10 + max(text->width(),address->width()),below(connectButton));
+		setMinimumSize(10 + std::max(text->width(),address->width()),below(connectButton));
 		QObject::connect(connectButton,SIGNAL(clicked()),this,SLOT(connect()));
 }
 

@@ -87,11 +87,11 @@ const int CardDisplay::CardHeight = 96;
         massert (images.find(ref) == images.end()); // it must not be loaded
 
         char buf[256];
-        ostrstream out(buf,sizeof(buf));
-        out << "hearts/" << ref << ".bmp" << ends;
+        std::ostrstream out(buf,sizeof(buf));
+        out << "hearts/" << ref << ".bmp" << std::ends;
 		
         QPixmap* res = new QPixmap(locate("data",buf));
-        if (res->isNull()) cerr << "Unable to load card: " << ref << ", (trying at location " << buf << "). Please check your installation.\n";
+        if (res->isNull()) std::cerr << "Unable to load card: " << ref << ", (trying at location " << buf << "). Please check your installation.\n";
         images[ref] = res;
         return images.find(ref);
   }
@@ -105,7 +105,7 @@ const int CardDisplay::CardHeight = 96;
 
         QPixmap* res = new QPixmap(*get_image(ref)); // since it is probably loaded anyway, this is better
         massert(res); // new should throw
-        if (res->isNull()) cerr << "Unable to get image " << ref << endl;
+        if (res->isNull()) std::cerr << "Unable to get image " << ref << std::endl;
 
         // paint the image
         QPainter painter;

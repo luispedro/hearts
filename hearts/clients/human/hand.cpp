@@ -30,7 +30,7 @@ void Hand::setHand(const Deck& hand)
 {
 	if (hand.empty())
 	{
-		for_each(displayers.begin(),displayers.end(),mem_fun(&CardDisplay::hide));
+		std::for_each(displayers.begin(),displayers.end(),std::mem_fun(&CardDisplay::hide));
 		setMinimumSize(0,0);
 	}
 	setMinimumSize(CardDisplay::CardWidth,CardDisplay::CardHeight);
@@ -91,7 +91,7 @@ void Hand::setSelectable(bool b)
 /** The name says it all. */
 void Hand::unselectAll()
 {
-	for_each(displayers.begin(),displayers.end(),mem_fun(&CardDisplay::unselect));
+	std::for_each(displayers.begin(),displayers.end(),std::mem_fun(&CardDisplay::unselect));
 }
 /**  */
 void Hand::gotClicked(Card c)

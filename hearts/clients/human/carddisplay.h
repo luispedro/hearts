@@ -84,7 +84,7 @@ class CardDisplay : public QWidget  {
                 void paintEvent(QPaintEvent*);
 
         private:
-                typedef map<Card,QPixmap*> cache_t;
+                typedef std::map<Card,QPixmap*> cache_t;
                 static cache_t images;
                 static cache_t selected_images;
                 static cache_t::iterator load(Card);

@@ -89,16 +89,16 @@ void Server::joinTable( table_id tableName )
 			found = table;
 			break;
 			}
-		      )
-		if ( found )
-		{
-			if ( player->table() ) player->table()->removePlayer( player );
-			player->table( found );
-			found->addPlayer( player );
-			showTable( found );
-		} else {
-			LOG_PLACE() << " I did not find table \'" << tableName.ascii() << "\'\n";
-		}
+		)
+	if ( found )
+	{
+		if ( player->table() ) player->table()->removePlayer( player );
+		player->table( found );
+		found->addPlayer( player );
+		showTable( found );
+	} else {
+		LOG_PLACE() << " I did not find table \'" << tableName.ascii() << "\'\n";
+	}
 }
 
 void Server::showTable( Table* table )

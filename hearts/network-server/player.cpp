@@ -20,8 +20,7 @@ Player::~Player()
 	delete validator_;
 }
 
-void Player::get
-	( Message m )
+void Player::get( Message m )
 {
 	switch ( m.type() ) {
 		case Message::joinTable:
@@ -45,8 +44,16 @@ void Player::get
 			emit createTable( this, m.table() );
 			break;
 		default:
+			ServerConnection::get( m );
 			LOG_PLACE() << " Unrecognised message = " << m << std::endl;
 	}
+}
+
+void Player::playerStatus( QString p, player_status::type s )
+{
+	MessageConstructor m;
+	m << Message::playerStatus << p << s;
+	write( m );
 }
 
 void Player::connectTo( const char* server, short port )

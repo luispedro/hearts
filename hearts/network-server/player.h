@@ -6,6 +6,7 @@
 #include "network/tableid.h"
 #include "network/playerid.h"
 #include "network/connection.h"
+#include "network/player_status.h"
 
 class Table;
 class Connection;
@@ -39,6 +40,7 @@ class Player : public Network::ServerConnection
 
 		//X 		void write( Message );
 
+		void playerStatus( QString name, player_status::type );
 		void connectTo( const char* server, short port );
 		void startGame( short port ); // FIXME HARD: We shouldn't tell people what port to use
 		// they should tell us!

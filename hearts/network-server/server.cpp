@@ -72,10 +72,12 @@ void Server::acceptSlot()
 	socket_.accept( ext );
 	massert( ext );
 	Player* p = new Player( this, ext );
-	connect( p, SIGNAL( createTable( Player*, QString ) ), SLOT( createTable( Player*, QString ) ) );
+	connect( p, SIGNAL( createTable( QString ) ), SLOT( createTable( QString ) ) );
 	connect( p, SIGNAL( joinTable( Player*, QString ) ), SLOT( joinTable( Player*, QString ) ) );
 	connect( p, SIGNAL( connectionError( const char*, int ) ), SLOT( connectionError( const char*, int ) ) );
 	FOR_ALL_TABLES( p->lookAt( table ) );
+	FOR_ALL_PLAYERS( p->playerStatus( player->name(),
+							( player->table() ? player_status::waiting : player_status::online ) ));
 }
 
 
@@ -88,6 +90,8 @@ void Server::connectionError( const char* reason, int code )
 void Server::connectionError( Player* p, const char* reason, int code )
 {
 	logfile() << " Connection Error (" << reason << ":" << code << ")\n";
+
+	FOR_ALL_PLAYERS( player->playerStatus( p->name(), player_status::logout ); )
 
 	Table* table = p->table();
 	if ( table ) {

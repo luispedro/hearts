@@ -130,6 +130,7 @@ void HumanClient::terminate( QString )
 	LOG_PLACE_NL();
 	connection->close();
 	KMessageBox::information( this, i18n( "Game over" ) );
+	setup_->showPage( setup_->page( 0 ) );
 	showSetup();
 }
 

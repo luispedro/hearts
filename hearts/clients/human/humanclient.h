@@ -11,6 +11,8 @@
 
 #include <vector>
 
+class SetupWindow;
+
 class HumanClient : public KMainWindow {
 		Q_OBJECT
 	public:
@@ -28,8 +30,11 @@ class HumanClient : public KMainWindow {
 			void clearTable();
 			void updateNames();
 			void connected_to_server(int);
-			
+
+			void showSetup();
+
 	private:
+			SetupWindow* setup_;
 			PointsBox* pointsWindow;
 			HumanInterface* interface;
 			QtConnection* connection;

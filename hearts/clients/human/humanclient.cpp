@@ -11,6 +11,8 @@
 #include <qsignalmapper.h>
 #include <qmessagebox.h>
 #include <kmessagebox.h>
+#include <kapplication.h>
+#include <kdebug.h>
 
 
 HumanClient::HumanClient()
@@ -62,9 +64,18 @@ HumanClient::HumanClient()
 	updateNames();
 
 	LOG_PLACE_NL();
-	SetupWindow* setup = new SetupWindow;
-	setup->show();
-	connect(setup,SIGNAL(connected_to(int)),SLOT(connected_to_server(int)));
+	setup_ = new SetupWindow;
+	connect(setup_,SIGNAL(connected_to(int)),SLOT(connected_to_server(int)));
+	QTimer::singleShot( 0, this, SLOT( showSetup() ) );
+}
+
+void HumanClient::showSetup()
+{
+	int res = setup_->exec();
+	if ( res == QWizard::Rejected ) {
+		kdDebug() << "HumanClient::showSetup() exiting..." << endl;
+		QTimer::singleShot( 0, kapp, SLOT( quit() ) );
+	}
 }
 
 void HumanClient::connected_to_server(int fd)
@@ -157,12 +168,7 @@ void HumanClient::inform(player_id::type who,Card c)
 
 void HumanClient::points(unsigned self, unsigned right, unsigned front, unsigned left)
 {
-	char buf[256];
-	ostrstream out(buf,sizeof(buf));
-	const unsigned width = 30;
-	out.width(width);
-	out << self << setw(width) << right << setw(width) << front << setw(width) << left << ends;
-	pointsWindow->insertLine(buf);
+	pointsWindow->insertLine( self, right, front, left );
 	pointsWindow->show();
 }
 

@@ -40,8 +40,11 @@ class PointsBox : public KMainWindow
                 /** Clears all the displayed text. */
                 void clearText();
         public slots:
+		void insertLine( unsigned, unsigned, unsigned, unsigned );
+		void setName(player_id::type,QString);
+
+	private:
                 void insertLine(const QString&);
-				void setName(player_id::type,QString);
         protected:
                 virtual void paintEvent(QPaintEvent*);
 

@@ -58,6 +58,7 @@ void SetupWindow::connected(int fd)
 void SetupWindow::accept()
 {
 	emit execute();
+	QWizard::accept();
 }
 
 

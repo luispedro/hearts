@@ -125,6 +125,7 @@ std::istream& operator >> (std::istream& in, Card& ref)
                         else
                         {
                                 in.setstate(std::ios::failbit);
+				return in;
                         }
                         break;
                 }

@@ -69,5 +69,9 @@
         </grid>
     </widget>
 </widget>
+<tabstops>
+    <tabstop>address</tabstop>
+    <tabstop>selfName</tabstop>
+</tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

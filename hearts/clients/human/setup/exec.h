@@ -6,7 +6,7 @@
 bool execute_server();
 bool execute_server(short port);
 bool execute_computer_client(QString name);
-
+QString generateLocalAddress();
 
 
 #endif /* DB_EXEC_H_INCLUDE_GUARD_ */

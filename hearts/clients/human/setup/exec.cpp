@@ -8,6 +8,9 @@
 
 #include "communication/constants.h"
 
+QString generateLocalAddress() {
+	return QString::fromLocal8Bit( local_address ) + QString::number( getpid() );
+}
 
 std::ostream& operator<<(  std::ostream& s, const QValueList<QCString>& l )
 {
@@ -27,8 +30,8 @@ bool execute_server( short port )
 {
 	KProcess p;
 	p << "heartsserver" 
-		<< "--tcp_port" << QString::number( port ) 
-		<< "--unix_port" << local_address
+		<< "--tcp-port" << QString::number( port ) 
+		<< "--unix-port" << generateLocalAddress()
 		<< "--wait-zero";
 
 	LOG_PLACE() << '!' << p.args() << "!\n";
@@ -41,7 +44,7 @@ bool execute_computer_client(QString name)
 	KProcess p;
 	p << "heartscomputerclient"
 		<< "--playername" << name
-		<< "--address" << local_address
+		<< "--address" << generateLocalAddress()
 		<< "--zero";
 	LOG_PLACE() << '!' << p.args() << "!\n";
 	return p.start(KProcess::DontCare);

@@ -92,7 +92,7 @@ void LocalSetup::execute2()
 	execute_computer_client(right_name->text());
 	execute_computer_client(front_name->text());
 	execute_computer_client(left_name->text());
-	int fd = open_client_connection(local_address); 
+	int fd = open_client_connection(generateLocalAddress().local8Bit()); 
 #define SAVE(x)  Options::savePlayerName(player_id::x,x##_name->text())
 	
 	if ( fd < 0 ) {

@@ -72,9 +72,10 @@ int repeatedMD5Authenticator::generate( const char* password, const char* cookie
 	if ( !password || !cookie )
 		return 1;
 	const unsigned nbytes_for_hash = 128 / 8;
-	char password5[ nbytes_for_hash ];
+	char password5[ nbytes_for_hash + 1 ];
 	char cookie5[ nbytes_for_hash ];
 	char result5[ nbytes_for_hash ];
+	password5[ nbytes_for_hash ] = '\0';
 	do_md5( password, password5 );
 	do_md5( cookie, cookie5 );
 	do_xor( password5, cookie5, nbytes_for_hash );

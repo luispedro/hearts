@@ -31,6 +31,7 @@ void Player::get( Message m )
 			break;
 		case Message::hello:
 			name_ = m.arg<QString>( 0 );
+			emit nameSet( this, name_ );
 			cookie_ = validator_->cookie();
 			auth( validator_->id(), cookie_ );
 		break;

@@ -72,11 +72,12 @@ void Server::acceptSlot()
 	socket_.accept( ext );
 	massert( ext );
 	Player* p = new Player( this, ext );
-	connect( p, SIGNAL( createTable( QString ) ), SLOT( createTable( QString ) ) );
+	connect( p, SIGNAL( playerName( Player*, QString ) ), SLOT( playerName( Player*, QString ) ) );
+	connect( p, SIGNAL( createTable( Player*, QString ) ), SLOT( createTable( Player*, QString ) ) );
 	connect( p, SIGNAL( joinTable( Player*, QString ) ), SLOT( joinTable( Player*, QString ) ) );
 	connect( p, SIGNAL( connectionError( const char*, int ) ), SLOT( connectionError( const char*, int ) ) );
 	FOR_ALL_TABLES( p->lookAt( table ) );
-	FOR_ALL_PLAYERS( p->playerStatus( player->name(),
+	FOR_ALL_PLAYERS( if ( p != player && player->name() ) p->playerStatus( player->name(),
 							( player->table() ? player_status::waiting : player_status::online ) ));
 }
 
@@ -129,6 +130,12 @@ void Server::showTable( Table* table )
 {
 	LOG_PLACE_NL();
 	FOR_ALL_PLAYERS( player->lookAt( table ) );
+}
+
+void Server::playerName( Player* p, QString name )
+{
+	FOR_ALL_PLAYERS( if ( p != player ) p->playerStatus( player->name(),
+							( player->table() ? player_status::waiting : player_status::online ) ));
 }
 
 

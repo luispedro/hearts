@@ -47,6 +47,7 @@ class Player : public Network::ServerConnection
 
 		void lookAt( Table* );
 	signals:
+		void nameSet( Player*, QString );
 		void joinTable( Player*, QString );
 		void quitTable( Player*, table_id );
 		void createTable( Player*, QString );

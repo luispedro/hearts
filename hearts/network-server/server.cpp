@@ -14,8 +14,6 @@
 
 #include "network/constants.h"
 
-#define HACK_PORT 9348
-
 #include "player.h"
 #include "table.h"
 

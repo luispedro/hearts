@@ -21,6 +21,19 @@ MessageConstructor& MessageConstructor::operator << ( Message::typeEnum t )
 {
 	return static_cast<MessageConstructor&>( *this << toString( t ) );
 }
+
+MessageConstructor& MessageConstructor::operator << ( player_status::type s ) 
+{
+	using namespace player_status;
+#define HANDLE( c ) case c: return *this << #c;
+	switch ( s ) {
+		FOR_ALL_PLAYER_STATUS( HANDLE )
+		default: return *this;
+#undef HANDLE
+	}
+}
+
+
 Message::Message( const MessageConstructor& c )
 		: type_( fromString( c.first() ) ),
 		pieces_( c.list() )

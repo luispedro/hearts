@@ -5,6 +5,7 @@
 #include <iostream>
 
 #include "tableid.h"
+#include "player_status.h"
 
 class MessageConstructor;
 
@@ -76,9 +77,10 @@ QString toString( Message::typeEnum );
 class MessageConstructor : private QStringList
 {
 	public:
-		MessageConstructor& operator << ( Message::typeEnum );
+		MessageConstructor& operator<< ( Message::typeEnum );
 		MessageConstructor& operator<< ( QString );
 		MessageConstructor& operator<< ( int number );
+		MessageConstructor& operator<< ( player_status::type );
 		const QStringList list() const
 		{
 			return * this;

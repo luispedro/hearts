@@ -3,11 +3,14 @@
 #include "remotesetup.h"
 #include "serversetup.h"
 #include "networksetup.h"
+#include "privatesetup.h"
 
 #include "setupwindow.h"
 #include "general/helper.h"
 #include "general/widget_placement.h"
 #include "initialchoicewidget.h"
+
+#include "remotesetup.h"
 
 #include <cassert>
 
@@ -19,15 +22,25 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 {
 	LOG_PLACE_NL();
 	widget_ = new InitialChoiceWidget( this );
-	widget_->radioPrivate->setEnabled( false );
 
-#define MAKE( memvar, Class )                                                         \
-	memvar = new Class( parent );                                                 \
-	memvar->hide();                                                               
+#define MAKE( memvar, Class, name )               \
+	memvar = new Class( parent );       \
+	parent->addPage( memvar, i18n( name ) ); \
+	parent->setBackEnabled( memvar, true ); \
+	parent->setAppropriate( memvar, false );
 
-	MAKE( localsetup_, LocalSetup );
-	MAKE( networksetup_, NetworkSetup );
+	MAKE( localsetup_, LocalSetup, "Configure Players" );
+	parent->setFinishEnabled( localsetup_, true );
+	parent->setNextEnabled( localsetup_, false );
 
+	MAKE( networksetup_, NetworkSetup, "Choose a table" );
+	parent->setFinishEnabled( networksetup_, true );
+	parent->setNextEnabled( networksetup_, false );
+
+	MAKE( privatesetup_, PrivateSetup, "Deal or join" );
+	parent->setFinishEnabled( privatesetup_, false );
+
+	
 	widget_->radioNetwork->setEnabled( networksetup_->good() );
 
 	LOG_PLACE_NL();
@@ -45,31 +58,34 @@ void InitialChoice::doNext( SetupWindow* parent )
 		{
 			LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
 
-#define PUT_REMOVE( goingIn, nameIn, goingOut )                                             \
-				assert( goingOut );                                 \
+#define PUT_REMOVE( goingIn, goingOut0, goingOut1 )                                             \
+				assert( goingOut0 );                                 \
+				assert( goingOut1 );                                 \
 				assert( goingIn );                                  \
-				disconnect( parent, SIGNAL( execute() ), goingOut, SLOT( execute() ) );            \
-				disconnect( goingOut, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
+				disconnect( parent, SIGNAL( execute() ), goingOut0, SLOT( execute() ) );            \
+				disconnect( parent, SIGNAL( execute() ), goingOut1, SLOT( execute() ) );            \
+				disconnect( goingOut0, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
+				disconnect( goingOut1, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
 				connect( parent, SIGNAL( execute() ), goingIn, SLOT( execute() ) );            \
 				connect( goingIn, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
-				parent->removePage( goingOut );                     \
-				parent->addPage( goingIn, nameIn );                \
-				parent->setFinishEnabled( goingIn, true );          \
-				parent->setBackEnabled( goingIn, true );            \
-				parent->setNextEnabled( goingIn, false );           \
-				parent->showPage( goingIn );                        \
-				return;
+				parent->setAppropriate( goingOut0, false );				\
+				parent->setAppropriate( goingOut1, false );                             \
+				parent->setAppropriate( goingIn, true );
 
-			PUT_REMOVE( localsetup_, i18n( "Configure players" ), networksetup_ );
+			PUT_REMOVE( localsetup_,  networksetup_, privatesetup_ );
+			parent->setNextEnabled( localsetup_, false );
+			break;
 		}
 		case 1:      // InitialChoice::Public:
 		{
-			PUT_REMOVE( networksetup_, i18n( "Choose a table" ), localsetup_ );
+			PUT_REMOVE( networksetup_, localsetup_, privatesetup_ );
+			parent->setNextEnabled( networksetup_, false );
+			break;
 		}
 		case 2:      // InitialChoice::Private:
 		{
-			// TODO
-			LOG_PLACE() << "TODO\n\n\nTODO\n\n\n\n";
+			PUT_REMOVE( privatesetup_, localsetup_, networksetup_ );
+			parent->setNextEnabled( privatesetup_, true );
 			return ;
 		}
 		default:

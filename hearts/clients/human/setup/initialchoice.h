@@ -7,6 +7,7 @@
 class InitialChoiceWidget;
 class LocalSetup;
 class NetworkSetup;
+class PrivateSetup;
 
 class InitialChoice : public SmartPage
 {
@@ -20,6 +21,7 @@ class InitialChoice : public SmartPage
 
 		LocalSetup* localsetup_;
 		NetworkSetup* networksetup_;
+		PrivateSetup* privatesetup_;
 };
 
 

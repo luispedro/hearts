@@ -82,7 +82,7 @@ CardDisplay::cache_t::iterator CardDisplay::load( const Card ref )
 
 	char buf[ 256 ];
 	std::ostrstream out( buf, sizeof( buf ) );
-	out << "hearts/" << ref << ".bmp" << std::ends;
+	out << "hearts/" << ref << ".png" << std::ends;
 
 	QPixmap* res = new QPixmap( locate( "data", buf ) );
 	if ( res->isNull() )

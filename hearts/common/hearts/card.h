@@ -50,7 +50,7 @@
 
  /** a STL like predicate type for use with card collections. It's operator () returns true if the card has the same
   * suit as the internally saved suit. */
- class OfSuite : public unary_function<Card,bool> {
+ class OfSuite : public std::unary_function<Card,bool> {
         public:
         /** constructs an object whose operator () returns true for a Card of suit s */
                 explicit OfSuite(Card::suit_t s):s(s) { }
@@ -81,6 +81,12 @@ inline  bool operator == (Card a, Card b)
  {
         return a.value() == b.value() && a.suit() == b.suit();
  }
+
+inline bool operator != (Card a, Card b)
+{
+	return !( a == b) ; 
+}
+
 
 #endif /* DB_CARD_H_INCLUDE_GUARD_ */
 

@@ -81,9 +81,7 @@ void NetworkSetup::newTable()
 	l.setCaption( i18n( "Create New Table" ) );
 	//text is empty so disable ok button.
 	l.enableButtonOK( false );
-	l.exec();
-
-	connection_->createTable( l.text() );
+	if ( l.exec() == KLineEditDlg::Accepted ) connection_->createTable( l.text() );
 }
 
 void NetworkSetup::execute()

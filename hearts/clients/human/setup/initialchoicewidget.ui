@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>InitialChoiceWidget</class>
 <widget class="QWidget">
     <property name="name">
@@ -43,7 +43,10 @@
                 </rect>
             </property>
             <property name="text">
-                <string>Play a private game with other people</string>
+                <string>Play a private game with &amp;other people</string>
+            </property>
+            <property name="accel">
+                <string>Alt+O</string>
             </property>
         </widget>
         <widget class="QRadioButton">
@@ -59,7 +62,10 @@
                 </rect>
             </property>
             <property name="text">
-                <string>Play against the computer</string>
+                <string>Play against the &amp;computer</string>
+            </property>
+            <property name="accel">
+                <string>Alt+C</string>
             </property>
             <property name="checked">
                 <bool>true</bool>
@@ -78,7 +84,10 @@
                 </rect>
             </property>
             <property name="text">
-                <string>Play on a public hearts network</string>
+                <string>Play on a public hearts net&amp;work</string>
+            </property>
+            <property name="accel">
+                <string>Alt+W</string>
             </property>
         </widget>
     </widget>

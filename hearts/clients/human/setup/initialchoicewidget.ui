@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>600</width>
-            <height>482</height>
+            <width>380</width>
+            <height>203</height>
         </rect>
     </property>
     <property name="caption">
@@ -21,31 +21,15 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>90</x>
-                <y>100</y>
-                <width>330</width>
-                <height>150</height>
+                <x>30</x>
+                <y>20</y>
+                <width>320</width>
+                <height>161</height>
             </rect>
         </property>
         <property name="title">
             <string>Type of game</string>
         </property>
-        <widget class="QRadioButton">
-            <property name="name">
-                <cstring>radioNetwork</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>70</y>
-                    <width>240</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Play on a public hearts network</string>
-            </property>
-        </widget>
         <widget class="QRadioButton">
             <property name="name">
                 <cstring>radioPrivate</cstring>
@@ -79,6 +63,22 @@
             </property>
             <property name="checked">
                 <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioNetwork</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>70</y>
+                    <width>240</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Play on a public hearts network</string>
             </property>
         </widget>
     </widget>

@@ -34,8 +34,10 @@ type Protocol::string2code( string str )
 
 	}
 	map<string, type>::iterator resp = mapper.find( str );
-	if ( resp == mapper.end() )
+	if ( resp == mapper.end() ) {
+		LOG_PLACE() << "Unknown message: \'" << str << "\'\n";
 		return Unknown;
+	}
 	return resp->second;
 }
 

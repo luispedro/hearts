@@ -13,3 +13,6 @@ initialchoicewidget.cpp
 initialchoicewidget.h
 localsetupwidget.cpp
 localsetupwidget.h
+
+clientorserverwidget.cpp
+clientorserverwidget.h

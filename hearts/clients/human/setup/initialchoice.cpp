@@ -37,8 +37,7 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 	parent->setFinishEnabled( privatesetup_, false );
 	parent->setNextEnabled( privatesetup_, true );
 
-	
-	widget_->radioNetwork->setEnabled( networksetup_->good() );
+	//widget_->radioNetwork->setEnabled( networksetup_->good() );
 
 	LOG_PLACE_NL();
 	widget_->adjustSize();

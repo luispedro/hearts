@@ -29,6 +29,7 @@ class NetworkSetup : public QWidget
 		//X 		void joinTable();
 
 	private slots:
+		void reconnect();
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
 		void startGame( short );
 		void connectTo( const char*, short );
@@ -36,10 +37,12 @@ class NetworkSetup : public QWidget
 		void protocolChanged();
 		void delayedProtocolChanged();
 		void playerStatus( QString, player_status::type );
+		void doAuthentication( QCString method, QCString cookie );
 	private:
 
-		void openConnection( const char* host, short port );
-		
+		bool openConnection( const char* host, short port );
+		void resetGUI( const char* );
+
 		NetworkSetupWidget* widget_;
 		OnlinePlayersDialog* online_;
 		Network::UserConnection* connection_;

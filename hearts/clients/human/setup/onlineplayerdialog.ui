@@ -16,44 +16,6 @@
     <property name="caption">
         <string>Online Players</string>
     </property>
-    <widget class="QTable">
-        <column>
-            <property name="text">
-                <string>Name</string>
-            </property>
-        </column>
-        <column>
-            <property name="text">
-                <string>Status</string>
-            </property>
-        </column>
-        <property name="name">
-            <cstring>table</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>20</x>
-                <y>10</y>
-                <width>235</width>
-                <height>160</height>
-            </rect>
-        </property>
-        <property name="numRows">
-            <number>0</number>
-        </property>
-        <property name="numCols">
-            <number>2</number>
-        </property>
-        <property name="rowMovingEnabled">
-            <bool>false</bool>
-        </property>
-        <property name="selectionMode">
-            <enum>NoSelection</enum>
-        </property>
-        <property name="focusStyle">
-            <enum>FollowStyle</enum>
-        </property>
-    </widget>
     <widget class="Line">
         <property name="name">
             <cstring>line1</cstring>
@@ -92,6 +54,44 @@
             <string></string>
         </property>
     </widget>
+    <widget class="QTable">
+        <column>
+            <property name="text">
+                <string>Name</string>
+            </property>
+        </column>
+        <column>
+            <property name="text">
+                <string>Status</string>
+            </property>
+        </column>
+        <property name="name">
+            <cstring>table</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>10</y>
+                <width>235</width>
+                <height>160</height>
+            </rect>
+        </property>
+        <property name="numRows">
+            <number>0</number>
+        </property>
+        <property name="numCols">
+            <number>2</number>
+        </property>
+        <property name="rowMovingEnabled">
+            <bool>false</bool>
+        </property>
+        <property name="selectionMode">
+            <enum>NoSelection</enum>
+        </property>
+        <property name="focusStyle">
+            <enum>FollowStyle</enum>
+        </property>
+    </widget>
 </widget>
 <includes>
     <include location="local" impldecl="in declaration">network/player_status.h</include>
@@ -101,6 +101,7 @@
     <slot>addPlayer( QString name, player_status::type s )</slot>
     <slot>setStatus( QString name, player_status::type s )</slot>
     <slot>setMotD( const QString &amp; message )</slot>
+    <slot>clear()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

@@ -12,7 +12,7 @@
 
 void OnlinePlayersDialog::addPlayer( QString name, player_status::type s )
 {
-	int idx = table->numRows();
+ int idx = table->numRows();
     table->setNumRows( idx + 1 );
     table->setText( idx, 0, name);
     table->setText( idx, 1, i18n( "Online"));
@@ -28,4 +28,10 @@ void OnlinePlayersDialog::setStatus( QString name, player_status::type s )
 void OnlinePlayersDialog::setMotD( const QString & message )
 {
     motd->setText( message );
+}
+
+
+void OnlinePlayersDialog::clear()
+{
+    table->setNumRows( 0 );
 }

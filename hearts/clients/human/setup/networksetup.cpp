@@ -3,6 +3,7 @@
 #include <qlistview.h>
 #include <qtimer.h> // singleShot
 #include <qpushbutton.h>
+#include <qlabel.h>
 #include <kextsock.h>
 #include <klocale.h>
 #include <kmessagebox.h>
@@ -21,6 +22,7 @@
 #include "communication/open_connections.h"
 #include "network/constants.h"
 #include "network/player_status.h"
+#include "network/authentication.h"
 #include "../options.h"
 
 NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
@@ -29,23 +31,19 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		online_( new OnlinePlayersDialog( this ) ),
 		connection_( 0 ),
 		connecting_( 0 ),
-		good_( true )
+		good_( false )
 {
 	setMinimumSize( 150, 350 );
-	openConnection( Network::Server, Network::Port );
 
 	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
 	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
+	connect( widget_, SIGNAL( serverChange() ), SLOT( reconnect() ) );
 
 	widget_->server->insert( Network::Server );
 	widget_->port->insert( QString::number( Network::Port ) );
 	online_->setModal( false );
-	if ( good_ ) online_->show();
-
-	//FIXME remove lines below and implement functionality:
-	widget_->server->setEnabled( false );
-	widget_->port->setEnabled( false );
-	widget_->changeServer->setEnabled( false );
+	openConnection( Network::Server, Network::Port );
+	resetGUI( Network::Server );
 }
 
 NetworkSetup::~NetworkSetup()
@@ -53,15 +51,16 @@ NetworkSetup::~NetworkSetup()
 	LOG_PLACE_NL();
 }
 
-void NetworkSetup::openConnection( const char* server, short port )
+bool NetworkSetup::openConnection( const char* server, short port )
 {
 	kdDebug() << "NetworkSetup::openConnection( " << server << ':' << port << " )" << endl;
 	KExtendedSocket * socket = new KExtendedSocket( server, port );
 	if ( socket->connect() < 0 ) {
 		KMessageBox::error( this, i18n( "<qt>Error connecting to Hearts Server:<br><strong>%1</strong></qt>" )
 				.arg( KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) ) );
-		good_ = false;
-		return;
+		return false;
+	} else {
+		good_ = true;
 	}
 	
 	kdDebug() << "NetworkSetup::NetworkSetup() fd = " << socket->fd() << endl;
@@ -82,8 +81,44 @@ void NetworkSetup::openConnection( const char* server, short port )
 
 	QString playerName = Options::playerName( player_id::self );
 	connection_->hello( playerName );
+	return true;
 }
 
+void NetworkSetup::resetGUI( const char* server )
+{
+	widget_->tables->clear();
+	online_->clear();
+	
+	widget_->join->setEnabled( good_ && widget_->join->currentItem() );
+
+
+	widget_->newTable->setEnabled( good_ );
+	widget_->tables->setEnabled( good_ );
+	if ( good_ ) online_->show();
+	else online_->hide();
+
+	widget_->state->setText( good_ ?
+			// ( loggedIn ?
+			//	i18n( "<qt>State: <b>Connected to %1 as %2</b></qt>" ).arg( server ).arg( username ) :
+				i18n( "<qt>State: <b>Connected to %1 as guest</b></qt>" ).arg( server ) :
+			//) :
+			i18n( "<qt>State: <b>Not Connected</b></qt>" ) );
+}
+
+
+void NetworkSetup::doAuthentication( QCString method, QCString cookie )
+{
+	repeatedMD5Authenticator authenticator;
+	if ( method != authenticator.id() ) {
+		KMessageBox::error( widget_, QString::null, i18n( "Unkown authentication method" ) );
+		return;
+	}
+	char* result;
+	const char* password = "password";
+	authenticator.generate( password, cookie, &result );
+	connection_->auth( cookie, result );
+	free( result );
+}
 
 
 void NetworkSetup::newTable()
@@ -93,6 +128,13 @@ void NetworkSetup::newTable()
 	//text is empty so disable ok button.
 	l.enableButtonOK( false );
 	if ( l.exec() == KLineEditDlg::Accepted ) connection_->createTable( l.text() );
+}
+
+void NetworkSetup::reconnect()
+{
+	if ( openConnection( widget_->server->text().latin1(), widget_->port->text().toInt() ) ) {
+		resetGUI( widget_->server->text().latin1() );
+	}
 }
 
 void NetworkSetup::connectTo( const char* ip, const short port )

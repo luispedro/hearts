@@ -24,7 +24,7 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>10</y>
+                <y>40</y>
                 <width>472</width>
                 <height>357</height>
             </rect>
@@ -257,6 +257,22 @@
             </spacer>
         </vbox>
     </widget>
+    <widget class="QLabel">
+        <property name="name">
+            <cstring>state</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>10</y>
+                <width>210</width>
+                <height>20</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>STATE LABEL -- SHOULD NOT SEE</string>
+        </property>
+    </widget>
 </widget>
 <customwidgets>
 </customwidgets>
@@ -300,7 +316,7 @@
     <signal>serverChanged(QString)</signal>
     <signal>joinTable(QString)</signal>
     <signal>createNewTable()</signal>
-    <signal>serverChange(QString)</signal>
+    <signal>serverChange()</signal>
 </signals>
 <slots>
     <slot access="private">changeServer_clicked()</slot>

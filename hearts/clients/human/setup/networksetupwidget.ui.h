@@ -1,6 +1,3 @@
-#ifndef DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_
-#define DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_
-
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -14,47 +11,44 @@
 
 void NetworkSetupWidget::changeServer_clicked()
 {
-	emit serverChange( server->text() );
+ emit serverChange();
 }
 
 void NetworkSetupWidget::join_clicked()
 {
-	QListViewItem * current = tables->currentItem();
-	if ( !current )
-		return ;
-	QString tableName = current->text( 0 );
-	massert( !tableName.isNull() );
-	emit joinTable( tableName );
+ QListViewItem * current = tables->currentItem();
+ if ( !current )
+  return ;
+ QString tableName = current->text( 0 );
+ massert( !tableName.isNull() );
+ emit joinTable( tableName );
 }
 
 
 void NetworkSetupWidget::newTable_clicked()
 {
-	emit createNewTable();
+ emit createNewTable();
 }
 
 
 void NetworkSetupWidget::clearTables()
 {
-	tables->clear();
+ tables->clear();
 }
 
 
 void NetworkSetupWidget::insertTable( QListViewItem * t )
 {
-	tables->insertItem( t );
+ tables->insertItem( t );
 }
 
 void NetworkSetupWidget::server_returnPressed( const QString & )
 {
-	emit serverChange( server->text() );
+ emit serverChange();
 }
-
-
-#endif /* DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_ */
-
 
 void NetworkSetupWidget::activateJoin()
 {
     join->setEnabled( true );
 }
+

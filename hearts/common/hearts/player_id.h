@@ -22,6 +22,13 @@ std::istream& operator >> (std::istream&,player_id::type&);
 std::ostream& operator << (std::ostream&,player_id::type);
 
 
+#define HANDLE_ALL_PLAYER_IDS( FUNCTION ) \
+	do { \
+	FUNCTION( self ); \
+	FUNCTION( right ); \
+	FUNCTION( front ); \
+	FUNCTION( left ); \
+	} while ( 0 )
 
 
 #endif /* DB_PLAYER_ID_H_INCLUDE_GUARD_ */

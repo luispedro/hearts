@@ -6,6 +6,8 @@
 #include "server.h"
 #include "options.h"
 #include <unistd.h>
+#include <errno.h>
+#include <string.h>
 
 ConnectingPlayer::ConnectingPlayer( player_id::type id, Server* s )
 		: FDConnection( id_to_fd( id ) ),
@@ -14,9 +16,14 @@ ConnectingPlayer::ConnectingPlayer( player_id::type id, Server* s )
 	LOG_PLACE_NL();
 	if ( options->wait_zero() ) {
 		char c = 1;
-		LOG_PLACE() << "Waiting for a zero.\n";
-		while ( ::read( id_to_fd( id ), &c , 1 ) > 0 && c )
-			LOG_PLACE() << "?\n";
+		LOG_PLACE() << "Waiting for a zero. (from fd " << id_to_fd(id) << ") \n";
+		do {
+			if ( ::read( id_to_fd( id ), &c , 1 ) <= 0 ) {
+				LOG_PLACE() << " ERROR: " << strerror(errno) << "\n\n";
+				exit(1);
+			}
+			LOG_PLACE() << " got (" << c << ") [#" << (int)c << "]\n";
+		} while (c);
 		LOG_PLACE() << "Received zero. We can start.\n";
 	}
 }

@@ -40,6 +40,11 @@ bool Table::full() const
 	return players_.size() == 4;
 }
 
+bool Table::empty() const
+{
+	return players_.empty();
+}
+
 Player* Table::player( int idx ) const
 {
 	if ( idx < 0 or unsigned( idx ) >= players_.size() ) return 0;

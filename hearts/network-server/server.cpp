@@ -72,6 +72,20 @@ void Server::acceptSlot()
 	FOR_ALL_TABLES( p->lookAt( table ) );
 }
 
+
+void Server::connectionError( const char* reason, int code )
+{
+	LOG_PLACE() << " connection ended: " << reason << ".\n";
+
+	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
+	Table* table = player->table();
+	if ( table ) {
+		table->removePlayer( player );
+		if ( table->empty() ) delete table;
+	}
+	delete player;
+}
+
 void Server::joinTable( table_id tableName )
 {
 	LOG_PLACE_NL();

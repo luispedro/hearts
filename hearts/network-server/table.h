@@ -15,6 +15,7 @@ class Table : public QObject
 	
 		Table( QObject* parent, QString name );
 		bool full() const;
+		bool empty() const;
 	
 		Player* player( int idx ) const;
 		QString name() const { return name_; }

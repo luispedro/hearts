@@ -24,11 +24,13 @@
 NetworkSetup::NetworkSetup(QWidget* parent, const char* name)
 		:QWidget(parent,name),
 		widget_( new NetworkSetupWidget( this ) ),
-		connection_( 0 )
+		connection_( 0 ),
+		good_( true )
 {
 	KExtendedSocket* socket = new KExtendedSocket( Network::Server, Network::Port );
 	if ( socket->connect() < 0 ) {
 		KMessageBox::error( this, i18n( "Error connecting to Hearts Server: %1" ).arg( strerror( errno ) ) );
+		good_ = false;
 	}
 	connection_ = new Network::UserConnection( socket, this );
 	setMinimumSize( 150, 350 );

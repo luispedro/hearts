@@ -29,11 +29,15 @@
 	MAKE( localsetup_, LocalSetup );
 	MAKE( networksetup_, NetworkSetup );
 
+	widget_->radioNetwork->setEnabled( networksetup_->good() );
+
 	LOG_PLACE_NL();
 	widget_->adjustSize();
 	widget_->move( 0,0 );
 	widget_->show();
 }
+
+
 void InitialChoice::doNext( SetupWindow* parent ) 
 {
 	assert( parent );
@@ -72,3 +76,4 @@ void InitialChoice::doNext( SetupWindow* parent )
 }
 
 #include "initialchoice.moc"
+

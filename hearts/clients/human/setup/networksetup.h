@@ -11,8 +11,10 @@ using Network::PlayerInfo;
 class NetworkSetup : public QWidget {
 		Q_OBJECT
 	public:
-			NetworkSetup(QWidget* p, const char* name = "network-setup");
-			~NetworkSetup();
+		NetworkSetup(QWidget* p, const char* name = "network-setup");
+		~NetworkSetup();
+
+		bool good() const { return good_; }
 	signals:
 		void connected(int);
 	public slots:
@@ -32,6 +34,7 @@ class NetworkSetup : public QWidget {
 		Network::UserConnection* connection_;
 		QString delayedIp;
 		short delayedPort;
+		bool good_;
 };
 
 

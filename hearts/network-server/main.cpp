@@ -1,5 +1,6 @@
 #include <qapplication.h>
 #include "server.h"
+#include "options.h"
 #include "general/helper.h"
 
 #include <errno.h>
@@ -10,7 +11,7 @@
 
 void write_pid_file()
 {
-	std::ofstream pidf( "/var/run/hearts.pid" );
+	std::ofstream pidf( options->logFile().c_str() );
 	pidf << getpid() << std::endl;
 	if ( !pidf ) {
 		std::cerr << "Error writing pid file" << std::endl;
@@ -19,11 +20,8 @@ void write_pid_file()
 
 int main( int argc, char** argv )
 {
-	if ( argc > 1 && std::string( argv[ 1 ] ) == "--deamon" ) {
-		std::cerr << "\"--deamon\" should have been spelt \"--daemon\", but I will let it pass (just this time)." << std::endl;
-		std::strcpy( argv[ 1 ], "--daemon" );
-	}
-	if ( argc > 1 && std::string( argv[ 1 ] ) == "--daemon" ) {
+	Options::init( argc, argv );
+	if ( options->daemon() ) {
 		if ( daemon( 0, 0 ) < 0 ) {
 			std::cerr << "Daemon call failed: " << strerror( errno ) << ".\n";
 			return 1;

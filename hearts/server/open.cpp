@@ -47,6 +47,8 @@ void set_sock_options(int fd)
 
 void open_connections()
 { // FIXME: this code kind of sucks, and it is too trusting 
+	bool tcp_ok = false;
+	bool local_ok = false;
 	int listen_tcp_fd = socket(PF_INET,SOCK_STREAM,0);
 	{
 		sockaddr_in addr;
@@ -55,9 +57,12 @@ void open_connections()
 		addr.sin_port = htons(options->tcp_port() );
 		addr.sin_addr.s_addr = htonl(INADDR_ANY);
 		set_sock_options(listen_tcp_fd);
-		if (bind(listen_tcp_fd,(sockaddr*)&addr,sizeof(addr)) < 0)
+		if (bind(listen_tcp_fd,(sockaddr*)&addr,sizeof(addr)) < 0) {
 			std::cerr << "Error in bind: " << strerror(errno) << ".\n";
-		listen(listen_tcp_fd,4);
+		} else {
+			listen(listen_tcp_fd,4);
+			tcp_ok = true;
+		}
 	}
 	int listen_local_fd = socket(PF_LOCAL,SOCK_STREAM,0);
 	{	
@@ -66,17 +71,30 @@ void open_connections()
 		addr.sun_family = AF_LOCAL;
 		unlink(options->unix_address() );
 		strcpy(addr.sun_path,options->unix_address() );
-		if (bind(listen_local_fd,reinterpret_cast<sockaddr*>(&addr),sizeof(addr)) < 0)
+		if (bind(listen_local_fd,reinterpret_cast<sockaddr*>(&addr),sizeof(addr)) < 0) {
 			std::cerr << "Error in local bind: " << strerror(errno) << ".\n";
-		else listen(listen_local_fd,4);
+		} else { 
+			listen(listen_local_fd,4);
+			local_ok = true;
+		}
+	}
+
+	if ( !( tcp_ok || local_ok ) ) {
+		std::cerr << "Unable to bind on any socket.\n"
+			<< "exiting.\n";
+		exit( 1 );
 	}
 	pollfd listen[2];
 	memset(listen,0,sizeof(listen));
 	enum { tcp, local };
-	listen[tcp].fd = listen_tcp_fd;
-	listen[tcp].events = POLLIN;
-	listen[local].fd = listen_local_fd;
-	listen[local].events = POLLIN;
+	if ( tcp_ok ) {
+		listen[tcp].fd = listen_tcp_fd;
+		listen[tcp].events = POLLIN;
+	}
+	if ( local_ok ) {
+		listen[local * tcp_ok ].fd = listen_local_fd;
+		listen[local * tcp_ok ].events = POLLIN;
+	}
 	for (int i = 0; i != 4; ++i) 
 	{
 		union {
@@ -85,7 +103,7 @@ void open_connections()
 		} addr;
 		int stat;
 		do {
-			stat = poll(listen,2,-1);
+			stat = poll(listen,tcp_ok + local_ok,-1);
 		} while (stat < 0);	
 		int listen_fd = -1;
 		if (listen[tcp].revents) listen_fd = listen_tcp_fd;

@@ -76,7 +76,7 @@ void Dispatch::terminate_handler(Message m)
 		terminate_message(m.body());
 }
 
-void Dispatch::namequery_handler(Message m)
+void Dispatch::namequery_handler(Message)
 {
 		namequery_message();
 }
@@ -139,7 +139,7 @@ void Dispatch::receive_handler(Message m)
 		else receive_message(c);
 }
 
-void Dispatch::give3query_handler(Message m)
+void Dispatch::give3query_handler(Message)
 {
 		give3query_message();
 }

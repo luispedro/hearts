@@ -52,7 +52,9 @@ HumanClient::HumanClient()
 	setMinimumWidth( interface->width() );
 	setMinimumHeight( interface->height() );
 
-	updateNames();
+#define SET_NAME(x) interface->setName(player_id::x,Options::playerName(player_id::x))
+	HANDLE_ALL_PLAYER_IDS( SET_NAME );
+#undef SET_NAME
 
 	LOG_PLACE_NL();
 	setup_ = new SetupWindow;
@@ -72,20 +74,7 @@ void HumanClient::connected_to_server( int fd )
 	massert( fd > 0 );
 	connection->set_fd( fd );
 	connection->enable();
-	updateNames(); // FIXME: This shouldn't work like this
-	// Further Note: WTF does this do?
 }
-
-void HumanClient::updateNames()
-{
-#define UPDATE(x) interface->setName(player_id::x,Options::playerName(player_id::x))
-	UPDATE( self );
-	UPDATE( right );
-	UPDATE( front );
-	UPDATE( left );
-#undef UPDATE
-}
-
 
 void HumanClient::namequery()
 {

@@ -12,12 +12,22 @@
 
 #include <qradiobutton.h>
 
-	InitialChoice::InitialChoice(QWidget* parent, const char* name)
+	InitialChoice::InitialChoice(SetupWindow* parent, const char* name)
 		:SmartPage( parent, name )
 {
 	LOG_PLACE_NL();
 	widget_ = new InitialChoiceWidget( this );
 	widget_->radioPrivate->setEnabled( false );
+
+#define MAKE( memvar, Class )                                                         \
+	memvar = new Class( parent );                                                 \
+	memvar->hide();                                                               \
+	connect( parent, SIGNAL( execute() ), memvar, SLOT( execute() ) );            \
+	connect( memvar, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) )
+
+	MAKE( localsetup_, LocalSetup );
+	MAKE( networksetup_, NetworkSetup );
+
 	LOG_PLACE_NL();
 	widget_->adjustSize();
 	widget_->move( 0,0 );
@@ -30,25 +40,24 @@ void InitialChoice::doNext( SetupWindow* parent )
 	{
 		case 0 : // InitialChoice::AgainstComputer:
 			{
-				LOG_PLACE_NL();
-				LocalSetup* setup = new LocalSetup( parent );
-				parent->addPage( setup, "FIXME" );
-				parent->setFinishEnabled( setup, true );
-				parent->showPage( setup );
-				connect( parent, SIGNAL( execute() ), setup, SLOT( execute() ) );
-				connect( setup, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) );
+				LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
+
+#define PUT_REMOVE( goingIn, goingOut )                                             \
+				assert( goingOut );                                 \
+				assert( goingIn );                                  \
+				parent->removePage( goingOut );                     \
+				parent->addPage( goingIn, "FIXME" );                \
+				parent->setFinishEnabled( goingIn, true );          \
+				parent->setBackEnabled( goingIn, true );            \
+				parent->setNextEnabled( goingIn, false );           \
+				parent->showPage( goingIn );                        \
 				return;
+
+				PUT_REMOVE( localsetup_, networksetup_ );
 			}
 		case 1: // InitialChoice::Public:
 			{
-				LOG_PLACE_NL();
-				NetworkSetup* setup = new NetworkSetup( parent );
-				parent->addPage( setup, "FIXME!!" );
-				parent->setFinishEnabled( setup, true );
-				parent->showPage( setup );
-				connect( parent, SIGNAL( execute() ), setup, SLOT( execute() ) );
-				connect( setup, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) );
-				return;
+				PUT_REMOVE( networksetup_, localsetup_ );
 			}
 		case 2: // InitialChoice::Private:
 			{

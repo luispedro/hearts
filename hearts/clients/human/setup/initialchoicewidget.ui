@@ -48,6 +48,22 @@
         </widget>
         <widget class="QRadioButton">
             <property name="name">
+                <cstring>radioPrivate</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>100</y>
+                    <width>300</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Play a private game with other people</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
                 <cstring>radioLocal</cstring>
             </property>
             <property name="geometry">
@@ -61,21 +77,8 @@
             <property name="text">
                 <string>Play against the computer</string>
             </property>
-        </widget>
-        <widget class="QRadioButton">
-            <property name="name">
-                <cstring>radioPrivate</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>100</y>
-                    <width>300</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Play a private game with other people</string>
+            <property name="checked">
+                <bool>true</bool>
             </property>
         </widget>
     </widget>

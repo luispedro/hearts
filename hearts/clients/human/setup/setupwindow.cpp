@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <algorithm>
+#include <unistd.h>
 
 namespace {
 		const char* intro = I18N_NOOP("Please choose whether you would like to play a local game or a network.\n"
@@ -41,9 +42,17 @@ void SetupWindow::next()
 
 void SetupWindow::connected(int fd)
 {
-		emit connected_to(fd);
-		this->close();
-//X 		deleteLater();
+	char zero = 0;
+	write( fd, &zero, 1 );
+	emit connected_to(fd);
+	this->close();
+//X 	deleteLater();
+}
+
+
+void SetupWindow::accept()
+{
+	emit execute();
 }
 
 

@@ -12,10 +12,12 @@ class SetupWindow : public QWizard {
 				SetupWindow();
 		private:
 				void next();
-		private slots:
+				virtual void accept();
+		public slots:
 				void connected(int);
 		signals:
 				void connected_to(int);	
+				void execute();
 };
 
 

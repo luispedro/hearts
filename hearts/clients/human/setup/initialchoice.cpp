@@ -30,6 +30,8 @@ void InitialChoice::doNext( SetupWindow* parent )
 				parent->addPage( setup, "FIXME" );
 				parent->setFinishEnabled( setup, true );
 				parent->showPage( setup );
+				connect( parent, SIGNAL( execute() ), setup, SLOT( execute() ) );
+				connect( setup, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) );
 				return;
 			}
 		case 1: // InitialChoice::Public:
@@ -39,6 +41,7 @@ void InitialChoice::doNext( SetupWindow* parent )
 				parent->addPage( setup, "FIXME!!" );
 				parent->setFinishEnabled( setup, true );
 				parent->showPage( setup );
+				return;
 			}
 		case 2: // InitialChoice::Private:
 			{

@@ -2,7 +2,7 @@
 #include "server.h"
 #include "general/helper.h"
 
-
+#include <errno.h>
 #include <unistd.h>
 #include <iostream>
 #include <string>

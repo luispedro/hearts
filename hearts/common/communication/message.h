@@ -20,7 +20,7 @@
 
 #include <map>
 
-#include "error.h"
+#include "general/error.h"
 #include <string>
 #include <iostream>
 

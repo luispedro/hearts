@@ -19,7 +19,6 @@
 #define MESSAGETRANSLATOR_H
 
 #include "message.h"
-#include "error.h"
 
 #include <cstdlib>
 #include <vector>

@@ -4,6 +4,7 @@
 #include <vector>
 #include <memory>
 #include <string>
+#include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/poll.h>
 

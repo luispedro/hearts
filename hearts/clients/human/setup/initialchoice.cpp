@@ -9,6 +9,7 @@
 #include "general/widget_placement.h"
 #include "initialchoicewidget.h"
 
+#include <cassert>
 
 #include <qradiobutton.h>
 

@@ -28,7 +28,6 @@ class HumanClient : public KMainWindow
 		void terminate( QString );
 
 		void clearTable();
-		void updateNames();
 		void connected_to_server( int );
 
 		void showSetup();

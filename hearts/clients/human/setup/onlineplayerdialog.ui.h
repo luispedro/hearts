@@ -10,7 +10,7 @@
 #include "network/player_status.h"
 #include <qstring.h>
 
-void OnlinePlayersWidget::addPlayer( QString name, player_status::type s )
+void OnlinePlayersDialog::addPlayer( QString name, player_status::type s )
 {
 	int idx = table->numRows();
     table->setNumRows( idx + 1 );
@@ -19,7 +19,7 @@ void OnlinePlayersWidget::addPlayer( QString name, player_status::type s )
 }
 
 
-void OnlinePlayersWidget::setStatus( QString name, player_status::type s )
+void OnlinePlayersDialog::setStatus( QString name, player_status::type s )
 {
 
 }

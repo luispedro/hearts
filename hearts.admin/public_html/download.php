@@ -8,7 +8,7 @@ do_header('Download Hearts');
 <p>This is a beta version of hearts 2.0 -- version 1.97</p>
 
 <p><a href="http://prdownloads.sourceforge.net/hearts/hearts-1.97.tar.bz2?download">Download it</a> (traditional source tarball). This is 
-	a <a href="http://www.sf.net/">SourceForge</a> link as I don't want my bandwith bill to shoot up.</p>
+	a <a href="http://www.sf.net/">SourceForge</a> link as I don't want my bandwidth bill to shoot up.</p>
 
 <p><b>SuSe 9.0 RPM</b> available at <a href="http://www.freewebs.com/famewolf/hearts-1.97-1.i586.rpm">http://www.freewebs.com/famewolf/hearts-1.97-1.i586.rpm</a> (external link).
 

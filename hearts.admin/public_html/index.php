@@ -21,10 +21,10 @@ do_header('Hearts for KDE');
 <h4>Change Log</h4>
 <ul>
 	<li>Fix important bug regarding the points (you got your partners' points).</li>
-	<li>Make the local game start immediatelly (before you had a small delay).</li>
+	<li>Make the local game start immediately (before you had a small delay).</li>
 	<li>Small GUI fixes:
 		<ul>
-			<li>Accelarator clashes fixed</li>
+			<li>Accelerator clashes fixed</li>
 			<li>Use the same strings in the local and remote game setup</li>
 		</ul></li>
 	<li>Code cleanup: removed unnecessary files, includes and fixed whitespace

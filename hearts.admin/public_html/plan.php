@@ -1,9 +1,10 @@
-<?php include('base.php');
-do_header('Hearts\' Development Plan');
+<?php
+		include('base.php');
+		do_header('Hearts\' Development Plan');
 ?>
 
 <p>This is basically what I plan to do. There are no dates assigned to any of the steps,
-	and there is no garantee that I will keep the plan 100%, but here it is.
+	and there is no guarantee that I will keep the plan 100%, but here it is.</p>
 
 <h2>Version 1.98</h2>
 

@@ -26,11 +26,5 @@ do_header('Hearts for KDE');
 	<li>A public hearts server was put online thanks to Pavel Troller who volunteered space on a machine of his. Thanks also to Imre, Nagy Jr who also volunteered some space.
 </ul>
 
-<h3>Changes in version 1.92</h3>
-<ul>
-	<li>The setup is different and not a separate program (which will allow me to set up error handling later)
-	<li>A couple of display bugs fixed
-</ul>
-
 <p>You can see every change in <a href="history.php">the history page</a>.
 <?php do_footer(); ?>

@@ -47,7 +47,7 @@ int open_client_connection(int argc,char* argv[])
 			if (connect(fd,reinterpret_cast<sockaddr*>(&addr),sizeof(addr)) < 0)
 			{
 				if (errno == EINTR) return -connection_errors::interrupted;
-				std::cerr << "Error opening the connection (local): " << strerror(errno) << ".\n";
+				std::cerr << "Error opening the connection (local to " <<  address << " ): " << strerror(errno) << ".\n";
 				return -connection_errors::unix_error;
 			}
 			LOG_PLACE() << " opened local connection.\n";

@@ -105,9 +105,9 @@ void UserConnection::hello( QString name )
 	write( m );
 }
 
-void UserConnection::auth( QCString cookie, QCString result )
+void UserConnection::authR( QCString cookie, QCString result )
 {
-	write( MessageConstructor() << Message::auth << cookie << result );
+	write( MessageConstructor() << Message::authR << cookie << result );
 }
 
 void UserConnection::leaveTable()
@@ -142,6 +142,9 @@ void UserConnection::get( Message m )
 		case Message::motd:
 			emit motd( m.arg<QString>( 0 ) );
 			return;
+		case Message::authQ:
+			emit authQ( m.arg<QCString>( 0 ), m.arg<QCString>( 1 ) );
+			return;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }
@@ -175,10 +178,10 @@ void ServerConnection::motd( const QString& message ) {
 	write( MessageConstructor() << Message::motd << message );
 }
 
-void ServerConnection::auth( QCString method, QCString cookie )
+void ServerConnection::authQ( QCString method, QCString cookie )
 {
 	MessageConstructor m;
-	write( m << Message::auth << method << cookie );
+	write( m << Message::authQ << method << cookie );
 }
 
 void ServerConnection::get( Message m )

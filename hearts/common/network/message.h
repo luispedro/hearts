@@ -18,6 +18,8 @@ class MessageConstructor;
 // createTable name
 // leaveTable name
 // hello name
+// authQ method cookie
+// authR cookie result
 // playerStatus playerName player_status
 // motd message
 // changeProtocol
@@ -38,7 +40,8 @@ class Message
 					HANDLE( joinTable ) \
 					HANDLE( leaveTable ) \
 					HANDLE( hello ) \
-					HANDLE( auth ) \
+					HANDLE( authQ ) \
+					HANDLE( authR ) \
 					HANDLE( lookAt ) \
 					HANDLE( playerStatus ) \
 					HANDLE( motd ) \

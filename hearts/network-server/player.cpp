@@ -35,9 +35,9 @@ void Player::get( Message m )
 			emit nameSet( this, name_ );
 			cookie_ = validator_->cookie();
 			LOG_PLACE() << "Requesting auth [ " << validator_->id() << '\n';
-			auth( validator_->id(), cookie_ );
+			authQ( validator_->id(), cookie_ );
 		break;
-			case Message::auth:
+			case Message::authR:
 			LOG_PLACE() << "Got reply [ " << validator_->id() << '\n';
 			if ( validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
 				valid_ = true;

@@ -3,11 +3,16 @@
 
 #include <qstring.h>
 
-bool execute_server();
-bool execute_server( bool tcp, bool local );
-bool execute_server( short port );
-bool execute_computer_client( QString name );
-QString generateLocalAddress();
+namespace execute {
+		bool execute_server();
+		bool execute_server( bool tcp, bool local );
+		bool execute_server( short port );
+		bool execute_computer_client( QString name );
 
+		int computerClient( QString name );
+		QString generateLocalAddress();
+}
+
+using namespace execute;
 
 #endif /* DB_EXEC_H_INCLUDE_GUARD_ */

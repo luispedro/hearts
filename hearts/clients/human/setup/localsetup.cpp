@@ -44,11 +44,50 @@ void LocalSetup::setName( player_id::type who, QString name )
 
 void LocalSetup::execute()
 {
+	enum { client, server };
 	kdDebug() << "LocalSetup::execute()" << endl;
-	// FIXME: add error handling
-	// FIXME: the whole thing with execute2 is really "hacky"
-	execute_server( false, true );
-	QTimer::singleShot( 1500, this, SLOT( execute2() ) );
+	int pipe[2];
+	int stat;
+	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) {
+			goto error;
+	}
+
+	stat = fork();
+	if ( stat < 0 ) goto error;
+	if ( stat > 0 ) {
+#define SAVE(x)  Options::savePlayerName( player_id::x,widget_->x##Name() )
+			SAVE( self );
+			SAVE( right );
+			SAVE( front );
+			SAVE( left );
+			char c = 0;
+			::write( pipe[ client ], &c, 1);
+			emit connected( pipe[ client ] );
+	} else {
+			int fds[ 4 ];
+			fds[ 0 ] = pipe[ server ];
+			fds[ 1 ] = computerClient( widget_->rightName() );
+			fds[ 2 ] = computerClient( widget_->frontName() );
+			fds[ 3 ] = computerClient( widget_->leftName() );
+			
+			if ( fds[ 1 ] < 0 ||
+							fds[ 2 ] < 0 ||
+							fds[ 3 ] < 0 ) {
+					close( pipe[ server ] );
+					exit( 1 );
+			}
+			KProcess p;
+			p << "heartsserver"
+					<< "--fds" << QString::fromLatin1( "%1,%2,%3,%4" )
+									.arg( fds[ 0 ] )
+									.arg( fds[ 1 ] )
+									.arg( fds[ 2 ] )
+									.arg( fds[ 3 ] );
+			exit( p.start( KProcess::DontCare ) ? 0 : 1 );
+	}
+error:
+	LOG_PLACE_NL();
+	// NOP
 }
 
 void LocalSetup::execute2()
@@ -58,22 +97,6 @@ void LocalSetup::execute2()
 	execute_computer_client( widget_->leftName() );
 	execute_computer_client( widget_->frontName() );
 	int fd = open_client_connection( generateLocalAddress().local8Bit() );
-
-	if ( fd < 0 ) {
-		KMessageBox::error( this, "Unable to connect to server!" );
-		return ;
-	}
-
-#define SAVE(x)  Options::savePlayerName( player_id::x,widget_->x##Name() )
-	SAVE( self );
-	SAVE( right );
-	SAVE( front );
-	SAVE( left );
-	
-	char c = 0;
-	::write( fd, &c, 1 );
-	// must be done last
-	emit connected( fd );
 }
 
 

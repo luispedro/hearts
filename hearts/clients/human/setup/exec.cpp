@@ -6,9 +6,10 @@
 #include <qstring.h>
 #include <qstringlist.h>
 
-#include "communication/constants.h"
+#include <sys/types.h>
+#include <sys/socket.h>
 
-QString generateLocalAddress()
+QString execute::generateLocalAddress()
 {
 	return QString::fromLocal8Bit( local_address ) + QString::number( getpid() );
 }
@@ -21,6 +22,8 @@ std::ostream& operator<<( std::ostream& s, const QValueList<QCString>& l )
 	return s;
 }
 
+
+namespace execute {
 
 bool execute_server()
 {
@@ -58,4 +61,22 @@ bool execute_computer_client( QString name )
 	return p.start( KProcess::DontCare );
 }
 
+
+}
+
+int execute::computerClient( QString name )
+{
+	int pipe[2];
+	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) return -1;
+	KProcess p;
+	p << "heartscomputerclient"
+			<< "--playername" << name
+			<< "--fd" << QString::number( pipe[0] )
+			<< "--zero";
+	LOG_PLACE() << '!' << p.args() << "!\n";
+	LOG_PLACE() << " FDs: " << pipe[ 0 ] << " <-> " << pipe[ 1 ] << "\n";
+	if ( !p.start( KProcess::DontCare ) ) return -1;
+	close( pipe[0] );
+	return pipe[1];
+}
 

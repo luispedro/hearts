@@ -13,6 +13,9 @@
 
 #include <qlineedit.h>
 
+#include <string.h> // strerror
+#include <errno.h>  // errno
+
 
 RemoteSetup::RemoteSetup( QWidget* p, const char* n )
 	: QWidget( p, n ),

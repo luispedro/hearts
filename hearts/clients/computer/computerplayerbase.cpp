@@ -182,7 +182,8 @@ It makes sure that the invariants are maintained. */
 Card ComputerPlayerBase::remove(handIterator p){
         massert (p >= handBegin() and p < handEnd());
         Card res = *p;
-        hand.erase(const_cast<vector<Card>::iterator>(p));
+	hand.erase(hand.begin() + (p - hand.begin()));
+        //hand.erase(const_cast<vector<Card>::iterator>(p));
         if (res.suit() == Card::spades)
         {
                 if (res.value() == Card::queen) hasQueen_ = false;
@@ -204,13 +205,13 @@ void ComputerPlayerBase::assertInvariants()
                 if (suitInfo[*suit].hasIt and std::find_if(handBegin(),handEnd(),OfSuite(*suit)) == handEnd())
                 {
                         LOG_PLACE() << " suitInfo says we've got " << *suit << " but hand = ";
-                        std::copy(handBegin(),handEnd(),ostream_iterator<Card>(std::cerr," "));
+                        std::copy(handBegin(),handEnd(),std::ostream_iterator<Card>(std::cerr," "));
                         massert(0);
                 }
                 else if (!suitInfo[*suit].hasIt and std::find_if(handBegin(),handEnd(),OfSuite(*suit)) != handEnd())
                 {
                         LOG_PLACE() << " suitInfo says we haven't got " << *suit << " but hand = ";
-                        std::copy(handBegin(),handEnd(),ostream_iterator<Card>(std::cerr," "));
+                        std::copy(handBegin(),handEnd(),std::ostream_iterator<Card>(std::cerr," "));
                         massert(0);
                 }
         }
@@ -221,9 +222,9 @@ void ComputerPlayerBase::assertInvariants()
         }
         if (hasQueen())
         {
-                massert(std::find(handBegin(),handEnd(),Card(Card::spades,Card::queen)));
+                massert(std::find(handBegin(),handEnd(),Card(Card::spades,Card::queen)) != handEnd());
         }
-        vector<Card> tmp = hand;
+        std::vector<Card> tmp = hand;
         std::sort(tmp.begin(),tmp.end());
         massert(tmp == hand);
 }

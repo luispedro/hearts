@@ -1,8 +1,6 @@
 <?php include_once('base.php');
-do_header();
+do_header('Screenshots');
 ?>
-<H1>Screenshots</h1>
-
 <TABLE>
 <TR>
 <TD>

@@ -1,7 +1,6 @@
 <?php include_once('base.php');
-do_header();
+do_header('Translations');
 ?>
-<h1>Translations</h1>
 <DIV align="center">
 <TABLE width="620">
 <TR>

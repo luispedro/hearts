@@ -1,0 +1,58 @@
+BODY { 
+background: white;
+ font: sans-serif "Arial"; 
+ color: black; 
+
+} 
+
+.boxxed {
+border: navy 2px dotted;
+background: #eee; 
+padding: 1em;
+width: 10em;
+}
+
+H3 > .boxxed {
+	font-size: 100%;
+	font-weight: bold;
+}
+
+DIV.toc {
+position: absolute;
+top: 8em;
+left: 2em;
+}
+
+#author {
+position : absolute;
+top: 20em;
+left : 2em;
+} 
+
+#content {
+top: 4em;
+left: 15em;
+right: 4em;
+position:absolute;
+}
+
+ 
+H1 { 
+font-size : 300%; 
+font-family: sans-serif "Helvetica";
+text-align: left;
+color: navy;
+background: #ddf;
+padding-left: 2em;
+border-bottom: 2px solid black;
+} 
+ 
+A { 
+ color: red; 
+} 
+ 
+A:visited { 
+ 
+ color: purple; 
+}
+

@@ -1,46 +1,49 @@
 <?php
 
-function do_header() {
+function do_header($title) {
 	?><!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
 
 <html>
 <head>
-<title>Hearts for KDE</title>
+<title><?=$title?></title>
 
-<link rev="made" href="mailto:luis@luispedro.org">
+<link rel="made" href="mailto:luis@luispedro.org" />
+<link rel="stylesheet" href="style/bluegrey.css" type="text/css" />
 
 <META CONTENT="hearts, game, linux game, card game" NAME="keywords">
 <META CONTENT="This is a clone of the hearts game that comes with Windows 9x for KDE." NAME="description">
-
-
-
-<style type="TEXT/CSS" media="screen">
-<!-- 
-@import "default.css";
--->
-</style>
 
 
 </head>
 
 
 <body>
+<div id="title">
+<h1><?=$title?></h1>
+</div>
 
-<p><a href="index.php">Main</a> | <a href="download.php">Download</a> | <a href="screenshots.php">Screenshots</a> | <a href="translations.php">Translations</a>
+<div class="boxxed toc">
+<p>
+<a href="index.php">Main</a> <br />
+ <a href="download.php">Download</a> <br />
+ <a href="screenshots.php">Screenshots</a> <br />
+ <a href="translations.php">Translations</a>
+</div>
+<div class="boxxed" id="author">
+<p><b>Author Information</b><p>
+<p>
+Luís Pedro Coelho <br />
+<a href="mailto:luis@luispedro.org">luis@luispedro.org</a> <br />
+<a href="http://luispedro.org/">Home Page
+</div>
+<div id="content">
 <?php 
 }
 
 function do_footer() {
 	?>
-
-
-<address>
-Luís Pedro Coelho/<a href="mailto:luis@luispedro.org">luis@luispedro.org</a>/<a href="http://luispedro.org/">luispedro.org</a>
-</address>
-
-
+</div>
 </body></html>
-
 <?php
 }
 ?>

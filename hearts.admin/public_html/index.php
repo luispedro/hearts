@@ -1,9 +1,7 @@
 <?php
 include('base.php');
-do_header();
+do_header('Hearts for KDE');
 ?>
-<H1 align="center">Hearts for the KDE
-</H1>
 
 <h2>What is hearts?</h2>
 
@@ -32,6 +30,4 @@ do_header();
 </ul>
 
 <p>You can see every change in <a href="history.php">the history page</a>.
-
-<HR>
 <?php do_footer(); ?>

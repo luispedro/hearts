@@ -1,8 +1,6 @@
 <?php include('base.php');
-do_header();
+do_header('Download Hearts');
 ?>
-<h1>Download hearts</h1>
-
 
 <h2 id="CVS"><a name="CVS">Unstable version</a></h2>
 <p>There is now public CVS access to a new version which includes the ability to connect to a public hearts server.

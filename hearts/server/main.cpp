@@ -41,6 +41,7 @@ email                : luis@luispedro.org
 int main( int argc, char **argv )
 {
 	Options::init( argc, argv );
+	srand( time( 0 ) );
 	if ( options->daemon() ) {
 		if ( daemon( 0, 0 ) < 0 ) {
 			std::cerr << "Error in daemon(): " << strerror( errno ) << ".\n";
@@ -51,6 +52,5 @@ int main( int argc, char **argv )
 		open_connections();
 	Server serv;
 	return serv.exec();
-	srand( time( 0 ) );
 }
 

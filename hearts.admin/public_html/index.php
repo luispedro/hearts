@@ -20,14 +20,14 @@ do_header('Hearts for KDE');
 <p><strong>19th April 2004</strong><br />
 <h4>Change Log</h4>
 <ul>
-<li>Fix all known bugs:
+<li>Fixed all known bugs:
 	<ul>
-		<li>The card passing is always to the right.</li>
-		<li>Portability issue regarding setting the random seed.</li>
-		<li>A lot of processes are left running.</li>
-		<li>Only one match (ie, a series of games until a player gets 100 points) is possible.</li>
+		<li>The card passing was always to the right.</li>
+		<li>Portability issue regarding setting the random seed (std::random_shuffle + std::srand issue).</li>
+		<li>A lot of processes were left running.</li>
+		<li>Only one match (ie, a series of games until a player gets 100 points) was possible.</li>
 	</ul>
-<li>Have the status bar help on what the user should do at every step (play, give cards right, etc.)</li>
+<li>Status bar tells the user what he he should do at every step (play, give cards right, etc.)</li>
 </ul>
 
 

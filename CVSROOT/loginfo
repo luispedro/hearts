@@ -24,3 +24,5 @@
 #DEFAULT (echo ""; id; echo %s; date; cat) >> $CVSROOT/CVSROOT/commitlog
 # or
 #DEFAULT (echo ""; id; echo %{sVv}; date; cat) >> $CVSROOT/CVSROOT/commitlog
+^hearts.admin/public_html (date ; cat ; (sleep 3; cd /www/data/hearts/public_html/ ; cvs -q update -d) &) >> $CVSROOT/CVSROOT/updatelog 2>&1
+

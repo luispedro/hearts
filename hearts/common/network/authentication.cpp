@@ -45,7 +45,7 @@ void do_md5( const char* input, char* result )
 	KMD5 calculator( input );
 	unsigned char dig[ 16 ];
 	calculator.rawDigest( dig );
-	std::strcpy( result, ( const char* ) dig );
+	for ( int i = 0; i != 16; ++i ) result[ i ] = static_cast<char>( dig[ i ] );
 #ifdef TEST_ME
 
 	char* pretty;

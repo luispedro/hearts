@@ -1,5 +1,5 @@
 <?php include_once('base.php');
-do_header();
+do_header('History of Hearts');
 ?>
 
 <h2>Full Hearts History</H2>

@@ -16,13 +16,14 @@ email                : luis@luispedro.org
  ***************************************************************************/
 
 #include "deck.h"
- #include "general/helper.h"
- #define __STL_NO_DRAND48 /* library bug. It fails compilation when -ansi is specified */
- #include <stdlib.h>
- #include <algorithm>
- #include <strstream>
+#include "general/helper.h"
+#include <stdlib.h>
+#include <algorithm>
+#include <strstream>
+#include "general/random_shuffle.h"
 
 using namespace std;
+
 
 void fullDeck( Deck& res )
 {
@@ -45,7 +46,7 @@ Deck fullDeck()
 void randomDeck( Deck& res )
 {
 	fullDeck( res );
-	std::random_shuffle( res.begin(), res.end() );
+	workaround::random_shuffle( res.begin(), res.end() );
 }
 
 

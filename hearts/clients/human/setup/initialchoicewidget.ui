@@ -80,5 +80,11 @@
         </widget>
     </widget>
 </widget>
+<includes>
+    <include location="local" impldecl="in implementation">initialchoicewidget.ui.h</include>
+</includes>
+<functions>
+    <function specifier="non virtual" returnType="int">option()</function>
+</functions>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

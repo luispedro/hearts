@@ -25,7 +25,7 @@
 }
 void InitialChoice::doNext( SetupWindow* parent ) 
 {
-	switch ( 0 )
+	switch ( widget_->option() )
 	{
 		case 0 : // InitialChoice::AgainstComputer:
 			{

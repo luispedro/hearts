@@ -30,6 +30,7 @@ bool execute::server( short port )
 {
 	KProcess p;
 	p << "heartsserver"
+	<< "--daemon"
 	<< "--tcp-port" << QString::number( port )
 	<< "--unix-port" << generateLocalAddress()
 	<< "--wait-zero";
@@ -67,6 +68,7 @@ void execute::server( const int fds[ 4 ] ) {
 					if ( snprintf( port, sizeof( port ), "%d", Communication::tcp_port ) > 0 ) {
 							execlp( "heartsserver",
 											"heartsserver",
+											"--daemon",
 											"--fds",
 											buffer,
 											"--tcp-port",
@@ -76,7 +78,13 @@ void execute::server( const int fds[ 4 ] ) {
 									);
 					}
 			} else {
-					execlp( "heartsserver", "heartsserver", "--fds", buffer, "--wait-zero", ( const char* )0 );
+					execlp( "heartsserver",
+									"heartsserver",
+									"--daemon",
+									"--fds",
+									buffer,
+									"--wait-zero",
+									( const char* )0 );
 			}
 	}
 	exit( 1 ); // An error occurred

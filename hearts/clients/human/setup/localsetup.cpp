@@ -14,6 +14,7 @@
 #include <kdebug.h>
 #include <kmessagebox.h>
 
+#include <sys/types.h> // FreeBSD needs this before including <sys/socket.h>
 #include <sys/socket.h>
 #include <unistd.h>
 

@@ -1,5 +1,4 @@
 #include "humanclient.h"
-#include "serveraddressdialog.h"
 #include "options.h"
 #include "general/helper.h"
 #include "communication/open_connections.h"

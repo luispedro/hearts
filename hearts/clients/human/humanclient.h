@@ -11,8 +11,6 @@
 
 #include <vector>
 
-class ServerAddressDialog;
-
 class HumanClient : public KMainWindow {
 		Q_OBJECT
 	public:
@@ -35,7 +33,6 @@ class HumanClient : public KMainWindow {
 			PointsBox* pointsWindow;
 			HumanInterface* interface;
 			QtConnection* connection;
-			ServerAddressDialog* serverconnector;
 			player_id::type winner;
 };
 

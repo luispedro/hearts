@@ -16,7 +16,8 @@ AM_CXXFLAGS = -foperator-names -Wall
 dist-hook:
 	cd $(top_distdir) && perl admin/am_edit
 
-messages:
+messages: rc.cpp
+	$(EXTRACTRC) `find -name \*.ui` > rc.cpp
 	FILES=`find -name \*.cpp -o -name \*.h`; \
 	$(XGETTEXT) --keyword=i18n --keyword=I18N_NOOP $$FILES --c++ -o ./po/hearts.pot
 

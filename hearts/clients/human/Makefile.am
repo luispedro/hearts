@@ -16,5 +16,6 @@ hearts_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 hearts_LDADD = setup/libheartssetup.a ../../common/communication/libcomhearts.a ../../common/hearts/libhearts.a ../../common/general/libgenhearts.a  -lkdeui -lkdecore -lXext -lX11 $(LIBSOCKET) ../../common/network/libnethearts.a
 
-messages: 
-	$(XGETTEXT) --keyword=i18n --keyword=I18N_NOOP *cpp *h --c++ -o messages.pot 
+#messages: rc.cpp
+#	$(XGETTEXT) --keyword=i18n --keyword=I18N_NOOP *cpp *h setup/*cpp setup/*h --c++ -o messages.pot 
+

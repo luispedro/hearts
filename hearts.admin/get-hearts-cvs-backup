@@ -1,4 +1,0 @@
-#!/bin/sh
-
-wget http://cvs.sourceforge.net/cvstarballs/hearts-cvsroot.tar.gz
-

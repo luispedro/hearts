@@ -51,17 +51,6 @@ bool execute_server( bool tcp, bool local )
 	execute_server( 0 );
 }
 
-bool execute_computer_client( QString name )
-{
-	KProcess p;
-	p << "heartscomputerclient"
-	<< "--playername" << name
-	<< "--address" << generateLocalAddress()
-	<< "--zero";
-	LOG_PLACE() << '!' << p.args() << "!\n";
-	return p.start( KProcess::DontCare );
-}
-
 
 }
 

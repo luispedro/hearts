@@ -24,12 +24,12 @@ void Options::init( int argc, char** argv )
 	assert( !singleton );
 	singleton = new Options;
 
-	enum { daemon, logfile, pidfile };
+	enum { daemon = 1, logfile, pidfile };
 	static const struct option long_options[] = {
-			{ "daemon", false, 0, daemon },
-			{ "deamon", false, 0, daemon },
-			{ "logfile", true, 0, logfile },
-			{ "pidfile", true, 0, pidfile },
+			{ "daemon", 0, 0, daemon },
+			{ "deamon", 0, 0, daemon },
+			{ "logfile", 1, 0, logfile },
+			{ "pidfile", 1, 0, pidfile },
 			{ 0, 0, 0, 0 }
 	};
 
@@ -52,7 +52,5 @@ void Options::init( int argc, char** argv )
 		}
 	}
 }
-
-
 
 

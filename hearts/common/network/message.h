@@ -35,6 +35,7 @@ class Message
 					HANDLE( hello ) \
 					HANDLE( auth ) \
 					HANDLE( lookAt ) \
+					HANDLE( playerStatus ) \
 					HANDLE( changeProtocol )
 #define HANDLE( x ) x,
 

@@ -47,12 +47,10 @@ do_header();
 </DIV>
 
 <p>If you want to translate the game use either the hearts.pot and index.sgml files available from the newest source release or 
-     download the, now:
+     download them directly:
 <UL>
-	<LI><a href="heart.txt">hearts.pot</a> This has a .txt ending on the server, due to Geocities' restrictions on <cite>File&nbsp;Types</cite></LI>
+	<LI><a href="heart.pot">hearts.pot</a></LI>
 	<LI><a href="index.sgml">index.sgml</a></LI>
 </UL>
-
-<p>Do <strong>not</strong> use that automated tool to extract the messages from sourcecode. It will not find a lot of them, since they are in arrays or are otherwise indirectly acessed.
 
 <?php do_footer(); ?>

@@ -1,3 +1,6 @@
+#ifndef DB_COMPUTERPLAYER_H1053544106_INCLUDE_GUARD_
+#define DB_COMPUTERPLAYER_H1053544106_INCLUDE_GUARD_
+
 #include "communication/typicalclient.h"
 #include "communication/fdconnection.h"
 #include "computerplayerbase.h"
@@ -33,3 +36,6 @@ class ComputerPlayer : public TypicalClient {
 				virtual void namequery_message();
 };
 
+
+
+#endif /* DB_COMPUTERPLAYER_H1053544106_INCLUDE_GUARD_ */

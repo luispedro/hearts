@@ -17,11 +17,13 @@ This is when you pass cards at the beginning of a game.
 </TR>
 
 
+<!--
 <TR>
 <TD>
 This is the complete picture, there is the main window, the score window and the options window visible.
 </TD>
 <TD><p><a href="screenshots/Full.png"><img src="screenshots/480/Full.png"></a>
+-->
 
 <TR>
 <TD>

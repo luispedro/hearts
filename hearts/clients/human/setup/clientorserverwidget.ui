@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ClientOrServerWidget</class>
 <widget class="QWidget">
     <property name="name">
@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>379</width>
-            <height>500</height>
+            <width>270</width>
+            <height>140</height>
         </rect>
     </property>
     <property name="caption">
@@ -21,8 +21,8 @@
         </property>
         <property name="geometry">
             <rect>
-                <x>20</x>
-                <y>50</y>
+                <x>10</x>
+                <y>20</y>
                 <width>250</width>
                 <height>100</height>
             </rect>
@@ -30,28 +30,6 @@
         <property name="title">
             <string>Deal or Join Table?</string>
         </property>
-        <widget class="QRadioButton">
-            <property name="name">
-                <cstring>radioClient</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>40</x>
-                    <y>30</y>
-                    <width>200</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Connec&amp;t to a card dealer</string>
-            </property>
-            <property name="accel">
-                <string>Alt+T</string>
-            </property>
-            <property name="checked">
-                <bool>true</bool>
-            </property>
-        </widget>
         <widget class="QRadioButton">
             <property name="name">
                 <cstring>radioServer</cstring>
@@ -65,10 +43,32 @@
                 </rect>
             </property>
             <property name="text">
-                <string>&amp;Deal cards</string>
+                <string>&amp;Deal Cards</string>
             </property>
             <property name="accel">
                 <string>Alt+D</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioClient</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>40</x>
+                    <y>30</y>
+                    <width>200</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Connec&amp;t to a Card Dealer</string>
+            </property>
+            <property name="accel">
+                <string>Alt+T</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
             </property>
         </widget>
     </widget>

@@ -38,7 +38,7 @@ HumanInterface::HumanInterface( QWidget *parent, const char *name )
 		selfLabel( new QLabel( Options::playerName( player_id::self ), this ) ),
 		rightLabel( new QLabel( Options::playerName( player_id::right ), this ) ),
 		frontLabel( new QLabel( Options::playerName( player_id::front ), this ) ),
-		pass( new QPushButton( i18n( "Pass cards" ), this, "passing button" ) ),
+		pass( new QPushButton( i18n( "Pass Cards" ), this, "passing button" ) ),
 		leftLabel( new QLabel( "Calvin", this ) ),     //(HumanClientOptions::options()->playerName(player_id::left),this)),
 		mode( idle )
 {

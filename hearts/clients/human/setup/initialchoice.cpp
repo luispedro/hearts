@@ -28,12 +28,12 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 	parent->setFinishEnabled( localsetup_, true );
 	parent->setNextEnabled( localsetup_, false );
 
-	MAKE( networksetup_, NetworkSetup, "Choose a table" );
+	MAKE( networksetup_, NetworkSetup, "Choose a Table" );
 	parent->setFinishEnabled( networksetup_, false );
 	parent->setNextEnabled( networksetup_, false );
 	connect( networksetup_, SIGNAL( connected( int ) ), parent, SLOT( connected( int ) ) );
 
-	MAKE( privatesetup_, PrivateSetup, "Deal or join" );
+	MAKE( privatesetup_, PrivateSetup, "Deal or Join" );
 	parent->setFinishEnabled( privatesetup_, false );
 
 	

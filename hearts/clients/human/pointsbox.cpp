@@ -28,7 +28,7 @@ PointsBox::PointsBox( const char* name )
 		: KDialogBase( 0,
 						name,
 						true, // modal
-						i18n( "points standing" ), //caption
+						i18n( "Points Standing" ), //caption
 						KDialogBase::Ok, // buttonMask
 						KDialogBase::Ok, // defaultButton
 						true ), // separator

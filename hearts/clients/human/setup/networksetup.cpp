@@ -40,7 +40,7 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 	widget_->server->insert( Network::Server );
 	widget_->port->insert( QString::number( Network::Port ) );
 	online_->setModal( false );
-	online_->show();
+	if ( good_ ) online_->show();
 
 	//FIXME remove lines below and implement functionality:
 	widget_->server->setEnabled( false );
@@ -87,7 +87,7 @@ void NetworkSetup::openConnection( const char* server, short port )
 
 void NetworkSetup::newTable()
 {
-	KLineEditDlg l( i18n( "New table:" ), "", 0L );
+	KLineEditDlg l( i18n( "New Table" ), "", 0L );
 	l.setCaption( i18n( "Create New Table" ) );
 	//text is empty so disable ok button.
 	l.enableButtonOK( false );

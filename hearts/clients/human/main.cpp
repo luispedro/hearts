@@ -17,7 +17,7 @@ KCmdLineOptions app_options [] = {
 
 int main( int argc, char* argv[] )
 {
-	KAboutData aboutData( "hearts", I18N_NOOP( "Hearts, a card game" ),
+	KAboutData aboutData( "hearts", I18N_NOOP( "Hearts, a Card Game" ),
 						  VERSION,
 						  "Hearts game for the KDE",
 						  KAboutData::License_GPL,
@@ -34,7 +34,7 @@ int main( int argc, char* argv[] )
 	KApplication app;
 	HumanClient* main_win = new HumanClient;
 	main_win->show();
-	//		main_win->setCaption(i18n("hearts card game"));
+	//		main_win->setCaption(i18n("Hearts Card Game"));
 	LOG_PLACE_NL();
 	return app.exec();
 }

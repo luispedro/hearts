@@ -129,7 +129,7 @@ void HumanClient::terminate( QString )
 {
 	LOG_PLACE_NL();
 	connection->close();
-	KMessageBox::information( this, i18n( "Game over" ) );
+	KMessageBox::information( this, i18n( "Game Over" ) );
 	setup_->showPage( setup_->page( 0 ) );
 	showSetup();
 }
@@ -159,13 +159,13 @@ void HumanClient::giveStatus( player_id::type whom )
 {
 	switch ( whom ) {
 			case player_id::right:
-					interface->setStatus( i18n( "Choose 3 cards to pass right" ) );
+					interface->setStatus( i18n( "Choose three cards to pass right" ) );
 					break;
 			case player_id::front:
-					interface->setStatus( i18n( "Choose 3 cards to pass across" ) );
+					interface->setStatus( i18n( "Choose three cards to pass across" ) );
 					break;
 			case player_id::left:
-					interface->setStatus( i18n( "Choose 3 cards to pass left" ) );
+					interface->setStatus( i18n( "Choose three cards to pass left" ) );
 					break;
 			default:
 					kdWarning() << "BUG: giveStatus( " << static_cast<int>( whom ) << " )" << endl;

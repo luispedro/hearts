@@ -25,7 +25,7 @@ SetupWindow::SetupWindow()
 {
 	LOG_PLACE_NL();
 	InitialChoice* init = new InitialChoice( this );
-	insertPage( init, i18n( "Type of game" ), 0 );
+	insertPage( init, i18n( "Type of Game" ), 0 );
 	showPage( init );
 	init->adjustSize();
 	resize( QSize( 500, 180 ).expandedTo( minimumSizeHint() ) );

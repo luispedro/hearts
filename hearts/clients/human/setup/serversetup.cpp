@@ -122,14 +122,14 @@ void ServerSetup::options( player_id::type, QComboBox* type )
 {
 	enum { comp, remote };
 	if ( type->currentItem() == comp ) {
-		KMessageBox::sorry( this, i18n( "Not yet implemented" ) );
+		KMessageBox::sorry( this, i18n( "Not Yet Implemented" ) );
 		/*
 		* ComputerPlayerOptions* opt = new ComputerPlayerOptions( player );
 		* opt->show();
 		* opt->exec();
 		*/
 	} else if ( type->currentItem() == remote ) {
-
+		// FIXME : We should disable the button, really
 		KMessageBox::sorry( this, i18n( "There are no options available for remote players" ) );
 
 	}

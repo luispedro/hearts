@@ -2,6 +2,8 @@
 #include "general/helper.h"
 #include <kextsock.h>
 
+#include <errno.h>
+
 namespace Network {
 	
 Connection::Connection(KExtendedSocket* socket, QObject* parent, const char* name )
@@ -14,6 +16,7 @@ Connection::Connection(KExtendedSocket* socket, QObject* parent, const char* nam
 	socket_->setSocketFlags( KExtendedSocket::inputBufferedSocket );
 	socket_->setBufferSize( 1024, 1024 );
 	LOG_PLACE() << "socket_ = " << socket_ << '\n';
+	connect( socket_, SIGNAL( closed( int ) ),SLOT( socketClosed( int ) ) );
 	connect( socket_, SIGNAL( readyRead() ), SLOT( read() ) );
 	LOG_PLACE_NL();
 }
@@ -66,6 +69,11 @@ void Connection::changeProtocol()
 	MessageConstructor m;
 	m << Message::changeProtocol;
 	write( m );
+}
+
+void Connection::socketClosed( int status )
+{
+	if ( status & KExtendedSocket::involuntary ) emit connectionError( "socket closed by remote peer", ECONNRESET );
 }
 
 UserConnection::UserConnection( KExtendedSocket* connection, QObject* parent, const char* name )

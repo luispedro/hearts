@@ -29,8 +29,13 @@ class Connection: public QObject
 		void connectionError( const char*, int );
 		void peerError( const char* );
 		void received( Message );
+		void eof();
+
 	private:
 		virtual void get( Message );
+	private slots:
+
+		virtual void socketClosed( int flags ); // connected to socket_::closed
 	private:
 		KExtendedSocket* socket_;
 };

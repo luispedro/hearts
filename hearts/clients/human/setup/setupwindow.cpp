@@ -2,7 +2,6 @@
 #include "initialchoice.h"
 
 #include "general/helper.h"
-#include "general/widget_placement.h"
 
 #include <klocale.h>
 #include <qlabel.h>

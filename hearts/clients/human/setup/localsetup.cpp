@@ -1,7 +1,6 @@
 #include "localsetup.h"
 #include "exec.h"
 
-#include "general/widget_placement.h"
 #include "hearts/player_id.h"
 #include "general/helper.h"
 #include "communication/constants.h"

@@ -18,7 +18,6 @@
 
 #include "networksetupwidget.h"
 #include "exec.h"
-#include "general/widget_placement.h"
 #include "general/helper.h"
 #include "communication/open_connections.h"
 #include "network/constants.h"

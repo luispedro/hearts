@@ -17,7 +17,6 @@ email                : luis@luispedro.org
 
 #include "humaninterface.h"
 #include "general/helper.h"
-#include "general/widget_placement.h"
 #include "options.h"
 
 #include <kapplication.h>
@@ -268,10 +267,10 @@ void HumanInterface::removeCard( Card c )
 
 void HumanInterface::adjustLabels()
 {
-	adjust_size( selfLabel );
-	adjust_size( rightLabel );
-	adjust_size( frontLabel );
-	adjust_size( leftLabel );
+	selfLabel->adjustSize();
+	rightLabel->adjustSize();
+	frontLabel->adjustSize();
+	leftLabel->adjustSize();
 
 	selfLabel->move( width() / 2 - selfLabel->width() / 2, height() - status->height() - selfLabel->height() - 5 );
 	leftLabel->move( 10, table->y() + table->height() / 2 );

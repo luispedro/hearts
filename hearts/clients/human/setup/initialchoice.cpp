@@ -7,7 +7,6 @@
 
 #include "setupwindow.h"
 #include "general/helper.h"
-#include "general/widget_placement.h"
 #include "initialchoicewidget.h"
 
 #include "remotesetup.h"

@@ -16,8 +16,9 @@ ConnectingPlayer::ConnectingPlayer(player_id::type id, Server* s)
 	if ( options->wait_zero() )
 	{
 		char c = 1;
-		LOG_PLACE_NL();
-		while ( ::read( id_to_fd( id ), &c , 1 ) > 0 && c ) LOG_PLACE_NL();
+		LOG_PLACE() << "Waiting for a zero.\n";
+		while ( ::read( id_to_fd( id ), &c , 1 ) > 0 && c ) LOG_PLACE() << "?\n";
+		LOG_PLACE() << "Received zero. We can start.\n";
 	}
 }
 

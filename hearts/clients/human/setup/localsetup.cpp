@@ -69,7 +69,9 @@ void LocalSetup::execute2()
 	SAVE( right );
 	SAVE( front );
 	SAVE( left );
-
+	
+	char c = 0;
+	::write( fd, &c, 1 );
 	// must be done last
 	emit connected( fd );
 }

@@ -25,7 +25,13 @@ email                : luis@luispedro.org
 #include <algorithm>
 
 PointsBox::PointsBox( const char* name )
-		: KDialogBase( 0, name, false, i18n( "points standing" ), KDialogBase::Ok, KDialogBase::Ok, true ),
+		: KDialogBase( 0,
+						name,
+						true, // modal
+						i18n( "points standing" ), //caption
+						KDialogBase::Ok, // buttonMask
+						KDialogBase::Ok, // defaultButton
+						true ), // separator
 		widget_( new QWidget( this ) ),
 		layout_( new QGridLayout( widget_, 1, 4 ) ),
 		selfLastLabel_( 0 ),
@@ -38,10 +44,10 @@ PointsBox::PointsBox( const char* name )
 	layout_->setAutoAdd( true );
 	layout_->setRowSpacing( 0, 32 );
 
-	layout_->setColSpacing( 0, 64 );
-	layout_->setColSpacing( 1, 64 );
-	layout_->setColSpacing( 2, 64 );
-	layout_->setColSpacing( 3, 64 );
+	layout_->setColSpacing( 0, 128 );
+	layout_->setColSpacing( 1, 128 );
+	layout_->setColSpacing( 2, 128 );
+	layout_->setColSpacing( 3, 128 );
 
 	selfLabel_ = new QLabel( widget_ );
 	selfLabel_->setAlignment( AlignRight );

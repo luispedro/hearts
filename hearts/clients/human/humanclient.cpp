@@ -16,7 +16,7 @@
 HumanClient::HumanClient()
 		: pointsWindow( new PointsBox( i18n( "points" ) ) ),
 		interface( new HumanInterface( this, "human-interface" ) ),
-			connection( new QtConnection( this, "client-connection" ) )
+		connection( new QtConnection( this, "client-connection" ) )
 
 {
 	QSignalMapper* mPlay = new QSignalMapper( this );
@@ -150,7 +150,7 @@ void HumanClient::terminate( QString )
 	LOG_PLACE_NL();
 	connection->close();
 	KMessageBox::information( this, i18n( "Game over" ) );
-	( new SetupWindow ) ->show();
+	showSetup();
 }
 
 
@@ -164,7 +164,7 @@ void HumanClient::inform( player_id::type who, Card c )
 void HumanClient::points( unsigned self, unsigned right, unsigned front, unsigned left )
 {
 	pointsWindow->insertLine( self, right, front, left );
-	pointsWindow->show();
+	pointsWindow->exec();
 }
 
 void HumanClient::invalidMove( QString reason )

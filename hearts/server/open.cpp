@@ -106,10 +106,15 @@ void open_connections()
 			stat = poll(listen,tcp_ok + local_ok,-1);
 		} while (stat < 0);	
 		int listen_fd = -1;
-		if (listen[tcp].revents) listen_fd = listen_tcp_fd;
-		else if (listen[local].revents) listen_fd = listen_local_fd;
+		if (tcp_ok && listen[tcp].revents) listen_fd = listen_tcp_fd;
+		else listen_fd = listen_local_fd;
 		socklen_t s = sizeof(addr);
 		int fd = accept(listen_fd,(sockaddr*)&addr,&s);
+		if ( fd < 0 ) {
+			std::cerr << "Error accepting: " << strerror( errno ) << " [ fd = " << listen_fd << ".\n";
+			--i;
+			continue;
+		}
 		register_fd(static_cast<player_id::type>(i),fd);
 		set_sock_options(fd);
 		LOG_PLACE() << " accepted " << i + 1 << " with fd = " << fd << ".\n";

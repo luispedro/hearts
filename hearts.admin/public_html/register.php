@@ -43,7 +43,7 @@ if (isset($r_name)) {
 				$notify = 'FALSE';
 				if ($r_notify == 'on') $notify = 'TRUE';
 				mysql_query("INSERT INTO users(email,username,password,lastLogin,notifyreleases) " .
-						"VALUES('$r_email','$r_name','$r_password',NOW(),'$notify')")
+						"VALUES('$r_email','$r_name','$r_pwd',NOW(),'$notify')")
 				or die ('Error: ' . mysql_error());
 				$done = true;
 			}

@@ -26,25 +26,17 @@ SetupWindow::SetupWindow()
 {
 	LOG_PLACE_NL();
 	InitialChoice* init = new InitialChoice( this );
-	addPage( init, QString::fromLatin1( i18n( "Type of game" ) ) );
+	insertPage( init, i18n( "Type of game" ), 0 );
 	showPage( init );
 	init->adjustSize();
-	resize( QSize( 600, 480 ).expandedTo( minimumSizeHint() ) );
-
-	init->show();
-	nothing = new QWidget( this );
-	addPage( nothing, QString::fromLatin1( "Bug if you see this" ) );
+	resize( QSize( 320, 180 ).expandedTo( minimumSizeHint() ) );
 	setNextEnabled( init, true );
 }
 
 void SetupWindow::next()
 {
-	if ( nothing ) {
-		removePage( nothing );
-		delete nothing;
-		nothing = 0;
-	}
-	static_cast<SmartPage*>( currentPage() ) ->doNext( this );
+	if ( SmartPage* p = dynamic_cast<SmartPage*>( currentPage() ) ) p->doNext( this );
+	QWizard::next();
 }
 
 void SetupWindow::connected( int fd )

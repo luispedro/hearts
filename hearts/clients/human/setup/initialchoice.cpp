@@ -34,7 +34,7 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 	parent->setNextEnabled( localsetup_, false );
 
 	MAKE( networksetup_, NetworkSetup, "Choose a table" );
-	parent->setFinishEnabled( networksetup_, true );
+	parent->setFinishEnabled( networksetup_, false );
 	parent->setNextEnabled( networksetup_, false );
 
 	MAKE( privatesetup_, PrivateSetup, "Deal or join" );

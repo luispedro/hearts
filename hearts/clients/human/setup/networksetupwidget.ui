@@ -197,6 +197,9 @@
                 <property name="name">
                     <cstring>join</cstring>
                 </property>
+                <property name="enabled">
+                    <bool>false</bool>
+                </property>
                 <property name="text">
                     <string>&amp;Join Table</string>
                 </property>
@@ -274,6 +277,12 @@
         <receiver>network_setup</receiver>
         <slot>server_returnPressed(const QString&amp;)</slot>
     </connection>
+    <connection>
+        <sender>tables</sender>
+        <signal>selectionChanged()</signal>
+        <receiver>network_setup</receiver>
+        <slot>activateJoin()</slot>
+    </connection>
 </connections>
 <includes>
     <include location="local" impldecl="in implementation">general/helper.h</include>
@@ -292,6 +301,7 @@
     <slot>clearTables()</slot>
     <slot>insertTable( QListViewItem * t )</slot>
     <slot>server_returnPressed( const QString &amp; )</slot>
+    <slot specifier="non virtual">activateJoin()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

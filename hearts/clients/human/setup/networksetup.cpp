@@ -75,12 +75,6 @@ void NetworkSetup::openConnection( const char* server, short port )
 			 SLOT( protocolChanged() ) );
 
 	QString playerName = Options::playerName( player_id::self );
-#ifdef DEBUG
-
-	playerName += QString::fromLatin1( "%1" );
-	playerName.arg( getpid() );
-#endif
-
 	connection_->hello( playerName );
 }
 

@@ -52,3 +52,9 @@ void NetworkSetupWidget::server_returnPressed( const QString & )
 
 
 #endif /* DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_ */
+
+
+void NetworkSetupWidget::activateJoin()
+{
+    join->setEnabled( true );
+}

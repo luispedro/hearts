@@ -10,13 +10,13 @@ namespace Setup {
 	{
 		using namespace player_id;
 		switch (t) {
-			case self:
+			case player_id::self:
 				return 7;
-			case right:
+			case player_id::right:
 				return 4;
-			case front:
+			case player_id::front:
 				return 5;
-			case left:
+			case player_id::left:
 				return 6;
 			default:
 				massert(0);

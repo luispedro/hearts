@@ -19,7 +19,9 @@ email                : luis@luispedro.org
 #include "carddisplay.h"
 #include <qpainter.h>
 #include <strstream>
-#include <kstddirs.h>
+#include <klocale.h>
+#include <kmessagebox.h>
+#include <kstandarddirs.h>
 
 CardDisplay::cache_t CardDisplay::images;
 CardDisplay::cache_t CardDisplay::selected_images;
@@ -38,8 +40,6 @@ CardDisplay::CardDisplay( Card ref_, QWidget *parent, const char *name )
 {
 	setMinimumSize( CardWidth, CardHeight );
 	setMaximumSize( CardWidth, CardHeight );
-	unselect();
-
 }
 
 QPixmap* CardDisplay::get_image( Card ref )
@@ -80,13 +80,18 @@ CardDisplay::cache_t::iterator CardDisplay::load( const Card ref )
 {
 	massert ( images.find( ref ) == images.end() ); // it must not be loaded
 
+	static bool warned = false;
+
 	char buf[ 256 ];
 	std::ostrstream out( buf, sizeof( buf ) );
 	out << "hearts/" << ref << ".png" << std::ends;
 
 	QPixmap* res = new QPixmap( locate( "data", buf ) );
-	if ( res->isNull() )
+	if ( res->isNull() && !warned) {
+		warned = true;
+		KMessageBox::error( 0, i18n( "Unable to load card images.\nPlease check your instalation" ) );
 		std::cerr << "Unable to load card: " << ref << ", (trying at location " << buf << "). Please check your installation.\n";
+	}
 	images[ ref ] = res;
 	return images.find( ref );
 }
@@ -167,8 +172,11 @@ void CardDisplay::setCard( Card r )
 
 void CardDisplay::repaint()
 {
+	QWidget::repaint();
+	/*
 	QPaintEvent ev( this->rect() );
 	paintEvent( &ev );
+	*/
 }
 
 #include "carddisplay.moc"

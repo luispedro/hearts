@@ -70,18 +70,11 @@ HumanClient::HumanClient()
 
 void HumanClient::connected_to_server(int fd)
 {
-	if (fd > 0) 
-	{
-		connection->set_fd(fd);
-		updateNames(); // FIXME: This shouldn't work like this 
-		// Further Note: WTF does this do?
-	}
-	else // error
-	{
-		serverconnector->show();
-		serverconnector->exec();
-	}
-
+	massert( connection );
+	massert( fd > 0 );
+	connection->set_fd(fd);
+	updateNames(); // FIXME: This shouldn't work like this 
+	// Further Note: WTF does this do?
 }
 
 void HumanClient::updateNames()

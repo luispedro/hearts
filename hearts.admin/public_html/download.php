@@ -1,19 +1,5 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<HTML lang="en">
-<HEAD>
-<TITLE>Download hearts</TITLE>
-<style type="TEXT/CSS" media="screen">
-<!-- 
-@import "default.css";
--->
-
-</style>
-</HEAD>
-<BODY>
-
-<p><a href="index.html">New</a> | <a href="screenshots.html">Screenshots</a> | <a href="translations.html">Translations</a>
-
-
+<?php include('base.php');
+?>
 <h1>Download hearts</h1>
 
 
@@ -39,10 +25,5 @@ make install
 
 <p>This version is for single player only. The current stable version is <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5.tar.gz">1.2pre5, available as a source tarball</a> or as <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5-1.rpm">RPM for RedHat linux 7.1</a> (don't know whether it will work on 7.0 - mail me if it does).
 
-
-<hr>
-<address><a href="mailto:luis_pedro@netcabo.pt">luis_pedro@netcabo.pt</a></address>
-
-</BODY>
-</HTML>
+<?php do_footer(); ?>
 

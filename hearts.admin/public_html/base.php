@@ -26,7 +26,7 @@ function do_header() {
 
 <body>
 
-<p><a href="index.php">Main</a> | <a href="download.html">Download</a> | <a href="screenshots.html">Screenshots</a> | <a href="translations.html">Translations</a>
+<p><a href="index.php">Main</a> | <a href="download.php">Download</a> | <a href="screenshots.html">Screenshots</a> | <a href="translations.html">Translations</a>
 <?php 
 }
 

@@ -1,4 +1,5 @@
 <?php include('base.php');
+do_header();
 ?>
 <h1>Download hearts</h1>
 
@@ -7,7 +8,7 @@
 <p>There is now public CVS access to a new version which includes the ability to connect to a public hearts server.
 <p>Due to the fact that it is still very basic in functionallity and stability, there is no traditional source tarball yet.
 
-<p>Here is to download it and compile it:
+<p>Here is how to download it and compile it:
 
 <pre>
 cvs -d:pserver:anonymous@hearts.luispedro.org:/hearts co hearts

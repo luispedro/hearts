@@ -5,14 +5,9 @@
 
 namespace execute {
 		void server( const int fds[ 4 ] );
-		bool server();
-		bool execute_server( bool tcp, bool local );
-		bool execute_server( short port );
-
+		bool server( short );
 		int computerClient( QString name );
 		QString generateLocalAddress();
 }
-
-using namespace execute;
 
 #endif /* DB_EXEC_H_INCLUDE_GUARD_ */

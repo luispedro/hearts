@@ -13,7 +13,7 @@
 
 QString execute::generateLocalAddress()
 {
-	return QString::fromLocal8Bit( local_address ) + QString::number( getpid() );
+	return QString::fromLocal8Bit( Communication::local_address ) + QString::number( getpid() );
 }
 
 std::ostream& operator<<( std::ostream& s, const QValueList<QCString>& l )
@@ -25,9 +25,7 @@ std::ostream& operator<<( std::ostream& s, const QValueList<QCString>& l )
 }
 
 
-namespace execute {
-
-bool execute_server( short port )
+bool execute::server( short port )
 {
 	KProcess p;
 	p << "heartsserver"
@@ -39,20 +37,19 @@ bool execute_server( short port )
 	return p.start( KProcess::DontCare );
 }
 
-bool execute_server( bool tcp, bool local )
-{
-#warning execute_server( bool, bool ) not implemented
-
-	execute_server( 0 );
-}
-
-
-}
-
 void execute::server( const int fds[ 4 ] ) {
 	char buffer[ 32 ];
+	char port[ 32 ];
+	bool tcp = true;
+	for ( int i = 0; i != 4; ++i ) tcp |= !fds[ 0 ];
 	if ( snprintf( buffer, sizeof( buffer ), "%d,%d,%d,%d", fds[ 0 ], fds[ 1 ], fds[ 2 ], fds[ 3 ] ) > 0) {
-			execlp( "heartsserver", "heartsserver", "--fds", buffer, ( const char* )0 );
+			if ( tcp ) {
+					if ( snprintf( port, sizeof( port ), "%d", Communication::tcp_port ) > 0 ) {
+							execlp( "heartsserver", "heartsserver", "--fds", buffer, "--tcp-port", port, "--wait-zero", ( const char* )0 );
+					}
+			} else {
+					execlp( "heartsserver", "heartsserver", "--fds", buffer, "--wait-zero", ( const char* )0 );
+			}
 	}
 	exit( 1 ); // An error occurred
 }

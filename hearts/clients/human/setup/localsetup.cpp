@@ -66,13 +66,13 @@ void LocalSetup::execute()
 	} else {
 			int fds[ 4 ];
 			fds[ 0 ] = pipe[ server ];
-			fds[ 1 ] = computerClient( widget_->rightName() );
-			fds[ 2 ] = computerClient( widget_->frontName() );
-			fds[ 3 ] = computerClient( widget_->leftName() );
+			fds[ 1 ] = execute::computerClient( widget_->rightName() );
+			fds[ 2 ] = execute::computerClient( widget_->frontName() );
+			fds[ 3 ] = execute::computerClient( widget_->leftName() );
 			if ( fds[ 1 ] < 0 ||
 							fds[ 2 ] < 0 ||
 							fds[ 3 ] < 0 ) {
-					close( pipe[ server ] );
+					::close( pipe[ server ] );
 					exit( 1 );
 			}
 			execute::server( fds );

@@ -126,7 +126,7 @@ void NetworkSetup::delayedConnectTo()
 
 void NetworkSetup::startGame( short port )
 {
-	execute_server( port );
+	execute::server( port );
 	connectTo( "127.0.0.1", port );
 }
 

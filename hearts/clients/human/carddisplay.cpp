@@ -18,9 +18,7 @@
 #include "general/helper.h" // must be before Qt's headers
 #include "carddisplay.h"
 #include <qpainter.h>
-#include <cstdio>
 #include <strstream>
-#include <kapp.h>
 #include <kstddirs.h>
 
 CardDisplay::cache_t CardDisplay::images;

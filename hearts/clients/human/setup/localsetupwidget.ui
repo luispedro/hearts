@@ -1,0 +1,121 @@
+<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<class>LocalSetupWidget</class>
+<author>Luís Pedro Coelho &lt;luis@hearts.luispedro.org&gt;</author>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>Form1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>247</width>
+            <height>592</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>60</y>
+                <width>331</width>
+                <height>132</height>
+            </rect>
+        </property>
+        <grid>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QLabel" row="1" column="0">
+                <property name="name">
+                    <cstring>textLabel1_2</cstring>
+                </property>
+                <property name="text">
+                    <string>Player on the &amp;left</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>lineEdit1</cstring>
+                </property>
+            </widget>
+            <widget class="QLineEdit" row="1" column="1">
+                <property name="name">
+                    <cstring>left_</cstring>
+                </property>
+                <property name="text">
+                    <string>Brigitte</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit" row="2" column="1">
+                <property name="name">
+                    <cstring>right_</cstring>
+                </property>
+                <property name="text">
+                    <string>Alex</string>
+                </property>
+            </widget>
+            <widget class="QLabel" row="2" column="0">
+                <property name="name">
+                    <cstring>textLabel1_2_2</cstring>
+                </property>
+                <property name="text">
+                    <string>Player on the &amp;right</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>lineEdit1_2</cstring>
+                </property>
+            </widget>
+            <widget class="QLabel" row="3" column="0">
+                <property name="name">
+                    <cstring>textLabel1_2_3</cstring>
+                </property>
+                <property name="text">
+                    <string>Player in &amp;front</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>lineEdit1_2_2</cstring>
+                </property>
+            </widget>
+            <widget class="QLabel" row="0" column="0">
+                <property name="name">
+                    <cstring>textLabel1</cstring>
+                </property>
+                <property name="text">
+                    <string>Your &amp;name</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>lineEdit1_2_3</cstring>
+                </property>
+            </widget>
+            <widget class="QLineEdit" row="3" column="1">
+                <property name="name">
+                    <cstring>front_</cstring>
+                </property>
+                <property name="text">
+                    <string>Truman</string>
+                </property>
+            </widget>
+            <widget class="QLineEdit" row="0" column="1">
+                <property name="name">
+                    <cstring>lineEdit1_2_3</cstring>
+                </property>
+            </widget>
+        </grid>
+    </widget>
+</widget>
+<tabstops>
+    <tabstop>lineEdit1_2_3</tabstop>
+    <tabstop>left_</tabstop>
+    <tabstop>right_</tabstop>
+    <tabstop>front_</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">localsetupwidget.ui.h</include>
+</includes>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

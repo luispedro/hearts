@@ -1,3 +1,4 @@
+# translation of da.po to Danish
 # translation of hearts.po to Danish
 # Danish translations for PACKAGE package
 # Danske overs�telser for pakke PACKAGE.
@@ -7,10 +8,10 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: hearts\n"
+"Project-Id-Version: da\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2004-05-04 22:04+0100\n"
-"PO-Revision-Date: 2004-05-09 01:27+0200\n"
+"PO-Revision-Date: 2004-05-11 17:24+0200\n"
 "Last-Translator: Frederik Dannemare <frederik@dannemare.net>\n"
 "Language-Team: Danish <frederik@dannemare.net>\n"
 "MIME-Version: 1.0\n"
@@ -68,7 +69,7 @@ msgstr "S&kift server"
 
 #: rc.cpp:14
 msgid "Alt+C"
-msgstr "Alt+C"
+msgstr "Alt+K"
 
 #: rc.cpp:15
 msgid "Table Name"
@@ -88,7 +89,7 @@ msgstr "Alt+I"
 
 #: rc.cpp:22
 msgid "Create &New Table"
-msgstr "Opret &nyt spillebord"
+msgstr "Opret &nyt bord"
 
 #: rc.cpp:23
 msgid "Alt+N"
@@ -140,7 +141,7 @@ msgstr "Spil på et offentligt hearts-net&værk"
 
 #: rc.cpp:49
 msgid "Alt+W"
-msgstr "Alt+v"
+msgstr "Alt+V"
 
 #: rc.cpp:50
 msgid "Play against the com&puter"
@@ -164,7 +165,7 @@ msgstr "Status"
 
 #: rc.cpp:56
 msgid "Deal or Join Table?"
-msgstr "Bliv kortgiver eller spiller for bordet?"
+msgstr "Bliv kortgiver eller tilslut dig bord?"
 
 #: rc.cpp:57
 msgid "&Deal Cards"
@@ -246,11 +247,11 @@ msgstr "<qt>Fejl ved tilslutning til Hearts server:<br><strong>%1</strong></qt>"
 
 #: clients/human/setup/networksetup.cpp:90
 msgid "New Table"
-msgstr "Nyt spillebord"
+msgstr "Nyt bord"
 
 #: clients/human/setup/networksetup.cpp:91
 msgid "Create New Table"
-msgstr "Opret nyt spillebord"
+msgstr "Opret nyt bord"
 
 #: clients/human/setup/networksetup.cpp:102
 msgid "Connecting...."

@@ -90,15 +90,5 @@ error:
 	// NOP
 }
 
-void LocalSetup::execute2()
-{
-	LOG_PLACE();
-	execute_computer_client( widget_->rightName() );
-	execute_computer_client( widget_->leftName() );
-	execute_computer_client( widget_->frontName() );
-	int fd = open_client_connection( generateLocalAddress().local8Bit() );
-}
-
-
 #include "localsetup.moc"
 

@@ -27,9 +27,6 @@ class LocalSetup : public QWidget
 		/** This setups a local games and execs a server */
 		void execute();
 
-		/** @internal */
-		void execute2();
-
 	private:
 		LocalSetupWidget* widget_;
 };

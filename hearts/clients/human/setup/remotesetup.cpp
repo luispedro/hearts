@@ -20,7 +20,7 @@ RemoteSetup::RemoteSetup( QWidget* p, QString n )
 		name_label( new QLabel( i18n( "name:" ), this ) ),
 		name( new QLineEdit( Options::playerName( player_id::self ), this ) )
 {
-	connect( ok, SIGNAL( clicked() ), SLOT( execute() ) );
+//	connect( ok, SIGNAL( clicked() ), SLOT( execute() ) );
 
 	ip_label->move( 10, 10 );
 	ip->move( right_of( ip_label ) + 10, 10 );

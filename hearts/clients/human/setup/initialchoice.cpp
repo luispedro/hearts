@@ -23,9 +23,7 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 
 #define MAKE( memvar, Class )                                                         \
 	memvar = new Class( parent );                                                 \
-	memvar->hide();                                                               \
-	connect( parent, SIGNAL( execute() ), memvar, SLOT( execute() ) );            \
-	connect( memvar, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) )
+	memvar->hide();                                                               
 
 	MAKE( localsetup_, LocalSetup );
 	MAKE( networksetup_, NetworkSetup );
@@ -50,6 +48,10 @@ void InitialChoice::doNext( SetupWindow* parent )
 #define PUT_REMOVE( goingIn, nameIn, goingOut )                                             \
 				assert( goingOut );                                 \
 				assert( goingIn );                                  \
+				disconnect( parent, SIGNAL( execute() ), goingOut, SLOT( execute() ) );            \
+				disconnect( goingOut, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
+				connect( parent, SIGNAL( execute() ), goingIn, SLOT( execute() ) );            \
+				connect( goingIn, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
 				parent->removePage( goingOut );                     \
 				parent->addPage( goingIn, nameIn );                \
 				parent->setFinishEnabled( goingIn, true );          \

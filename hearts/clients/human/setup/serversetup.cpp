@@ -9,6 +9,9 @@
 #include <klocale.h>
 #include <kprocess.h>
 #include <qpushbutton.h>
+#include <kmessagebox.h>
+#include <errno.h>
+#include <string.h>
 #include <kapp.h>
 
 ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
@@ -19,7 +22,7 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 		left( new PlayerSetup( player_id::left, this ) ),
 		go( new QPushButton( i18n( "Go!" ), this, "server-execute" ) )
 {
-	connect( go, SIGNAL( clicked() ), SLOT( execute() ) );
+	//connect( go, SIGNAL( clicked() ), SLOT( execute() ) );
 
 	self->move( 10, 10 );
 	//adjust_size(self);
@@ -44,7 +47,11 @@ void ServerSetup::execute()
 	front->execute();
 	left->execute();
 	int fd = open_client_connection( local_address );
+	if ( fd < 0 ) {
+		KMessageBox::error( 0, i18n( "An error occurred:\n%1" ).arg( strerror( errno ) ) );
+	}
 	emit connected( fd );
 }
 
 #include "serversetup.moc"
+

@@ -9,6 +9,7 @@
 
 #include <cstdlib>
 #include <algorithm>
+#include <cassert>
 #include <unistd.h>
 
 namespace
@@ -48,10 +49,13 @@ void SetupWindow::next()
 
 void SetupWindow::connected( int fd )
 {
+	assert( fd > 0 );
 	char zero = 0;
 	write( fd, &zero, 1 );
 	emit connected_to( fd );
+	this->QWizard::accept();
 	this->close();
+	//this->accept();
 	//X 	deleteLater();
 }
 

@@ -8,10 +8,13 @@
 #include <kmessagebox.h>
 #include <klineeditdlg.h>
 #include <klineedit.h>
+#include <kdebug.h>
 
 #include <string.h>
 #include <errno.h>
 #include <unistd.h>
+
+#include <cassert>
 
 #include "networksetupwidget.h"
 #include "exec.h"
@@ -32,6 +35,9 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		KMessageBox::error( this, i18n( "Error connecting to Hearts Server: %1" ).arg( strerror( errno ) ) );
 		good_ = false;
 	}
+	
+	kdDebug() << "NetworkSetup::NetworkSetup() fd = " << socket->fd() << endl;
+
 	connection_ = new Network::UserConnection( socket, this );
 	setMinimumSize( 150, 350 );
 	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
@@ -117,11 +123,26 @@ void NetworkSetup::protocolChanged()
 
 void NetworkSetup::delayedProtocolChanged()
 {
-	int fd = connection_->socket() ->fd();
-	connection_->socket() ->release();
-	const char c = 0;
-	::write( fd, &c, 1 );
-	emit connected( fd );
+	kdDebug() << "NetworkSetup::delayedProtocolChanged()" << endl;
+	static bool called = false;
+	assert( !called );
+	called = true;
+	KExtendedSocket* socket = connection_->socket();
+	assert( socket );
+	int stat = socket->socketStatus();
+	int fd = socket->fd();
+
+	kdDebug() << KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) << " fd : " << fd << endl;
+	if ( stat == KExtendedSocket::error ) {
+		KMessageBox::error( 0, i18n( "<qt>Error in socket:<br><strong>$1</strong></qt>" )
+				.arg( KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) ) );
+	} else {
+		assert( fd > 0 );
+		socket->release();
+		const char c = 0;
+		::write( fd, &c, 1 );
+		emit connected( fd );
+	}
 }
 
 

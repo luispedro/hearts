@@ -27,6 +27,7 @@ function do_header($title) {
 <a href="index.php">Main</a> <br />
  <a href="download.php">Download</a> <br />
  <a href="screenshots.php">Screenshots</a> <br />
+ <a href="plan.php">Development Plan</a> <br />
  <a href="translations.php">Translations</a>
 </div>
 <div class="boxxed" id="author">

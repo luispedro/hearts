@@ -12,6 +12,10 @@ do_header('Hearts for KDE');
 
 <h2>What's New:</h2>
 
+
+<h3>Development Plan</h3>
+<p>I put a <a href="plan.php">Development Plan</a> online for all to see.
+
 <h3>Release 1.97</h3>
 <p><strong>11th April 2004</strong><br />
 <h4>Change Log</h4>
@@ -26,11 +30,6 @@ do_header('Hearts for KDE');
 	<li>Code cleanup: removed unnecessary files, includes and fixed whitespace
 </ul>
 
-<h3>A hearts server where you can find other players on the internet was set up.</h3>
-<ul>
-	<li>A new version is in the works. Right now you can access it through <a href="download.php#CVS">anonymous CVS</a>, and more traditional release modes are planned.
-	<li>A public hearts server was put online thanks to Pavel Troller who volunteered space on a machine of his. Thanks also to Imre, Nagy Jr who also volunteered some space.
-</ul>
 
 <p>You can see every change in <a href="history.php">the history page</a>.
 <?php do_footer(); ?>

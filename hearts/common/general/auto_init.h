@@ -19,15 +19,31 @@
  ***************************************************************************/
 
 
- template <typename T, T init = T()>
-struct auto_init {
-        auto_init():object(init) { }
-        auto_init(const T& other):object(other) { }
-        operator T& () { return object; }
-        operator const T& () const { return object; }
-        T& operator = (const T& other) { object = other; return object; }
-		void reset() { object = init; }
-        T object;
+template <typename T, T init = T() >
+struct auto_init
+{
+	auto_init() : object( init )
+	{ }
+	auto_init( const T& other ) : object( other )
+	{ }
+	operator T& ()
+	{
+		return object;
+	}
+	operator const T& () const
+	{
+		return object;
+	}
+	T& operator = ( const T& other )
+	{
+		object = other;
+		return object;
+	}
+	void reset()
+	{
+		object = init;
+	}
+	T object;
 };
 
 

@@ -1,10 +1,11 @@
 #include <sys/time.h>
-class MinTime {
-		public:
+class MinTime
+{
+	public:
 
-				MinTime(unsigned usecs);
-				~MinTime();
-		private:
-				timeval begin;
+		MinTime( unsigned usecs );
+		~MinTime();
+	private:
+		timeval begin;
 };
 

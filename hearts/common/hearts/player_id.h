@@ -12,14 +12,18 @@
  ***************************************************************************/
 #include <iostream>
 
-namespace player_id {
-		        enum type { self, right, front, left };
-			static const type all_players[] = { self, right, front, left };
+namespace player_id
+{
+enum type { self, right, front, left };
+static const type all_players[] =
+	{
+		self, right, front, left
+	};
 }
 
 
-std::istream& operator >> (std::istream&,player_id::type&);
-std::ostream& operator << (std::ostream&,player_id::type);
+std::istream& operator >> ( std::istream&, player_id::type& );
+std::ostream& operator << ( std::ostream&, player_id::type );
 
 
 #define HANDLE_ALL_PLAYER_IDS( FUNCTION ) \

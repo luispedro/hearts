@@ -7,15 +7,19 @@
 #include <queue>
 #include <vector>
 
-class FDConnection : public Connection {
+class FDConnection : public Connection
+{
 	public:
-		FDConnection(int fd);
-		virtual void register_pollfd(pollfd&);
+		FDConnection( int fd );
+		virtual void register_pollfd( pollfd& );
 		virtual void poll_success();
 		virtual bool message_available() const;
 		virtual Message get_message();
-		virtual void write(Message);
-		int fd(){ return fd_; }
+		virtual void write( Message );
+		int fd()
+		{
+			return fd_;
+		}
 	private:
 		int fd_;
 		Translator in_buffer_;

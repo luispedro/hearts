@@ -6,14 +6,15 @@
 class QPushButton;
 class QLabel;
 
-class ServerSetup : public QWidget {
-	Q_OBJECT
+class ServerSetup : public QWidget
+{
+		Q_OBJECT
 
 	public:
-		ServerSetup(QWidget* parent, const char* name = "server-setup");
+		ServerSetup( QWidget* parent, const char* name = "server-setup" );
 
 	signals:
-		void connected(int);
+		void connected( int );
 
 	public slots:
 		void execute();

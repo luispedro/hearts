@@ -13,32 +13,33 @@
 
 class SetupWindow;
 
-class HumanClient : public KMainWindow {
+class HumanClient : public KMainWindow
+{
 		Q_OBJECT
 	public:
 		HumanClient();
 
 	private slots:
-			void namequery();
-			void connectionError(QString);
-			void status(player_status::type);
-			void inform(player_id::type,Card);
-			void points(unsigned,unsigned,unsigned,unsigned);
-			void invalidMove(QString);
-			void terminate(QString);
+		void namequery();
+		void connectionError( QString );
+		void status( player_status::type );
+		void inform( player_id::type, Card );
+		void points( unsigned, unsigned, unsigned, unsigned );
+		void invalidMove( QString );
+		void terminate( QString );
 
-			void clearTable();
-			void updateNames();
-			void connected_to_server(int);
+		void clearTable();
+		void updateNames();
+		void connected_to_server( int );
 
-			void showSetup();
+		void showSetup();
 
 	private:
-			SetupWindow* setup_;
-			PointsBox* pointsWindow;
-			HumanInterface* interface;
-			QtConnection* connection;
-			player_id::type winner;
+		SetupWindow* setup_;
+		PointsBox* pointsWindow;
+		HumanInterface* interface;
+		QtConnection* connection;
+		player_id::type winner;
 };
 
 

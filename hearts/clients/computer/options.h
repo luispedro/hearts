@@ -3,10 +3,11 @@
 
 #include <string>
 
-namespace Options {
-	std::string name();
-	bool send_zero();
-	void parse_args(char* argv[]);
+namespace Options
+{
+std::string name();
+bool send_zero();
+void parse_args( char* argv[] );
 }
 
 

@@ -7,9 +7,9 @@ class Table;
 class Player;
 class Server : public QObject
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
-		Server(QObject* parent);
+		Server( QObject* parent );
 
 	public slots:
 		void acceptSlot();
@@ -17,10 +17,10 @@ class Server : public QObject
 
 		void createTable( QString );
 		void createTable( Player*, QString );
-		
+
 		void joinTable( QString );
 		void joinTable( Player*, QString );
-		
+
 		void connectionError( const char*, int );
 		void connectionError( Player*, const char*, int );
 

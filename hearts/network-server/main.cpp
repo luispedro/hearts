@@ -17,7 +17,7 @@ void write_pid_file()
 	}
 }
 
-int main(int argc, char** argv)
+int main( int argc, char** argv )
 {
 	if ( argc > 1 && std::string( argv[ 1 ] ) == "--deamon" ) {
 		std::cerr << "\"--deamon\" should have been spelt \"--daemon\", but I will let it pass (just this time)." << std::endl;
@@ -31,7 +31,7 @@ int main(int argc, char** argv)
 	}
 	write_pid_file();
 	QApplication app( argc, argv, false ); // no GUI
-	( void )new Server( &app );
+	( void ) new Server( &app );
 	LOG_PLACE_NL();
 	return app.exec();
 }

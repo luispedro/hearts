@@ -21,35 +21,37 @@
 #include "network/constants.h"
 #include "../options.h"
 
-NetworkSetup::NetworkSetup(QWidget* parent, const char* name)
-		:QWidget(parent,name),
+NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
+		: QWidget( parent, name ),
 		widget_( new NetworkSetupWidget( this ) ),
 		connection_( 0 ),
 		good_( true )
 {
-	KExtendedSocket* socket = new KExtendedSocket( Network::Server, Network::Port );
+	KExtendedSocket * socket = new KExtendedSocket( Network::Server, Network::Port );
 	if ( socket->connect() < 0 ) {
 		KMessageBox::error( this, i18n( "Error connecting to Hearts Server: %1" ).arg( strerror( errno ) ) );
 		good_ = false;
 	}
 	connection_ = new Network::UserConnection( socket, this );
 	setMinimumSize( 150, 350 );
-	connect( widget_,SIGNAL( joinTable(QString) ), connection_, SLOT( joinTable(QString) ) );
-	connect( widget_,SIGNAL( createNewTable() ), SLOT( newTable() ) );
+	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
+	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
 
-	connect( connection_,SIGNAL( connectTo( const char*, short ) ), SLOT( connectTo( const char*, short ) ) );
-	connect( connection_,SIGNAL( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ),
-			SLOT( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ) );
-	connect( connection_, SIGNAL( startGame(short) ),
-			SLOT( startGame(short) ) );
+	connect( connection_, SIGNAL( connectTo( const char*, short ) ), SLOT( connectTo( const char*, short ) ) );
+	connect( connection_, SIGNAL( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ),
+			 SLOT( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ) );
+	connect( connection_, SIGNAL( startGame( short ) ),
+			 SLOT( startGame( short ) ) );
 	connect( connection_, SIGNAL( protocolChanged() ),
-			SLOT( protocolChanged() ) );
+			 SLOT( protocolChanged() ) );
 
 	QString playerName = Options::playerName( player_id::self );
 #ifdef DEBUG
+
 	playerName += QString::fromLatin1( "%1" );
 	playerName.arg( getpid() );
 #endif
+
 	connection_->hello( playerName );
 	widget_->connectingBox->hide();
 	widget_->server->insert( Network::Server );
@@ -69,13 +71,13 @@ NetworkSetup::~NetworkSetup()
 
 void NetworkSetup::newTable()
 {
-	KLineEditDlg l(  i18n( "New table:" ), "", 0L );
+	KLineEditDlg l( i18n( "New table:" ), "", 0L );
 	l.setCaption( i18n( "Create New Table" ) );
 	//text is empty so disable ok button.
 	l.enableButtonOK( false );
 	l.exec();
-	
-	connection_->createTable(l.text() );
+
+	connection_->createTable( l.text() );
 }
 
 void NetworkSetup::execute()
@@ -83,7 +85,7 @@ void NetworkSetup::execute()
 	LOG_PLACE_NL();
 }
 
-void NetworkSetup::connectTo(const char* ip, const short port)
+void NetworkSetup::connectTo( const char* ip, const short port )
 {
 	LOG_PLACE() << ' ' << ip << ':' << port << '\n';
 	widget_->setEnabled( false );
@@ -96,7 +98,7 @@ void NetworkSetup::connectTo(const char* ip, const short port)
 
 void NetworkSetup::delayedConnectTo()
 {
-	const char* const ip = delayedIp.latin1();
+	const char * const ip = delayedIp.latin1();
 	const short port = delayedPort;
 	int fd = open_client_connection( ip, port );
 	emit connected( fd );
@@ -115,8 +117,8 @@ void NetworkSetup::protocolChanged()
 
 void NetworkSetup::delayedProtocolChanged()
 {
-	int fd = connection_->socket()->fd();
-	connection_->socket()->release();
+	int fd = connection_->socket() ->fd();
+	connection_->socket() ->release();
 	const char c = 0;
 	::write( fd, &c, 1 );
 	emit connected( fd );
@@ -128,8 +130,7 @@ void NetworkSetup::lookAt( QString table, QString p1, QString p2, QString p3, QS
 	LOG_PLACE_NL();
 	QListView* tables = widget_->tables;
 	QListViewItem* tableView = tables->findItem( table, 0 );
-	if ( tableView )
-	{
+	if ( tableView ) {
 		tables->takeItem( tableView );
 		delete table;
 	}

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          player.cpp  -  description
-                             -------------------
-    begin                : Fri Dec 31 1999
-    copyright            : (C) 1999 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                     player.cpp  -  description
+                        -------------------
+begin                : Fri Dec 31 1999
+copyright            : (C) 1999 by Luis Pedro Coelho
+email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -15,19 +15,19 @@
  *                                                                         *
  ***************************************************************************/
 
- #include "player.h"
+#include "player.h"
 #include "general/helper.h"
 
- Player::~Player()
- {
- 	;
- }
-
-void Player::set_receiver(std::auto_ptr<Receiver> recv)
+Player::~Player()
 {
-		LOG_PLACE_NL();
-		receiver = recv;
+	;
 }
 
-		
+void Player::set_receiver( std::auto_ptr<Receiver> recv )
+{
+	LOG_PLACE_NL();
+	receiver = recv;
+}
+
+
 

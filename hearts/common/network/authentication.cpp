@@ -10,11 +10,11 @@
 
 void pretty_printing( const char* input, char** result )
 {
-	const unsigned res_size = 128/8 * 2 + 1;
+	const unsigned res_size = 128 / 8 * 2 + 1;
 	*result = static_cast<char*>( std::malloc( res_size ) );
-	( *result )[ res_size - 1 ] = '\0';
+	( *result ) [ res_size - 1 ] = '\0';
 	for ( unsigned i = 0; i != res_size; ++i ) {
-		switch ( 0xf & ( input[ i / 2 ] >> ( ( i%2 )* 4 ) ) ) {
+		switch ( 0xf & ( input[ i / 2 ] >> ( ( i % 2 ) * 4 ) ) ) {
 #define			CASE( X ) case 0x ## X : ( *result )[ i ] = #X [ 0 ]; break
 			CASE( 0 );
 			CASE( 1 );
@@ -32,9 +32,9 @@ void pretty_printing( const char* input, char** result )
 			CASE( d );
 			CASE( e );
 			CASE( f );
-			default: 
-//			fprintf( stderr, "\n\n ----- %d ----\n\n",
-//					( unsigned ) (  0xf & (  input[  i / 2 ] >> (  (  i%2 )* 4 ) ) ) );
+			default:
+			//			fprintf( stderr, "\n\n ----- %d ----\n\n",
+			//					( unsigned ) (  0xf & (  input[  i / 2 ] >> (  (  i%2 )* 4 ) ) ) );
 			assert( 0 );
 		}
 	}
@@ -45,8 +45,9 @@ void do_md5( const char* input, char* result )
 	KMD5 calculator( input );
 	unsigned char dig[ 16 ];
 	calculator.rawDigest( dig );
-	std::strcpy( result, ( const char* )dig );
+	std::strcpy( result, ( const char* ) dig );
 #ifdef TEST_ME
+
 	char* pretty;
 	pretty_printing( result, &pretty );
 	std::cout << "md5( . ): " << pretty << std::endl;
@@ -56,7 +57,7 @@ void do_md5( const char* input, char* result )
 
 void do_xor( char* io, const char* input, unsigned nbytes )
 {
-	unsigned char* u_io = reinterpret_cast<unsigned char*>( io );
+	unsigned char * u_io = reinterpret_cast<unsigned char*>( io );
 	const unsigned char* u_input = reinterpret_cast<const unsigned char*>( input );
 	while ( nbytes ) {
 		*u_io ^= *u_input;
@@ -66,10 +67,11 @@ void do_xor( char* io, const char* input, unsigned nbytes )
 	}
 }
 
-int repeatedMD5Authenticator::generate( const char* password, const char* cookie, char** result)
+int repeatedMD5Authenticator::generate( const char* password, const char* cookie, char** result )
 {
-	if ( !password || !cookie ) return 1;
-	const unsigned nbytes_for_hash = 128/8;
+	if ( !password || !cookie )
+		return 1;
+	const unsigned nbytes_for_hash = 128 / 8;
 	char password5[ nbytes_for_hash ];
 	char cookie5[ nbytes_for_hash ];
 	char result5[ nbytes_for_hash ];
@@ -81,7 +83,8 @@ int repeatedMD5Authenticator::generate( const char* password, const char* cookie
 	return 0;
 }
 
-unsigned rand_mod( unsigned max ) {
+unsigned rand_mod( unsigned max )
+{
 	return unsigned( rand() ) % max;
 }
 
@@ -100,17 +103,19 @@ QCString repeatedMD5Authenticator::generateCookie()
 
 #ifdef TEST_ME
 
-int main() {
+int main()
+{
 	repeatedMD5Authenticator auth;
 	std::string pass, cookie;
 	std::cin >> pass >> cookie;
 	char* result;
-	if ( auth.generate( pass.c_str(), cookie.c_str(), &result ) ) return 1;
+	if ( auth.generate( pass.c_str(), cookie.c_str(), &result ) )
+		return 1;
 	std::cout << result << std::endl;
-	std::cout << ( const char* )auth.generateCookie() << std::endl;
-	std::cout << ( const char* )auth.generateCookie() << std::endl;
-	std::cout << ( const char* )auth.generateCookie() << std::endl;
-	std::cout << ( const char* )auth.generateCookie() << std::endl;
+	std::cout << ( const char* ) auth.generateCookie() << std::endl;
+	std::cout << ( const char* ) auth.generateCookie() << std::endl;
+	std::cout << ( const char* ) auth.generateCookie() << std::endl;
+	std::cout << ( const char* ) auth.generateCookie() << std::endl;
 	return 0;
 }
 #endif

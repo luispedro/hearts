@@ -1,10 +1,10 @@
 /***************************************************************************
-                          pointsbox.h  -  description
-                             -------------------
-    begin                : Fri Dec 31 1999
-    copyright            : (C) 1999 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       pointsbox.h  -  description
+                          -------------------
+ begin                : Fri Dec 31 1999
+ copyright            : (C) 1999 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -41,18 +41,18 @@ class QLabel;
 
 class PointsBox : public KDialogBase
 {
-        Q_OBJECT
-        public:
-                PointsBox(const char* name="");
-                ~PointsBox();
+		Q_OBJECT
+	public:
+		PointsBox( const char* name = "" );
+		~PointsBox();
 
-        public slots:
-                /** Clears all the results. */
-                void clear();
+	public slots:
+		/** Clears all the results. */
+		void clear();
 		void insertLine( unsigned, unsigned, unsigned, unsigned );
-		void setName(player_id::type,QString);
+		void setName( player_id::type, QString );
 
-        private:
+	private:
 		QWidget* widget_;
 		QGridLayout* layout_;
 		QPtrList<QLabel> labels_;

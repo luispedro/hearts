@@ -10,8 +10,11 @@
 
 int InitialChoiceWidget::option()
 {
-    if (radioLocal->isChecked()) return 0;
-    if (radioNetwork->isChecked()) return 1;
-    if (radioPrivate->isChecked()) return 2;
-    return -1;
+	if ( radioLocal->isChecked() )
+		return 0;
+	if ( radioNetwork->isChecked() )
+		return 1;
+	if ( radioPrivate->isChecked() )
+		return 2;
+	return -1;
 }

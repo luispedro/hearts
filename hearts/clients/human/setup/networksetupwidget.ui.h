@@ -14,40 +14,41 @@
 
 void NetworkSetupWidget::changeServer_clicked()
 {
-    emit serverChange(server->text());
+	emit serverChange( server->text() );
 }
 
 void NetworkSetupWidget::join_clicked()
 {
-    QListViewItem* current = tables->currentItem();
-    if (!current) return;
-    QString tableName = current->text(0);
-    massert(!tableName.isNull());
-    emit joinTable(tableName);
+	QListViewItem * current = tables->currentItem();
+	if ( !current )
+		return ;
+	QString tableName = current->text( 0 );
+	massert( !tableName.isNull() );
+	emit joinTable( tableName );
 }
 
 
 void NetworkSetupWidget::newTable_clicked()
 {
-    emit createNewTable();
+	emit createNewTable();
 }
 
 
 void NetworkSetupWidget::clearTables()
 {
-    tables->clear();
+	tables->clear();
 }
 
 
-void NetworkSetupWidget::insertTable( QListViewItem * t)
+void NetworkSetupWidget::insertTable( QListViewItem * t )
 {
-    tables->insertItem(t);
+	tables->insertItem( t );
 }
 
 void NetworkSetupWidget::server_returnPressed( const QString & )
-{
-    emit serverChange(server->text());
-}
+									  {
+										  emit serverChange( server->text() );
+									  }
 
 
 #endif /* DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_ */

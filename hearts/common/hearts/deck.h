@@ -18,19 +18,19 @@
  *                                                                         *
  ***************************************************************************/
 
- #include <vector>
+#include <vector>
  #include <string>
  #include "card.h"
 
- typedef std::vector<Card> Deck;
+typedef std::vector<Card> Deck;
 
 Deck fullDeck();
 Deck randomDeck();
 
-void fullDeck(Deck&);
-void randomDeck(Deck&);
+void fullDeck( Deck& );
+void randomDeck( Deck& );
 
-std::string deck2string(const Deck&);
-Deck string2deck(std::string);
+std::string deck2string( const Deck& );
+Deck string2deck( std::string );
 
 #endif /* DB_DECK_H_INCLUDE_GUARD_ */

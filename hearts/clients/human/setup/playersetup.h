@@ -9,18 +9,19 @@
 #include "serversetup.h"
 
 
-class ServerSetup::PlayerSetup : public QWidget { 
-	Q_OBJECT 
-		public:
-				PlayerSetup(player_id::type, QWidget* parent, const char* name = "player-setup");
+class ServerSetup::PlayerSetup : public QWidget
+{
+		Q_OBJECT
+	public:
+		PlayerSetup( player_id::type, QWidget* parent, const char* name = "player-setup" );
 
-		public slots:
-				
-				void execute();
+	public slots:
 
-		private slots:
-				void optionsClicked();
-			
+		void execute();
+
+	private slots:
+		void optionsClicked();
+
 	private:
 		QLabel* label;
 		QComboBox* choice;

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          messagetranslator.h  -  description
-                             -------------------
-    begin                : Mon Sep 18 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       messagetranslator.h  -  description
+                          -------------------
+ begin                : Mon Sep 18 2000
+ copyright            : (C) 2000 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -29,27 +29,29 @@
     *@author Luis Pedro Coelho
     */
 
-class Translator {
-        public:
-                ~Translator();
-  /** This stores len bytes starting at data and attempts to translate them into Messages. If any extra data is fed into it, it is kept in a buffer.  */
-                void put(const std::vector<char>&); 
-  /** This returns true if a message is available for reading */
-                bool messageAvailable()const ;
-  /** This function gets a message from the internal buffer. 
-	* It also removes this message. 
-	* It is an error to call this if (!messageAvailable())
-	*/
-                Message get() ; // throw(NotAvailable);
-        private: // Private attributes
-	/** This tries to get a message from buffer and puts it into read.
-	  * If one is found it returns true.
-	  */
-				bool decode();
-  /** This is where read message are kept. */
-                std::queue<Message> read;
-  /** This is where 'half read' messages are kept. */
-                std::vector<char> buffer;
+class Translator
+{
+	public:
+		~Translator();
+		/** This stores len bytes starting at data and attempts to translate them into Messages. If any extra data is fed into it, it is kept in a buffer.  */
+		void put( const std::vector<char>& );
+		/** This returns true if a message is available for reading */
+		bool messageAvailable() const ;
+		/** This function gets a message from the internal buffer.
+		* It also removes this message. 
+		* It is an error to call this if (!messageAvailable())
+		*/
+		Message get
+			() ; // throw(NotAvailable);
+	private:    // Private attributes
+		/** This tries to get a message from buffer and puts it into read.
+		  * If one is found it returns true.
+		  */
+		bool decode();
+		/** This is where read message are kept. */
+		std::queue<Message> read;
+		/** This is where 'half read' messages are kept. */
+		std::vector<char> buffer;
 };
 
 #endif

@@ -13,26 +13,28 @@
 	CASE(hand_over_front_win)\
 	CASE(hand_over_left_win)
 
-std::ostream& player_status::operator << (std::ostream& out, player_status::type s)
+std::ostream& player_status::operator << ( std::ostream& out, player_status::type s )
 {
-		switch (s)
-		{
+	switch ( s ) {
 #define CASE(x) case player_status::x: out << #x; return out;
-				ALL_CASES
-#undef CASE
-		}
-		assert(0);
-		return out;
-}
-
-std::istream& player_status::operator >> (std::istream& in, player_status::type& s)
-{
-		std::string str;
-		in >> str;
-#define CASE(x) else if (str == #x) { s = player_status::x; return in; }
-		if (0);
 		ALL_CASES
 #undef CASE
-		assert(0);
-		return in;
+
+	}
+	assert( 0 );
+	return out;
+}
+
+std::istream& player_status::operator >> ( std::istream& in, player_status::type& s )
+{
+	std::string str;
+	in >> str;
+#define CASE(x) else if (str == #x) { s = player_status::x; return in; }
+
+	if ( 0 )
+		;
+	ALL_CASES
+#undef CASE
+	assert( 0 );
+	return in;
 }

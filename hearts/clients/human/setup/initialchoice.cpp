@@ -13,8 +13,8 @@
 
 #include <qradiobutton.h>
 
-	InitialChoice::InitialChoice(SetupWindow* parent, const char* name)
-		:SmartPage( parent, name )
+InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
+		: SmartPage( parent, name )
 {
 	LOG_PLACE_NL();
 	widget_ = new InitialChoiceWidget( this );
@@ -33,19 +33,18 @@
 
 	LOG_PLACE_NL();
 	widget_->adjustSize();
-	widget_->move( 0,0 );
+	widget_->move( 0, 0 );
 	widget_->show();
 }
 
 
-void InitialChoice::doNext( SetupWindow* parent ) 
+void InitialChoice::doNext( SetupWindow* parent )
 {
 	assert( parent );
-	switch ( widget_->option() )
-	{
-		case 0 : // InitialChoice::AgainstComputer:
-			{
-				LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
+	switch ( widget_->option() ) {
+		case 0 :      // InitialChoice::AgainstComputer:
+		{
+			LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
 
 #define PUT_REMOVE( goingIn, goingOut )                                             \
 				assert( goingOut );                                 \
@@ -58,20 +57,20 @@ void InitialChoice::doNext( SetupWindow* parent )
 				parent->showPage( goingIn );                        \
 				return;
 
-				PUT_REMOVE( localsetup_, networksetup_ );
-			}
-		case 1: // InitialChoice::Public:
-			{
-				PUT_REMOVE( networksetup_, localsetup_ );
-			}
-		case 2: // InitialChoice::Private:
-			{
-				// TODO
-				LOG_PLACE() << "TODO\n\n\nTODO\n\n\n\n";
-				return;
-			}
+			PUT_REMOVE( localsetup_, networksetup_ );
+		}
+		case 1:      // InitialChoice::Public:
+		{
+			PUT_REMOVE( networksetup_, localsetup_ );
+		}
+		case 2:      // InitialChoice::Private:
+		{
+			// TODO
+			LOG_PLACE() << "TODO\n\n\nTODO\n\n\n\n";
+			return ;
+		}
 		default:
-			massert( 0 );
+		massert( 0 );
 	}
 }
 

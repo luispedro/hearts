@@ -3,21 +3,21 @@
 
 #include "dispatch.h"
 
-  
 
-class TypicalClient: public Dispatch 
+
+class TypicalClient: public Dispatch
 {
 	private:
-		virtual void namereply_message(std::string);
-		virtual void playreply_message(Card);
-		virtual void give3reply_message(const Holder3&);
+		virtual void namereply_message( std::string );
+		virtual void playreply_message( Card );
+		virtual void give3reply_message( const Holder3& );
 
 
 	private:
 		/** This is called whenever a message which is meant to be delivered to
 		 * the server is received.
 		 */
-		virtual void server_message(std::string) = 0;
+		virtual void server_message( std::string ) = 0;
 };
 
 

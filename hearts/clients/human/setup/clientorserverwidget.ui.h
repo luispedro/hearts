@@ -10,11 +10,11 @@
 
 bool ClientOrServerWidget::isServer()
 {
-    return radioServer->isChecked();
+	return radioServer->isChecked();
 }
 
 
 bool ClientOrServerWidget::isClient()
 {
-    return !isServer();
+	return !isServer();
 }

@@ -8,26 +8,29 @@ class Player;
 
 class Table : public QObject
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
 		typedef table_id id;
 		//Table();
-	
+
 		Table( QObject* parent, QString name );
 		bool full() const;
 		bool empty() const;
-	
+
 		Player* player( int idx ) const;
-		QString name() const { return name_; }
-		
+		QString name() const
+		{
+			return name_;
+		}
+
 	public slots:
 		void addPlayer( Player* );
 		void removePlayer( Player* );
 		void delayedTableFull();
-		
+
 	signals:
 		void tableFull( Table* );
-		
+
 	private slots:
 		void removePlayer( QObject* );
 	private:

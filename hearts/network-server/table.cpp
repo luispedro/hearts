@@ -5,27 +5,28 @@
 #include <qtimer.h>
 
 Table::Table( QObject* parent, QString name )
-		:QObject( parent, name.ascii() ),
-		 name_( name )
-{
-}
+		: QObject( parent, name.ascii() ),
+		name_( name )
+{}
 
 void Table::addPlayer( Player* p )
 {
 	assert( !full() );
 	players_.push_back( p );
-	connect( p, SIGNAL( destroyed( QObject* ) ),SLOT( removePlayer( QObject* ) ) );
-	if ( full() ) QTimer::singleShot( 0, this, SLOT( delayedTableFull() ) );
+	connect( p, SIGNAL( destroyed( QObject* ) ), SLOT( removePlayer( QObject* ) ) );
+	if ( full() )
+		QTimer::singleShot( 0, this, SLOT( delayedTableFull() ) );
 }
 
 void Table::delayedTableFull()
 {
-	if ( full() ) emit tableFull( this );
+	if ( full() )
+		emit tableFull( this );
 }
 
 void Table::removePlayer( QObject* p )
 {
-	Player* pl  = static_cast<Player*>( p );
+	Player * pl = static_cast<Player*>( p );
 	assert( pl );
 	removePlayer( pl );
 }
@@ -47,7 +48,8 @@ bool Table::empty() const
 
 Player* Table::player( int idx ) const
 {
-	if ( idx < 0 or unsigned( idx ) >= players_.size() ) return 0;
+	if ( idx < 0 or unsigned( idx ) >= players_.size() )
+		return 0;
 	return players_[ idx ];
 }
 

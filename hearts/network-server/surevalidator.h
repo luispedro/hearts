@@ -2,9 +2,13 @@
 #define SUREVALIDATOR_H
 #include "validator.h"
 
-class SureValidator : public Validator {
+class SureValidator : public Validator
+{
 	public:
-		bool validate( const char*, const char* ) { return true; }
+		bool validate( const char*, const char* )
+		{
+			return true;
+		}
 };
 
 #endif // SUREVALIDATOR_H

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          computerplayer3_2.h  -  description
-                             -------------------
-    begin                : Wed Oct 25 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       computerplayer3_2.h  -  description
+                          -------------------
+ begin                : Wed Oct 25 2000
+ copyright            : (C) 2000 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -24,17 +24,18 @@
   *@author Luis Pedro Coelho
   */
 
-class ComputerPlayer3_2 : public ComputerPlayerBase  {
-        public:
-  /**  */
-                virtual const char* type() const;
-        private: // Private methods
-        /**  */
-                virtual ComputerPlayerBase::handIterator playAssist();
-        /**  */
-                virtual ComputerPlayerBase::handIterator playNotAssist();
-                virtual ComputerPlayerBase::handIterator giveOne();
-                virtual ComputerPlayerBase::handIterator playStart();
+class ComputerPlayer3_2 : public ComputerPlayerBase
+{
+	public:
+		/**  */
+		virtual const char* type() const;
+	private:    // Private methods
+		/**  */
+		virtual ComputerPlayerBase::handIterator playAssist();
+		/**  */
+		virtual ComputerPlayerBase::handIterator playNotAssist();
+		virtual ComputerPlayerBase::handIterator giveOne();
+		virtual ComputerPlayerBase::handIterator playStart();
 };
 
 #endif

@@ -3,9 +3,10 @@
 
 #include <string>
 
-class HumanClientOptions {
-		public:
-				std::string name() const;
+class HumanClientOptions
+{
+	public:
+		std::string name() const;
 };
 
 

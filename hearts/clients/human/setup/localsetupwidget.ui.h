@@ -10,7 +10,7 @@
 
 QString LocalSetupWidget::selfName() const
 {
-    return self_->text();
+	return self_->text();
 }
 
 
@@ -18,19 +18,19 @@ QString LocalSetupWidget::selfName() const
 
 QString LocalSetupWidget::rightName() const
 {
-    return right_->text();
+	return right_->text();
 }
 
 
 
 QString LocalSetupWidget::leftName() const
 {
-    return left_->text();
+	return left_->text();
 }
 
 
 
 QString LocalSetupWidget::frontName() const
 {
-    return front_->text();
+	return front_->text();
 }

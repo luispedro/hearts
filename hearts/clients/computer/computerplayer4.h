@@ -1,10 +1,10 @@
 /***************************************************************************
-                          computerplayer4.h  -  description
-                             -------------------
-    begin                : Tue Oct 17 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       computerplayer4.h  -  description
+                          -------------------
+ begin                : Tue Oct 17 2000
+ copyright            : (C) 2000 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -24,16 +24,17 @@
   *@author Luis Pedro Coelho
   */
 
-class ComputerPlayer4 : public ComputerPlayerBase  {
-        public:
-  virtual const char* type() const;
-        private: // Private methods
-        /**  */
-                virtual ComputerPlayerBase::handIterator playAssist();
-        /**  */
-                virtual ComputerPlayerBase::handIterator playNotAssist();
-                virtual ComputerPlayerBase::handIterator giveOne();
-                virtual ComputerPlayerBase::handIterator playStart();
+class ComputerPlayer4 : public ComputerPlayerBase
+{
+	public:
+		virtual const char* type() const;
+	private:    // Private methods
+		/**  */
+		virtual ComputerPlayerBase::handIterator playAssist();
+		/**  */
+		virtual ComputerPlayerBase::handIterator playNotAssist();
+		virtual ComputerPlayerBase::handIterator giveOne();
+		virtual ComputerPlayerBase::handIterator playStart();
 };
 
 #endif

@@ -6,20 +6,21 @@
 #include <qwizard.h>
 class QLabel;
 
-class SetupWindow : public QWizard {
-	Q_OBJECT
-		public:
-				SetupWindow();
-		private:
-				void next();
-				virtual void accept();
-		public slots:
-				void connected(int);
-		signals:
-				void connected_to(int);	
-				void execute();
-		private:
-				QWidget* nothing; // a place-holder
+class SetupWindow : public QWizard
+{
+		Q_OBJECT
+	public:
+		SetupWindow();
+	private:
+		void next();
+		virtual void accept();
+	public slots:
+		void connected( int );
+	signals:
+		void connected_to( int );
+		void execute();
+	private:
+		QWidget* nothing; // a place-holder
 };
 
 

@@ -3,14 +3,19 @@
 
 #include <qstring.h>
 
-class Database {
+class Database
+{
 	public:
 		virtual QCString password( QString name ) = 0;
 };
 
-class VeryStupidDatabase : public Database {
+class VeryStupidDatabase : public Database
+{
 	public:
-		QCString password( QString ) { return QCString( "fixed" ); }
+		QCString password( QString )
+		{
+			return QCString( "fixed" );
+		}
 };
 
 

@@ -11,16 +11,17 @@ class QLabel;
 class QLineEdit;
 class LocalSetupWidget;
 
-class LocalSetup : public QWidget {
-	Q_OBJECT
+class LocalSetup : public QWidget
+{
+		Q_OBJECT
 	public:
-		LocalSetup(QWidget* parent, const char* name = "");
+		LocalSetup( QWidget* parent, const char* name = "" );
 
 	public slots:
 		void setName( player_id::type, QString );
 
 	signals:
-		void connected(int);
+		void connected( int );
 
 	private slots:
 		/** This setups a local games and execs a server */
@@ -32,7 +33,7 @@ class LocalSetup : public QWidget {
 	private:
 		LocalSetupWidget* widget_;
 };
-		
+
 
 
 #endif /* DB_LOCALSETUP_H_INCLUDE_GUARD_ */

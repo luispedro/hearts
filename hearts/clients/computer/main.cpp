@@ -8,14 +8,15 @@
 #include <string.h>
 #include <errno.h>
 
-int main(int argc, char* argv[]) {
+int main( int argc, char* argv[] )
+{
 	std::cerr << "HELLO\n";
-	int fd = open_client_connection(argc,argv);
+	int fd = open_client_connection( argc, argv );
 	if ( fd < 0 ) {
 		std::cerr << "Impossible to open connection: " << strerror( errno ) << ".\n";
 		return 1;
 	}
-	Options::parse_args(argv);
+	Options::parse_args( argv );
 	if ( Options::send_zero() ) {
 		char zero = 0;
 		if ( write( fd, &zero, 1 ) < 0 ) {
@@ -23,9 +24,8 @@ int main(int argc, char* argv[]) {
 			return 1;
 		}
 	}
-	ComputerPlayer player(fd);
-	while (Utility::Poll(player.get_pollfd(),Utility::Poll_Forever))
-	{
+	ComputerPlayer player( fd );
+	while ( Utility::Poll( player.get_pollfd(), Utility::Poll_Forever ) ) {
 		player.poll_success();
 	}
 }

@@ -1,10 +1,10 @@
 /***************************************************************************
-                          carddisplay.h  -  description
-                             -------------------
-    begin                : Tue Dec 28 1999
-    copyright            : (C) 1999 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       carddisplay.h  -  description
+                          -------------------
+ begin                : Tue Dec 28 1999
+ copyright            : (C) 1999 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -45,63 +45,77 @@
   *@author Luis Pedro Coelho
   */
 
-class CardDisplay : public QWidget  {
-        Q_OBJECT
-        public:
-                /** This construct an object which is not selected, not selectable and has the image of its first argument */
-                CardDisplay(Card,QWidget *parent=0, const char *name=0);
+class CardDisplay : public QWidget
+{
+		Q_OBJECT
+	public:
+		/** This construct an object which is not selected, not selectable and has the image of its first argument */
+		CardDisplay( Card, QWidget *parent = 0, const char *name = 0 );
 
-                /** This checks whether the card is selected */
-                bool selected() { return isSelected; }
-                bool selectable() { return isSelectable; }
-                Card card() const { return ref; }
+		/** This checks whether the card is selected */
+		bool selected()
+		{
+			return isSelected;
+		}
+		bool selectable()
+		{
+			return isSelectable;
+		}
+		Card card() const
+		{
+			return ref;
+		}
 
-                static const int CardWidth;
-                static const int CardHeight;
+		static const int CardWidth;
+		static const int CardHeight;
 
-        public slots:
-                /** It has no effect if the object is already selected.
-                    * If it isn't, it turns the card to selected and emits the selected signal.
-                    * A paintEvent is also triggered */
-                void select();
-                /** It has no effect if the object is already not selected.
-                    * If it isn't, it turns the card to not selected and emits the unselected signal.
-                    * A paintEvent is also triggered */
-                void unselect();
-                void setCard(Card);
-                void setSelectable(bool);
-        signals:
-                /** This is emited whenever the card is clicked upon with the mouse, no matter what else */
-                void clicked(Card);
-                /** This is emited when the card is selected either through a mouse click or through the select() member */
-                void selected(Card);
-                /** This is the opposite of the above. It gets emited whenever the display goes from selected to unselected. */
-                void unselected(Card);
+	public slots:
+		/** It has no effect if the object is already selected.
+		    * If it isn't, it turns the card to selected and emits the selected signal.
+		    * A paintEvent is also triggered */
+		void select();
+		/** It has no effect if the object is already not selected.
+		    * If it isn't, it turns the card to not selected and emits the unselected signal.
+		    * A paintEvent is also triggered */
+		void unselect();
+		void setCard( Card );
+		void setSelectable( bool );
+	signals:
+		/** This is emited whenever the card is clicked upon with the mouse, no matter what else */
+		void clicked( Card );
+		/** This is emited when the card is selected either through a mouse click or through the select() member */
+		void selected( Card );
+		/** This is the opposite of the above. It gets emited whenever the display goes from selected to unselected. */
+		void unselected( Card );
 
-        protected:
-                void mousePressEvent(QMouseEvent*);
-                void repaint();
-                void paintEvent(QPaintEvent*);
+	protected:
+		void mousePressEvent( QMouseEvent* );
+		void repaint();
+		void paintEvent( QPaintEvent* );
 
-        private:
-                typedef std::map<Card,QPixmap*> cache_t;
-                static cache_t images;
-                static cache_t selected_images;
-                static cache_t::iterator load(Card);
-                static cache_t::iterator load_selected(Card);
-                static void unload_all();
-                static QPixmap* get_image(Card);
-                static QPixmap* get_selected_image(Card);
+	private:
+		typedef std::map<Card, QPixmap*> cache_t;
+		static cache_t images;
+		static cache_t selected_images;
+		static cache_t::iterator load( Card );
+		static cache_t::iterator load_selected( Card );
+		static void unload_all();
+		static QPixmap* get_image( Card );
+		static QPixmap* get_selected_image( Card );
 
-                struct cleaner {
-                        ~cleaner() { CardDisplay::unload_all(); }
-                };
-                friend struct cleaner;
-                static cleaner cleaner_obj;
+		struct cleaner
+		{
+			~cleaner()
+			{
+				CardDisplay::unload_all();
+			}
+		};
+		friend struct cleaner;
+		static cleaner cleaner_obj;
 
-                Card ref;
-                bool isSelected;
-                bool isSelectable;
+		Card ref;
+		bool isSelected;
+		bool isSelectable;
 
 };
 

@@ -1,10 +1,11 @@
 #include <qwidget.h>
 class SetupWindow;
 
-class SmartPage : public QWidget 
+class SmartPage : public QWidget
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
-		SmartPage( QWidget* parent, const char* name ):QWidget( parent, name ) { }
+		SmartPage( QWidget* parent, const char* name ) : QWidget( parent, name )
+		{ }
 		virtual void doNext( SetupWindow * ) = 0;
 };

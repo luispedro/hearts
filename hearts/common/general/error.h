@@ -1,10 +1,10 @@
 /***************************************************************************
-                          error.h  -  description
-                             -------------------
-    begin                : Tue Apr 4 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                       error.h  -  description
+                          -------------------
+ begin                : Tue Apr 4 2000
+ copyright            : (C) 2000 by Luis Pedro Coelho
+ email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -28,29 +28,41 @@ Rely on std::bad_alloc for that
    * @author Luis Pedro Coelho
   */
 
-class Error {
-        public:
-        /** Both constructors construct an encapsulation around its argument */
-                Error(const char* m): message(m) { }
-                Error(std::string m) : message(m) { }
-                virtual ~Error() { }
-        /** The error. */
-                std::string what() const;
-        protected:
-                void setMessage(std::string newMsg) { message = newMsg; }
-        private:
-                std::string message;
+class Error
+{
+	public:
+		/** Both constructors construct an encapsulation around its argument */
+		Error( const char* m ) : message( m )
+		{ }
+		Error( std::string m ) : message( m )
+		{ }
+		virtual ~Error()
+		{ }
+		/** The error. */
+		std::string what() const;
+	protected:
+		void setMessage( std::string newMsg )
+		{
+			message = newMsg;
+		}
+	private:
+		std::string message;
 };
 
-class UnixError : public Error {
-        public:
-			UnixError()
-				:Error(strerror(errno)) { }
-                explicit UnixError(std::string funcName)
-			: Error(std::string("Error in ") + funcName + strerror(errno)) { }
-                UnixError(std::string funcName, int err)
-			:Error(std::string("Error in ") + funcName + strerror(err)) { }
-};
+class UnixError : public Error
+{
+	public:
+		UnixError()
+				: Error( strerror( errno ) )
+		{ }
+		explicit UnixError( std::string funcName )
+				: Error( std::string( "Error in " ) + funcName + strerror( errno ) )
+		{ }
+		UnixError( std::string funcName, int err )
+				: Error( std::string( "Error in " ) + funcName + strerror( err ) )
+		{ }
+}
+;
 
 
 #define EXCEPTION(CName,Message) \

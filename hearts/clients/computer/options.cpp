@@ -1,8 +1,9 @@
 #include "options.h"
 
-namespace {
-	std::string name_ = "Killer Tomato";
-	bool zero_ = false;
+namespace
+{
+std::string name_ = "Killer Tomato";
+bool zero_ = false;
 }
 
 std::string Options::name()
@@ -15,16 +16,14 @@ bool Options::send_zero()
 	return zero_;
 }
 
-void Options::parse_args(char* argv[])
+void Options::parse_args( char* argv[] )
 {
-	for (unsigned i = 0; argv[i]; ++i)
-	{
-		if (std::string(argv[i]) == "--playername")
-		{
-			if (argv[i + 1]) name_ = argv[i + 1];
+	for ( unsigned i = 0; argv[ i ]; ++i ) {
+		if ( std::string( argv[ i ] ) == "--playername" ) {
+			if ( argv[ i + 1 ] )
+				name_ = argv[ i + 1 ];
 		}
-		if ( std::string( argv[ i ] ) == "--zero" )
-		{
+		if ( std::string( argv[ i ] ) == "--zero" ) {
 			zero_ = true;
 		}
 	}

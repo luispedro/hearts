@@ -8,11 +8,12 @@ class InitialChoiceWidget;
 class LocalSetup;
 class NetworkSetup;
 
-class InitialChoice : public SmartPage {
-	Q_OBJECT
+class InitialChoice : public SmartPage
+{
+		Q_OBJECT
 
 	public:
-		InitialChoice(SetupWindow*,const char* = "initial-choice");
+		InitialChoice( SetupWindow*, const char* = "initial-choice" );
 	private:
 		virtual void doNext( SetupWindow* );
 		InitialChoiceWidget* widget_;

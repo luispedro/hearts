@@ -1,10 +1,10 @@
 /***************************************************************************
-                          main.cpp  -  description
-                             -------------------
-    begin                : Qui Jul 20 20:14:12 WEST 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                     main.cpp  -  description
+                        -------------------
+begin                : Qui Jul 20 20:14:12 WEST 2000
+copyright            : (C) 2000 by Luis Pedro Coelho
+email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -38,18 +38,19 @@
 #include <cstdio>
 
 
-int main(int argc, char **argv)
+int main( int argc, char **argv )
 {
-	Options::init(argc,argv);
+	Options::init( argc, argv );
 	if ( options->daemon() ) {
 		if ( daemon( 0, 0 ) < 0 ) {
 			std::cerr << "Error in daemon(): " << strerror( errno ) << ".\n";
 		}
 	}
-		
-	if ( !all_registered() ) open_connections();
+
+	if ( !all_registered() )
+		open_connections();
 	Server serv;
 	return serv.exec();
-	srand(time(0));
+	srand( time( 0 ) );
 }
 

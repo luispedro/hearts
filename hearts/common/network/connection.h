@@ -7,21 +7,25 @@
 
 class KExtendedSocket;
 
-namespace Network {
+namespace Network
+{
 
 class Connection: public QObject
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
-		Connection( KExtendedSocket* connection, QObject* parent, const char* name = "network-connection");
+		Connection( KExtendedSocket* connection, QObject* parent, const char* name = "network-connection" );
 		virtual ~Connection();
 
-		KExtendedSocket* socket() { return socket_; } 
+		KExtendedSocket* socket()
+		{
+			return socket_;
+		}
 
 	public slots:
 		void write( Message );
 		void read();
-		void close(); 
+		void close();
 		void changeProtocol();
 
 	signals:
@@ -32,7 +36,8 @@ class Connection: public QObject
 		void eof();
 
 	private:
-		virtual void get( Message );
+		virtual void get
+			( Message );
 	private slots:
 
 		virtual void socketClosed( int flags ); // connected to socket_::closed
@@ -44,13 +49,13 @@ typedef QString PlayerInfo;
 
 class UserConnection : public Connection
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
 		UserConnection( KExtendedSocket* connection, QObject* parent, const char* name = "user-network-connection" );
-		
+
 	signals:
 		void connectTo( const char*, short );
-		void startGame( short ); 
+		void startGame( short );
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
 	public slots:
 		void hello( QString );
@@ -59,22 +64,23 @@ class UserConnection : public Connection
 		void joinTable( QString );
 		void leaveTable();
 	private:
-		void get( Message );
+		void get
+			( Message );
 };
 
 class ServerConnection : public Connection
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
-		ServerConnection( KExtendedSocket* connection, 
-				QObject* parent, 
-				const char* name = "server-network-connection" );
+		ServerConnection( KExtendedSocket* connection,
+						  QObject* parent,
+						  const char* name = "server-network-connection" );
 
 		/**
 		 * This is set automatically before calling hello( "" );
 		 */
 		QString userName();
-	// Unlike the corresponding slots in the above class, this one includes <code>this</code>in its signals as the 
+		// Unlike the corresponding slots in the above class, this one includes <code>this</code>in its signals as the
 		// intended usage will be to have several objects connecting to the same slot.
 	signals:
 		void hello( ServerConnection*, QString );
@@ -88,10 +94,11 @@ class ServerConnection : public Connection
 		void auth( QCString method, QCString cookie );
 
 	private:
-		void get( Message );
+		void get
+			( Message );
 };
 
-} // namespace Network 
+} // namespace Network
 
 #endif // CONNECTION_H
 

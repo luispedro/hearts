@@ -1,10 +1,10 @@
 /***************************************************************************
-                          error.cpp  -  description
-                             -------------------
-    begin                : Thu Jul 27 2000
-    copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                     error.cpp  -  description
+                        -------------------
+begin                : Thu Jul 27 2000
+copyright            : (C) 2000 by Luis Pedro Coelho
+email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -17,9 +17,9 @@
 
 #include "error.h"
 
-std::string Error::what() const 
+std::string Error::what() const
 {
-        return message;
+	return message;
 }
 
 

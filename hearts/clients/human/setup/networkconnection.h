@@ -1,6 +1,6 @@
 #ifndef NETWORKCONNECTION_H
 #define NETWORKCONNECTION_H
-class NetworkConnection : public QObject 
+class NetworkConnection : public QObject
 {
 	public:
 		NetworkConnection( const char* server, short port, QObject* parent, const char * name = "network-connection" );

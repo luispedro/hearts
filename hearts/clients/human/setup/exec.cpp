@@ -8,15 +8,16 @@
 
 #include "communication/constants.h"
 
-QString generateLocalAddress() {
+QString generateLocalAddress()
+{
 	return QString::fromLocal8Bit( local_address ) + QString::number( getpid() );
 }
 
-std::ostream& operator<<(  std::ostream& s, const QValueList<QCString>& l )
+std::ostream& operator<<( std::ostream& s, const QValueList<QCString>& l )
 {
 	QValueList<QCString>::const_iterator it = l.begin();
-	for (  ; it != l.end(); ++it )
-		s << '\"' << ( *it ) << "\" "; 
+	for ( ; it != l.end(); ++it )
+		s << '\"' << ( *it ) << "\" ";
 	return s;
 }
 
@@ -29,31 +30,32 @@ bool execute_server()
 bool execute_server( short port )
 {
 	KProcess p;
-	p << "heartsserver" 
-		<< "--tcp-port" << QString::number( port ) 
-		<< "--unix-port" << generateLocalAddress()
-		<< "--wait-zero";
+	p << "heartsserver"
+	<< "--tcp-port" << QString::number( port )
+	<< "--unix-port" << generateLocalAddress()
+	<< "--wait-zero";
 
 	LOG_PLACE() << " !" << p.args() << "!\n";
-	return p.start(KProcess::DontCare);
+	return p.start( KProcess::DontCare );
 }
 
-bool execute_server( bool tcp, bool local ) {
+bool execute_server( bool tcp, bool local )
+{
 #warning execute_server( bool, bool ) not implemented
 
 	execute_server( 0 );
 }
 
 
-bool execute_computer_client(QString name)
+bool execute_computer_client( QString name )
 {
 	KProcess p;
 	p << "heartscomputerclient"
-		<< "--playername" << name
-		<< "--address" << generateLocalAddress()
-		<< "--zero";
+	<< "--playername" << name
+	<< "--address" << generateLocalAddress()
+	<< "--zero";
 	LOG_PLACE() << '!' << p.args() << "!\n";
-	return p.start(KProcess::DontCare);
+	return p.start( KProcess::DontCare );
 }
 
 

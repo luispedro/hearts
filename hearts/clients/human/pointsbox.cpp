@@ -1,10 +1,10 @@
 /***************************************************************************
-                          pointsbox.cpp  -  description
-                             -------------------
-    begin                : Fri Dec 31 1999
-    copyright            : (C) 1999 by Luis Pedro Coelho
-    email                : luis@luispedro.org
- ***************************************************************************/
+                     pointsbox.cpp  -  description
+                        -------------------
+begin                : Fri Dec 31 1999
+copyright            : (C) 1999 by Luis Pedro Coelho
+email                : luis@luispedro.org
+***************************************************************************/
 
 /***************************************************************************
  *                                                                         *
@@ -24,14 +24,14 @@
 
 #include <algorithm>
 
-PointsBox::PointsBox(const char* name )
-	: KDialogBase( 0, name, false, i18n( "points standing" ), KDialogBase::Ok, KDialogBase::Ok, true ),
-	widget_( new QWidget( this ) ),
-	layout_( new QGridLayout( widget_, 1, 4 ) ),
-	selfLastLabel_( 0 ),
-	rightLastLabel_( 0 ),
-	frontLastLabel_( 0 ),
-	leftLastLabel_( 0 )
+PointsBox::PointsBox( const char* name )
+		: KDialogBase( 0, name, false, i18n( "points standing" ), KDialogBase::Ok, KDialogBase::Ok, true ),
+		widget_( new QWidget( this ) ),
+		layout_( new QGridLayout( widget_, 1, 4 ) ),
+		selfLastLabel_( 0 ),
+		rightLastLabel_( 0 ),
+		frontLastLabel_( 0 ),
+		leftLastLabel_( 0 )
 {
 	this->setMainWidget( widget_ );
 
@@ -51,18 +51,18 @@ PointsBox::PointsBox(const char* name )
 	frontLabel_->setAlignment( AlignRight );
 	leftLabel_ = new QLabel( widget_ );
 	leftLabel_->setAlignment( AlignRight );
-	
+
 }
 
-PointsBox::~PointsBox(){
-}
+PointsBox::~PointsBox()
+{}
 
 inline
 unsigned max4( unsigned a, unsigned b, unsigned c, unsigned d )
 {
 	using std::max;
 	return max( max( a, b ),
-		    max( c, d ) );
+				max( c, d ) );
 }
 
 inline
@@ -70,17 +70,17 @@ unsigned min4( unsigned a, unsigned b, unsigned c, unsigned d )
 {
 	using std::min;
 	return min( min( a, b ),
-		    min( c, d ) );
+				min( c, d ) );
 }
 
 
 void PointsBox::insertLine( unsigned self, unsigned right, unsigned front, unsigned left )
 {
-	kdDebug() << "PointsBox::insertLine( " 
-		<< self << ", "
-		<< right << ", "
-		<< front << ", "
-		<< left << " )" << endl;
+	kdDebug() << "PointsBox::insertLine( "
+	<< self << ", "
+	<< right << ", "
+	<< front << ", "
+	<< left << " )" << endl;
 #define CASE( x ) \
 	do { \
 		if ( x ## LastLabel_ ) x ## LastLabel_->setEnabled( false ); \
@@ -101,16 +101,24 @@ void PointsBox::insertLine( unsigned self, unsigned right, unsigned front, unsig
 	CASE( self );
 }
 
-void PointsBox::setName(player_id::type who, QString name)
+void PointsBox::setName( player_id::type who, QString name )
 {
 	using namespace player_id;
-	switch (who)
-	{
-		case self: selfLabel_->setText(name); break;
-		case right: rightLabel_->setText(name); break;
-		case left: leftLabel_->setText(name); break;
-		case front: frontLabel_->setText(name); break;
-		default: massert(0);
+	switch ( who ) {
+		case self:
+		selfLabel_->setText( name );
+		break;
+		case right:
+		rightLabel_->setText( name );
+		break;
+		case left:
+		leftLabel_->setText( name );
+		break;
+		case front:
+		frontLabel_->setText( name );
+		break;
+		default:
+		massert( 0 );
 	}
 }
 

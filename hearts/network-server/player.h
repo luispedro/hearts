@@ -12,23 +12,33 @@ class Connection;
 class Validator;
 class Player : public Network::ServerConnection
 {
-	Q_OBJECT
+		Q_OBJECT
 	public:
 		typedef player_id id;
-		Player(QObject* parent, KExtendedSocket* );
+		Player( QObject* parent, KExtendedSocket* );
 		~Player();
 
-//X 		KExtendedSocket* socket() { return &socket_; }
-		
-		QString name() const { return name_; }
+		//X 		KExtendedSocket* socket() { return &socket_; }
 
-		void table( Table* t ) { table_ = t; }
-		Table* table() { return table_; }
+		QString name() const
+		{
+			return name_;
+		}
+
+		void table( Table* t )
+		{
+			table_ = t;
+		}
+		Table* table()
+		{
+			return table_;
+		}
 
 	public slots:
-		void get( Message );
+		void get
+			( Message );
 
-//X 		void write( Message );
+		//X 		void write( Message );
 
 		void connectTo( const char* server, short port );
 		void startGame( short port ); // FIXME HARD: We shouldn't tell people what port to use

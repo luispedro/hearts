@@ -13,17 +13,18 @@
 	The only real work of this function is in the constructor, where connections are opened. All the rest is just a driver, where the 
 	member objects provide everything.
   */
-	
 
-class Server {
+
+class Server
+{
 	public:
 		Server();
-	/** This is a return code like that of main. */
+		/** This is a return code like that of main. */
 		int exec();
 
 		void game_over();
 
-		void name(ConnectingPlayer*,std::string);
+		void name( ConnectingPlayer*, std::string );
 
 	private:
 

@@ -8,19 +8,23 @@ class NetworkSetupWidget;
 
 using Network::PlayerInfo;
 
-class NetworkSetup : public QWidget {
+class NetworkSetup : public QWidget
+{
 		Q_OBJECT
 	public:
-		NetworkSetup(QWidget* p, const char* name = "network-setup");
+		NetworkSetup( QWidget* p, const char* name = "network-setup" );
 		~NetworkSetup();
 
-		bool good() const { return good_; }
+		bool good() const
+		{
+			return good_;
+		}
 	signals:
-		void connected(int);
+		void connected( int );
 	public slots:
 		void execute();
 		void newTable();
-//X 		void joinTable();
+		//X 		void joinTable();
 
 	private slots:
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );

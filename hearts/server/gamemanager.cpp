@@ -376,9 +376,9 @@ unsigned most_points(const GameManager& m)
 {
 		using namespace player_id;
 		unsigned res = m.points(self);
-		res = max(res,m.points(right));
-		res = max(res,m.points(front));
-		res = max(res,m.points(left));
+		res = std::max(res,m.points(right));
+		res = std::max(res,m.points(front));
+		res = std::max(res,m.points(left));
 		return res;
 }
 						

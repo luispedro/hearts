@@ -89,12 +89,12 @@ inline bool Table::empty() const throw()
 
 #include "hearts/deck.h"
 
-inline string table2string(const Table& t)
+inline std::string table2string(const Table& t)
 {
         return deck2string(t.state());
 }
 
-inline Table string2table(string str)
+inline Table string2table(std::string str)
 {
         Table res;
         Deck tmp = string2deck(str);

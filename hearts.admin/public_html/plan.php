@@ -20,7 +20,7 @@
 			<li>The card passing is always to the right. <?=cvsdone()?>
 			<li>Portability issue regarding setting the random seed. <?=cvsdone()?>
 			<li>A lot of processes are left running. <?=cvsdone()?>
-			<li>Only one match (ie, a series of games until a player gets 100 points) is possible.
+			<li>Only one match (ie, a series of games until a player gets 100 points) is possible. <?=cvsdone()?>
 			<li>Make it valgrind clean.
 		</ul>
 	<li>Have the status bar help on what the user should do at every step (play, give cards right, etc.) <?=cvsdone()?>

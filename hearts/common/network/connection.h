@@ -36,8 +36,7 @@ class Connection: public QObject
 		void eof();
 
 	private:
-		virtual void get
-			( Message );
+		virtual void get( Message );
 	private slots:
 
 		virtual void socketClosed( int flags ); // connected to socket_::closed

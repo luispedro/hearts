@@ -57,7 +57,8 @@ void INIFile::parseLine( string line, string group, const optionsDescrition* inf
 	if ( info ) {
 		for ( const char* const * possible = info->options; true ; ++possible ) {
 			if ( !*possible ) {
-				std::cerr << "Option name \'" << name << "\' in line " << count << " (group = " << group << " ) unknown, ignoring.\n";
+				std::cerr << "Option name \'" << name << "\' in line " << count
+					<< " (in group \'" << group << "\' ) unknown, ignoring.\n";
 				return;
 			}
 			if ( name == *possible ) break;

@@ -7,11 +7,23 @@ namespace Options
 QString playerName( player_id::type who );
 void savePlayerName( player_id::type, const QString& );
 
-QString networkLogin();
-void saveNetworkLogin( const QString& );
+class Account {
+	public:
+		explicit Account( const char* );
+		QString login() const;
+		void saveLogin( const QString& );
 
-QCString networkPassword();
-void saveNetworkPassword( const QCString& );
+		QCString password() const;
+		void savePassword( const QCString& );
+
+		const char* host() const;
+		void saveHost( const char* );
+
+		short port() const;
+		void savePort( short );
+};
+
+Account& getNetwork();
 
 }
 

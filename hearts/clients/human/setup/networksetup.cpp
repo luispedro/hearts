@@ -21,7 +21,6 @@
 #include "exec.h"
 #include "general/helper.h"
 #include "communication/open_connections.h"
-#include "network/constants.h"
 #include "network/player_status.h"
 #include "network/authentication.h"
 #include "../options.h"
@@ -40,11 +39,13 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
 	connect( widget_, SIGNAL( serverChange() ), SLOT( reconnect() ) );
 
-	widget_->server->insert( Network::Server );
-	widget_->port->insert( QString::number( Network::Port ) );
+	Options::Account& network = Options::getNetwork();
+
+	widget_->server->insert( network.host() );
+	widget_->port->insert( QString::number( network.port() ) );
 	online_->setModal( false );
-	openConnection( Network::Server, Network::Port );
-	resetGUI( Network::Server );
+	openConnection( network.host(), network.port() );
+	resetGUI( network.host() );
 }
 
 NetworkSetup::~NetworkSetup()
@@ -115,21 +116,21 @@ void NetworkSetup::doAuthentication( const QCString& method, const QCString& coo
 		KMessageBox::error( widget_, QString::null, i18n( "Unkown authentication method" ) );
 		return;
 	}
-	QCString password = Options::networkPassword();
+	Options::Account& network = Options::getNetwork();
+	QCString password = network.password();
 	if ( password.isNull() ) {
 		QString user, pass;
-		if ( KIO::PasswordDialog::getNameAndPassword( user, pass, 0 ) == KDialogBase::Accepted ) {
+		if ( KIO::PasswordDialog::getNameAndPassword( user, pass, 0, i18n( "Login to hearts server" ) ) == KDialogBase::Accepted ) {
 			password = pass.utf8();
-			Options::saveNetworkLogin( user.utf8() );
+			network.saveLogin( user.utf8() );
 			password = pass.utf8();
-			Options::saveNetworkPassword( password );
+			network.savePassword( password );
 		} else {
 			KMessageBox::error( 0, i18n( "Need username and password for login" ) );
 			return;
 		}
 	}
 	char* result;
-	kdDebug() << "doAuthentication( " << method << ", " << cookie << ", " << password << " )" << endl;
 	authenticator.generate( password, cookie, &result );
 	connection_->authR( cookie, result );
 	free( result );

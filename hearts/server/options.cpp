@@ -59,8 +59,7 @@ void Options::init( int argc , char** argv )
 	// copy & paste from man:getopt
 	enum { fds = 1, tport, uport, wait_zero, daemon };
 	static const struct option long_options[] = {
-				{ "fds", 1, 0, fds
-				},
+				{ "fds", 1, 0, fds },
 				{ "tcp-port", 1, 0, tport },
 				{ "unix-port", 1, 0, uport },
 				{ "wait-zero", 0, 0, wait_zero },
@@ -68,9 +67,6 @@ void Options::init( int argc , char** argv )
 				{ 0, 0, 0, 0 }
 			};
 	int option_index = 0;
-	static const player_id::type players[] = {
-				player_id::self, player_id::right, player_id::front, player_id::left
-			};
 	int res;
 	while ( ( res = getopt_long( argc, argv, "", long_options, &option_index ) ) > 0 ) {
 		char * cur = optarg;
@@ -87,7 +83,7 @@ void Options::init( int argc , char** argv )
 						break;
 					}
 					LOG_PLACE() << " fd[ " << i << " ] = " << fd << '\n';
-					register_fd( players[ i ], fd );
+					register_fd( player_id::all_players[ i ], fd );
 					if ( *cur )
 						++ cur;
 				}

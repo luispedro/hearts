@@ -25,17 +25,11 @@ private:
 
 Server::Server()
 {
-	const player_id::type id[] = {
-									 player_id::self,
-									 player_id::right,
-									 player_id::front,
-									 player_id::left
-								 };
 	fds.resize( number_of_players );
 	for ( unsigned i = 0; i != number_of_players; ++i ) {
-		players.push_back( new ConnectingPlayer( id[ i ], this ) );
+		players.push_back( new ConnectingPlayer( player_id::all_players[ i ], this ) );
 		players.back() ->register_pollfd( fds[ i ] );
-		manager.register_player( *players.back(), id[ i ] );
+		manager.register_player( *players.back(), player_id::all_players[ i ] );
 	}
 	manager.register_game_over_callback( gameover_callback( *this ) );
 }
@@ -65,13 +59,17 @@ void Server::advertise_points()
 {
 	using namespace player_id;
 	std::vector<unsigned> points;
-	points.push_back( manager.points( player_id::self ) );
-	points.push_back( manager.points( player_id::right ) );
-	points.push_back( manager.points( player_id::front ) );
-	points.push_back( manager.points( player_id::left ) );
+	for ( int i = 0; i != number_of_players; ++i ) points.push_back( manager.points( player_id::all_players[ i ] ) );
+	LOG_PLACE() 
+		<< "\n\n\n"
+		<< "\n\t POINTS[ 0 ]: " << points[ 0 ] << "."
+		<< "\n\t POINTS[ 1 ]: " << points[ 1 ] << "."
+		<< "\n\t POINTS[ 2 ]: " << points[ 2 ] << "."
+		<< "\n\t POINTS[ 3 ]: " << points[ 3 ] << "."
+		<< "\n\n\n\n\n";
 	circular_iterator<std::vector<unsigned>::iterator> iter( points.begin(), points.begin(), points.end() );
 	for ( unsigned i = 0; i != 4; ++i ) {
-		players[ i ] ->points( *iter, *( iter + 1 ), *( iter + 2 ), *( iter + 3 ) );
+		players[ i ]->points( *iter, *( iter + 1 ), *( iter + 2 ), *( iter + 3 ) );
 		++iter;
 	}
 }
@@ -109,10 +107,9 @@ void Server::name( ConnectingPlayer* who, std::string name )
 		++circler;
 		assert( *circler != players.front() );
 	}
-	player_id::type all_players[] = { player_id::self, player_id::right, player_id::front, player_id::left };
 	for ( int i = 1; i != 4; ++i )      // self does not matter
 	{
-		( *( circler + i ) ) ->opponentname( all_players[ i ], name );
+		( *( circler + i ) ) ->opponentname( player_id::all_players[ i ], name );
 	}
 }
 

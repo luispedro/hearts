@@ -133,7 +133,11 @@ void GameManager::distribute_cards()
 
 void GameManager::play_reply( player_id::type id, const Card& attempt )
 {
-	LOG_PLACE() << " Receiving a play reply.\n";
+	LOG_PLACE() << " [ " << id << " played " << attempt << "].\n";
+	if ( players[ id ].player != to_move->player ) {
+			std::cerr << "Hmmm.... I wasn't expecting this message.\n";
+			return;
+	}
 	const char* error = validate( attempt );
 	if ( error ) {
 		to_move->player->invalidPlay( error );
@@ -153,13 +157,13 @@ void GameManager::play_reply( player_id::type id, const Card& attempt )
 
 void GameManager::warn_about_move( Card c )
 {
-	// must remember that ++circler always works clockwise.
+	// This is *NOT* the same order as player_id::all_players.
 	const player_id::type relative[] = {
-										   player_id::self,
-										   player_id::right,
-										   player_id::front,
-										   player_id::left
-									   };
+						player_id::self,
+						player_id::left,
+						player_id::front,
+						player_id::right
+						};
 	unsigned i = 0;
 	circler iter = to_move;
 	do {
@@ -186,7 +190,12 @@ void GameManager::hand_end()
 	table.reset();
 	{
 		using namespace player_status;
-		type hand_over[] = { hand_over_self_win, hand_over_right_win, hand_over_front_win, hand_over_left_win };
+		type hand_over[] = { 
+				hand_over_self_win,
+				hand_over_left_win,
+				hand_over_front_win,
+				hand_over_right_win
+		};
 		for ( int i = 0; i != 4; ++i )
 			( to_move + i ) ->player->currentStatus( hand_over[ i ] );
 	}

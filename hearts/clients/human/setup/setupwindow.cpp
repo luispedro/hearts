@@ -50,8 +50,6 @@ void SetupWindow::next()
 void SetupWindow::connected( int fd )
 {
 	assert( fd > 0 );
-	char zero = 0;
-	write( fd, &zero, 1 );
 	emit connected_to( fd );
 	this->QWizard::accept();
 	this->close();

@@ -16,10 +16,9 @@ email                : luis@luispedro.org
  ***************************************************************************/
 
 #include "options.h"
- #include "general/helper.h"
- #include "id_to_fd.h"
- #include <strstream>
- #include <getopt.h>
+#include "general/helper.h"
+#include "id_to_fd.h"
+#include <getopt.h>
 
 const unsigned defaultMaxPoints = 99;
 
@@ -70,29 +69,29 @@ void Options::init( int argc , char** argv )
 	int res;
 	while ( ( res = getopt_long( argc, argv, "", long_options, &option_index ) ) > 0 ) {
 		char * cur = optarg;
-		const char* const oldcur = cur;
 		switch ( res ) {
 			case fds: {
 				LOG_PLACE() << " Going to decode " << cur << '\n';
 				for ( int i = 0; i != 4; ++i ) {
 					if ( !cur || !*cur || all_registered() )
 						break;
+					const char* const oldcur = cur;
 					int fd = strtol( cur, &cur, 10 );
 					if ( cur == oldcur ) {
-						LOG_PLACE() << "Error converting !\n";
+						std::cerr << "Error decoding argument for --fds\n";
 						break;
 					}
 					LOG_PLACE() << " fd[ " << i << " ] = " << fd << '\n';
-					register_fd( player_id::all_players[ i ], fd );
-					if ( *cur )
-						++ cur;
+					if ( fd ) register_fd( player_id::all_players[ i ], fd );
+					if ( *cur ) ++ cur;
 				}
 			}
 			break;
 			case tport: {
-				int tmp = strtol( cur, &cur, 10 );
-				if ( cur != oldcur )
-					single->tcp_port_ = tmp;
+				const char* const oldcur = cur;
+				int port = strtol( cur, &cur, 10 );
+				if ( cur != oldcur ) single->tcp_port_ = port;
+				else std::cerr << "Error decoding port number (was given \'" << oldcur << "\')\n";
 			}
 			break;
 			case uport: {

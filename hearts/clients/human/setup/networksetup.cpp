@@ -51,9 +51,11 @@ NetworkSetup::NetworkSetup(QWidget* parent, const char* name)
 	connection_->hello( playerName );
 	widget_->connectingBox->hide();
 	widget_->server->insert( Network::Server );
+	widget_->port->insert( QString::fromLatin1( "%1" ).arg( Network::Port ) );
 
 	//FIXME remove lines below and implement functionality:
 	widget_->server->setEnabled( false );
+	widget_->port->setEnabled( false );
 	widget_->changeServer->setEnabled( false );
 }
 

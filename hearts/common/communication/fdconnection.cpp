@@ -34,10 +34,8 @@ void FDConnection::poll_success()
 	const int revents = pfd_->revents;
 	if ( revents & POLLIN ) {
 		std::vector<char> buf;
-		Utility::read_to_vector( fd_, buf );
-		if ( buf.empty() )      // EOF
-		{
-			LOG_PLACE() << " EOF\n";
+		if ( Utility::read_to_vector( fd_, buf ) <= 0 ) { // Error or EOF
+			LOG_PLACE() << " Exiting... \n";
 			exit( 2 );
 		}
 		in_buffer_.put( buf );

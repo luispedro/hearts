@@ -105,7 +105,7 @@ int main(int argc, char* argv[])
 		                VERSION,
 				"Hearts game for the KDE",
 				KAboutData::License_GPL,
-		                "(c) 2001-2003  Luís Pedro Coelho"
+				"(c) 2001-2003  Luís Pedro Coelho",
 				I18N_NOOP("Hearts - a card game"),
 				"http://hearts.luispedro.org/",
 				"luis@luispedro.org" );

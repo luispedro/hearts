@@ -14,15 +14,11 @@
 
 
 HumanClient::HumanClient()
-		: pointsWindow( new PointsBox( i18n( "points" ) ) ),
+		: pointsWindow( new PointsBox ),
 		interface( new HumanInterface( this, "human-interface" ) ),
 		connection( new QtConnection( this, "client-connection" ) )
 
 {
-	QSignalMapper* mPlay = new QSignalMapper( this );
-	QSignalMapper* mGive = new QSignalMapper( this );
-	mPlay->setMapping( connection, i18n( "This is your turn to play" ) );
-	mGive->setMapping( connection, i18n( "Give three cards to your opponent" ) );
 
 	connect( connection, SIGNAL( play() ), interface, SLOT( play() ) );
 	connect( connection, SIGNAL( give3( player_id::type ) ), interface, SLOT( choose3() ) );
@@ -35,16 +31,13 @@ HumanClient::HumanClient()
 
 	connect( connection, SIGNAL( invalidmove( QString ) ), SLOT( invalidMove( QString ) ) );
 
-	connect( connection, SIGNAL( opponentname( player_id::type, QString ) ), interface, SLOT( setName( player_id::type, QString ) ) );
-	connect( connection, SIGNAL( opponentname( player_id::type, QString ) ), pointsWindow, SLOT( setName( player_id::type, QString ) ) );
+	connect( connection, SIGNAL( opponentname( player_id::type, QString ) ),
+					interface, SLOT( setName( player_id::type, QString ) ) );
+	connect( connection, SIGNAL( opponentname( player_id::type, QString ) ),
+					pointsWindow, SLOT( setName( player_id::type, QString ) ) );
 	pointsWindow->setName( player_id::self, Options::playerName( player_id::self ) );
 
-	connect( connection, SIGNAL( play() ), mPlay, SLOT( map() ) );
-	connect( mPlay, SIGNAL( mapped( const QString& ) ), interface, SLOT( setStatus( const QString& ) ) );
-
 	connect( connection, SIGNAL( give3( player_id::type ) ), SLOT( giveStatus( player_id::type ) ) );
-	connect( mGive, SIGNAL( mapped( const QString& ) ), interface, SLOT( setStatus( const QString& ) ) );
-
 
 	connect( connection, SIGNAL( namequery() ), SLOT( namequery() ) );
 	connect( connection, SIGNAL( error( QString ) ), SLOT( connectionError( QString ) ) );
@@ -69,11 +62,7 @@ HumanClient::HumanClient()
 
 void HumanClient::showSetup()
 {
-	int res = setup_->exec();
-	if ( res == QWizard::Rejected ) {
-		kdDebug() << "HumanClient::showSetup() exiting..." << endl;
-		QTimer::singleShot( 0, kapp, SLOT( quit() ) );
-	}
+	if ( setup_->exec() == QWizard::Rejected ) QTimer::singleShot( 0, kapp, SLOT( quit() ) );
 }
 
 void HumanClient::connected_to_server( int fd )
@@ -113,7 +102,6 @@ void HumanClient::status( player_status::type s )
 {
 	LOG_PLACE() << " handling status " << s << ".\n";
 	using namespace player_status;
-	using namespace player_id;
 	bool clear = true;
 	switch ( s ) {
 		case hand_over_self_win:

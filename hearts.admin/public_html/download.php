@@ -3,11 +3,11 @@ do_header('Download Hearts');
 ?>
 
 
-<h2>Beta Version 1.96</h2>
-<p><strong>Released on 3rd April 2004</strong></p>
-<p>This is a beta version of hearts 2.0 -- version 1.96</p>
+<h2>Beta Version 1.97</h2>
+<p><strong>Released on 11th April 2004</strong></p>
+<p>This is a beta version of hearts 2.0 -- version 1.97</p>
 
-<p><a href="http://prdownloads.sourceforge.net/hearts/hearts-1.96.tar.bz2?download">Download it</a> (traditional source tarball). This is 
+<p><a href="http://prdownloads.sourceforge.net/hearts/hearts-1.97.tar.bz2?download">Download it</a> (traditional source tarball). This is 
 	a <a href="http://www.sf.net/">SourceForge</a> link as I don't want my bandwith bill to shoot up.</p>
 
 <h2 id="CVS"><a name="CVS">CVS Version</a></h2>

@@ -12,12 +12,18 @@ do_header('Hearts for KDE');
 
 <h2>What's New:</h2>
 
-<h3>Release 1.96</h3>
-<p><strong>3rd April 2004</strong><br />
+<h3>Release 1.97</h3>
+<p><strong>11th April 2004</strong><br />
 <h4>Change Log</h4>
 <ul>
-	<li>Support for private network games
-	<li>No leaving of temporary files in <tt>/tmp</tt></li>
+	<li>Fix important bug regarding the points (you got your partners' points).</li>
+	<li>Make the local game start immediatelly (before you had a small delay).</li>
+	<li>Small GUI fixes:
+		<ul>
+			<li>Accelarator clashes fixed</li>
+			<li>Use the same strings in the local and remote game setup</li>
+		</ul></li>
+	<li>Code cleanup: removed unnecessary files, includes and fixed whitespace
 </ul>
 
 <h3>A hearts server where you can find other players on the internet was set up.</h3>

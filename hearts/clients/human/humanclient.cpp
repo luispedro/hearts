@@ -82,6 +82,7 @@ void HumanClient::connected_to_server( int fd )
 	massert( connection );
 	massert( fd > 0 );
 	connection->set_fd( fd );
+	connection->enable();
 	updateNames(); // FIXME: This shouldn't work like this
 	// Further Note: WTF does this do?
 }

@@ -17,3 +17,5 @@ stamp-h1
 subdirs
 stamp-h
 config.h.in
+autom4te-2.53.cache
+autom4te-2.53.cache/*

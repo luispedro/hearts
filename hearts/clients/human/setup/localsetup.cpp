@@ -80,25 +80,27 @@ LocalSetup::LocalSetup(QWidget* parent, const char* name)
 void LocalSetup::execute()
 { // FIXME: add error handling
 		// FIXME: the whole thing with execute2 is really "hacky"
+	LOG_PLACE();
 	execute_server();
 	QTimer::singleShot(1500,this,SLOT(execute2()));
 }
 
 void LocalSetup::execute2()
 {
-		execute_computer_client(right_name->text());
-		execute_computer_client(front_name->text());
-		execute_computer_client(left_name->text());
-		int fd = open_client_connection(local_address); 
+	LOG_PLACE();
+	execute_computer_client(right_name->text());
+	execute_computer_client(front_name->text());
+	execute_computer_client(left_name->text());
+	int fd = open_client_connection(local_address); 
 #define SAVE(x)  Options::savePlayerName(player_id::x,x##_name->text())
 
-		SAVE(self);
-		SAVE(right);
-		SAVE(front);
-		SAVE(left);
+	SAVE(self);
+	SAVE(right);
+	SAVE(front);
+	SAVE(left);
 
-		// must be done last
-		emit connected(fd);
+	// must be done last
+	emit connected(fd);
 }
 
 

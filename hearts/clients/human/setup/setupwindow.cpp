@@ -30,13 +30,18 @@ SetupWindow::SetupWindow()
 resize(  QSize( 600, 480 ).expandedTo( minimumSizeHint() ) );
 	    
 	init->show();
-	QWidget* nothing = new QWidget( this );
+	nothing = new QWidget( this );
 	addPage( nothing, QString::fromLatin1( "FIXME" ) );
 	setNextEnabled( init,true );
 }
 
 void SetupWindow::next()
 {
+	if ( nothing ) {
+		removePage( nothing );
+		delete nothing;
+		nothing = 0;
+	}
 	static_cast<SmartPage*>( currentPage() )->doNext( this );
 }
 

@@ -56,7 +56,13 @@ socket_()
 	socket_.setPort( Network::Port );
 	socket_.listen();
 	socket_.enableRead( true );
+	if (socket_.socketStatus() == KExtendedSocket::error) { 
+		std::cerr << "Socket error: " << strerror(socket_.systemError()) << std::endl;
+	} else {
+		std::cerr << "Socket: " << socket_.fd() << std::endl;
+	}
 	set_sock_options( socket_.fd() );
+
 	connect( &socket_, SIGNAL( readyAccept() ), SLOT( acceptSlot() ) );
 }
 

@@ -8,7 +8,4 @@ const unsigned short tcp_port = 1614;
 const char* const local_address = "/tmp/hearts-server-socket";
 }
 
-using namespace Communication;
-
-
 #endif /* DB_CONSTANTS_H1053543733_INCLUDE_GUARD_ */

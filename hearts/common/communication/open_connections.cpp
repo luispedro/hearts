@@ -14,6 +14,7 @@
 #include <arpa/inet.h>
 #include <sys/un.h>
 
+using namespace Communication;
 
 int open_client_connection( int argc, char* argv[] )
 {

@@ -1,5 +1,5 @@
 #include "player_status.h"
-
+#include <string>
 
 std::ostream& operator << ( std::ostream& out, player_status::type s ) {
 		switch ( s ) {

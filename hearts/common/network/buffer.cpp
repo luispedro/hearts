@@ -1,6 +1,7 @@
 #include "buffer.h"
 #include <algorithm>
 #include <qstringlist.h>
+#include <cassert>
 
 InBuffer& InBuffer::operator >> ( Message& m )
 {

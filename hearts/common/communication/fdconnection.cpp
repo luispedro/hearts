@@ -3,6 +3,7 @@
 #include "general/utilitario.h"
 #include "general/helper.h"
 
+#include <cassert>
 #include <cstring>
 #include <cerrno>
 #include <unistd.h>

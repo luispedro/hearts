@@ -20,7 +20,7 @@
 
 #include <qwidget.h>
 #include <qdialog.h>
-#include <qmultilinedit.h>
+#include <qmultilineedit.h>
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qlayout.h>

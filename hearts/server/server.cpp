@@ -8,6 +8,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <unistd.h>
+#include <cassert>
 
 const int number_of_players = 4;
 struct gameover_callback

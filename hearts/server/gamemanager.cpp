@@ -3,6 +3,7 @@
 #include "hearts/cards.h"
 #include "hearts/deck.h"
 #include <unistd.h>
+#include <cassert>
 
 #define I18N_NOOP(x) x // I don't want to include KDE's headers, but I'll use the same name for consistency
 

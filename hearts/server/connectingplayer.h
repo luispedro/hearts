@@ -6,6 +6,7 @@
 #include "communication/connection.h"
 #include "communication/typicalserver.h"
 #include "communication/fdconnection.h"
+#include <cassert>
 
 /** @short This is a glue class between Player and Dispatch
 	This is to implement a player which sits on the other end of a connection.

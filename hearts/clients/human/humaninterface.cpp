@@ -28,7 +28,7 @@ email                : luis@luispedro.org
 
 #include <cstdlib>
 #include <algorithm>
-
+#include <cassert>
 
 
 HumanInterface::HumanInterface( QWidget *parent, const char *name )

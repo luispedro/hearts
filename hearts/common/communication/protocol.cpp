@@ -1,5 +1,6 @@
 #include "protocol.h"
 #include "general/helper.h"
+#include <cassert>
 
 using namespace std;
 using namespace MessageTypes;

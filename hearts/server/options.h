@@ -1,3 +1,6 @@
+#ifndef LPC_OPTIONS_H1082425633_INCLUDE_GUARD_
+#define LPC_OPTIONS_H1082425633_INCLUDE_GUARD_
+
 /***************************************************************************
                        options.h  -  Holds the options for the game
                           -------------------
@@ -15,22 +18,9 @@
  *                                                                         *
  ***************************************************************************/
 
-/**This class manages the options of the user hiding away the details of KConfig.
-   *
-   * class OptionsSelectionDialog is declared a friend for it to acess the set functions. These are
-   * however not available to the general user.
-   *
-   * @author Luís Coelho <luis@luispedro.org>
-   */
-
-#ifndef OPTIONS_H_
- #define OPTIONS_H_
-
-// #include "hearts.h"
-// #include "optionsselectiondialog.h"
 
 #include <player.h>
- #include <string>
+#include <string>
 
 class Options;
 
@@ -102,5 +92,7 @@ class Options
 		static Options* unconstAppOptions();
 };
 
-#endif
 
+
+
+#endif /* LPC_OPTIONS_H1082425633_INCLUDE_GUARD_ */

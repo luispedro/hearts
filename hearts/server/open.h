@@ -1,2 +1,8 @@
+#ifndef LPC_OPEN_H1082425633_INCLUDE_GUARD_
+#define LPC_OPEN_H1082425633_INCLUDE_GUARD_
+
 void open_connections();
 
+
+
+#endif /* LPC_OPEN_H1082425633_INCLUDE_GUARD_ */

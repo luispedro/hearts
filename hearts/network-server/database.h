@@ -8,6 +8,7 @@ class Database
 {
 	public:
 		virtual QCString password( QString login ) = 0;
+		virtual void loggedIn( QString login ) { }
 };
 
 class VeryStupidDatabase : public Database
@@ -25,6 +26,7 @@ class MySQLDatabase : public Database
 	public:
 		MySQLDatabase();
 		QCString password( QString login );
+		void loggedIn( QString login );
 
 	private:
 		static void init();

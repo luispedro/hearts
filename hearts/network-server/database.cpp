@@ -51,3 +51,11 @@ QCString MySQLDatabase::password( QString login )
 	return res;
 }
 
+void MySQLDatabase::loggedIn( QString login )
+{
+	std::string query = "UPDATE users SET lastLogin = NOW() WHERE username = \'";
+	query += login.utf8();
+	query += "\'";
+	mysql_query( connection_, query.c_str() );
+}
+

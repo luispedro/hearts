@@ -13,6 +13,7 @@ bool AuthenticationValidator<AuthClass,DatabaseClass>::validate( QString name, Q
 	authenticator_->generate( password, cookie, &should);
 	bool res = ( result == should );
 	std::free( should );
+	if ( res ) resolver_->loggedIn( name );
 	return res;
 }
 

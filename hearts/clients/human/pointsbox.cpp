@@ -1,5 +1,5 @@
 /***************************************************************************
-                          multilinebox.cpp  -  description
+                          pointsbox.cpp  -  description
                              -------------------
     begin                : Fri Dec 31 1999
     copyright            : (C) 1999 by Luis Pedro Coelho
@@ -15,7 +15,7 @@
  *                                                                         *
  ***************************************************************************/
 
-#include "multilinebox.h"
+#include "pointsbox.h"
 #include "general/helper.h"
 #include "general/widget_placement.h"
 
@@ -103,5 +103,5 @@ void PointsBox::clearText()
         text->clear();
 }
 
-#include "multilinebox.moc"
+#include "pointsbox.moc"
 

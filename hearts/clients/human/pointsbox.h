@@ -1,5 +1,5 @@
 /***************************************************************************
-                          multilinebox.h  -  description
+                          pointsbox.h  -  description
                              -------------------
     begin                : Fri Dec 31 1999
     copyright            : (C) 1999 by Luis Pedro Coelho

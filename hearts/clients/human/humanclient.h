@@ -6,7 +6,7 @@
 #include "communication/connection.h"
 #include "humaninterface.h"
 #include "qtconnection.h"
-#include "multilinebox.h"
+#include "pointsbox.h"
 #include "hearts/card.h"
 
 #include <vector>

@@ -10,7 +10,7 @@
             <x>0</x>
             <y>0</y>
             <width>247</width>
-            <height>592</height>
+            <height>594</height>
         </rect>
     </property>
     <property name="caption">
@@ -102,14 +102,14 @@
             </widget>
             <widget class="QLineEdit" row="0" column="1">
                 <property name="name">
-                    <cstring>lineEdit1_2_3</cstring>
+                    <cstring>self_</cstring>
                 </property>
             </widget>
         </grid>
     </widget>
 </widget>
 <tabstops>
-    <tabstop>lineEdit1_2_3</tabstop>
+    <tabstop>self_</tabstop>
     <tabstop>left_</tabstop>
     <tabstop>right_</tabstop>
     <tabstop>front_</tabstop>
@@ -117,5 +117,11 @@
 <includes>
     <include location="local" impldecl="in implementation">localsetupwidget.ui.h</include>
 </includes>
+<functions>
+    <function specifier="non virtual" returnType="QString">selfName() const</function>
+    <function specifier="non virtual" returnType="QString">rightName() const</function>
+    <function specifier="non virtual" returnType="QString">leftName() const</function>
+    <function specifier="non virtual" returnType="QString">frontName() const</function>
+</functions>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

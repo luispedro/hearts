@@ -1,10 +1,10 @@
 #ifndef DB_SERVERSETUP_H_INCLUDE_GUARD_
 #define DB_SERVERSETUP_H_INCLUDE_GUARD_
 
-#include <qlabel.h>
-#include <qlineedit.h>
-#include <qpushbutton.h>
+#include <qwidget.h>
 
+class QPushButton;
+class QLabel;
 
 class ServerSetup : public QWidget {
 	Q_OBJECT
@@ -16,14 +16,14 @@ class ServerSetup : public QWidget {
 		void connected(int);
 
 	public slots:
-
 		void execute();
 
+	public:
 		class PlayerSetup;
-	
+
 	private:
 
-	
+
 		QLabel* self;
 		PlayerSetup* right;
 		PlayerSetup* front;

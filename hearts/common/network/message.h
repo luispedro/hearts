@@ -45,7 +45,8 @@ class Message
 					HANDLE( lookAt ) \
 					HANDLE( playerStatus ) \
 					HANDLE( motd ) \
-					HANDLE( changeProtocol )
+					HANDLE( changeProtocol ) \
+					HANDLE( error )
 #define HANDLE( x ) x,
 
 		enum typeEnum { HANDLE_ALL_MESSAGE_TYPES tableInfo = lookAt };

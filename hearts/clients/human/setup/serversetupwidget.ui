@@ -8,8 +8,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>442</width>
-            <height>649</height>
+            <width>432</width>
+            <height>172</height>
         </rect>
     </property>
     <property name="caption">
@@ -22,7 +22,7 @@
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>100</y>
+                <y>20</y>
                 <width>412</width>
                 <height>132</height>
             </rect>
@@ -33,7 +33,7 @@
             </property>
             <widget class="QPushButton" row="2" column="2">
                 <property name="name">
-                    <cstring>name2</cstring>
+                    <cstring>options2</cstring>
                 </property>
                 <property name="text">
                     <string>Options</string>
@@ -41,7 +41,7 @@
             </widget>
             <widget class="QPushButton" row="0" column="2">
                 <property name="name">
-                    <cstring>name0</cstring>
+                    <cstring>options0</cstring>
                 </property>
                 <property name="text">
                     <string>Options</string>
@@ -63,10 +63,10 @@
                     <cstring>textLabel1_5_3</cstring>
                 </property>
                 <property name="text">
-                    <string>Type of third player</string>
+                    <string>Type of &amp;third player</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>type0_3</cstring>
+                    <cstring>type2</cstring>
                 </property>
             </widget>
             <widget class="QComboBox" row="0" column="1">
@@ -101,7 +101,7 @@
             </widget>
             <widget class="QPushButton" row="3" column="2">
                 <property name="name">
-                    <cstring>name3</cstring>
+                    <cstring>options3</cstring>
                 </property>
                 <property name="text">
                     <string>Options</string>
@@ -115,12 +115,12 @@
                     <string>Type of &amp;second player</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>type0_2</cstring>
+                    <cstring>type1</cstring>
                 </property>
             </widget>
             <widget class="QPushButton" row="1" column="2">
                 <property name="name">
-                    <cstring>name1</cstring>
+                    <cstring>options1</cstring>
                 </property>
                 <property name="text">
                     <string>Options</string>
@@ -146,10 +146,10 @@
                     <cstring>textLabel1_5_2</cstring>
                 </property>
                 <property name="text">
-                    <string>Type of fourth player</string>
+                    <string>Type of &amp;fourth player</string>
                 </property>
                 <property name="buddy" stdset="0">
-                    <cstring>type0_4</cstring>
+                    <cstring>type3</cstring>
                 </property>
             </widget>
             <widget class="QComboBox" row="3" column="1">
@@ -172,13 +172,13 @@
 </widget>
 <tabstops>
     <tabstop>type0</tabstop>
-    <tabstop>name0</tabstop>
+    <tabstop>options0</tabstop>
     <tabstop>type1</tabstop>
-    <tabstop>name1</tabstop>
+    <tabstop>options1</tabstop>
     <tabstop>type2</tabstop>
-    <tabstop>name2</tabstop>
+    <tabstop>options2</tabstop>
     <tabstop>type3</tabstop>
-    <tabstop>name3</tabstop>
+    <tabstop>options3</tabstop>
 </tabstops>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

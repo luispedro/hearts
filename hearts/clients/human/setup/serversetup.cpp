@@ -22,6 +22,9 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 {
 	widget_ = new ServerSetupWidget( this, "server-setup-widget" );
 
+	connect( widget_->options1, SIGNAL( clicked() ), SLOT( optionsRight() ) );
+	connect( widget_->options2, SIGNAL( clicked() ), SLOT( optionsFront() ) );
+	connect( widget_->options3, SIGNAL( clicked() ), SLOT( optionsLeft() ) );
 }
 
 void ServerSetup::execute()

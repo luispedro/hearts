@@ -15,9 +15,9 @@
 
 
 HumanClient::HumanClient()
-	 :interface(new HumanInterface(this,"human-interface")),
-	 connection(new QtConnection(this,"client-connection")),
-	 pointsWindow(new PointsBox(i18n("points")))
+	 :pointsWindow(new PointsBox(i18n("points"))),
+	 interface(new HumanInterface(this,"human-interface")),
+	 connection(new QtConnection(this,"client-connection"))
 	
 {
 		QSignalMapper* mPlay = new QSignalMapper(this);

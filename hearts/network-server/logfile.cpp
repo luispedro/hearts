@@ -5,23 +5,27 @@
 #include <time.h>
 
 namespace {
-	std::ofstream* output = 0;
-	void delete_output() { delete output; }
+	std::ofstream* output_ = 0;
+	void delete_output() { delete output_; output_ = 0; }
 }
 
 std::ostream& logfile() {
-	if ( !output ) reopenlog();
+	if ( !output_ ) reopenlog();
 	time_t now = time( 0 );
-	return *output << "[ " << ctime( &now ) << " ]: ";
+	return *output_ << "[ " << ctime( &now ) << " ]: ";
 }
 
 void reopenlog() {
-	if ( output ) delete output;
-	output = new std::ofstream( options->logFile().c_str() );
-	std::atexit( delete_output );
-	assert( output );
-	if ( *output ) {
-		delete output;
-		output = new std::ofstream( "/dev/null" );
+	bool atexit_installed = false;
+	if ( output_ ) {
+		delete output_;
+		atexit_installed = true; // we had probably been called previously
+	}
+	output_ = new std::ofstream( options->logFile().c_str() );
+	if ( !atexit_installed ) std::atexit( delete_output );
+	assert( output_ );
+	if ( *output_ ) {
+		delete output_;
+		output_ = new std::ofstream( "/dev/null" );
 	}
 }

@@ -12,6 +12,7 @@
 #include <cassert>
 
 #include <qradiobutton.h>
+#include <klocale.h>
 
 InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 		: SmartPage( parent, name )
@@ -46,22 +47,22 @@ void InitialChoice::doNext( SetupWindow* parent )
 		{
 			LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
 
-#define PUT_REMOVE( goingIn, goingOut )                                             \
+#define PUT_REMOVE( goingIn, nameIn, goingOut )                                             \
 				assert( goingOut );                                 \
 				assert( goingIn );                                  \
 				parent->removePage( goingOut );                     \
-				parent->addPage( goingIn, "FIXME" );                \
+				parent->addPage( goingIn, nameIn );                \
 				parent->setFinishEnabled( goingIn, true );          \
 				parent->setBackEnabled( goingIn, true );            \
 				parent->setNextEnabled( goingIn, false );           \
 				parent->showPage( goingIn );                        \
 				return;
 
-			PUT_REMOVE( localsetup_, networksetup_ );
+			PUT_REMOVE( localsetup_, i18n( "Configure players" ), networksetup_ );
 		}
 		case 1:      // InitialChoice::Public:
 		{
-			PUT_REMOVE( networksetup_, localsetup_ );
+			PUT_REMOVE( networksetup_, i18n( "Choose a table" ), localsetup_ );
 		}
 		case 2:      // InitialChoice::Private:
 		{

@@ -20,19 +20,19 @@ const char* intro = I18N_NOOP( "Please choose whether you would like to play a l
 
 
 SetupWindow::SetupWindow()
-		: QWizard( 0, "aa" )
+		: QWizard( 0, "setup-window" )
 		//, intro_text(new QLabel(i18n(intro),this))
 {
 	LOG_PLACE_NL();
 	InitialChoice* init = new InitialChoice( this );
-	addPage( init, QString::fromLatin1( "FIXME" ) );
+	addPage( init, QString::fromLatin1( i18n( "Type of game" ) ) );
 	showPage( init );
 	init->adjustSize();
 	resize( QSize( 600, 480 ).expandedTo( minimumSizeHint() ) );
 
 	init->show();
 	nothing = new QWidget( this );
-	addPage( nothing, QString::fromLatin1( "FIXME" ) );
+	addPage( nothing, QString::fromLatin1( "Bug if you see this" ) );
 	setNextEnabled( init, true );
 }
 

@@ -1,5 +1,4 @@
 #include "connectingplayer.h"
-#include "general/setup.h"
 #include "communication/factory.h"
 #include "general/helper.h"
 

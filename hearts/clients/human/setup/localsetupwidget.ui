@@ -9,103 +9,125 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>428</width>
-            <height>592</height>
+            <width>351</width>
+            <height>256</height>
         </rect>
     </property>
     <property name="caption">
         <string>Form1</string>
     </property>
-    <widget class="QLayoutWidget">
+    <widget class="QButtonGroup">
         <property name="name">
-            <cstring>layout3</cstring>
+            <cstring>buttonGroup2</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
-                <y>60</y>
-                <width>331</width>
-                <height>132</height>
+                <x>0</x>
+                <y>42</y>
+                <width>350</width>
+                <height>180</height>
             </rect>
         </property>
-        <grid>
+        <property name="frameShape">
+            <enum>GroupBoxPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <property name="title">
+            <string>Configure players</string>
+        </property>
+        <widget class="QLayoutWidget">
             <property name="name">
-                <cstring>unnamed</cstring>
+                <cstring>layout3</cstring>
             </property>
-            <widget class="QLabel" row="1" column="0">
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>20</y>
+                    <width>330</width>
+                    <height>140</height>
+                </rect>
+            </property>
+            <grid>
                 <property name="name">
-                    <cstring>textLabel1_2</cstring>
+                    <cstring>unnamed</cstring>
                 </property>
-                <property name="text">
-                    <string>Player on the &amp;left</string>
-                </property>
-                <property name="buddy" stdset="0">
-                    <cstring>left_</cstring>
-                </property>
-            </widget>
-            <widget class="QLineEdit" row="1" column="1">
-                <property name="name">
-                    <cstring>left_</cstring>
-                </property>
-                <property name="text">
-                    <string>Brigitte</string>
-                </property>
-            </widget>
-            <widget class="QLineEdit" row="2" column="1">
-                <property name="name">
-                    <cstring>right_</cstring>
-                </property>
-                <property name="text">
-                    <string>Alex</string>
-                </property>
-            </widget>
-            <widget class="QLabel" row="2" column="0">
-                <property name="name">
-                    <cstring>textLabel1_2_2</cstring>
-                </property>
-                <property name="text">
-                    <string>Player on the &amp;right</string>
-                </property>
-                <property name="buddy" stdset="0">
-                    <cstring>right_</cstring>
-                </property>
-            </widget>
-            <widget class="QLabel" row="3" column="0">
-                <property name="name">
-                    <cstring>textLabel1_2_3</cstring>
-                </property>
-                <property name="text">
-                    <string>Player in &amp;front</string>
-                </property>
-                <property name="buddy" stdset="0">
-                    <cstring>front_</cstring>
-                </property>
-            </widget>
-            <widget class="QLabel" row="0" column="0">
-                <property name="name">
-                    <cstring>textLabel1</cstring>
-                </property>
-                <property name="text">
-                    <string>Your &amp;name</string>
-                </property>
-                <property name="buddy" stdset="0">
-                    <cstring>self_</cstring>
-                </property>
-            </widget>
-            <widget class="QLineEdit" row="3" column="1">
-                <property name="name">
-                    <cstring>front_</cstring>
-                </property>
-                <property name="text">
-                    <string>Truman</string>
-                </property>
-            </widget>
-            <widget class="QLineEdit" row="0" column="1">
-                <property name="name">
-                    <cstring>self_</cstring>
-                </property>
-            </widget>
-        </grid>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>textLabel1_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Player on the &amp;left</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>left_</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="1">
+                    <property name="name">
+                        <cstring>left_</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Brigitte</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="2" column="1">
+                    <property name="name">
+                        <cstring>right_</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Alex</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="2" column="0">
+                    <property name="name">
+                        <cstring>textLabel1_2_2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Player on the &amp;right</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>right_</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="3" column="0">
+                    <property name="name">
+                        <cstring>textLabel1_2_3</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Player in &amp;front</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>front_</cstring>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Your &amp;name</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>self_</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="3" column="1">
+                    <property name="name">
+                        <cstring>front_</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Truman</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="0" column="1">
+                    <property name="name">
+                        <cstring>self_</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
     </widget>
 </widget>
 <tabstops>

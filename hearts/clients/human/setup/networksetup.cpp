@@ -28,15 +28,15 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		: QWidget( parent, name ),
 		widget_( new NetworkSetupWidget( this ) ),
 		connection_( 0 ),
+		connecting_( 0 ),
 		good_( true )
 {
 	setMinimumSize( 150, 350 );
+	openConnection( Network::Server, Network::Port );
+
 	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
 	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
 
-	openConnection( Network::Server, Network::Port );
-
-	widget_->connectingBox->hide();
 	widget_->server->insert( Network::Server );
 	widget_->port->insert( QString::number( Network::Port ) );
 
@@ -104,8 +104,11 @@ void NetworkSetup::connectTo( const char* ip, const short port )
 {
 	LOG_PLACE() << ' ' << ip << ':' << port << '\n';
 	widget_->setEnabled( false );
-	widget_->connectingBox->setEnabled( true );
-	widget_->connectingBox->show();
+	delete connecting_;
+	connecting_ = new KProgressDialog( this, "connecting-progress", i18n( "Connecting...." ), i18n( "Connecting...." ) );
+	connecting_->setAllowCancel( false );
+	connecting_->setMinimumDuration( 10 );
+	connecting_->show();
 	delayedIp = QString::fromLatin1( ip );
 	delayedPort = port;
 	QTimer::singleShot( 5 * 1000, this, SLOT( delayedConnectTo() ) );
@@ -116,6 +119,8 @@ void NetworkSetup::delayedConnectTo()
 	const char * const ip = delayedIp.latin1();
 	const short port = delayedPort;
 	int fd = open_client_connection( ip, port );
+	delete connecting_;
+	connecting_ = 0;
 	emit connected( fd );
 }
 

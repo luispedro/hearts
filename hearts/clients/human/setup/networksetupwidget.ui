@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>NetworkSetupWidget</class>
 <comment>This is the widget used to setup a network connection</comment>
 <author>Luis Pedro Coelho &lt;luis@luispedro.org&gt;</author>
@@ -10,7 +10,7 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>444</width>
+            <width>530</width>
             <height>441</height>
         </rect>
     </property>
@@ -19,14 +19,14 @@
     </property>
     <widget class="QLayoutWidget">
         <property name="name">
-            <cstring>layout4</cstring>
+            <cstring>layout7</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>10</x>
                 <y>20</y>
-                <width>413</width>
-                <height>404</height>
+                <width>485</width>
+                <height>401</height>
             </rect>
         </property>
         <vbox>
@@ -35,7 +35,7 @@
             </property>
             <widget class="QLayoutWidget">
                 <property name="name">
-                    <cstring>layout3</cstring>
+                    <cstring>layout6</cstring>
                 </property>
                 <hbox>
                     <property name="name">
@@ -64,7 +64,7 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>60</width>
+                                <width>112</width>
                                 <height>20</height>
                             </size>
                         </property>
@@ -73,18 +73,37 @@
                         <property name="name">
                             <cstring>server</cstring>
                         </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>7</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>10</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
+                        </property>
                     </widget>
                     <widget class="QLabel">
                         <property name="name">
                             <cstring>port_label</cstring>
                         </property>
                         <property name="text">
-                            <string>port</string>
+                            <string>po&amp;rt</string>
+                        </property>
+                        <property name="buddy" stdset="0">
+                            <cstring>port</cstring>
                         </property>
                     </widget>
                     <widget class="QLineEdit">
                         <property name="name">
                             <cstring>port</cstring>
+                        </property>
+                        <property name="sizePolicy">
+                            <sizepolicy>
+                                <hsizetype>0</hsizetype>
+                                <vsizetype>0</vsizetype>
+                                <horstretch>4</horstretch>
+                                <verstretch>0</verstretch>
+                            </sizepolicy>
                         </property>
                     </widget>
                 </hbox>
@@ -174,42 +193,15 @@
                     <cstring>tables</cstring>
                 </property>
             </widget>
-            <widget class="QFrame">
-                <property name="name">
-                    <cstring>connectingBox</cstring>
-                </property>
-                <property name="enabled">
-                    <bool>true</bool>
-                </property>
-                <property name="frameShape">
-                    <enum>StyledPanel</enum>
-                </property>
-                <property name="frameShadow">
-                    <enum>Raised</enum>
-                </property>
-                <widget class="QLabel">
-                    <property name="name">
-                        <cstring>textLabel1</cstring>
-                    </property>
-                    <property name="geometry">
-                        <rect>
-                            <x>50</x>
-                            <y>50</y>
-                            <width>190</width>
-                            <height>20</height>
-                        </rect>
-                    </property>
-                    <property name="text">
-                        <string>Connecting ....</string>
-                    </property>
-                </widget>
-            </widget>
             <widget class="QPushButton">
                 <property name="name">
                     <cstring>join</cstring>
                 </property>
                 <property name="text">
                     <string>&amp;Join Table</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+J</string>
                 </property>
             </widget>
             <widget class="Line">
@@ -233,6 +225,9 @@
                 <property name="text">
                     <string>Create &amp;New Table</string>
                 </property>
+                <property name="accel">
+                    <string>Alt+N</string>
+                </property>
             </widget>
             <spacer>
                 <property name="name">
@@ -247,15 +242,13 @@
                 <property name="sizeHint">
                     <size>
                         <width>20</width>
-                        <height>88</height>
+                        <height>84</height>
                     </size>
                 </property>
             </spacer>
         </vbox>
     </widget>
 </widget>
-<customwidgets>
-</customwidgets>
 <connections>
     <connection>
         <sender>changeServer</sender>
@@ -301,7 +294,4 @@
     <slot>server_returnPressed( const QString &amp; )</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
-<includehints>
-    <includehint>klineedit.h</includehint>
-</includehints>
 </UI>

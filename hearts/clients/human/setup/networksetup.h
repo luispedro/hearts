@@ -2,6 +2,7 @@
 #define NETWORKSETUP_H
 
 #include <qwidget.h>
+#include <kprogress.h>
 #include "network/connection.h"
 
 class NetworkSetupWidget;
@@ -39,6 +40,7 @@ class NetworkSetup : public QWidget
 		
 		NetworkSetupWidget* widget_;
 		Network::UserConnection* connection_;
+		KProgressDialog* connecting_;
 		QString delayedIp;
 		short delayedPort;
 		bool good_;

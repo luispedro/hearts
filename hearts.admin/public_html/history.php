@@ -1,30 +1,6 @@
-
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN">
-
-<html>
-<head>
-<title>Hearts for KDE</title>
-
-<link rev="made" href="mailto:luis_pedro@netcabo.pt">
-
-<META CONTENT="hearts, game, linux game, card game" NAME="keywords">
-<META CONTENT="This is a clone of the hearts game that comes with Windows 9x for KDE." NAME="description">
-
-
-
-<style type="TEXT/CSS" media="screen">
-<!-- 
-@import "default.css";
--->
-
-</style>
-
-
-</head>
-
-
-<body>
-
+<?php include_once('base.php');
+do_header();
+?>
 <div align="center">
 
 <H1>Hearts for the KDE
@@ -187,16 +163,4 @@ better.
 	<LI>Some bugs in the distribution were fixed </LI>
 </UL>
 
-
-<HR>
-
-<address>
-Luís Pedro Coelho/<a href="mailto:luis_pedro@netcabo.pt">luis_pedro@netcabo.pt</a>
-</address>
-
-
-<p><A href="http://sourceforge.net"> <IMG src="http://sourceforge.net/sflogo.php?group_id=26256" width="88" height="31" border="0" alt="SourceForge Logo"></A>
-
-</body></html>
-
-
+<?php do_footer();?> 

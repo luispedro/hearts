@@ -1,49 +1,6 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
-<HTML lang="en">
-<HEAD>
-<TITLE>Translations</TITLE>
-<style type="TEXT/CSS" media="screen">
-<!-- 
-BODY { 
- 
- background: #ddddff; 
- font: sans-serif Arial; 
- color: black; 
-} 
- 
-H1 { 
- 
- font-size : 300%; 
- text-align: center; 
- font-family : serif "Times New Roman"; 
- color: blue; 
-} 
- 
-H2 { 
- 
- font-size: 150%; 
- font-family: serif "Times New Roman"; 
- color: green; 
-} 
- 
- 
-A { 
- 
- color: red; 
-} 
- 
-A:visited { 
- 
- color: purple; 
-}
--->
-
-</style>
-</HEAD>
-<BODY>
-
-<p><a href="index.html">New</a> | <a href="download.html">Download</a> | <a href="screenshots.html">Screenshots</a>
-
+<?php include_once('base.php');
+do_header();
+?>
 <h1>Translations</h1>
 <DIV align="center">
 <TABLE width="620">
@@ -64,7 +21,7 @@ A:visited {
 	<TD>Not Available
 <TR>
 	<TD>Portuguese
-	<TD><a href="mailto:luis_pedro@netcabo.pt">Me</a>
+	<TD><a href="mailto:luis@luispedro.org">Me</a>
 	<TD>updated for v0.0.10
 	<TD>updated for v0.0.10
 <TR>
@@ -98,6 +55,4 @@ A:visited {
 
 <p>Do <strong>not</strong> use that automated tool to extract the messages from sourcecode. It will not find a lot of them, since they are in arrays or are otherwise indirectly acessed.
 
-</BODY>
-</HTML>
-
+<?php do_footer(); ?>

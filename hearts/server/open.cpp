@@ -96,7 +96,7 @@ void open_connections()
 		listen[ local * tcp_ok ].fd = listen_local_fd;
 		listen[ local * tcp_ok ].events = POLLIN;
 	}
-	for ( int i = 0; i != 4; ++i ) {
+	while ( !all_registered() ) {
 		union {
 			sockaddr_in i;
 			sockaddr_un u;
@@ -114,12 +114,11 @@ void open_connections()
 		int fd = accept( listen_fd, ( sockaddr* ) & addr, &s );
 		if ( fd < 0 ) {
 			std::cerr << "Error accepting: " << strerror( errno ) << " [ fd = " << listen_fd << ".\n";
-			--i;
 			continue;
 		}
-		register_fd( static_cast<player_id::type>( i ), fd );
+		register_fd( fd );
 		set_sock_options( fd );
-		LOG_PLACE() << " accepted " << i + 1 << " with fd = " << fd << ".\n";
+		LOG_PLACE() << " accepted fd = " << fd << ".\n";
 	}
 	close( listen_tcp_fd );
 	close( listen_local_fd );

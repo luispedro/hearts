@@ -6,11 +6,25 @@ do_header('History of Hearts');
 
 <p>This is everything which happened in the project so far, for anyone which might be interested.
 
+
+<h3>Changes in version 1.96</h3>
+<ul>
+	<li>Support for private network games
+	<li>No leaving of temporary files in <tt>/tmp</tt></li>
+	<li>Don't compile the network server by default
+</ul>
+<h3>Changes in version 1.95</h3>
+<ul>
+	<li>Alive again
+	<li>Sounder setup GUI
+</ul>
+
 <h3>A hearts server where you can find other players on the internet was set up.</h3>
 <ul>
 	<li>A new version is in the works. Right now you can access it through <a href="download.php#CVS">anonymous CVS</a>, and more traditional release modes are planned.
 	<li>A public hearts server was put online thanks to Pavel Troller who volunteered space on a machine of his. Thanks also to Imre, Nagy Jr who also volunteered some space.
 </ul>
+
 
 <h3>Changes in version 1.92</h3>
 <ul>

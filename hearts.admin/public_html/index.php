@@ -12,9 +12,13 @@ do_header('Hearts for KDE');
 
 <h2>What's New:</h2>
 
-<h3>Release 1.95</h3>
-<p><strong>22 March 2004</strong><br />
-This is a beta version of a future 2.0. Play on a public server (basic functionality, right now).
+<h3>Release 1.96</h3>
+<p><strong>3rd April 2004</strong><br />
+<h4>Change Log</h4>
+<ul>
+	<li>Support for private network games
+	<li>No leaving of temporary files in <tt>/tmp</tt></li>
+</ul>
 
 <h3>A hearts server where you can find other players on the internet was set up.</h3>
 <ul>
@@ -26,12 +30,6 @@ This is a beta version of a future 2.0. Play on a public server (basic functiona
 <ul>
 	<li>The setup is different and not a separate program (which will allow me to set up error handling later)
 	<li>A couple of display bugs fixed
-</ul>
-
-<h3>Changes in version 1.2pre6</h3>
-<ul>
-	<li>One bug fixed
-	<li>A dutch translation was added thanks to Japie
 </ul>
 
 <p>You can see every change in <a href="history.php">the history page</a>.

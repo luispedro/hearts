@@ -123,7 +123,7 @@ void HumanInterface::moveTable()
 
 void HumanInterface::setStatus( const QString& m )
 {
-	status->message( m, 1500 );
+	status->message( m );
 }
 
 void HumanInterface::setName( player_id::type who, QString name )
@@ -152,8 +152,12 @@ void HumanInterface::play()
 	assert( mode == idle );
 	mode = play_wait;
 }
-/** This is used to implement choose(). Basically Hand's selected
-signal is connected to this. This sets result to the card and valid_result to true. */
+/** This is used to implement choose(). 
+ * Basically Hand's selected
+ * signal is connected to this. 
+ *
+ * This sets result to the card and valid_result to true.
+ */
 void HumanInterface::gotSelected( Card c )
 {
 	assert ( mode == give3_wait );
@@ -214,6 +218,7 @@ void HumanInterface::gotClicked( Card c )
 	if ( mode == play_wait ) {
 		LOG_PLACE() << " playing " << c << ".\n";
 		mode = idle;
+		status->clear();
 		emit played( c );
 	}
 }
@@ -222,13 +227,13 @@ void HumanInterface::gotClicked( Card c )
 void HumanInterface::passCards()
 {
 	LOG_PLACE() << " passing " << result3 << ".\n";
-	LOG_PLACE() << " size = " << result3.vector().size() << ".\n";
+	status->clear();
+
 	mode = idle;
 	pass->hide();
 	assert( result3.full() );
 	hand->unselectAll();
 	hand->setSelectable( false );
-	LOG_PLACE() << " size = " << result3.vector().size() << ".\n";
 	emit chose( result3 );
 	for ( int i = 0; i != 3; ++i )
 		removeCard( result3.vector() [ i ] );
@@ -279,3 +284,4 @@ void HumanInterface::adjustLabels()
 }
 
 #include "humaninterface.moc"
+

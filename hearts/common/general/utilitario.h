@@ -12,10 +12,10 @@ struct pollfd;
 
 namespace Utility
 {
-/** coloca no máximo RAO characteres no final do buffer lidos de fd */
-void read_to_vector( int fd,
+/** Appends up to maxlen bytes to the buffer */
+int read_to_vector( int fd,
 					 std::vector<char>& buffer,
-					 std::vector<char>::size_type max_len = 512 );
+					 std::vector<char>::size_type maxlen = 512 );
 
 void write_from_vector( int fd, std::vector<char>& buffer );
 

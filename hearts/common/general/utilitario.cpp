@@ -2,16 +2,20 @@
 #include "error.h"
 #include <sys/poll.h>
 #include <unistd.h>
+#include <iostream>
 
-void Utility::read_to_vector( int fd, std::vector<char>& buffer, std::vector<char>::size_type rao )
+int Utility::read_to_vector( int fd, std::vector<char>& buffer, std::vector<char>::size_type rao )
 {
 	std::vector<char>::size_type current = buffer.size();
 	buffer.resize( current + rao );
 	int stat = read( fd, &buffer[ current ], rao );
+	std::cerr << "Read returned: " << stat << std::endl;
 	if ( stat < 0 ) {
 		buffer.resize( current );
+	} else {
+			buffer.resize( current + stat );
 	}
-	buffer.resize( current + stat );
+	return stat;
 }
 
 void Utility::write_from_vector( int fd, std::vector<char>& out )

@@ -35,8 +35,7 @@ class Player : public Network::ServerConnection
 		}
 
 	public slots:
-		void get
-			( Message );
+		void get( Message );
 
 		//X 		void write( Message );
 
@@ -46,7 +45,7 @@ class Player : public Network::ServerConnection
 
 		void lookAt( Table* );
 	signals:
-		void joinTable( QString );
+		void joinTable( Player*, QString );
 		void quitTable( table_id );
 		void createTable( QString );
 

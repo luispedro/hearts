@@ -73,7 +73,7 @@ void Server::acceptSlot()
 	massert( ext );
 	Player* p = new Player( this, ext );
 	connect( p, SIGNAL( createTable( QString ) ), SLOT( createTable( QString ) ) );
-	connect( p, SIGNAL( joinTable( QString ) ), SLOT( joinTable( QString ) ) );
+	connect( p, SIGNAL( joinTable( Player*, QString ) ), SLOT( joinTable( Player*, QString ) ) );
 	connect( p, SIGNAL( connectionError( const char*, int ) ), SLOT( connectionError( const char*, int ) ) );
 	FOR_ALL_TABLES( p->lookAt( table ) );
 }
@@ -85,31 +85,22 @@ void Server::connectionError( const char* reason, int code )
 	connectionError( player, reason, code );
 }
 
-void Server::connectionError( Player* player, const char* reason, int code )
+void Server::connectionError( Player* p, const char* reason, int code )
 {
 	logfile() << " Connection Error (" << reason << ":" << code << ")\n";
 
-	Table* table = player->table();
+	Table* table = p->table();
 	if ( table ) {
-		table->removePlayer( player );
+		table->removePlayer( p );
 		if ( table->empty() )
 			delete table;
 	}
 	delete player;
 }
 
-void Server::joinTable( table_id tableName )
-{
-	LOG_PLACE_NL();
-	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
-	joinTable( player, tableName );
-}
-
 void Server::joinTable( Player* player, table_id tableName )
 {
 	LOG_PLACE() << " player " << player->name().ascii() << " joining " << tableName.ascii() << std::endl;
-
-	//FIXME do not use QObject::sender !!
 
 	Table* found = 0;
 	FOR_ALL_TABLES(

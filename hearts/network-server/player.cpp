@@ -25,7 +25,7 @@ void Player::get
 {
 	switch ( m.type() ) {
 		case Message::joinTable:
-		emit joinTable( m.table() );
+		emit joinTable( this, m.table() );
 		break;
 		case Message::leaveTable:
 		emit quitTable( m.table() );

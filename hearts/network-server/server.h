@@ -18,7 +18,6 @@ class Server : public QObject
 		void createTable( QString );
 		void createTable( Player*, QString );
 
-		void joinTable( QString );
 		void joinTable( Player*, QString );
 
 		void connectionError( const char*, int );

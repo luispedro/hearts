@@ -47,3 +47,5 @@ void RemoteSetup::execute()
 		emit connected(fd);
 }
 
+#include "remotesetup.moc"
+

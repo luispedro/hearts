@@ -47,4 +47,4 @@ void ServerSetup::execute()
 		emit connected(fd);
 }
 
-
+#include "serversetup.moc"

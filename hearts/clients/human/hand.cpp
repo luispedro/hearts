@@ -99,3 +99,4 @@ void Hand::gotClicked(Card c)
 	emit clicked(c);
 }
 
+#include "hand.moc"

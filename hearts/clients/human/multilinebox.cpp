@@ -89,3 +89,4 @@ void PointsBox::clearText()
         text->clear();
 }
 
+#include "multilinebox.moc"

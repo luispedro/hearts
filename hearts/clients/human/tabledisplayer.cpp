@@ -92,3 +92,6 @@ void TableDisplay::setCard(player_id::type who, Card which){
         #undef CASE
 
 }
+
+
+#include "tabledisplayer.moc"

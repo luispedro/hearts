@@ -121,4 +121,4 @@ void NetworkSetup::lookAt( QString table, QString p1, QString p2, QString p3, QS
 	tables->insertItem( tableView );
 }
 
-
+#include "networksetup.moc"

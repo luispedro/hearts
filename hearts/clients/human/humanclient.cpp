@@ -181,3 +181,4 @@ void HumanClient::invalidMove(QString reason)
 		interface->play();
 }
 
+#include "humanclient.moc"

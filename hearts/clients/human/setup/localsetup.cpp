@@ -102,5 +102,5 @@ void LocalSetup::execute2()
 }
 
 
-
+#include "localsetup.moc"
 

@@ -29,3 +29,4 @@ void ServerAddressDialog::connect()
 	emit connected(fd);
 }
 
+#include "serveraddressdialog.moc"

@@ -189,3 +189,4 @@ void QtConnection::enable()
 		}
 }
 
+#include "qtconnection.moc"

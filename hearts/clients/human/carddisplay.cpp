@@ -174,3 +174,5 @@ const int CardDisplay::CardHeight = 96;
         QPaintEvent ev(this->rect());
         paintEvent(&ev);
    }
+
+#include "carddisplay.moc"

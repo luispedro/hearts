@@ -283,3 +283,5 @@ void HumanInterface::adjustLabels()
         rightLabel->move(width() - rightLabel->width() - 5, table->y() + table->height() / 2);
         frontLabel->move(width() / 2 - frontLabel->width() / 2, 25);
 }
+
+#include "humaninterface.moc"

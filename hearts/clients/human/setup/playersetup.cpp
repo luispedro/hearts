@@ -95,4 +95,5 @@ void ServerSetup::PlayerSetup::execute()
 		}
 }
 
-				
+#include "playersetup.moc"
+

@@ -51,3 +51,4 @@ void InitialChoice::doNext( SetupWindow* parent )
 	}
 }
 
+#include "initialchoice.moc"

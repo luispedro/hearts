@@ -6,18 +6,19 @@
 
 
 # Configuration
-# (this should be a separate file in a real system, keep here for now)
 
-HEARTSSERVER="/home/hearts/hearts/network-server/heartsd"
+for dir in etc etc/hearts `dirname $0`; do
+	if [ -f $dir/hearts.conf ]; then
+		source $dir/hearts.conf
+	fi
+done
+
 HEARTSOPTIONS="--daemon"
-
-[ -x $HEARTSSERVER ] || exit 1
 
 RETVAL=0
 prog="heartsd"
-pidfile='/home/hearts/hearts.pid'
-logfile='/home/hearts/heartslog'
-pid=`cat $pidfile`
+
+[ -f $pidfile ] && pid=`cat $pidfile`
 
 HEARTSOPTIONS="$HEARTSOPTIONS --logfile $logfile"
 HEARTSOPTIONS="$HEARTSOPTIONS --pidfile $pidfile"
@@ -30,6 +31,15 @@ run() {
 
 start() {
 	# Start daemon
+
+	if [ ! -f $HEARTSSERVER ]; then
+		echo "Error: $HEARTSSERVER does not exist"
+		exit 1
+	fi
+	if [ ! -x $HEARTSSERVER ]; then
+		echo "Error: $HEARTSSERVER not executable"
+		exit 1
+	fi
 
 	echo -n "Starting $prog: "
 	run $HEARTSSERVER $HEARTSOPTIONS

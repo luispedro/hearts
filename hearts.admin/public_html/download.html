@@ -4,38 +4,7 @@
 <TITLE>Download hearts</TITLE>
 <style type="TEXT/CSS" media="screen">
 <!-- 
-BODY { 
- 
- background: #ddddff; 
- font: sans-serif Arial; 
- color: black; 
-} 
- 
-H1 { 
- 
- font-size : 300%; 
- text-align: center; 
- font-family : serif "Times New Roman"; 
- color: blue; 
-} 
- 
-H2 { 
- 
- font-size: 150%; 
- font-family: serif "Times New Roman"; 
- color: green; 
-} 
- 
- 
-A { 
- 
- color: red; 
-} 
- 
-A:visited { 
- 
- color: purple; 
-}
+@import "default.css";
 -->
 
 </style>
@@ -46,13 +15,11 @@ A:visited {
 
 
 <h1>Download hearts</h1>
-<p>There is both a stable and an unstable version. You can run both side by side, although it gets confusing in the KDE menu because there will be two hearts entries. If you do decide to run both, you are better served by running from the console or from the little menu KDE pops up when you press ALT-F2. The stable version is called "hearts1_2", while the unstable version is called simpy "hearts" (to reflect the fact that one day the currently unstable version will become stable and the currently stable one will disappear).
-<h2>Stable version</h2>
 
-<p>This version is for single player only. The current stable version is <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5.tar.gz">1.2pre5, available as a source tarball</a> or as <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5-1.rpm">RPM for RedHat linux 7.1</a> (don't know whether it will work on 7.0 - mail me if it does).
 
 <h2 id="CVS"><a name="CVS">Unstable version</a></h2>
-<p>There is now public CVS access to a new version which includes the ability to connect to a public hearts server. Due to the fact that it is still very basic in functionallity and stability, there is no traditional source tarball yet.
+<p>There is now public CVS access to a new version which includes the ability to connect to a public hearts server.
+<p>Due to the fact that it is still very basic in functionallity and stability, there is no traditional source tarball yet.
 
 <p>Here is to download it and compile it:
 
@@ -66,6 +33,12 @@ make install
 </pre>
 
 <p>The last step normally has to be done as root. Note that right now it is difficult to run the program without installing as it needs to find different executables in the path. You can get around this using the <code>--prefix</code> option to <code>./configure</code> and setting your <code>PATH</code> variable.
+
+<h2>Stable version</h2>
+<p>This is unmaintained and will be surplanted as soon as possible by a release of the current cvs version.
+
+<p>This version is for single player only. The current stable version is <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5.tar.gz">1.2pre5, available as a source tarball</a> or as <a href="http://prdownloads.sourceforge.net/hearts/hearts-1.2pre5-1.rpm">RPM for RedHat linux 7.1</a> (don't know whether it will work on 7.0 - mail me if it does).
+
 
 <hr>
 <address><a href="mailto:luis_pedro@netcabo.pt">luis_pedro@netcabo.pt</a></address>

@@ -37,6 +37,9 @@ class NetworkSetup : public QWidget
 		void protocolChanged();
 		void delayedProtocolChanged();
 		void playerStatus( QString, player_status::type );
+
+		void error( Message::errorType, const QString& msg );
+		
 		void doAuthentication( const QCString& method, const QCString& cookie );
 	private:
 
@@ -50,6 +53,7 @@ class NetworkSetup : public QWidget
 		QString delayedIp;
 		short delayedPort;
 		bool good_;
+		bool force_;
 };
 
 #endif // NETWORKSETUP_H

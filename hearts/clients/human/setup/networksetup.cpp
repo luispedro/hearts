@@ -31,11 +31,11 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		online_( new OnlinePlayersDialog( this ) ),
 		connection_( 0 ),
 		connecting_( 0 ),
-		good_( false )
+		good_( false ),
+		force_( false )
 {
 	setMinimumSize( 150, 350 );
 
-	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
 	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
 	connect( widget_, SIGNAL( serverChange() ), SLOT( reconnect() ) );
 
@@ -79,8 +79,14 @@ bool NetworkSetup::openConnection( const char* server, short port )
 
 	connect( connection_, SIGNAL( playerStatus( QString, player_status::type ) ),
 			SLOT( playerStatus( QString, player_status::type ) ) );
-	connect( connection_, SIGNAL( motd( const QString& ) ), online_, SLOT( setMotD( const QString& ) ) );
-	connect( connection_, SIGNAL( authQ( const QCString&, const QCString& ) ), SLOT( doAuthentication( const QCString&, const QCString& ) ) );
+	connect( connection_, SIGNAL( motd( const QString& ) ),
+			online_, SLOT( setMotD( const QString& ) ) );
+	connect( connection_, SIGNAL( authQ( const QCString&, const QCString& ) ),
+			SLOT( doAuthentication( const QCString&, const QCString& ) ) );
+	connect( connection_, SIGNAL( error( Message::errorType, const QString& ) ),
+			SLOT( error( Message::errorType, const QString& ) ) );
+
+	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
 
 	QString playerName = Options::playerName( player_id::self );
 	connection_->hello( playerName );
@@ -109,6 +115,7 @@ void NetworkSetup::resetGUI( const char* server )
 }
 
 
+
 void NetworkSetup::doAuthentication( const QCString& method, const QCString& cookie )
 {
 	repeatedMD5Authenticator authenticator;
@@ -118,9 +125,11 @@ void NetworkSetup::doAuthentication( const QCString& method, const QCString& coo
 	}
 	Options::Account& network = Options::getNetwork();
 	QCString password = network.password();
-	if ( password.isNull() ) {
-		QString user, pass;
-		if ( KIO::PasswordDialog::getNameAndPassword( user, pass, 0, i18n( "Login to hearts server" ) ) == KDialogBase::Accepted ) {
+	if ( password.isNull() || force_ ) {
+		QString user = network.login();
+		QString pass = QString::fromUtf8( password );
+		if ( KIO::PasswordDialog::getNameAndPassword( user, pass, 0, i18n( "Login to hearts server" ) )
+				== KDialogBase::Accepted ) {
 			password = pass.utf8();
 			network.saveLogin( user.utf8() );
 			password = pass.utf8();
@@ -129,14 +138,26 @@ void NetworkSetup::doAuthentication( const QCString& method, const QCString& coo
 			KMessageBox::error( 0, i18n( "Need username and password for login" ) );
 			return;
 		}
+		force_ = false;
 	}
 	char* result;
+	kdDebug() << "PASSWORD: \'" << password << '\'' << endl;
 	authenticator.generate( password, cookie, &result );
 	connection_->authR( cookie, result );
 	free( result );
 	kdDebug() << "doAuthentication() done" << endl;
 }
 
+void NetworkSetup::error( Message::errorType error, const QString& msg )
+{
+
+	kdDebug() << "Got error " << ( int )error << ": " << msg;
+
+	switch ( error ) {
+		case Message::authenticationFailed: force_ = true;
+						    break;
+	}
+}
 
 void NetworkSetup::newTable()
 {

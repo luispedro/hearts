@@ -17,6 +17,7 @@
 
 #include "computerplayerbase.h"
 #include <strstream>
+#include <iterator>
 #include "general/min_time.h"
 #include "hearts/cards.h"
 

@@ -23,7 +23,11 @@
 #include <qmultilinedit.h>
 #include <qpushbutton.h>
 #include <qlabel.h>
+#include <qlayout.h>
+#include <qguardedptr.h>
+#include <qptrlist.h>
 #include <kmainwindow.h>
+#include <kdialogbase.h>
 
 #include "hearts/player_id.h"
 
@@ -31,30 +35,39 @@
   *@author Luis Pedro Coelho
   */
 
-class PointsBox : public KMainWindow
+class PointsBoxWidget;
+class QGrid;
+class QLabel;
+
+class PointsBox : public KDialogBase
 {
         Q_OBJECT
         public:
                 PointsBox(const char* name="");
                 ~PointsBox();
-                /** Clears all the displayed text. */
-                void clearText();
+
         public slots:
+                /** Clears all the results. */
+                void clear();
 		void insertLine( unsigned, unsigned, unsigned, unsigned );
 		void setName(player_id::type,QString);
 
-	private:
-                void insertLine(const QString&);
-        protected:
-                virtual void paintEvent(QPaintEvent*);
-
         private:
-                QMultiLineEdit* text;
-                QPushButton* Ok;
-                QLabel* selfLabel;
-				QLabel* rightLabel;
-				QLabel* frontLabel;
-				QLabel* leftLabel;
+		QWidget* widget_;
+		QGridLayout* layout_;
+		QPtrList<QLabel> labels_;
+
+		QLabel* selfLabel_;
+		QLabel* rightLabel_;
+		QLabel* frontLabel_;
+		QLabel* leftLabel_;
+
+		QGuardedPtr<QLabel> selfLastLabel_;
+		QGuardedPtr<QLabel> rightLastLabel_;
+		QGuardedPtr<QLabel> frontLastLabel_;
+		QGuardedPtr<QLabel> leftLastLabel_;
+
 };
 
 #endif
+

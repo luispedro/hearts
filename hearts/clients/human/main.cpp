@@ -14,6 +14,90 @@ namespace {
 	};
 }
 
+int test_pointsbox()
+{
+		PointsBox* box = new PointsBox;
+		box->setName( player_id::self, "luis" );
+		box->setName( player_id::right, "right" );
+		box->setName( player_id::front, "front" );
+		box->setName( player_id::left, "left" );
+		box->insertLine( 1, 2 ,3 ,4 );
+		box->insertLine( 12, 22 ,23 ,24 );
+		box->insertLine( 212,222 ,243 ,224 );
+		box->exec();
+		box->insertLine( 12,22 ,243 ,24 );
+		box->insertLine( 212,22 ,23 ,224 );
+		box->exec();
+
+		box->clear();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->exec();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->exec();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->exec();
+		box->clear();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->exec();
+		box->clear();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->exec();
+		box->clear();
+
+		box->insertLine( 8, 8, 8, 8 );
+		box->insertLine( 81, 82, 83, 84 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		box->insertLine( 88, 87, 86, 85 );
+		return box->exec();
+}
+
 int main(int argc, char* argv[])
 {
 		LOG_PLACE_NL();

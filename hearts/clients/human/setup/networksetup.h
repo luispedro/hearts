@@ -7,6 +7,7 @@
 #include "setupwindow.h"
 
 class NetworkSetupWidget;
+class OnlinePlayersDialog;
 
 using Network::PlayerInfo;
 
@@ -40,6 +41,7 @@ class NetworkSetup : public QWidget
 		void openConnection( const char* host, short port );
 		
 		NetworkSetupWidget* widget_;
+		OnlinePlayersDialog* online_;
 		Network::UserConnection* connection_;
 		KProgressDialog* connecting_;
 		QString delayedIp;

@@ -15,15 +15,18 @@
 #include <cassert>
 
 #include "networksetupwidget.h"
+#include "onlineplayerdialog.h"
 #include "exec.h"
 #include "general/helper.h"
 #include "communication/open_connections.h"
 #include "network/constants.h"
+#include "network/player_status.h"
 #include "../options.h"
 
 NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		: QWidget( parent, name ),
 		widget_( new NetworkSetupWidget( this ) ),
+		online_( new OnlinePlayersDialog( this ) ),
 		connection_( 0 ),
 		connecting_( 0 ),
 		good_( true )
@@ -36,6 +39,8 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 
 	widget_->server->insert( Network::Server );
 	widget_->port->insert( QString::number( Network::Port ) );
+	online_->setModal( false );
+	online_->show();
 
 	//FIXME remove lines below and implement functionality:
 	widget_->server->setEnabled( false );
@@ -163,7 +168,8 @@ void NetworkSetup::lookAt( QString table, QString p1, QString p2, QString p3, QS
 void NetworkSetup::playerStatus( QString p, player_status::type s )
 {
 		kdDebug() << "NetworkSetup::playerStatus( " << p << ")" << endl;
-		LOG_PLACE() << s << endl;
+		online_->addPlayer( p, s );
+		LOG_PLACE()<< "status: " << s << "\n";
 }
 
 #include "networksetup.moc"

@@ -19,6 +19,10 @@ void write_pid_file()
 
 int main(int argc, char** argv)
 {
+	if ( argc > 1 && std::string( argv[ 1 ] ) == "--deamon" ) {
+		std::cerr << "\"--daemon\" should be spelled --daemon, but I will let it pass (just this time)." << std::endl;
+		std::strcpy( argv[ 1 ], "--daemon" );
+	}
 	if ( argc > 1 && std::string( argv[ 1 ] ) == "--daemon" ) {
 		if ( daemon( 0, 0 ) < 0 ) {
 			std::cerr << "Daemon call failed: " << strerror( errno ) << ".\n";

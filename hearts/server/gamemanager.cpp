@@ -131,7 +131,7 @@ void GameManager::distribute_cards()
 	assert( ( number_games % 4 ) < 3 );
 	for ( unsigned sender = 0; sender != 4; ++sender ) {
 		for ( unsigned i = 0; i != 3; ++i ) {
-			unsigned receiver = ( sender + cardpassing::delta[ number_games % 3 ] ) % 4;
+			unsigned receiver = ( sender + cardpassing::delta[ number_games % 4 ] ) % 4;
 			players[ receiver ].player->receive( given_cards[ sender ][ i ] );
 			players[ receiver ].hand.insert( given_cards[ sender ][ i ] );
 			players[ sender ].hand.erase( players[ sender ].hand.find( given_cards[ sender ][ i ] ) );

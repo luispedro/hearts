@@ -7,7 +7,7 @@
 		F( online ) \
 		F( playing ) \
 		F( waiting ) \
-		F( loggout )
+		F( logout )
 		
 
 namespace player_status {

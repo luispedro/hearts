@@ -42,6 +42,7 @@ class Player : public Network::ServerConnection
 
 	private:
 		QString name_;
+		QCString cookie_;
 		Table* table_;
 		Validator* validator_;
 };

@@ -1,13 +1,16 @@
 #include "player.h"
 #include "table.h"
 #include "network/connection.h"
-#include "surevalidator.h"
+#include "network/authentication.h"
 #include <general/helper.h>
+
+#include "database.h"
+#include "validator.h"
 
 Player::Player(QObject* parent, KExtendedSocket* socket )
 		:ServerConnection( socket, parent ),
 		 table_( 0 ),
-		 validator_( new SureValidator )
+		 validator_( new AuthenticationValidator<repeatedMD5Authenticator,VeryStupidDatabase> )
 {
 		LOG_PLACE_NL();
 }
@@ -29,7 +32,11 @@ void Player::get( Message m )
 			break;
 		case Message::hello:
 			name_ = m.arg<QString>( 0 );
-			if ( !validator_->validate( name_, m.arg<QString>( 1 ) ) ) {
+			cookie_ = validator_->cookie();
+			auth( validator_->id(), cookie_ );
+			break;
+		case Message::auth:
+			if ( !validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
 				// TODO sendError( "Invalid password/username" );
 				delete this;
 			}

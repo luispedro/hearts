@@ -17,6 +17,7 @@ class InitialChoice : public SmartPage
 		InitialChoice( SetupWindow*, const char* = "initial-choice" );
 	private:
 		virtual void doNext( SetupWindow* );
+		virtual void init( SetupWindow* ) { }
 		InitialChoiceWidget* widget_;
 
 		LocalSetup* localsetup_;

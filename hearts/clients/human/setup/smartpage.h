@@ -11,6 +11,7 @@ class SmartPage : public QWidget
 		SmartPage( QWidget* parent, const char* name ) : QWidget( parent, name )
 		{ }
 		virtual void doNext( SetupWindow * ) = 0;
+		virtual void init( SetupWindow * ) = 0;
 };
 
 

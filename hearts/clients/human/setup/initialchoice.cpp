@@ -35,6 +35,7 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 
 	MAKE( privatesetup_, PrivateSetup, "Deal or Join" );
 	parent->setFinishEnabled( privatesetup_, false );
+	parent->setNextEnabled( privatesetup_, true );
 
 	
 	widget_->radioNetwork->setEnabled( networksetup_->good() );
@@ -52,10 +53,11 @@ void InitialChoice::doNext( SetupWindow* parent )
 	switch ( widget_->option() ) {
 		case 0 :      // InitialChoice::AgainstComputer:
 		{
-#define PUT_REMOVE( goingIn, goingOut0, goingOut1 )                                             \
-				parent->setAppropriate( goingOut0, false );		\
-				parent->setAppropriate( goingOut1, false );     \
-				parent->setAppropriate( goingIn, true );
+#define PUT_REMOVE( goingIn, goingOut0, goingOut1 )                           \
+				parent->setAppropriate( goingOut0, false );   \
+				parent->setAppropriate( goingOut1, false );   \
+				parent->setAppropriate( goingIn, true );      \
+				if ( SmartPage* sp = dynamic_cast<SmartPage*>( goingIn ) ) sp->init( parent );
 
 			PUT_REMOVE( localsetup_,  networksetup_, privatesetup_ );
 			parent->setNextEnabled( localsetup_, false );

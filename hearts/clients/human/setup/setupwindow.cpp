@@ -14,8 +14,8 @@
 namespace
 {
 const char* intro = I18N_NOOP( "Please choose whether you would like to play a local game or a network.\n"
-							   "If you want to play a network game, one player must deal cards while others\n"
-							   "connect to it." );
+		"If you want to play a network game, one player must deal cards while others\n"
+		"connect to it." );
 }
 
 

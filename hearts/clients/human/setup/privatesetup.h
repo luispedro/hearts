@@ -17,11 +17,11 @@ class PrivateSetup : public SmartPage
 		PrivateSetup( SetupWindow* parent, const char* name = "private-cos-setup" );
 	
 		void doNext( SetupWindow* );
+		void init( SetupWindow* );
 	public slots:
 		void execute();
 
 	private:
-		void initNext( SetupWindow* );
 		ClientOrServerWidget* widget_;
 
 		RemoteSetup* remote_;

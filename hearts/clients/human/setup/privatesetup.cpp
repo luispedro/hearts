@@ -15,7 +15,7 @@ PrivateSetup::PrivateSetup( SetupWindow* parent, const char* name )
 }
 
 
-void PrivateSetup::initNext( SetupWindow* parent )
+void PrivateSetup::init( SetupWindow* parent )
 {
 	if ( remote_ ) return;
 
@@ -37,7 +37,6 @@ void PrivateSetup::execute() {
 
 
 void PrivateSetup::doNext( SetupWindow* parent ) {
-	initNext( parent );
 	if ( widget_->isServer() ) {
 		parent->setAppropriate( server_, true );
 		parent->setAppropriate( remote_, false );

@@ -5,10 +5,16 @@
 
 #include <iostream>
 #include <unistd.h>
+#include <string.h>
+#include <errno.h>
 
 int main(int argc, char* argv[]) {
 	std::cerr << "HELLO\n";
 	int fd = open_client_connection(argc,argv);
+	if ( fd < 0 ) {
+		std::cerr << "Impossible to open connection: " << strerror( errno ) << ".\n";
+		return 1;
+	}
 	Options::parse_args(argv);
 	if ( Options::send_zero() ) {
 		char zero = 0;

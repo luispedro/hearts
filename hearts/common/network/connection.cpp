@@ -103,6 +103,11 @@ void UserConnection::hello( QString name )
 	write( m );
 }
 
+void UserConnection::auth( QString auth )
+{
+	write( MessageConstructor() << Message::auth << auth );
+}
+
 void UserConnection::leaveTable()
 {
 	MessageConstructor m;
@@ -157,6 +162,12 @@ void ServerConnection::lookAt( QString table, PlayerInfo p1, PlayerInfo p2, Play
 	MessageConstructor m;
 	m << Message::lookAt << table << p1 << p2 << p3 << p4;
 	write( m );
+}
+
+void ServerConnection::auth( QString type )
+{
+	MessageConstructor m;
+	write( m << Message::auth << type );
 }
 
 void ServerConnection::get( Message m )

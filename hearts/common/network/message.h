@@ -31,13 +31,12 @@ class Message {
 					HANDLE( joinTable ) \
 					HANDLE( leaveTable ) \
 					HANDLE( hello ) \
+					HANDLE( auth ) \
 					HANDLE( lookAt ) \
 					HANDLE( changeProtocol )
 #define HANDLE( x ) x, 
 					enum typeEnum { HANDLE_ALL_MESSAGE_TYPES tableInfo = lookAt }; 
 #undef HANDLE
-					
-					// Not really std::c++ bc of the last ',' 
 			
 				typeEnum type() const { return type_; }
 				table_id table() const { return this->arg( 0 ); }

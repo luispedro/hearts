@@ -16,7 +16,11 @@ HEARTSOPTIONS="--daemon"
 RETVAL=0
 prog="heartsd"
 pidfile='/var/run/hearts.pid'
+logfile='/var/log/heartslog'
 pid=`cat $pidfile`
+
+HEARTSOPTIONS="$HEARTSOPTIONS --logfile $logfile"
+HEARTSOPTIONS="$HEARTSOPTIONS --pidfile $pidfile"
 
 start() {
 	# Start daemon

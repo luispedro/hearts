@@ -69,6 +69,7 @@ void Server::acceptSlot()
 	Player* p = new Player( this, ext );
 	connect( p, SIGNAL( createTable( QString ) ), SLOT( createTable( QString ) ) );
 	connect( p, SIGNAL( joinTable( QString ) ), SLOT( joinTable( QString ) ) );
+	connect( p, SIGNAL( connectionError( const char*,int ) ), SLOT( connectionError( const char*, int ) ) );
 	FOR_ALL_TABLES( p->lookAt( table ) );
 }
 

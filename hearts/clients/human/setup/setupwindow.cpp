@@ -27,8 +27,8 @@ SetupWindow::SetupWindow()
 	addPage(  init, QString::fromLatin1( "FIXME" ) );
 	showPage( init );
 	init->adjustSize();
-resize(  QSize( 600, 480 ).expandedTo( minimumSizeHint() ) );
-	    
+	resize(  QSize( 600, 480 ).expandedTo( minimumSizeHint() ) );
+
 	init->show();
 	nothing = new QWidget( this );
 	addPage( nothing, QString::fromLatin1( "FIXME" ) );

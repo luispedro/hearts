@@ -10,6 +10,8 @@
 
 #include "../options.h"
 
+#include "localsetupwidget.h"
+
 #include <qpushbutton.h>
 #include <qlabel.h>
 #include <qlineedit.h>
@@ -28,6 +30,9 @@
 
 LocalSetup::LocalSetup(QWidget* parent, const char* name)
 	:QWidget(parent,name),
+	 widget_( new LocalSetupWidget( this, "localsetupwidget" ) )
+{
+	/*
 	 self_message(new QLabel(i18n("Your name"),this)),
 	 self_name(new QLineEdit(Options::playerName(player_id::self),this)),
 	 right_message(new QLabel(i18n("Name of opponent on right"),this)),
@@ -74,7 +79,7 @@ LocalSetup::LocalSetup(QWidget* parent, const char* name)
 
 	setMinimumSize(right_of(self_name) + padding, below(go) + padding);
 	LOG_PLACE() << right_of(self_name) + padding << ',' << below(go) + padding << ")\n";
-	
+*/	
 }
 
 
@@ -89,17 +94,17 @@ void LocalSetup::execute()
 void LocalSetup::execute2()
 {
 	LOG_PLACE();
-	execute_computer_client(right_name->text());
-	execute_computer_client(front_name->text());
-	execute_computer_client(left_name->text());
+	execute_computer_client( widget_->rightName() );
+	execute_computer_client( widget_->leftName() );
+	execute_computer_client( widget_->frontName() );
 	int fd = open_client_connection(generateLocalAddress().local8Bit()); 
-#define SAVE(x)  Options::savePlayerName(player_id::x,x##_name->text())
 	
 	if ( fd < 0 ) {
 		KMessageBox::error( this, "Unable to connect to server!" );
 		return;
 	}
 
+#define SAVE(x)  Options::savePlayerName( player_id::x,widget_->x##Name() ) 
 	SAVE(self);
 	SAVE(right);
 	SAVE(front);

@@ -7,6 +7,7 @@
 
 class QLabel;
 class QLineEdit;
+class LocalSetupWidget;
 
 class LocalSetup : public QWidget {
 		Q_OBJECT
@@ -24,20 +25,7 @@ class LocalSetup : public QWidget {
 		
 	
 	private:
-		QLabel* self_message;
-		QLineEdit* self_name;
-		
-		QLabel* right_message;
-		QLineEdit* right_name;
-		
-		QLabel* front_message;
-		QLineEdit* front_name;
-
-		QLabel* left_message;
-		QLineEdit* left_name;
-
-		QPushButton* go;
-
+		LocalSetupWidget* widget_;
 };
 		
 

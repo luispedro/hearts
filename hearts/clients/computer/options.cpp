@@ -2,7 +2,7 @@
 
 namespace
 {
-std::string name_ = "Killer Tomato";
+std::string name_ = "LP Lapin";
 bool zero_ = false;
 }
 

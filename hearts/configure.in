@@ -66,5 +66,7 @@ AC_CONFIG_FILES([ common/hearts/Makefile ])
 AC_CONFIG_FILES([ common/network/Makefile ])
 AC_CONFIG_FILES([ clients/human/setup/Makefile ])
 AC_CONFIG_FILES([ po/Makefile ])
+AC_CONFIG_FILES([ doc/Makefile ])
+AC_CONFIG_FILES([ doc/en/Makefile ])
 AC_OUTPUT
 

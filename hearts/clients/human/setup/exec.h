@@ -9,6 +9,7 @@ namespace execute {
 		int computerClient( QString name );
 		QString generateLocalAddress();
 }
+#undef unix // FreeBSD seems to define unix
 namespace unix {
 		void coe( int );
 		void uncoe( int );

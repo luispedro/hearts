@@ -82,14 +82,24 @@ void GameManager::give_cards()
 	}
 }
 
+namespace cardpassing {
+		const player_id::type order[] = {
+				player_id::right,
+				player_id::left,
+				player_id::front
+		};
+		const unsigned delta[] = {
+				1,
+				3, // 3 = -1 mod 4
+				2
+		};
+}
+
 bool GameManager::ask_for_cards()
 {
-	if ( ( number_games % 4 ) == 3 ) {
-		return false;
-	}
+	if ( ( number_games % 4 ) == 3 ) return false;
 	for ( control_cont_type::iterator iter = players.begin(); iter != players.end(); ++iter ) {
-		LOG_PLACE() << " asking for cards.\n";
-		iter->player->give( player_id::left ); // FIXME
+		iter->player->give( cardpassing::order[ number_games % 4 ] );
 	}
 	current_state = WaitGive3;
 	return true;
@@ -118,16 +128,10 @@ void GameManager::give3_reply( player_id::type id, const Holder3& cards )
 
 void GameManager::distribute_cards()
 {
-	LOG_PLACE() << "distributing cards [ game " << number_games << " ].\n";
 	assert( ( number_games % 4 ) < 3 );
-	const unsigned relative[ 3 ] = {
-			1, // right
-			3, // left 3 mod 4 == -1 mod 4
-			2  // across
-	};
 	for ( unsigned sender = 0; sender != 4; ++sender ) {
 		for ( unsigned i = 0; i != 3; ++i ) {
-			unsigned receiver = ( sender + relative[ number_games % 3 ] ) % 4;
+			unsigned receiver = ( sender + cardpassing::delta[ number_games % 3 ] ) % 4;
 			players[ receiver ].player->receive( given_cards[ sender ][ i ] );
 			players[ receiver ].hand.insert( given_cards[ sender ][ i ] );
 			players[ sender ].hand.erase( players[ sender ].hand.find( given_cards[ sender ][ i ] ) );

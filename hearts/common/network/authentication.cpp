@@ -48,7 +48,7 @@ void do_md5( const char* input, char* result )
 #ifdef TEST_ME
 	char* pretty;
 	pretty_printing( result, &pretty );
-	std::cout << "md5(" << input << "): " << pretty << std::endl;
+	std::cout << "md5( . ): " << pretty << std::endl;
 	std::free( pretty );
 #endif
 }
@@ -80,6 +80,22 @@ int repeatedMD5Authenticator::generate( const char* password, const char* cookie
 	return 0;
 }
 
+unsigned rand_mod( unsigned max ) {
+	return unsigned( rand() ) % max;
+}
+
+QCString repeatedMD5Authenticator::generateCookie()
+{
+	char buff[ 24 ];
+	const unsigned size = rand_mod( 12 ) + 12;
+	buff[ size ] = '\0';
+	for ( unsigned i = 0; i != size; ++i ) {
+		static const char possibilities[] = "1234567890poiuytrewqasdfghjklmnbvcxzMNBVCXZASDFGHJKLPOIUYTREWQ";
+		buff[ i ] = possibilities[ rand_mod( sizeof( possibilities ) ) ];
+	}
+	return QCString( buff );
+}
+
 
 #ifdef TEST_ME
 
@@ -90,6 +106,10 @@ int main() {
 	char* result;
 	if ( auth.generate( pass.c_str(), cookie.c_str(), &result ) ) return 1;
 	std::cout << result << std::endl;
+	std::cout << ( const char* )auth.generateCookie() << std::endl;
+	std::cout << ( const char* )auth.generateCookie() << std::endl;
+	std::cout << ( const char* )auth.generateCookie() << std::endl;
+	std::cout << ( const char* )auth.generateCookie() << std::endl;
 	return 0;
 }
 #endif

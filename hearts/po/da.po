@@ -1,0 +1,352 @@
+# translation of hearts.po to Danish
+# Danish translations for PACKAGE package
+# Danske overs�telser for pakke PACKAGE.
+# Copyright (C) 2004 THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# Frederik Dannemare <frederik@dannemare.net>, 2004.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: hearts\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2004-05-04 22:04+0100\n"
+"PO-Revision-Date: 2004-05-09 01:27+0200\n"
+"Last-Translator: Frederik Dannemare <frederik@dannemare.net>\n"
+"Language-Team: Danish <frederik@dannemare.net>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.3.1\n"
+
+#: rc.cpp:1 rc.cpp:10 rc.cpp:24 rc.cpp:40 rc.cpp:44 rc.cpp:55
+msgid "Form1"
+msgstr "Form1"
+
+#: rc.cpp:2
+msgid "Configure Players"
+msgstr "Konfigurer spillere"
+
+#: rc.cpp:3 rc.cpp:33
+msgid "Player on the &Left"
+msgstr "Spiller til &venstre"
+
+#: rc.cpp:4
+msgid "Brigitte"
+msgstr "Anne"
+
+#: rc.cpp:5
+msgid "Alex"
+msgstr "John"
+
+#: rc.cpp:6 rc.cpp:30
+msgid "Player on the &Right"
+msgstr "Spiller til &højre"
+
+#: rc.cpp:7 rc.cpp:35
+msgid "Player in Fron&t"
+msgstr "Spiller i fron&t"
+
+#: rc.cpp:8 rc.cpp:25 rc.cpp:42
+msgid "Your &Name"
+msgstr "Dit &navn"
+
+#: rc.cpp:9
+msgid "Truman"
+msgstr "Casper"
+
+#: rc.cpp:11
+msgid "Hearts Public &Server"
+msgstr "Hearts offentlig &server"
+
+#: rc.cpp:12
+msgid "po&rt"
+msgstr "po&rt"
+
+#: rc.cpp:13
+msgid "&Change Server"
+msgstr "S&kift server"
+
+#: rc.cpp:14
+msgid "Alt+C"
+msgstr "Alt+C"
+
+#: rc.cpp:15
+msgid "Table Name"
+msgstr "Bordets navn"
+
+#: rc.cpp:16 rc.cpp:17 rc.cpp:18 rc.cpp:19
+msgid "Player"
+msgstr "Spiller"
+
+#: rc.cpp:20
+msgid "&Join Table"
+msgstr "T&ilslut dig bordet"
+
+#: rc.cpp:21
+msgid "Alt+J"
+msgstr "Alt+I"
+
+#: rc.cpp:22
+msgid "Create &New Table"
+msgstr "Opret &nyt spillebord"
+
+#: rc.cpp:23
+msgid "Alt+N"
+msgstr "Alt+N"
+
+#: rc.cpp:26
+msgid "Other Players"
+msgstr "Andre spillere"
+
+#: rc.cpp:28 rc.cpp:31 rc.cpp:37
+msgid "Computer Player"
+msgstr "Computerspiller"
+
+#: rc.cpp:29 rc.cpp:32 rc.cpp:38
+msgid "Connecting Human Player"
+msgstr "Tilslutter menneskelig spiller"
+
+#: rc.cpp:39
+msgid ""
+"MESSAGE WHICH YOU SHOULD\n"
+"NOT SEE"
+msgstr ""
+"BESKED SOM DU IKKE\n"
+"BØR SE"
+
+#: rc.cpp:41 clients/human/setup/privatesetup.cpp:23
+msgid "Connection Options"
+msgstr "Tilslutningsindstillinger"
+
+#: rc.cpp:43
+msgid "Adress of Card &Dealer"
+msgstr "Kortgivers a&dresse"
+
+#: rc.cpp:45 clients/human/setup/setupwindow.cpp:28
+msgid "Type of Game"
+msgstr "Spiltype"
+
+#: rc.cpp:46
+msgid "Play a private game with &other people"
+msgstr "Spil et privat spil med andre pers&oner"
+
+#: rc.cpp:47
+msgid "Alt+O"
+msgstr "Alt+O"
+
+#: rc.cpp:48
+msgid "Play on a public hearts net&work"
+msgstr "Spil på et offentligt hearts-net&værk"
+
+#: rc.cpp:49
+msgid "Alt+W"
+msgstr "Alt+v"
+
+#: rc.cpp:50
+msgid "Play against the com&puter"
+msgstr "Spil mod com&puteren"
+
+#: rc.cpp:51
+msgid "Alt+P"
+msgstr "Alt+P"
+
+#: rc.cpp:52
+msgid "Online Players"
+msgstr "Online spillere"
+
+#: rc.cpp:53
+msgid "Name"
+msgstr "Navn"
+
+#: rc.cpp:54
+msgid "Status"
+msgstr "Status"
+
+#: rc.cpp:56
+msgid "Deal or Join Table?"
+msgstr "Bliv kortgiver eller spiller for bordet?"
+
+#: rc.cpp:57
+msgid "&Deal Cards"
+msgstr "&Giv kort"
+
+#: rc.cpp:58
+msgid "Alt+D"
+msgstr "Alt+G"
+
+#: rc.cpp:59
+msgid "Connec&t to a Card Dealer"
+msgstr "&Tilslut dig en kortgiver"
+
+#: rc.cpp:60
+msgid "Alt+T"
+msgstr "Alt+T"
+
+#: server/gamemanager.cpp:343
+msgid "Unknown error"
+msgstr "Ukendt fejl"
+
+#: server/gamemanager.cpp:344
+msgid "You do not have that card in your hand!"
+msgstr "Det kort har du ikke på hånden!"
+
+#: server/gamemanager.cpp:345
+msgid "You must start the game with a two of clubs"
+msgstr "Du skal starte spillet med klør to"
+
+#: server/gamemanager.cpp:346
+msgid "You must not play any points card on your first move"
+msgstr "Du på ikke udspille pointkort i dit første træk"
+
+#: server/gamemanager.cpp:347
+msgid "You must not start a hand with hearts until they have been played"
+msgstr "Du må ikke starte et udspil med hjerter, førend en hjerter tidligere er blevet spillet"
+
+#: server/gamemanager.cpp:348
+msgid "You must play clubs"
+msgstr "Du skal spille klør"
+
+#: server/gamemanager.cpp:349
+msgid "You must play hearts"
+msgstr "Du skal spille hjerter"
+
+#: server/gamemanager.cpp:350
+msgid "You must play spades"
+msgstr "Du skal spille spar"
+
+#: server/gamemanager.cpp:351
+msgid "You must play diamonds"
+msgstr "Du skal spille ruder"
+
+#: clients/human/carddisplay.cpp:95
+msgid ""
+"Unable to load card images.\n"
+"Please check your instalation"
+msgstr ""
+"Kunne ikke indlæse kortbilleder.\n"
+"Tjek din installation"
+
+#: clients/human/setup/privatesetup.cpp:29
+msgid "Dealer Options"
+msgstr "Indstillinger for kortgiver"
+
+#: clients/human/setup/setupwindow.cpp:16
+msgid ""
+"Please choose whether you would like to play a local game or a network.\n"
+"If you want to play a network game, one player must deal cards while others\n"
+"connect to it."
+msgstr ""
+"Vælg hvorvidt du vil spille et lokalt spil eller et netværksspil.\n"
+"Hvis du vælger et netværksspil, skal der være en kortgiver, som\n"
+"de andre spillere derefter tilslutter sig."
+
+#: clients/human/setup/networksetup.cpp:61
+msgid "<qt>Error connecting to Hearts Server:<br><strong>%1</strong></qt>"
+msgstr "<qt>Fejl ved tilslutning til Hearts server:<br><strong>%1</strong></qt>"
+
+#: clients/human/setup/networksetup.cpp:90
+msgid "New Table"
+msgstr "Nyt spillebord"
+
+#: clients/human/setup/networksetup.cpp:91
+msgid "Create New Table"
+msgstr "Opret nyt spillebord"
+
+#: clients/human/setup/networksetup.cpp:102
+msgid "Connecting...."
+msgstr "Tilslutter...."
+
+#: clients/human/setup/networksetup.cpp:142
+msgid "<qt>Connection Error:<br><strong>$1</strong></qt>"
+msgstr "<qt>Tilslutningsfejl:<br><strong>$1</strong></qt>"
+
+#: clients/human/setup/onlineplayerdialog.ui.h:18
+msgid "Online"
+msgstr "Online"
+
+#: clients/human/setup/serversetup.cpp:45
+msgid ""
+"<qt>You hostname (and IP address) seem to be <nobr><strong>%1 (%2)</strong></"
+"nobr></qt>"
+msgstr ""
+"<qt>Dit værtsnavn (og IP-adresse) lader til at være <nobr><strong>%1 "
+"(%2)</strong></nobr></qt>"
+
+#: clients/human/setup/serversetup.cpp:55
+msgid "<qt>Error guessing host address:<nobr><strong>%1</strong></nobr></qt>"
+msgstr "<qt>Fejl ved forsøg på at finde værtsnavnet:<nobr><strong>%1</strong></nobr></qt>"
+
+#: clients/human/setup/serversetup.cpp:67
+msgid "<qt>Error: [socketpair failed]</qt>"
+msgstr "<qt>Fejl: [socketpair failed]</qt>"
+
+#: clients/human/setup/serversetup.cpp:81
+msgid "<qt>Error: [fork failed]</qt>"
+msgstr "<qt>Fejl: [fork failed]</qt>"
+
+#: clients/human/setup/serversetup.cpp:87
+msgid "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>"
+msgstr "<qt>Kunne ikke opnå forbindelse:<nobr><strong>%1</strong></nobr></qt>"
+
+#: clients/human/setup/serversetup.cpp:125
+msgid "Not Yet Implemented"
+msgstr "Endnu ikke implementeret"
+
+#: clients/human/setup/serversetup.cpp:133
+msgid "There are no options available for remote players"
+msgstr "Der er ingen indstillinger tilgængelige for ikke-lokale spillere"
+
+#: clients/human/setup/remotesetup.cpp:43
+msgid "<qt>Error opening connection:<nobr><strong>%1</strong></nobr></qt>"
+msgstr "<qt>Fejl ved forsøg på tilslutning:<nobr><strong>%1</strong></nobr></qt>"
+
+#: clients/human/main.cpp:20
+msgid "Hearts, a Card Game"
+msgstr "Hearts, et kortspil"
+
+#: clients/human/main.cpp:25
+msgid "Hearts - a card game"
+msgstr "Hearts - et kortspil"
+
+#: clients/human/qtconnection.h:70
+msgid ""
+"You got a server message!\n"
+"Maybe there is a mistake in setup.\n"
+"\n"
+msgstr ""
+"Du har fået en serverbesked!\n"
+"Måske er der en fejl i opsætningen.\n"
+"\n"
+
+#: clients/human/humaninterface.cpp:41
+msgid "Pass Cards"
+msgstr "Videregiv kort"
+
+#: clients/human/humanclient.cpp:132
+msgid "Game Over"
+msgstr "Spil slut"
+
+#: clients/human/humanclient.cpp:154
+msgid "Invalid Move"
+msgstr "Ugyldigt træk"
+
+#: clients/human/humanclient.cpp:154
+msgid "Ok"
+msgstr "O.k."
+
+#: clients/human/humanclient.cpp:162
+msgid "Choose three cards to pass right"
+msgstr "Vælg tre kort at videregive til højre spiller"
+
+#: clients/human/humanclient.cpp:165
+msgid "Choose three cards to pass across"
+msgstr "Vælg tre kort at videregive til spiller overfor"
+
+#: clients/human/humanclient.cpp:168
+msgid "Choose three cards to pass left"
+msgstr "Vælg tre kort at videregive til venstre spiller"
+
+#: clients/human/pointsbox.cpp:31
+msgid "Points Standing"
+msgstr "Point"
+

@@ -18,6 +18,10 @@ RemoteSetup::RemoteSetup( QWidget* p, const char* n )
 	widget_( new RemoteSetupWidget( this, "remote-setup-widget" ) )
 {
 	widget_->selfName->setText( Options::playerName( player_id::self ) );
+	KConfig* c = KGlobal::config();
+	KConfigGroupSaver s( c, QString::fromLatin1( "remote-setup" ) );
+
+	widget_->address->setText( c->readEntry( "ip-address" ) );
 }
 
 void RemoteSetup::execute()
@@ -34,9 +38,9 @@ void RemoteSetup::execute()
 	if ( fd < 0 || write( fd, &t, 1 ) < 0 ) {
 		KMessageBox::error( 0, i18n( "<qt>Error opening connection:<nobr><strong>%1</strong></nobr></qt>" )
 				.arg( strerror( errno ) ) );
+	} else {
+		emit connected( fd );
 	}
-
-	emit connected( fd );
 }
 
 #include "remotesetup.moc"

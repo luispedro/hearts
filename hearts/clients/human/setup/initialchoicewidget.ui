@@ -32,23 +32,7 @@
         </property>
         <widget class="QRadioButton">
             <property name="name">
-                <cstring>radioButton1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>40</y>
-                    <width>250</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Play against the computer</string>
-            </property>
-        </widget>
-        <widget class="QRadioButton">
-            <property name="name">
-                <cstring>radioButton4</cstring>
+                <cstring>radioNetwork</cstring>
             </property>
             <property name="geometry">
                 <rect>
@@ -64,7 +48,23 @@
         </widget>
         <widget class="QRadioButton">
             <property name="name">
-                <cstring>radioButton5</cstring>
+                <cstring>radioLocal</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>250</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Play against the computer</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioPrivate</cstring>
             </property>
             <property name="geometry">
                 <rect>

@@ -1,9 +1,13 @@
 Makefile
 Makefile.in
-networksetupwidget.h
+
 *moc
 *moc.cpp
 .deps
 .libs
 
+networksetupwidget.h
 networksetupwidget.cpp
+
+initialchoicewidget.cpp
+initialchoicewidget.h

@@ -15,7 +15,7 @@ do_header();
 
 <h3>A hearts server where you can find other players on the internet was set up.</h3>
 <ul>
-	<li>A new version is in the works. Right now you can access it through <a href="download.html#CVS">anonymous CVS</a>, and more traditional release modes are planned.
+	<li>A new version is in the works. Right now you can access it through <a href="download.php#CVS">anonymous CVS</a>, and more traditional release modes are planned.
 	<li>A public hearts server was put online thanks to Pavel Troller who volunteered space on a machine of his. Thanks also to Imre, Nagy Jr who also volunteered some space.
 </ul>
 
@@ -31,7 +31,7 @@ do_header();
 	<li>A dutch translation was added thanks to Japie
 </ul>
 
-<p>You can see every change in <a href="history.html">the history page</a>.
+<p>You can see every change in <a href="history.php">the history page</a>.
 
 <HR>
 <?php do_footer(); ?>

@@ -1,14 +1,6 @@
 <?php include_once('base.php');
 do_header();
 ?>
-<div align="center">
-
-<H1>Hearts for the KDE
-</H1>
-</div>
-
-
-<p><a href="index.html">Home</a> | <a href="download.html">Download</a> | <a href="screenshots.html">Screenshots</a> | <a href="translations.html">Translations</a>
 
 <h2>Full Hearts History</H2>
 
@@ -16,7 +8,7 @@ do_header();
 
 <h3>A hearts server where you can find other players on the internet was set up.</h3>
 <ul>
-	<li>A new version is in the works. Right now you can access it through <a href="download.html#CVS">anonymous CVS</a>, and more traditional release modes are planned.
+	<li>A new version is in the works. Right now you can access it through <a href="download.php#CVS">anonymous CVS</a>, and more traditional release modes are planned.
 	<li>A public hearts server was put online thanks to Pavel Troller who volunteered space on a machine of his. Thanks also to Imre, Nagy Jr who also volunteered some space.
 </ul>
 
@@ -83,7 +75,7 @@ two slightly different algorithms, which are selectedly randomly at runtime.
 </ul>
 
 <h3>New translation file available - 18 July 2000</h3>
-<p>There is now a new <a href="translations.html">translation file available for translators</a>. Note that this file contains strings which are not yet used, but will be in a new version.
+<p>There is now a new <a href="translations.php">translation file available for translators</a>. Note that this file contains strings which are not yet used, but will be in a new version.
 
 <h3>Changes in v0.0.12</h3>
 <ul>

@@ -1,6 +1,6 @@
 noinst_LIBRARIES = libheartssetup.a
 
-libheartssetup_a_SOURCES = localsetup.cpp remotesetup.cpp serversetup.cpp setupwindow.cpp playersetup.cpp exec.cpp networksetupwidget.ui networksetup.cpp
+libheartssetup_a_SOURCES = localsetup.cpp remotesetup.cpp serversetup.cpp setupwindow.cpp playersetup.cpp exec.cpp networksetupwidget.ui networksetup.cpp initialchoicewidget.ui initialchoice.cpp
 
 AM_CXXFLAGS = -foperator-names -g
 

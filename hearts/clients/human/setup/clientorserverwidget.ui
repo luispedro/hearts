@@ -1,0 +1,78 @@
+<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<class>ClientOrServerWidget</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>Form1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>290</width>
+            <height>200</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <widget class="QButtonGroup">
+        <property name="name">
+            <cstring>buttonGroup1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>20</x>
+                <y>50</y>
+                <width>250</width>
+                <height>100</height>
+            </rect>
+        </property>
+        <property name="title">
+            <string>buttonGroup1</string>
+        </property>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioClient</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>40</x>
+                    <y>60</y>
+                    <width>200</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Connect to a card dealer</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioServer</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>40</x>
+                    <y>30</y>
+                    <width>120</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Deal cards</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+    </widget>
+</widget>
+<includes>
+    <include location="local" impldecl="in implementation">clientorserverwidget.ui.h</include>
+</includes>
+<functions>
+    <function specifier="non virtual" returnType="bool">isServer()</function>
+    <function specifier="non virtual" returnType="bool">isClient()</function>
+</functions>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

@@ -17,6 +17,7 @@ class MessageConstructor;
 // createTable name
 // leaveTable name
 // hello name
+// playerStatus playerName player_status
 // changeProtocol
 
 class Message
@@ -129,6 +130,14 @@ template <>
 inline const QCString to<QCString>( const QString& r )
 {
 	return r.utf8();
+}
+
+template <>
+inline const player_status::type to<player_status::type>( const QString& r ) {
+#define IFRET( x ) if ( r == QString::fromLatin1( #x ) ) return player_status::x;
+		FOR_ALL_PLAYER_STATUS( IFRET )
+		return player_status::unknown;
+#undef IFRET
 }
 
 template <typename T>

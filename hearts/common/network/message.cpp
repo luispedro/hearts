@@ -15,6 +15,7 @@ QString toString( Message::typeEnum t )
 #define HANDLE( x ) if ( t == Message::x ) return #x;
 	HANDLE_ALL_MESSAGE_TYPES;
 	return "unknown_type"; //FIXME
+#undef HANDLE
 }
 
 MessageConstructor& MessageConstructor::operator << ( Message::typeEnum t )

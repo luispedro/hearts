@@ -56,6 +56,7 @@ class UserConnection : public Connection
 		void connectTo( const char*, short );
 		void startGame( short );
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
+		void playerStatus( QString, player_status::type );
 	public slots:
 		void hello( QString );
 		void auth( QCString cookie, QCString result );
@@ -63,8 +64,7 @@ class UserConnection : public Connection
 		void joinTable( QString );
 		void leaveTable();
 	private:
-		void get
-			( Message );
+		void get( Message );
 };
 
 class ServerConnection : public Connection
@@ -93,8 +93,7 @@ class ServerConnection : public Connection
 		void auth( QCString method, QCString cookie );
 
 	private:
-		void get
-			( Message );
+		void get( Message );
 };
 
 } // namespace Network

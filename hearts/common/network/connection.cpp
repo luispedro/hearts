@@ -35,8 +35,7 @@ void Connection::close()
 	socket_->close();
 }
 
-void Connection::get
-	( Message )
+void Connection::get( Message )
 {}
 
 void Connection::read()
@@ -118,27 +117,29 @@ void UserConnection::leaveTable()
 	write( m << Message::leaveTable );
 }
 
-void UserConnection::get
-	( Message m )
+void UserConnection::get( Message m )
 {
 	LOG_PLACE() << "Got message: " << m << '\n';
 	switch ( m.type() ) {
 		case Message::startGame:
-		emit startGame( m.arg<short>( 0 ) );
-		return ;
+			emit startGame( m.arg<short>( 0 ) );
+			return ;
 		case Message::connectTo:
-		emit connectTo( m.arg<const char*>( 0 ), m.arg<short>( 1 ) );
-		return ;
+			emit connectTo( m.arg<const char*>( 0 ), m.arg<short>( 1 ) );
+			return ;
 		case Message::tableInfo:
-		emit lookAt( m.arg<QString>( 0 ),
+			emit lookAt( m.arg<QString>( 0 ),
 					 m.numArgs() >= 1 ? m.arg<PlayerInfo>( 1 ) : QString::null,
 					 m.numArgs() >= 2 ? m.arg<PlayerInfo>( 2 ) : QString::null,
 					 m.numArgs() >= 3 ? m.arg<PlayerInfo>( 3 ) : QString::null,
 					 m.numArgs() >= 4 ? m.arg<PlayerInfo>( 4 ) : QString::null );
-		return ;
+			return ;
 		case Message::changeProtocol:
-		emit protocolChanged();
-		return ;
+			emit protocolChanged();
+			return ;
+		case Message::playerStatus:
+			emit playerStatus( m.arg<QString>( 0 ), m.arg<player_status::type>( 1 ) );
+			return;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }
@@ -174,26 +175,25 @@ void ServerConnection::auth( QCString method, QCString cookie )
 	write( m << Message::auth << method << cookie );
 }
 
-void ServerConnection::get
-	( Message m )
+void ServerConnection::get( Message m )
 {
 	LOG_PLACE() << "Got message: " << m << '\n';
 	switch ( m.type() ) {
 		case Message::createTable:
-		emit createTable( this, m.arg<QString>( 0 ) );
-		return ;
+			emit createTable( this, m.arg<QString>( 0 ) );
+			return ;
 		case Message::joinTable:
-		emit joinTable( this, m.arg<QString>( 0 ) );
-		return ;
+			emit joinTable( this, m.arg<QString>( 0 ) );
+			return ;
 		case Message::hello:
-		emit hello( this, m.arg<QString>( 0 ) );
-		return ;
+			emit hello( this, m.arg<QString>( 0 ) );
+			return ;
 		case Message::leaveTable:
-		emit leaveTable( this );
-		return ;
+			emit leaveTable( this );
+			return ;
 		case Message::changeProtocol:
-		emit protocolChanged();
-		return ;
+			emit protocolChanged();
+			return ;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }

@@ -1,0 +1,63 @@
+<?xml version="1.0"?>
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.2-Based Variant V1.1//EN" "dtd/kdex.dtd" [
+  <!-- Define an entity for your application if it is not part of KDE
+       CVS -->
+  <!ENTITY hearts "<application>Hearts</application>">
+  <!ENTITY kappname "&hearts;"><!-- replace kmyapplication here
+                                            do *not* replace kappname-->
+  <!ENTITY package "kde-module"><!-- kdebase, kdeadmin, etc.  Leave
+                                     this unchanged if your
+                                     application is not maintained in KDE CVS -->
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % English "INCLUDE"> <!-- ONLY If you are writing non-English
+                                     original documentation, change
+                                     the language here -->
+]>
+
+
+<book lang="&language;">
+
+<bookinfo>
+
+<authorgroup>
+<author>
+	<firstname>Luís</firstname>
+	<othername>Pedro</othername>
+	<surname>Coelho</surname>
+	<email>luis@luispedro.org</email>
+</author>
+</authorgroup>
+
+<copyright>
+	<year>1999</year>
+	<year>2000</year>
+	<year>2001</year>
+	<year>2002</year>
+	<year>2003</year>
+	<year>2004</year>
+	<holder>Luís Pedro Coelho</holder>
+</copyright>
+
+<legalnotice>&FDLNotice;</legalnotice>
+
+<date>2004-04-22</date>
+<releaseinfo>1.00</releaseinfo>
+
+<abstract>
+	<para>
+		&hearts; is a card game. You can play against the computer or against other players in a network setting.
+	</para>
+</abstract>
+
+<keywordset>
+	<keyword>KDE</keyword>
+	<keyword>Hearts</keyword>
+	<keyword>Card</keyword>
+	<keyword>Game</keyword>
+	<keyword>Network Game</keyword>
+</keywordset>
+
+</bookinfo>
+
+</book>
+

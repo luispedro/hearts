@@ -59,5 +59,40 @@
 
 </bookinfo>
 
+
+<chapter id="introduction">
+<title>Introduction</title>
+</chapter>
+
+<chapter id="rules">
+<title>Rules of the Game</title>
+
+<para>
+	A match is a series of games during which points are accumulated.
+
+	At the start of each game, the dealer distributes the whole 52 card deck, i.e. each player gets 13 cards.
+
+	Then comes card passing: each players offers 3 cards. For the first game, the cards are passed right, the second game they are passed left and finally across. On the fourth game, no cards are passed. You may not see what cards you are recieving before deciding what cards to pass.
+
+	The game is a series of 13 hands. In each hand, the player who won the previous one starts by laying a card on the table. Then, in anti-clockwise fashion, each player plays a card. The suit of the first card is called the lead and every player is obliged to follow the lead, unless he is unable to. At the end of the hand, the player who played the hightest card of the same suit as the lead is the winner of the hand, takes the cards and starts the next hand.
+	
+	The game starts with the two of clubs. Whoever holds that card, starts the game.
+
+	At the end of the game, points are counted. Each card of hearts counts as one and the queen of spades as 13 points.
+
+	A match is over when one player has accumulated 100 points or more. The winner is the player with the least amount of points
+
+	You cannot lead with hearts unless they have been broken, i.e. unless hearts have been played.
+
+	You cannot play the queen nor a card of hearts during the first round.
+
+	Should at the end of the game, one of the players have accumulated 26 points (the maximum), then he gets 0, while his oppponnents get 26 each. This is called shooting the moon.
+
+
+<para>
+
+
+</chapter>
+
 </book>
 

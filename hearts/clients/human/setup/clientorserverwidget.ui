@@ -32,34 +32,12 @@
         </property>
         <widget class="QRadioButton">
             <property name="name">
-                <cstring>radioServer</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>40</x>
-                    <y>30</y>
-                    <width>120</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>&amp;Deal cards</string>
-            </property>
-            <property name="accel">
-                <string>Alt+D</string>
-            </property>
-            <property name="checked">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="QRadioButton">
-            <property name="name">
                 <cstring>radioClient</cstring>
             </property>
             <property name="geometry">
                 <rect>
                     <x>40</x>
-                    <y>60</y>
+                    <y>30</y>
                     <width>200</width>
                     <height>21</height>
                 </rect>
@@ -69,6 +47,28 @@
             </property>
             <property name="accel">
                 <string>Alt+T</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioServer</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>40</x>
+                    <y>60</y>
+                    <width>120</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>&amp;Deal cards</string>
+            </property>
+            <property name="accel">
+                <string>Alt+D</string>
             </property>
         </widget>
     </widget>

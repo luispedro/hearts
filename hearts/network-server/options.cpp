@@ -16,7 +16,7 @@ const Options* &options = const_cast<const Options*&>( singleton );
 
 
 optionsDescrition heartsdOptions[] = {
-	{ "database", { "host", "username", "password", "database", 0 } },
+	{ "database", { "host", "user", "password", "database", 0 } },
 	{ "misc", { "pidfile", "logfile", "motdfile", 0 } },
 	{ 0, {} }
 };

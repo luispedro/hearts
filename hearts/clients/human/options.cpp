@@ -5,7 +5,7 @@
 QString Options::playerName(player_id::type who)
 {
 			KConfig* c = KGlobal::config();
-			const char* defaults[] = { "Calvin", "Hobbes", "Tomate Assassino", "George W. Bush" };
+			const char* defaults[] = { "Calvin", "Hobbes", "Killer Tomato", "Brigitte" };
 			KConfigGroupSaver s(c,QString::fromLatin1("player-names"));
 			using namespace player_id;
 			switch (who)

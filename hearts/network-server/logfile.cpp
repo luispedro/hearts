@@ -4,20 +4,24 @@
 #include <fstream>
 #include <time.h>
 
-
 namespace {
 	std::ofstream* output = 0;
 	void delete_output() { delete output; }
 }
 
 std::ostream& logfile() {
-	if ( !output ) {
-			output = new std::ofstream( options->logFile().c_str() );
-			assert( output );
-			assert( *output );
-	}
+	if ( !output ) reopenlog();
 	time_t now = time( 0 );
 	return *output << "[ " << ctime( &now ) << " ]: ";
 }
 
-
+void reopenlog() {
+	if ( output ) delete output;
+	output = new std::ofstream( options->logFile().c_str() );
+	std::atexit( delete_output );
+	assert( output );
+	if ( *output ) {
+		delete output;
+		output = new std::ofstream( "/dev/null" );
+	}
+}

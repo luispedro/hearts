@@ -5,25 +5,24 @@
 #
 
 
-# Source function library.
-. /etc/rc.d/init.d/functions
-
 # Configuration
 # (this should be a separate file in a real system, keep here for now)
 
-HEARTSSERVER="/home/luis/hearts/network-server/heartsd"
+HEARTSSERVER="/home/hearts/hearts/hearts/network-server/heartsd"
 HEARTSOPTIONS="--daemon"
 
-[ -f $HEARTSSERVER ] || exit 0
+[ -x $HEARTSSERVER ] || exit 1
 
 RETVAL=0
 prog="heartsd"
+pidfile='/var/run/hearts.pid'
+pid=`cat $pidfile`
 
 start() {
 	# Start daemon
 
 	echo -n $"Starting $prog: "
-	daemon $HEARTSSERVER $HEARTSOPTIONS
+	$HEARTSSERVER $HEARTSOPTIONS
 	RETVAL=$?
 	echo
 	return $RETVAL
@@ -32,7 +31,6 @@ start() {
 stop() {
 	# Stop daemon
 	echo -n $"Shutting down $prog: "
-	killproc $prog
 	RETVAL=$?
 	echo
 	return $RETVAL
@@ -52,8 +50,13 @@ case "$1" in
 	RETVAL=$?
 	;;
   status)
-	status $prog
-	RETVAL=$?
+  	if [ -f $pidfile ]; then
+		echo "$prog seems to be running (pid $pid)..."
+		RETVAL=0
+	else
+		echo "$prog doesn't seem to be running."
+		RETVAL=1
+	fi
 	;;
   *)
 	echo $"Usage: $0 {start|stop|restart|status}"

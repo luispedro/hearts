@@ -1,14 +1,13 @@
 Begin3
 Title:          Hearts
-Version:        1.91 
+Version:        1.97
 Entered-date:   
 Description:    
-Keywords:        
-Author:         Luis Pedro Coelho <luis@luispedro.org>
-Maintained-by:  Luis Pedro Coelho <luis@luispedro.org> 
-Primary-site:   	        
+Keywords:       Game, Card, hearts
+Author:         Luís Pedro Coelho <luis@luispedro.org>
+Maintained-by:  Luís Pedro Coelho <luis@luispedro.org> 
+Primary-site:   http://hearts.luispedro.org
 Home-page:      http://hearts.luispedro.org
-Original-site:  
 Platforms:       Linux and other Unices
 Copying-policy: GNU Public License
 End

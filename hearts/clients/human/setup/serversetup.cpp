@@ -9,6 +9,7 @@
 
 #include <qpushbutton.h>
 #include <qcombobox.h>
+#include <qlabel.h>
 #include <klocale.h>
 #include <kprocess.h>
 #include <kmessagebox.h>
@@ -16,6 +17,15 @@
 
 #include <errno.h>
 #include <string.h>
+
+// For hostname discovery
+#include <unistd.h>
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
+
+
 
 ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 		QWidget( parent, name )
@@ -25,6 +35,27 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 	connect( widget_->options1, SIGNAL( clicked() ), SLOT( optionsRight() ) );
 	connect( widget_->options2, SIGNAL( clicked() ), SLOT( optionsFront() ) );
 	connect( widget_->options3, SIGNAL( clicked() ), SLOT( optionsLeft() ) );
+
+
+	const char* error = 0;
+
+	char buffer[ 128 ];
+	if ( !gethostname( buffer, sizeof( buffer ) ) ) {
+	       if ( struct hostent* host = gethostbyname( buffer ) ) {
+			widget_->message->setText( 
+				i18n( "<qt>You hostname (and IP address) seem to be <nobr><strong>%1 (%2)</strong></nobr></qt>" )
+					.arg( host->h_name )
+					.arg( inet_ntoa( *reinterpret_cast<struct in_addr *>( host->h_addr ) ) ) );
+	       } else {
+		       error = hstrerror( h_errno );
+	       }
+	} else {
+		error = strerror( errno );
+	}
+	if ( error ) {
+		widget_->message->setText( i18n( "<qt>Error guessing host address:<nobr><strong>%1</strong></nobr></qt>" )
+			.arg( error ) );
+	}
 }
 
 void ServerSetup::execute()

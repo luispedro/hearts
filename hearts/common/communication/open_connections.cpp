@@ -26,6 +26,14 @@ int open_client_connection( int argc, char* argv[] )
 				return -connection_errors::no_address;
 			}
 		}
+		if ( std::string( argv[ i ] ) == "--fd" ) {
+			address = argv[ i + 1 ];
+			if (!address) {
+				std::cerr << "missing argument for --fd.\n";
+				return -connection_errors::no_address;
+			}
+			return atoi( address );
+		}
 	}
 	return open_client_connection( address );
 }

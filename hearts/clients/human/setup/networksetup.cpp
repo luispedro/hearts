@@ -86,11 +86,6 @@ void NetworkSetup::newTable()
 	if ( l.exec() == KLineEditDlg::Accepted ) connection_->createTable( l.text() );
 }
 
-void NetworkSetup::execute()
-{
-	LOG_PLACE_NL();
-}
-
 void NetworkSetup::connectTo( const char* ip, const short port )
 {
 	LOG_PLACE() << ' ' << ip << ':' << port << '\n';

@@ -28,7 +28,7 @@ RemoteSetup::RemoteSetup( QWidget* p, const char* n )
 	widget_->address->setText( c->readEntry( "ip-address" ) );
 }
 
-void RemoteSetup::execute()
+int RemoteSetup::connect()
 {
 	int fd = open_client_connection( widget_->address->text() );
 
@@ -39,12 +39,12 @@ void RemoteSetup::execute()
 	Options::savePlayerName( player_id::self, widget_->selfName->text() );
 
 	char t = 0;
-	if ( fd < 0 || write( fd, &t, 1 ) < 0 ) {
+	if ( fd < 0 || ::write( fd, &t, 1 ) < 0 ) {
 		KMessageBox::error( 0, i18n( "<qt>Error opening connection:<nobr><strong>%1</strong></nobr></qt>" )
 				.arg( strerror( errno ) ) );
-	} else {
-		emit connected( fd );
+		return -1;
 	}
+	return fd;
 }
 
 #include "remotesetup.moc"

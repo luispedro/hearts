@@ -30,9 +30,6 @@ void PrivateSetup::initNext( SetupWindow* parent )
 	parent->setFinishEnabled( server_, true );
 	parent->setNextEnabled( server_, false );
 	parent->setAppropriate( server_, false );
-
-	connect( remote_, SIGNAL( connected( int ) ), parent, SLOT( connected( int ) ) );
-	connect( server_, SIGNAL( connected( int ) ), parent, SLOT( connected( int ) ) );
 }
 
 void PrivateSetup::execute() {
@@ -46,16 +43,10 @@ void PrivateSetup::doNext( SetupWindow* parent ) {
 		parent->setAppropriate( remote_, false );
 		parent->setNextEnabled( server_, false );
 		parent->setFinishEnabled( server_, true );
-
-		disconnect( parent, SIGNAL( execute() ), remote_, SLOT( execute() ) );
-		connect( parent, SIGNAL( execute() ), server_, SLOT( execute() ) );
 	} else {
 		parent->setAppropriate( server_, false );
 		parent->setAppropriate( remote_, true );
 		parent->setNextEnabled( remote_, false );
-
-		connect( parent, SIGNAL( execute() ), remote_, SLOT( execute() ) );
-		disconnect( parent, SIGNAL( execute() ), server_, SLOT( execute() ) );
 	}
 }
 

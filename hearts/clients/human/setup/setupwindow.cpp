@@ -44,15 +44,16 @@ void SetupWindow::connected( int fd )
 	emit connected_to( fd );
 	this->QWizard::accept();
 	this->close();
-	//this->accept();
-	//X 	deleteLater();
 }
 
 
 void SetupWindow::accept()
 {
-	emit execute();
-	QWizard::accept();
+	if ( Connector* c = dynamic_cast<Connector*>( currentPage() ) ) {
+			connected( c->connect() );
+	} else {
+			Q_ASSERT( "currentPage is not a Connector!!" && 0 );
+	}
 }
 
 

@@ -4,6 +4,7 @@
 #include <qwidget.h>
 #include <kprogress.h>
 #include "network/connection.h"
+#include "setupwindow.h"
 
 class NetworkSetupWidget;
 
@@ -23,7 +24,6 @@ class NetworkSetup : public QWidget
 	signals:
 		void connected( int );
 	public slots:
-		void execute();
 		void newTable();
 		//X 		void joinTable();
 
@@ -46,6 +46,5 @@ class NetworkSetup : public QWidget
 		bool good_;
 };
 
-
-
 #endif // NETWORKSETUP_H
+

@@ -59,16 +59,19 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 
 
 
-void ServerSetup::execute()
+int ServerSetup::connect()
 {
 	enum { client, server };
 	int pipe[ 2 ];
 	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) {
 			KMessageBox::error( 0, i18n( "<qt>Error: [socketpair failed]</qt>" ) );
-			return;
+			return -1;
 	}
+	unix::coe( pipe[ server ] );
+	unix::coe( pipe[ client ] );
+
 	int fds[ 4 ];
-	fds[ 0 ] = pipe[ 0 ];
+	fds[ 0 ] = pipe[ server ];
 	fds[ 1 ] = execute( player_id::right, widget_->type1 );
 	fds[ 2 ] = execute( player_id::front, widget_->type2 );
 	fds[ 3 ] = execute( player_id::left, widget_->type3 );
@@ -76,17 +79,17 @@ void ServerSetup::execute()
 	int stat = fork();
 	if ( stat < 0 ) {
 			KMessageBox::error( 0, i18n( "<qt>Error: [fork failed]</qt>" ) );
-			return;
+			return -1;
 	} else if ( stat > 0 ) {
-			::close( pipe[ server ] );
+			for ( int i = 0; i != 4; ++i ) ::close( fds[ i ] );
 			char c = 0;
-			if ( write( pipe[ 1 ], &c, 1 ) < 0 ) {
+			if ( ::write( pipe[ client ], &c, 1 ) < 0 ) {
 					KMessageBox::error( 0, i18n( "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>" )
 									.arg( strerror( errno ) ) );
+					return -1;
 			}
 			Options::savePlayerName( player_id::self, widget_->selfName->text() );
-			emit connected( pipe[ client ] );
-			return;
+			return pipe[ client ];
 	} else {
 			::close( pipe[ client ] );
 			if ( fds[ 1 ] < 0 || 

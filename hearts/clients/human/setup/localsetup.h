@@ -6,12 +6,13 @@
 #include <qpushbutton.h>
 
 #include "hearts/player_id.h"
+#include "setupwindow.h"
 
 class QLabel;
 class QLineEdit;
 class LocalSetupWidget;
 
-class LocalSetup : public QWidget
+class LocalSetup : public QWidget, public Connector
 {
 		Q_OBJECT
 	public:
@@ -20,12 +21,10 @@ class LocalSetup : public QWidget
 	public slots:
 		void setName( player_id::type, QString );
 
-	signals:
-		void connected( int );
 
 	private slots:
 		/** This setups a local games and execs a server */
-		void execute();
+		int connect();
 
 	private:
 		LocalSetupWidget* widget_;

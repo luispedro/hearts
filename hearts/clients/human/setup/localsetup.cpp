@@ -35,7 +35,7 @@ void LocalSetup::setName( player_id::type who, QString name )
 	HANDLE_ALL_PLAYER_IDS( CASE );
 }
 
-void LocalSetup::execute()
+int LocalSetup::connect()
 {
 	enum { client, server };
 	kdDebug() << "LocalSetup::execute()" << endl;
@@ -55,7 +55,7 @@ void LocalSetup::execute()
 			::close( pipe[ server ] );
 			char c = 0;
 			::write( pipe[ client ], &c, 1);
-			emit connected( pipe[ client ] );
+			return pipe[ client ];
 	} else {
 			::close( pipe[ client ] );
 
@@ -71,10 +71,11 @@ void LocalSetup::execute()
 					exit( 1 );
 			}
 			execute::server( fds );
+			return 0;
 	}
 error:
 	LOG_PLACE_NL();
-	// NOP
+	return 0;
 }
 
 #include "localsetup.moc"

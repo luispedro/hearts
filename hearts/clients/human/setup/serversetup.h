@@ -4,22 +4,21 @@
 #include <qwidget.h>
 
 #include "hearts/player_id.h"
+#include "setupwindow.h"
 
 class ServerSetupWidget;
 class QComboBox;
 
-class ServerSetup : public QWidget
+class ServerSetup : public QWidget, public Connector
 {
 	Q_OBJECT
 
 	public:
 		ServerSetup( QWidget* parent, const char* name = "server-setup" );
 
-	signals:
-		void connected( int );
 
-	public slots:
-		void execute();
+		using QObject::connect;
+		int connect();
 
 	private slots:
 		void optionsSelf();

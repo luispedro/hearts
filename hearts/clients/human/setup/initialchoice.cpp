@@ -31,6 +31,7 @@ InitialChoice::InitialChoice( SetupWindow* parent, const char* name )
 	MAKE( networksetup_, NetworkSetup, "Choose a table" );
 	parent->setFinishEnabled( networksetup_, false );
 	parent->setNextEnabled( networksetup_, false );
+	connect( networksetup_, SIGNAL( connected( int ) ), parent, SLOT( connected( int ) ) );
 
 	MAKE( privatesetup_, PrivateSetup, "Deal or join" );
 	parent->setFinishEnabled( privatesetup_, false );
@@ -51,20 +52,9 @@ void InitialChoice::doNext( SetupWindow* parent )
 	switch ( widget_->option() ) {
 		case 0 :      // InitialChoice::AgainstComputer:
 		{
-			LOG_PLACE() << "parent has " << parent->pageCount() << " pages.\n";
-
 #define PUT_REMOVE( goingIn, goingOut0, goingOut1 )                                             \
-				assert( goingOut0 );                                 \
-				assert( goingOut1 );                                 \
-				assert( goingIn );                                  \
-				disconnect( parent, SIGNAL( execute() ), goingOut0, SLOT( execute() ) );            \
-				disconnect( parent, SIGNAL( execute() ), goingOut1, SLOT( execute() ) );            \
-				disconnect( goingOut0, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
-				disconnect( goingOut1, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
-				connect( parent, SIGNAL( execute() ), goingIn, SLOT( execute() ) );            \
-				connect( goingIn, SIGNAL( connected( int ) ),parent,SLOT( connected( int ) ) ); \
-				parent->setAppropriate( goingOut0, false );				\
-				parent->setAppropriate( goingOut1, false );                             \
+				parent->setAppropriate( goingOut0, false );		\
+				parent->setAppropriate( goingOut1, false );     \
 				parent->setAppropriate( goingIn, true );
 
 			PUT_REMOVE( localsetup_,  networksetup_, privatesetup_ );

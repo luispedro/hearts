@@ -122,9 +122,6 @@ void NetworkSetup::protocolChanged()
 void NetworkSetup::delayedProtocolChanged()
 {
 	kdDebug() << "NetworkSetup::delayedProtocolChanged()" << endl;
-	static bool called = false;
-	assert( !called );
-	called = true;
 	KExtendedSocket* socket = connection_->socket();
 	assert( socket );
 	int stat = socket->socketStatus();
@@ -132,11 +129,12 @@ void NetworkSetup::delayedProtocolChanged()
 
 	kdDebug() << KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) << " fd : " << fd << endl;
 	if ( stat == KExtendedSocket::error ) {
-		KMessageBox::error( 0, i18n( "<qt>Error in socket:<br><strong>$1</strong></qt>" )
+		KMessageBox::error( 0, i18n( "<qt>Connection Error:<br><strong>$1</strong></qt>" )
 				.arg( KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) ) );
 	} else {
 		assert( fd > 0 );
 		socket->release();
+		kdDebug() << "NetworkSetup::delayedProtocolChanged() writing a zero on fd " << fd << endl;
 		const char c = 0;
 		::write( fd, &c, 1 );
 		emit connected( fd );

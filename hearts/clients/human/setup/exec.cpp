@@ -8,8 +8,9 @@
 
 #include <stdio.h> // snprintf
 
-#include <sys/types.h>
-#include <sys/socket.h>
+#include <sys/types.h> // socketpair
+#include <sys/socket.h> // socketpair
+#include <fcntl.h> // uncoe
 
 QString execute::generateLocalAddress()
 {
@@ -37,11 +38,30 @@ bool execute::server( short port )
 	return p.start( KProcess::DontCare );
 }
 
+/* On the close-on-exec flag
+ * 
+ * We need to stop the AI player from having a copy of each others pipes, so we set
+ * close-on-exec on each flag.
+ *
+ * Then, just before we exec the server, we unset it.
+ */
+namespace {
+		void coe( int fd ) {
+				fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) | FD_CLOEXEC ) );
+		}
+		void uncoe( int fd ) {
+				fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) & ~FD_CLOEXEC ) );
+		}
+}
+
 void execute::server( const int fds[ 4 ] ) {
 	char buffer[ 32 ];
 	char port[ 32 ];
 	bool tcp = false;
-	for ( int i = 0; i != 4; ++i ) tcp |= !fds[ 0 ];
+	for ( int i = 0; i != 4; ++i ) {
+			if ( fds[ i ] ) uncoe( fds[ i ] );
+			else tcp = true;
+	}
 	if ( snprintf( buffer, sizeof( buffer ), "%d,%d,%d,%d", fds[ 0 ], fds[ 1 ], fds[ 2 ], fds[ 3 ] ) > 0) {
 			if ( tcp ) {
 					if ( snprintf( port, sizeof( port ), "%d", Communication::tcp_port ) > 0 ) {
@@ -65,17 +85,22 @@ void execute::server( const int fds[ 4 ] ) {
 
 int execute::computerClient( QString name )
 {
+	enum { client, server };
 	int pipe[2];
 	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) return -1;
+	coe( pipe[ server ] );
+	
 	KProcess p;
 	p << "heartscomputerclient"
 			<< "--playername" << name
-			<< "--fd" << QString::number( pipe[0] )
+			<< "--fd" << QString::number( pipe[ client ] )
 			<< "--zero";
+
 	LOG_PLACE() << '!' << p.args() << "!\n";
-	LOG_PLACE() << " FDs: " << pipe[ 0 ] << " <-> " << pipe[ 1 ] << "\n";
+	LOG_PLACE() << " FDs: " << pipe[ server ] << " <-> " << pipe[ client ] << "\n";
+
 	if ( !p.start( KProcess::DontCare ) ) return -1;
-	close( pipe[0] );
-	return pipe[1];
+	close( pipe[ client ] );
+	return pipe[ server ];
 }
 

@@ -15,7 +15,7 @@ AC_ARG_PROGRAM
 
 
 dnl Automake doc recommends to do this only here. (Janos)
-AM_INIT_AUTOMAKE(hearts, 1.98) dnl searches for some needed programs
+AM_INIT_AUTOMAKE(hearts, 1.99-cvs) dnl searches for some needed programs
 
 
 KDE_SET_PREFIX

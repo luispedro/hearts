@@ -10,89 +10,13 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>364</width>
+            <width>444</width>
             <height>439</height>
         </rect>
     </property>
     <property name="caption">
         <string>Form1</string>
     </property>
-    <widget class="Line">
-        <property name="name">
-            <cstring>line2</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>11</x>
-                <y>72</y>
-                <width>342</width>
-                <height>16</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>HLine</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Sunken</enum>
-        </property>
-        <property name="orientation">
-            <enum>Horizontal</enum>
-        </property>
-    </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>join</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>11</x>
-                <y>265</y>
-                <width>342</width>
-                <height>27</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>&amp;Join Table</string>
-        </property>
-    </widget>
-    <widget class="Line">
-        <property name="name">
-            <cstring>line1</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>11</x>
-                <y>298</y>
-                <width>342</width>
-                <height>16</height>
-            </rect>
-        </property>
-        <property name="frameShape">
-            <enum>HLine</enum>
-        </property>
-        <property name="frameShadow">
-            <enum>Sunken</enum>
-        </property>
-        <property name="orientation">
-            <enum>Horizontal</enum>
-        </property>
-    </widget>
-    <widget class="QPushButton">
-        <property name="name">
-            <cstring>newTable</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>11</x>
-                <y>307</y>
-                <width>342</width>
-                <height>27</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>Create &amp;New Table</string>
-        </property>
-    </widget>
     <spacer>
         <property name="name">
             <cstring>spacer2</cstring>
@@ -118,20 +42,64 @@
             </rect>
         </property>
     </spacer>
-    <widget class="QPushButton">
+    <widget class="QFrame">
         <property name="name">
-            <cstring>changeServer</cstring>
+            <cstring>connectingBox</cstring>
+        </property>
+        <property name="enabled">
+            <bool>true</bool>
         </property>
         <property name="geometry">
             <rect>
-                <x>10</x>
-                <y>50</y>
-                <width>342</width>
-                <height>27</height>
+                <x>60</x>
+                <y>120</y>
+                <width>241</width>
+                <height>121</height>
             </rect>
         </property>
-        <property name="text">
-            <string>&amp;Change Server</string>
+        <property name="frameShape">
+            <enum>StyledPanel</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Raised</enum>
+        </property>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>50</y>
+                    <width>190</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Connecting ....</string>
+            </property>
+        </widget>
+    </widget>
+    <widget class="Line">
+        <property name="name">
+            <cstring>line2</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>72</y>
+                <width>390</width>
+                <height>16</height>
+            </rect>
+        </property>
+        <property name="frameShape">
+            <enum>HLine</enum>
+        </property>
+        <property name="frameShadow">
+            <enum>Sunken</enum>
+        </property>
+        <property name="orientation">
+            <enum>Horizontal</enum>
         </property>
     </widget>
     <widget class="QLayoutWidget">
@@ -142,7 +110,7 @@
             <rect>
                 <x>10</x>
                 <y>10</y>
-                <width>342</width>
+                <width>390</width>
                 <height>40</height>
             </rect>
         </property>
@@ -184,6 +152,22 @@
                 </property>
             </widget>
         </hbox>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>changeServer</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>50</y>
+                <width>390</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Change Server</string>
+        </property>
     </widget>
     <widget class="QListView">
         <column>
@@ -248,48 +232,64 @@
             <rect>
                 <x>10</x>
                 <y>80</y>
-                <width>342</width>
+                <width>390</width>
                 <height>178</height>
             </rect>
         </property>
     </widget>
-    <widget class="QFrame">
+    <widget class="QPushButton">
         <property name="name">
-            <cstring>connectingBox</cstring>
-        </property>
-        <property name="enabled">
-            <bool>true</bool>
+            <cstring>join</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>60</x>
-                <y>120</y>
-                <width>241</width>
-                <height>121</height>
+                <x>11</x>
+                <y>265</y>
+                <width>390</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>&amp;Join Table</string>
+        </property>
+    </widget>
+    <widget class="Line">
+        <property name="name">
+            <cstring>line1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>11</x>
+                <y>298</y>
+                <width>390</width>
+                <height>16</height>
             </rect>
         </property>
         <property name="frameShape">
-            <enum>StyledPanel</enum>
+            <enum>HLine</enum>
         </property>
         <property name="frameShadow">
-            <enum>Raised</enum>
+            <enum>Sunken</enum>
         </property>
-        <widget class="QLabel">
-            <property name="name">
-                <cstring>textLabel1</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>50</x>
-                    <y>50</y>
-                    <width>190</width>
-                    <height>20</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Connecting ....</string>
-            </property>
-        </widget>
+        <property name="orientation">
+            <enum>Horizontal</enum>
+        </property>
+    </widget>
+    <widget class="QPushButton">
+        <property name="name">
+            <cstring>newTable</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>310</y>
+                <width>390</width>
+                <height>27</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>Create &amp;New Table</string>
+        </property>
     </widget>
 </widget>
 <connections>

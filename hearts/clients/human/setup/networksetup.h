@@ -37,7 +37,7 @@ class NetworkSetup : public QWidget
 		void protocolChanged();
 		void delayedProtocolChanged();
 		void playerStatus( QString, player_status::type );
-		void doAuthentication( QCString method, QCString cookie );
+		void doAuthentication( const QCString& method, const QCString& cookie );
 	private:
 
 		bool openConnection( const char* host, short port );

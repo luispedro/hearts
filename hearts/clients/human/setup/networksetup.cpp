@@ -10,6 +10,7 @@
 #include <klineeditdlg.h>
 #include <klineedit.h>
 #include <kdebug.h>
+#include <kio/passdlg.h>
 
 #include <unistd.h>
 
@@ -78,6 +79,7 @@ bool NetworkSetup::openConnection( const char* server, short port )
 	connect( connection_, SIGNAL( playerStatus( QString, player_status::type ) ),
 			SLOT( playerStatus( QString, player_status::type ) ) );
 	connect( connection_, SIGNAL( motd( const QString& ) ), online_, SLOT( setMotD( const QString& ) ) );
+	connect( connection_, SIGNAL( authQ( const QCString&, const QCString& ) ), SLOT( doAuthentication( const QCString&, const QCString& ) ) );
 
 	QString playerName = Options::playerName( player_id::self );
 	connection_->hello( playerName );
@@ -89,7 +91,7 @@ void NetworkSetup::resetGUI( const char* server )
 	widget_->tables->clear();
 	online_->clear();
 	
-	widget_->join->setEnabled( good_ && widget_->join->currentItem() );
+	//widget_->join->setEnabled( good_ && widget_->join->currentItem() );
 
 
 	widget_->newTable->setEnabled( good_ );
@@ -106,18 +108,32 @@ void NetworkSetup::resetGUI( const char* server )
 }
 
 
-void NetworkSetup::doAuthentication( QCString method, QCString cookie )
+void NetworkSetup::doAuthentication( const QCString& method, const QCString& cookie )
 {
 	repeatedMD5Authenticator authenticator;
 	if ( method != authenticator.id() ) {
 		KMessageBox::error( widget_, QString::null, i18n( "Unkown authentication method" ) );
 		return;
 	}
+	QCString password = Options::networkPassword();
+	if ( password.isNull() ) {
+		QString user, pass;
+		if ( KIO::PasswordDialog::getNameAndPassword( user, pass, 0 ) == KDialogBase::Accepted ) {
+			password = pass.utf8();
+			Options::saveNetworkLogin( user.utf8() );
+			password = pass.utf8();
+			Options::saveNetworkPassword( password );
+		} else {
+			KMessageBox::error( 0, i18n( "Need username and password for login" ) );
+			return;
+		}
+	}
 	char* result;
-	const char* password = "password";
+	kdDebug() << "doAuthentication( " << method << ", " << cookie << ", " << password << " )" << endl;
 	authenticator.generate( password, cookie, &result );
-	connection_->auth( cookie, result );
+	connection_->authR( cookie, result );
 	free( result );
+	kdDebug() << "doAuthentication() done" << endl;
 }
 
 

@@ -136,15 +136,20 @@ void Server::showTable( Table* table )
 }
 
 
-void Server::createTable( Player*, QString name )
-{
-	createTable( name );
-}
-
 void Server::createTable( QString name )
 {
+	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
+	createTable( player, name );
+}
+
+void Server::createTable( Player* player, QString name )
+{
+	// FIXME: player->error( ... );
+	if ( player->table() ) return;
+
 	LOG_PLACE() << " creating table = " << name.ascii() << std::endl;
 	Table* table = new Table( this, name );
+	joinTable( player, name );
 	showTable( table );
 	connect( table, SIGNAL( tableFull( Table* ) ), SLOT( tableFull( Table* ) ) );
 }

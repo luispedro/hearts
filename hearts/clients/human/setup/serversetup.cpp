@@ -78,17 +78,17 @@ void ServerSetup::execute()
 			KMessageBox::error( 0, i18n( "<qt>Error: [fork failed]</qt>" ) );
 			return;
 	} else if ( stat > 0 ) {
-			::close( pipe[ 0 ] );
+			::close( pipe[ server ] );
 			char c = 0;
 			if ( write( pipe[ 1 ], &c, 1 ) < 0 ) {
 					KMessageBox::error( 0, i18n( "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>" )
 									.arg( strerror( errno ) ) );
 			}
 			Options::savePlayerName( player_id::self, widget_->selfName->text() );
-			emit connected( pipe[ 1 ] );
+			emit connected( pipe[ client ] );
 			return;
 	} else {
-			::close( pipe[ 1 ] );
+			::close( pipe[ client ] );
 			if ( fds[ 1 ] < 0 || 
 							fds[ 2 ] < 0 ||
 							fds[ 3 ] < 0 ) {

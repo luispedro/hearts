@@ -1,6 +1,11 @@
 <?php include_once('base.php');
 do_header('Translations');
 ?>
+
+<h1>Translations</h1>
+
+<p>These are now very much outdated.</p>
+
 <DIV align="center">
 <TABLE width="620">
 <TR>
@@ -45,11 +50,13 @@ do_header('Translations');
 </TABLE>
 </DIV>
 
+<!--
 <p>If you want to translate the game use either the hearts.pot and index.sgml files available from the newest source release or 
      download them directly:
 <UL>
 	<LI><a href="heart.pot">hearts.pot</a></LI>
 	<LI><a href="index.sgml">index.sgml</a></LI>
 </UL>
+-->
 
 <?php do_footer(); ?>

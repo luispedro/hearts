@@ -2,7 +2,7 @@ Makefile
 Makefile.in
 *moc
 *moc.cpp
-networkserver
+heartsd
 .deps
 .libs
 

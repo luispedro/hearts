@@ -59,8 +59,8 @@ void Options::init(int argc ,char** argv)
 	enum { fds = 1, tport, uport, wait_zero };
 	static const struct option long_options[] = {
 		{ "fds", 1, 0, fds },
-		{ "tcp_port", 1, 0, tport },
-		{ "unix_port", 1, 0, uport },
+		{ "tcp-port", 1, 0, tport },
+		{ "unix-port", 1, 0, uport },
 		{ "wait-zero", 0, 0, wait_zero },
 		{ 0, 0, 0, 0 }
 	};

@@ -1,3 +1,6 @@
+#ifndef DB_CONSTANTS_H1067808401_INCLUDE_GUARD_
+#define DB_CONSTANTS_H1067808401_INCLUDE_GUARD_
+
 namespace Network {
 	// TODO:
 	// This shouldn't be in the code
@@ -6,3 +9,6 @@ namespace Network {
 	const short Port = 1443;
 }
 
+
+
+#endif /* DB_CONSTANTS_H1067808401_INCLUDE_GUARD_ */

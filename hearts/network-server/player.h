@@ -9,12 +9,14 @@
 
 class Table;
 class Connection;
+class Validator;
 class Player : public Network::ServerConnection
 {
 	Q_OBJECT
 	public:
 		typedef player_id id;
 		Player(QObject* parent, KExtendedSocket* );
+		~Player();
 
 //X 		KExtendedSocket* socket() { return &socket_; }
 		
@@ -41,5 +43,6 @@ class Player : public Network::ServerConnection
 	private:
 		QString name_;
 		Table* table_;
+		Validator* validator_;
 };
 #endif // PLAYER_H

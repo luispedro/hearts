@@ -1,13 +1,20 @@
 #include "player.h"
 #include "table.h"
 #include "network/connection.h"
+#include "surevalidator.h"
 #include <general/helper.h>
 
 Player::Player(QObject* parent, KExtendedSocket* socket )
 		:ServerConnection( socket, parent ),
-		 table_( 0 )
+		 table_( 0 ),
+		 validator_( new SureValidator )
 {
 		LOG_PLACE_NL();
+}
+
+Player::~Player()
+{
+	delete validator_;
 }
 
 void Player::get( Message m )
@@ -22,6 +29,10 @@ void Player::get( Message m )
 			break;
 		case Message::hello:
 			name_ = m.arg<QString>( 0 );
+			if ( !validator_->validate( name_, m.arg<QString>( 1 ) ) ) {
+				// TODO sendError( "Invalid password/username" );
+				delete this;
+			}
 			break;
 		case Message::createTable:
 			emit createTable( m.table() );

@@ -84,7 +84,7 @@ void GameManager::give_cards()
 
 bool GameManager::ask_for_cards()
 {
-	if ( number_games % 4 == 3 ) {
+	if ( ( number_games % 4 ) == 3 ) {
 		return false;
 	}
 	for ( control_cont_type::iterator iter = players.begin(); iter != players.end(); ++iter ) {
@@ -118,16 +118,21 @@ void GameManager::give3_reply( player_id::type id, const Holder3& cards )
 
 void GameManager::distribute_cards()
 {
-	LOG_PLACE() << "distributing cards.\n";
-	// TODO: fix so that it doesn't always go right;
-	for ( unsigned i = 0; i != 4; ++i ) {
-		for ( unsigned j = 0; j != 3; ++j ) {
-			unsigned index = ( i + 1 ) % 4;
-			players[ index ].player->receive( given_cards[ i ][ j ] );
-			players[ index ].hand.insert( given_cards[ i ][ j ] );
-			players[ i ].hand.erase( players[ i ].hand.find( given_cards[ i ][ j ] ) );
+	LOG_PLACE() << "distributing cards [ game " << number_games << " ].\n";
+	assert( ( number_games % 4 ) < 3 );
+	const unsigned relative[ 3 ] = {
+			1, // right
+			3, // left 3 mod 4 == -1 mod 4
+			2  // across
+	};
+	for ( unsigned sender = 0; sender != 4; ++sender ) {
+		for ( unsigned i = 0; i != 3; ++i ) {
+			unsigned receiver = ( sender + relative[ number_games % 3 ] ) % 4;
+			players[ receiver ].player->receive( given_cards[ sender ][ i ] );
+			players[ receiver ].hand.insert( given_cards[ sender ][ i ] );
+			players[ sender ].hand.erase( players[ sender ].hand.find( given_cards[ sender ][ i ] ) );
 		}
-		given_cards[ i ].clear();
+		given_cards[ sender ].clear();
 	}
 }
 
@@ -204,6 +209,7 @@ void GameManager::hand_end()
 		reset_game_data();
 		status_every_player( player_status::game_over );
 		current_state = Idle;
+		++number_games;
 		if ( game_over_callback )
 			( *game_over_callback ) ();
 	} else {

@@ -110,7 +110,7 @@ void HumanInterface::clearTable( player_id::type who )
 
 void HumanInterface::moveTable()
 {
-	unsigned dist[ 10 ] = { 32, 32, 32, 32, 24, 24, 16, 8, 4, 2 };
+	const unsigned dist[ 10 ] = { 32, 32, 32, 32, 24, 24, 16, 8, 4, 2 };
 	table->move( table->x() + dist[ move_info.counter - 1 ] * move_info.x, table->y() + dist[ move_info.counter - 1 ] * move_info.y );
 	LOG_PLACE() << " counter = " << move_info.counter << " table->x() = " << table->x() << ".\n";
 	--move_info.counter;

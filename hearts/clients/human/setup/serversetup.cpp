@@ -13,7 +13,7 @@
 #include <klocale.h>
 #include <kprocess.h>
 #include <kmessagebox.h>
-#include <kapp.h>
+#include <kapplication.h>
 
 #include <errno.h>
 #include <string.h>

@@ -1,4 +1,4 @@
-#include <kapp.h>
+#include <kapplication.h>
 #include "humanclient.h"
 #include "config.h"
 #include "general/helper.h"

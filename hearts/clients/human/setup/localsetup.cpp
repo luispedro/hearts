@@ -16,7 +16,7 @@
 #include <qlabel.h>
 #include <qlineedit.h>
 #include <klocale.h>
-#include <kapp.h>
+#include <kapplication.h>
 #include <qtimer.h>
 #include <kdebug.h>
 #include <kprocess.h>

@@ -20,7 +20,7 @@ email                : luis@luispedro.org
 #include "general/widget_placement.h"
 #include "options.h"
 
-#include <kapp.h>
+#include <kapplication.h>
 #include <klocale.h>
 #include <qtimer.h>
 

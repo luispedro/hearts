@@ -15,7 +15,7 @@ email                : luis@luispedro.org
  *                                                                         *
  ***************************************************************************/
 
-#include <kapp.h>
+#include <kapplication.h>
 #include "tabledisplayer.h"
 #include "general/helper.h"
 

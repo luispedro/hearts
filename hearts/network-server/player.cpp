@@ -44,7 +44,7 @@ void Player::get( Message m )
 			emit createTable( this, m.table() );
 			break;
 		default:
-			ServerConnection::get( m );
+			//ServerConnection::get( m );
 			LOG_PLACE() << " Unrecognised message = " << m << std::endl;
 	}
 }

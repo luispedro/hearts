@@ -20,3 +20,5 @@ serversetupwidget.cpp
 serversetupwidget.h
 remotesetupwidget.cpp
 remotesetupwidget.h
+onlineplayerwidget.cpp
+onlineplayerwidget.h

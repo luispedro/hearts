@@ -6,6 +6,8 @@
 #include <qstring.h>
 #include <qstringlist.h>
 
+#include <stdio.h>
+
 #include <sys/types.h>
 #include <sys/socket.h>
 
@@ -49,7 +51,6 @@ bool execute_server( bool tcp, bool local )
 	execute_server( 0 );
 }
 
-
 bool execute_computer_client( QString name )
 {
 	KProcess p;
@@ -63,6 +64,15 @@ bool execute_computer_client( QString name )
 
 
 }
+
+void execute::server( const int fds[ 4 ] ) {
+	char buffer[ 32 ];
+	if ( snprintf( buffer, sizeof( buffer ), "%d,%d,%d,%d", fds[ 0 ], fds[ 1 ], fds[ 2 ], fds[ 3 ] ) > 0) {
+			execlp( "heartsserver", "heartsserver", "--fds", buffer, ( const char* )0 );
+	}
+	exit( 1 ); // An error occurred
+}
+
 
 int execute::computerClient( QString name )
 {

@@ -4,6 +4,7 @@
 #include <qstring.h>
 
 namespace execute {
+		void server( const int fds[ 4 ] );
 		bool execute_server();
 		bool execute_server( bool tcp, bool local );
 		bool execute_server( short port );

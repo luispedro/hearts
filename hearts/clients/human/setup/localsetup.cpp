@@ -69,21 +69,13 @@ void LocalSetup::execute()
 			fds[ 1 ] = computerClient( widget_->rightName() );
 			fds[ 2 ] = computerClient( widget_->frontName() );
 			fds[ 3 ] = computerClient( widget_->leftName() );
-			
 			if ( fds[ 1 ] < 0 ||
 							fds[ 2 ] < 0 ||
 							fds[ 3 ] < 0 ) {
 					close( pipe[ server ] );
 					exit( 1 );
 			}
-			KProcess p;
-			p << "heartsserver"
-					<< "--fds" << QString::fromLatin1( "%1,%2,%3,%4" )
-									.arg( fds[ 0 ] )
-									.arg( fds[ 1 ] )
-									.arg( fds[ 2 ] )
-									.arg( fds[ 3 ] );
-			exit( p.start( KProcess::DontCare ) ? 0 : 1 );
+			execute::server( fds );
 	}
 error:
 	LOG_PLACE_NL();

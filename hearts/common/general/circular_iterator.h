@@ -82,7 +82,7 @@ inline circular_iterator<It>::circular_iterator( const circular_iterator<It>& ot
 }
 
 template <typename It>
-inline circular_iterator<It>::value_type& circular_iterator<It>::operator * () const
+inline typename circular_iterator<It>::value_type& circular_iterator<It>::operator * () const
 {
 	return * cur;
 }
@@ -147,7 +147,7 @@ inline circular_iterator<It>& circular_iterator<It>::operator += ( circular_iter
 }
 
 template <typename It>
-inline circular_iterator<It> operator+( circular_iterator<It> res, circular_iterator<It>::difference_type d )
+inline circular_iterator<It> operator+( circular_iterator<It> res, typename circular_iterator<It>::difference_type d )
 {
 	res += d;
 	return res;

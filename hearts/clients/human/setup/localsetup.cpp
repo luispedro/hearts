@@ -44,7 +44,6 @@ void LocalSetup::execute()
 	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) {
 			goto error;
 	}
-
 	stat = fork();
 	if ( stat < 0 ) goto error;
 	if ( stat > 0 ) {
@@ -53,10 +52,13 @@ void LocalSetup::execute()
 			SAVE( right );
 			SAVE( front );
 			SAVE( left );
+			::close( pipe[ server ] );
 			char c = 0;
 			::write( pipe[ client ], &c, 1);
 			emit connected( pipe[ client ] );
 	} else {
+			::close( pipe[ client ] );
+
 			int fds[ 4 ];
 			fds[ 0 ] = pipe[ server ];
 			fds[ 1 ] = execute::computerClient( widget_->rightName() );

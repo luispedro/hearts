@@ -29,7 +29,7 @@ SetupWindow::SetupWindow()
 	insertPage( init, i18n( "Type of game" ), 0 );
 	showPage( init );
 	init->adjustSize();
-	resize( QSize( 320, 180 ).expandedTo( minimumSizeHint() ) );
+	resize( QSize( 500, 180 ).expandedTo( minimumSizeHint() ) );
 	setNextEnabled( init, true );
 }
 

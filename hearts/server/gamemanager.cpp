@@ -221,8 +221,9 @@ void GameManager::assign_points()
 	std::vector<unsigned> points_gotten( 4 );
 	for ( unsigned i = 0; i != 4; ++i )
 	{
-		for ( std::set
-					<Card>::iterator iter = players[ i ].gotten.begin(); iter != players[ i ].gotten.end(); ++iter ) {
+		for ( std::set<Card>::iterator iter = players[ i ].gotten.begin();
+				iter != players[ i ].gotten.end();
+				++iter ) {
 				points_gotten[ i ] += points_for( *iter );
 			}
 	}
@@ -244,19 +245,21 @@ void GameManager::assign_points()
 }
 
 const char* GameManager::validate( const Card& attempt ) const
-{ /***********************
-					   * This  validates move from the to_move player
-					   * If it is valid it returns 0, else it returns an error message.
-					   *
-					   * RULES:
-					   *    1. You cannot play a card you do not have.
-					   *    2. You must always follow suit if possible
-					   *    3. On the first hand:
-					   *             a. you must start the hand with the two of clubs
-					   *             b. you cannot play any points cards. Unless all you have are hearts
-					   *    4. You can only start a hand with hearts if hearts have been played
-					   *
-					   **********************/
+{ 
+		  /***********************
+				* This  validates move from the to_move player
+				* If it is valid it returns 0, else it returns an error message.
+				*
+				* RULES:
+				*    1. You cannot play a card you do not have.
+				*    2. You must always follow suit if possible
+				*    3. On the first hand:
+				*             a. you must start the hand with the two of clubs
+				*             b. you cannot play any points cards. Unless all you have are hearts
+				*    4. You can only start a hand with hearts if hearts have been played
+				*
+			**********************/
+
 	if ( to_move->hand.count( attempt ) == 0 ) {
 		return error_msgs[ dont_have_card ];
 	}
@@ -274,11 +277,13 @@ const char* GameManager::validate( const Card& attempt ) const
 			if ( has_suite( *to_move, Card::clubs ) ) {
 				return error_msgs[ must_assist_clubs ];
 			} else if ( points_for( attempt ) ) {
-				if ( std::find_if( to_move->hand.begin(), to_move->hand.end(), not1( OfSuite( Card::hearts ) ) ) != to_move->hand.end() ) { // the player has at least one non-hearts card
+				if ( std::find_if( to_move->hand.begin(), to_move->hand.end(), not1( OfSuite( Card::hearts ) ) ) != to_move->hand.end() ) {
+						  // the player has at least one non-hearts card
 					return error_msgs[ no_points ];
 				}
-				// amazing, all the hearts.That's a 1 in 52!/((52-13)!13!)  shot. [1 in 635013559600 according to bc]
-				// actually that doesn't account for trading cards, but still mighty unprobable
+				// amazing, all the hearts.
+				// That's a 1 in 52!/((52-13)!13!)  shot. [1 in 635013559600 according to bc]
+				// that doesn't account for trading cards, but still mighty unprobable
 				return 0;
 			} else
 				return 0;

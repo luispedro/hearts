@@ -21,6 +21,7 @@ email                : luis@luispedro.org
 
 #include <algorithm> // find
 #include <strstream>
+#include <cassert>
 
 Translator::~Translator()
 {

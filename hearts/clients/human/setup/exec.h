@@ -9,5 +9,9 @@ namespace execute {
 		int computerClient( QString name );
 		QString generateLocalAddress();
 }
+namespace unix {
+		void coe( int );
+		void uncoe( int );
+}
 
 #endif /* DB_EXEC_H_INCLUDE_GUARD_ */

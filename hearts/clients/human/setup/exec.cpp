@@ -45,14 +45,14 @@ bool execute::server( short port )
  *
  * Then, just before we exec the server, we unset it.
  */
-namespace {
-		void coe( int fd ) {
-				fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) | FD_CLOEXEC ) );
-		}
-		void uncoe( int fd ) {
-				fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) & ~FD_CLOEXEC ) );
-		}
+void unix::coe( int fd ) {
+	fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) | FD_CLOEXEC ) );
 }
+void unix::uncoe( int fd ) {
+	fcntl( fd, F_SETFD, ( fcntl( fd, F_GETFD ) & ~FD_CLOEXEC ) );
+}
+
+using namespace unix;
 
 void execute::server( const int fds[ 4 ] ) {
 	char buffer[ 32 ];

@@ -5,25 +5,30 @@
 #include <qstring.h>
 #include <qpushbutton.h>
 
+#include "hearts/player_id.h"
+
 class QLabel;
 class QLineEdit;
 class LocalSetupWidget;
 
 class LocalSetup : public QWidget {
-		Q_OBJECT
-		public:
+	Q_OBJECT
+	public:
 		LocalSetup(QWidget* parent, const char* name = "");
-		
-		private slots:
-			/** This setups a local games and execs a server */
-				void execute();
-			/** @internal */
-				void execute2();
 
-		signals:
-				void connected(int);
-		
-	
+	public slots:
+		void setName( player_id::type, QString );
+
+	signals:
+		void connected(int);
+
+	private slots:
+		/** This setups a local games and execs a server */
+		void execute();
+
+		/** @internal */
+		void execute2();
+
 	private:
 		LocalSetupWidget* widget_;
 };

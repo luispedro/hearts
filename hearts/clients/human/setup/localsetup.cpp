@@ -26,14 +26,20 @@
 
 #include <algorithm>
 
-
-
 LocalSetup::LocalSetup(QWidget* parent, const char* name)
 	:QWidget(parent,name),
 	 widget_( new LocalSetupWidget( this, "localsetupwidget" ) )
 {
+#define SET_INIT( x ) setName( player_id::x, Options::playerName( player_id::x ) );
+	HANDLE_ALL_PLAYER_IDS( SET_INIT );
 }
 
+void LocalSetup::setName( player_id::type who, QString name )
+{
+#define CASE( x ) if ( who == player_id::x ) widget_->x ## _ ->setText( name )
+
+	HANDLE_ALL_PLAYER_IDS( CASE );
+}
 
 void LocalSetup::execute()
 { // FIXME: add error handling

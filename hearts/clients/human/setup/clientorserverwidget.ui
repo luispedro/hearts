@@ -1,15 +1,15 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>ClientOrServerWidget</class>
 <widget class="QWidget">
     <property name="name">
-        <cstring>Form1</cstring>
+        <cstring>ClientOrServerForm</cstring>
     </property>
     <property name="geometry">
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>290</width>
-            <height>200</height>
+            <width>379</width>
+            <height>500</height>
         </rect>
     </property>
     <property name="caption">
@@ -28,7 +28,7 @@
             </rect>
         </property>
         <property name="title">
-            <string>buttonGroup1</string>
+            <string>Deal or Join Table?</string>
         </property>
         <widget class="QRadioButton">
             <property name="name">

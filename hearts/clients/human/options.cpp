@@ -52,7 +52,7 @@ QString Options::networkLogin()
 	KConfig* kc = KGlobal::config();
 	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
 	
-	return kc->readString( "login", QString::null );
+	return kc->readEntry( "login", QString::null );
 }
 
 void Options::saveNetworkLogin( const QString& name )
@@ -60,7 +60,7 @@ void Options::saveNetworkLogin( const QString& name )
 	KConfig* kc = KGlobal::config();
 	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
 	
-	kc->writeString( "login", name );
+	kc->writeEntry( "login", name );
 }
 
 QCString Options::networkPassword()
@@ -68,7 +68,9 @@ QCString Options::networkPassword()
 	KConfig* kc = KGlobal::config();
 	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
 	
-	return kc->readString( "password", QString::null );
+	QString res = kc->readEntry( "password", QString::null );
+	if ( res.isNull() ) return QCString();
+	return res.utf8();
 }
 
 void Options::saveNetworkPassword( const QCString& pwd )
@@ -76,7 +78,7 @@ void Options::saveNetworkPassword( const QCString& pwd )
 	KConfig* kc = KGlobal::config();
 	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
 	
-	kc->writeString( "password", pwd );
+	kc->writeEntry( "password", QString::fromUtf8( pwd ) );
 }
 
 

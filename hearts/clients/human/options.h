@@ -8,10 +8,10 @@ QString playerName( player_id::type who );
 void savePlayerName( player_id::type, const QString& );
 
 QString networkLogin();
-QString saveNetworkLogin( const QString& );
+void saveNetworkLogin( const QString& );
 
 QCString networkPassword();
-QCString saveNetworkPassword( const QCString& );
+void saveNetworkPassword( const QCString& );
 
 }
 

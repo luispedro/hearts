@@ -1,0 +1,29 @@
+Hearts 1.92
+
+LICENSE
+-----------
+
+GPL.
+If you don't know what that means, or want to see more read COPYING
+
+COMPILATION
+--------------
+
+To compile you should only have to do:
+
+./configure
+make
+make install
+
+RUNNING THE PROGRAM
+-------------------
+
+1. Basics
+
+Type "hearts" at the command prompt or select Hearts from the KDE menu.
+
+You should see a small dialog appear where you can select whether to play a local or a network game. For a local game, just click Go on the local game Tab. 
+
+2. Network game
+
+To have network play, one must have one server running and players connecting to it. One (and only one) player must select the "Deal cards" tab on the setup window. In this tab you can specify which players will be computer players and which ones will be humans connecting. One player is always human. Other players should choose the tab "connect to another game" and enter the IP address of the card dealer. 

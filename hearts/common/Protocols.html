@@ -1,0 +1,26 @@
+<html>
+<head>
+<title>Protocols for hearts</title>
+</head>
+<body>
+<p>This is a small description of the protocols used by the hearts app and server.
+
+<h2>Design</h2>
+
+<p>There are two protocols used by hearts. For playing in the network, we first contact a public server to find out if there are any others in the same situation. This protocol lets users know of others, of whether they are available for games, etc. In the future, one might such functionality as the possibility to login with a given reserved name. The result of this phase is that four players are assembled. Here the second protocol comes into play. In it, the four players connect to a common game server which controls the whole game. This server might be on the internet, or it might be one of the players. If it is one of the players, the problem of users behind firewalls remain to be solved. Here the players exchange messages with the server whichcontrols the whole game. In the future this "game server" might report back to the "login server" the results of the game for user rating purposes.
+
+<h2>Protocol basics</h2>
+
+<p>The protocol is text-based. The enconding used is 8-bit Ascii. All text is exchanged in English and it is left for the app to translate if necessary. This makes possible for diffferent players to translate to different strings. Where sensible, the serverr replys with text-codes instead of the real text.
+
+<p>The protocols are based in exchanging messages. These can be single messages or Request/Reply pairs. Each message starts by a codeword followed by a space-separated list of arguments (which can be empty) and ends with a unix-style newline character. 
+Request/Reply pairs are identified by using the letters Q (for Query) and R (for Reply) at the end of a messagecode. For example, here is how the server asks for a player's name:
+
+<pre>
+NameQ&lt;NL&gt;
+NameR "super trouper"&lt;NL&gt;
+</pre>
+
+<p>We also see another aspect in the small example: strings are quoted. In general numbers are passed as text in the obvious way, and strings are quoted. See each protocols description for more information on this.
+
+

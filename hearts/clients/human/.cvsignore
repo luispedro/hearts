@@ -1,0 +1,8 @@
+Makefile
+Makefile.in
+*moc
+*moc.cpp
+hearts
+.libs
+.deps
+

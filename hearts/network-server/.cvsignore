@@ -1,0 +1,9 @@
+Makefile
+Makefile.in
+*moc
+*moc.cpp
+networkserver
+.deps
+.libs
+
+.deps .libs

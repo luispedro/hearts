@@ -1,0 +1,12 @@
+# KDE Config File  
+[KDE Desktop Entry]
+Type=Application
+Exec=hearts -caption "%c" %i %m  
+Icon=hearts.png
+MiniIcon=mini-hearts.png
+DocPath=hearts/index.html
+Comment=A card game
+Comment[pt]=Um jogo de cartas
+Terminal=0
+Name=Hearts
+Name[pt]=Copas

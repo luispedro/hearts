@@ -1,0 +1,65 @@
+# Original Author was Kalle@kde.org
+# I lifted it in some mater. (Stephan Kulow)
+# I used much code from Janos Farkas
+
+dnl Process this file with autoconf to produce a configure script.
+
+AC_INIT(acinclude.m4) dnl a source file from your sub dir
+
+
+dnl This is so we can use kde-common
+AC_CONFIG_AUX_DIR(admin)
+
+AC_CANONICAL_SYSTEM 
+AC_ARG_PROGRAM
+
+
+dnl Automake doc recommends to do this only here. (Janos)
+AM_INIT_AUTOMAKE(hearts, 1.94) dnl searches for some needed programs
+
+
+KDE_SET_PREFIX
+AC_PREFIX_DEFAULT(/usr)
+
+dnl generate the config header
+AM_CONFIG_HEADER(config.h) dnl at the distribution this done
+
+dnl Checks for programs.
+AC_CHECK_COMPILERS
+AC_ENABLE_SHARED(yes)
+AC_ENABLE_STATIC(no)
+KDE_PROG_LIBTOOL
+
+dnl for NLS support. Call them in this order!
+dnl WITH_NLS is for the po files
+AM_KDE_WITH_NLS
+
+AC_PATH_KDE
+
+dnl Perform program name transformation
+dnl AC_ARG_PROGRAM
+
+AC_CHECK_HEADERS(unistd.h)
+
+
+CXXFLAGS="$CXXFLAGS -foperator-names"
+
+KDE_CREATE_SUBDIRSLIST
+
+AC_CONFIG_FILES([ Makefile ])
+AC_CONFIG_FILES([ server/Makefile ])
+AC_CONFIG_FILES([ network-server/Makefile ])
+AC_CONFIG_FILES([ clients/Makefile ])
+AC_CONFIG_FILES([ clients/human/Makefile ])
+AC_CONFIG_FILES([ clients/human/pics/Makefile ])
+AC_CONFIG_FILES([ clients/computer/Makefile ])
+AC_CONFIG_FILES([ misc/Makefile ])
+AC_CONFIG_FILES([ common/Makefile ])
+AC_CONFIG_FILES([ common/communication/Makefile ])
+AC_CONFIG_FILES([ common/general/Makefile ])
+AC_CONFIG_FILES([ common/hearts/Makefile ])
+AC_CONFIG_FILES([ common/network/Makefile ])
+AC_CONFIG_FILES([ clients/human/setup/Makefile ])
+AC_CONFIG_FILES([ po/Makefile ])
+AC_OUTPUT
+

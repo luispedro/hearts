@@ -1,0 +1,90 @@
+#ifndef CONNECTION_H
+#define CONNECTION_H
+
+#include "message.h"
+#include <qobject.h>
+#include <qstring.h>
+
+class KExtendedSocket;
+
+namespace Network {
+
+class Connection: public QObject
+{
+	Q_OBJECT
+	public:
+		Connection( KExtendedSocket* connection, QObject* parent, const char* name = "network-connection");
+		virtual ~Connection();
+
+		KExtendedSocket* socket() { return socket_; } 
+
+	public slots:
+		void write( Message );
+		void read();
+		void close(); 
+		void changeProtocol();
+
+	signals:
+		void protocolChanged();
+		void connectionError( const char*, int );
+		void peerError( const char* );
+		void received( Message );
+	private:
+		virtual void get( Message );
+	private:
+		KExtendedSocket* socket_;
+};
+
+typedef QString PlayerInfo;
+
+class UserConnection : public Connection
+{
+	Q_OBJECT
+	public:
+		UserConnection( KExtendedSocket* connection, QObject* parent, const char* name = "user-network-connection" );
+		
+	signals:
+		void connectTo( const char*, short );
+		void startGame( short ); 
+		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
+	public slots:
+		void hello( QString );
+		void createTable( QString );
+		void joinTable( QString );
+		void leaveTable();
+	private:
+		void get( Message );
+};
+
+class ServerConnection : public Connection
+{
+	Q_OBJECT
+	public:
+		ServerConnection( KExtendedSocket* connection, 
+				QObject* parent, 
+				const char* name = "server-network-connection" );
+
+		/**
+		 * This is set automatically before calling hello( "" );
+		 */
+		QString userName();
+	// Unlike the corresponding slots in the above class, this one includes <code>this</code>in its signals as the 
+		// intended usage will be to have several objects connecting to the same slot.
+	signals:
+		void hello( ServerConnection*, QString );
+		void createTable( ServerConnection*, QString );
+		void joinTable( ServerConnection*, QString );
+		void leaveTable( ServerConnection* );
+	public slots:
+		void connectTo( const char*, short );
+		void startGame( short );
+		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
+
+	private:
+		void get( Message );
+};
+
+} // namespace Network 
+
+#endif // CONNECTION_H
+

@@ -42,7 +42,7 @@ bool Table::full() const
 
 Player* Table::player( int idx ) const
 {
-	if ( idx < 0 or idx >= players_.size() ) return 0;
+	if ( idx < 0 or unsigned( idx ) >= players_.size() ) return 0;
 	return players_[ idx ];
 }
 

@@ -78,6 +78,7 @@ void NetworkSetup::openConnection( const char* server, short port )
 
 	connect( connection_, SIGNAL( playerStatus( QString, player_status::type ) ),
 			SLOT( playerStatus( QString, player_status::type ) ) );
+	connect( connection_, SIGNAL( motd( const QString& ) ), online_, SLOT( setMotD( const QString& ) ) );
 
 	QString playerName = Options::playerName( player_id::self );
 	connection_->hello( playerName );

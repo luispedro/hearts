@@ -1,19 +1,18 @@
+#include "server.h"
+
 #include <qptrlist.h>
 #include <qobjectlist.h>
 #include <qobject.h>
+#include <klocale.h>
 #include <errno.h>
 #include <unistd.h>
-
-#include "server.h"
-
-#include <general/helper.h>
-
 #include <sys/types.h>
 #include <sys/socket.h>
 
+#include "general/helper.h"
 #include "logfile.h"
 #include "network/constants.h"
-
+#include "motd.h"
 #include "player.h"
 #include "table.h"
 
@@ -79,6 +78,7 @@ void Server::acceptSlot()
 	FOR_ALL_TABLES( p->lookAt( table ) );
 	FOR_ALL_PLAYERS( if ( p != player && player->name() ) p->playerStatus( player->name(),
 							( player->table() ? player_status::waiting : player_status::online ) ));
+	p->motd( i18n( MotD::message() ) );
 }
 
 

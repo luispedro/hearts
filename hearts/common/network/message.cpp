@@ -41,15 +41,20 @@ Message::Message( const MessageConstructor& c )
 {}
 
 Message::Message( QString rep )
-		: pieces_( QStringList::split( " ", rep ) )
+		: pieces_( QStringList::split( QString::fromLatin1( " " ), rep ) )
 {
+	pieces_.gres( "\\_"," " );
+	pieces_.gres( "\\\\","\\" );
 	LOG_PLACE() << " Message::Message(" << rep.utf8() << ")" << std::endl;
 	type_ = fromString( *pieces_.at( 0 ) );
 }
 
 QString Message::asString() const
 {
-	return pieces_.join( QString::fromLatin1( " " ) );
+	QStringList copy = pieces_;
+	copy.gres( "\\","\\\\" );
+	copy.gres( " ","\\_" );
+	return copy.join( QString::fromLatin1( " " ) );
 }
 
 unsigned Message::numArgs() const

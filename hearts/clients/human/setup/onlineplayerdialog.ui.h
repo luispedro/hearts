@@ -23,3 +23,9 @@ void OnlinePlayersDialog::setStatus( QString name, player_status::type s )
 {
 
 }
+
+
+void OnlinePlayersDialog::setMotD( const QString & message )
+{
+    motd->setText( message );
+}

@@ -18,6 +18,7 @@ class MessageConstructor;
 // leaveTable name
 // hello name
 // playerStatus playerName player_status
+// motd message
 // changeProtocol
 
 class Message
@@ -38,6 +39,7 @@ class Message
 					HANDLE( auth ) \
 					HANDLE( lookAt ) \
 					HANDLE( playerStatus ) \
+					HANDLE( motd ) \
 					HANDLE( changeProtocol )
 #define HANDLE( x ) x,
 

@@ -49,8 +49,7 @@ void Connection::read()
 		socket_->readLine( buffer, sizeof( buffer ) );
 		LOG_PLACE() << ", read = \"" << buffer << "\"." << std::endl;
 		Message m( QString::fromUtf8( buffer ) );
-		get
-			( m );
+		get( m );
 		emit received( m );
 	}
 }
@@ -140,6 +139,9 @@ void UserConnection::get( Message m )
 		case Message::playerStatus:
 			emit playerStatus( m.arg<QString>( 0 ), m.arg<player_status::type>( 1 ) );
 			return;
+		case Message::motd:
+			emit motd( m.arg<QString>( 0 ) );
+			return;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }
@@ -167,6 +169,10 @@ void ServerConnection::lookAt( QString table, PlayerInfo p1, PlayerInfo p2, Play
 	MessageConstructor m;
 	m << Message::lookAt << table << p1 << p2 << p3 << p4;
 	write( m );
+}
+
+void ServerConnection::motd( const QString& message ) {
+	write( MessageConstructor() << Message::motd << message );
 }
 
 void ServerConnection::auth( QCString method, QCString cookie )

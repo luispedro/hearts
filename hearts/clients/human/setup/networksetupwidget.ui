@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.1" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>NetworkSetupWidget</class>
 <comment>This is the widget used to setup a network connection</comment>
 <author>Luis Pedro Coelho &lt;luis@luispedro.org&gt;</author>
@@ -10,8 +10,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>530</width>
-            <height>441</height>
+            <width>535</width>
+            <height>462</height>
         </rect>
     </property>
     <property name="caption">
@@ -19,14 +19,14 @@
     </property>
     <widget class="QLayoutWidget">
         <property name="name">
-            <cstring>layout7</cstring>
+            <cstring>layout15</cstring>
         </property>
         <property name="geometry">
             <rect>
                 <x>10</x>
-                <y>20</y>
-                <width>485</width>
-                <height>401</height>
+                <y>10</y>
+                <width>472</width>
+                <height>357</height>
             </rect>
         </property>
         <vbox>
@@ -35,7 +35,7 @@
             </property>
             <widget class="QLayoutWidget">
                 <property name="name">
-                    <cstring>layout6</cstring>
+                    <cstring>layout14</cstring>
                 </property>
                 <hbox>
                     <property name="name">
@@ -64,7 +64,7 @@
                         </property>
                         <property name="sizeHint">
                             <size>
-                                <width>112</width>
+                                <width>30</width>
                                 <height>20</height>
                             </size>
                         </property>
@@ -100,10 +100,16 @@
                         <property name="sizePolicy">
                             <sizepolicy>
                                 <hsizetype>0</hsizetype>
-                                <vsizetype>0</vsizetype>
+                                <vsizetype>7</vsizetype>
                                 <horstretch>4</horstretch>
                                 <verstretch>0</verstretch>
                             </sizepolicy>
+                        </property>
+                        <property name="maximumSize">
+                            <size>
+                                <width>60</width>
+                                <height>32767</height>
+                            </size>
                         </property>
                     </widget>
                 </hbox>
@@ -245,13 +251,15 @@
                 <property name="sizeHint">
                     <size>
                         <width>20</width>
-                        <height>84</height>
+                        <height>40</height>
                     </size>
                 </property>
             </spacer>
         </vbox>
     </widget>
 </widget>
+<customwidgets>
+</customwidgets>
 <connections>
     <connection>
         <sender>changeServer</sender>
@@ -304,4 +312,7 @@
     <slot specifier="non virtual">activateJoin()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
+<includehints>
+    <includehint>klineedit.h</includehint>
+</includehints>
 </UI>

@@ -1,5 +1,5 @@
 bin_PROGRAMS = heartsd
-heartsd_SOURCES = main.cpp player.cpp server.cpp table.cpp options.cpp logfile.cpp
+heartsd_SOURCES = main.cpp player.cpp server.cpp table.cpp options.cpp logfile.cpp motd.cpp
 heartsd_LDFLAGS = $(all_libraries) $(KDE_RPATH)
 
 heartsd_LDADD   = ../common/network/libnethearts.a ../common/communication/libcomhearts.a ../common/hearts/libhearts.a ../common/general/libgenhearts.a  ../common/network/libnethearts.a -lkdeui -lkdecore -lXext -lX11 $(LIBSOCKET) -lqt-mt

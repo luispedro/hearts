@@ -2,11 +2,12 @@
 #define DB_DATABASE_H1067811020_INCLUDE_GUARD_
 
 #include <qstring.h>
+#include <mysql.h>
 
 class Database
 {
 	public:
-		virtual QCString password( QString name ) = 0;
+		virtual QCString password( QString login ) = 0;
 };
 
 class VeryStupidDatabase : public Database
@@ -19,5 +20,14 @@ class VeryStupidDatabase : public Database
 };
 
 
+class MySQLDatabase : public Database
+{
+	public:
+		MySQLDatabase();
+		QCString password( QString login );
+
+	private:
+		MYSQL connection_;
+};
 
 #endif /* DB_DATABASE_H1067811020_INCLUDE_GUARD_ */

@@ -4,10 +4,11 @@ do_header('Hearts for KDE');
 ?>
 
 <h2>What is hearts?</h2>
-
-<p>Hearts is a little card game played with four persons (it is also possible to play it with three though taking the eights, nines, tens and a two, normally I take out the two of diamonds).
-<p>A computer version of the game comes with Windows and is a pretty popular little thing. When I switched to using Linux, I really wanted to play it, but I didn't find anything at all, so I decided to write it myself and here it is.
-<p>Right now there are two versions: A stable (more or less) version, which only supports local play and an unstable development version which supports network play, &lt;understament&gt;but has a couple of features missing&lt;/understatement&gt;.
+<div style="padding: 1px;">
+<img style="float:left; margin: 1em" src="images/Ha.png" />
+<p>Hearts is a little card game for four persons.</p> 
+<p>A computer version of the game comes with Microsoft Windows and is a pretty popular little thing. When I switched to using Linux, I really wanted to play it, but I didn't find anything at all, so I decided to write it myself and here it is.
+</div>
 
 <h2>What's New:</h2>
 

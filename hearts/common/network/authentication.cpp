@@ -3,6 +3,7 @@
 #include <cstring>
 #include <cstdlib>
 #include <cstdio>
+#include <cassert>
 #ifdef TEST_ME
 #include <iostream>
 #endif

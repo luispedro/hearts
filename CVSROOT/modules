@@ -25,3 +25,5 @@
 # can be useful for creating a module that consists of many directories
 # spread out over the entire source repository.
 hearts			hearts
+releases		hearts.releases
+public_html		hearts.admin/public_html &releases

@@ -46,6 +46,13 @@ background: #ddf;
 padding-left: 2em;
 border-bottom: 2px solid black;
 } 
+
+DIV H2{
+	background: #ddd;
+	color: #006;
+	margin-right: 20em;
+	border-bottom: 2px black inset;
+}
  
 A { 
  color: red; 

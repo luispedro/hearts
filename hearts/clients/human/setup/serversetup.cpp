@@ -1,41 +1,26 @@
 #include "serversetup.h"
-#include "playersetup.h"
 #include "exec.h"
-#include "general/widget_placement.h"
+#include "serversetupwidget.h"
 #include "general/helper.h"
 #include "communication/constants.h"
 #include "communication/open_connections.h"
 
+#include "../options.h"
+
+#include <qpushbutton.h>
+#include <qcombobox.h>
 #include <klocale.h>
 #include <kprocess.h>
-#include <qpushbutton.h>
 #include <kmessagebox.h>
-#include <errno.h>
-#include <string.h>
 #include <kapp.h>
 
+#include <errno.h>
+#include <string.h>
+
 ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
-		QWidget( parent, name ),
-		self( new QLabel( i18n( "Type of first player: Local player" ), this ) ),
-		right( new PlayerSetup( player_id::right, this ) ),
-		front( new PlayerSetup( player_id::front, this ) ),
-		left( new PlayerSetup( player_id::left, this ) ),
-		go( new QPushButton( i18n( "Go!" ), this, "server-execute" ) )
+		QWidget( parent, name )
 {
-	//connect( go, SIGNAL( clicked() ), SLOT( execute() ) );
-
-	self->move( 10, 10 );
-	//adjust_size(self);
-	right->move( 10, below( self ) + 10 );
-	//adjust_size(right);
-	front->move( 10, below( right ) + 10 );
-	//adjust_size(front);
-	left->move( 10, below( front ) + 10 );
-	//adjust_size(left);
-
-	go->move( 10, below( left ) + 20 );
-	adjust_size( go );
-	setMinimumHeight( below( go ) + 10 );
+	widget_ = new ServerSetupWidget( this, "server-setup-widget" );
 
 }
 
@@ -43,15 +28,59 @@ void ServerSetup::execute()
 {
 	execute_server();
 	sleep( 1 ); // FIXME: hack
-	right->execute();
-	front->execute();
-	left->execute();
+
+	execute( player_id::right, widget_->type1 );
+	execute( player_id::front, widget_->type2 );
+	execute( player_id::left, widget_->type3 );
 	int fd = open_client_connection( local_address );
 	if ( fd < 0 ) {
 		KMessageBox::error( 0, i18n( "An error occurred:\n%1" ).arg( strerror( errno ) ) );
 	}
 	emit connected( fd );
 }
+
+void ServerSetup::optionsSelf() {
+}
+
+void ServerSetup::optionsRight() {
+	options( player_id::right, widget_->type1 );
+}
+
+void ServerSetup::optionsFront() {
+	options( player_id::front, widget_->type2 );
+}
+
+void ServerSetup::optionsLeft() {
+	options( player_id::left, widget_->type3 );
+}
+
+void ServerSetup::options( player_id::type, QComboBox* type )
+{
+	enum { comp, remote };
+	if ( type->currentItem() == comp ) {
+		KMessageBox::sorry( this, i18n( "Not yet implemented" ) );
+		/*
+		* ComputerPlayerOptions* opt = new ComputerPlayerOptions( player );
+		* opt->show();
+		* opt->exec();
+		*/
+	} else if ( type->currentItem() == remote ) {
+
+		KMessageBox::sorry( this, i18n( "There are no options available for remote players" ) );
+
+	}
+}
+
+void ServerSetup::execute( player_id::type player, QComboBox* type ) {
+	enum { comp, remote };
+	if ( type->currentItem() == comp ) {
+		execute_computer_client( QString( Options::playerName( player ) ) );
+	} else {
+		; // remote player, do nothing
+	}
+}
+
+
 
 #include "serversetup.moc"
 

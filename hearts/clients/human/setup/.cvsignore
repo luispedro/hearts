@@ -16,3 +16,5 @@ localsetupwidget.h
 
 clientorserverwidget.cpp
 clientorserverwidget.h
+serversetupwidget.cpp
+serversetupwidget.h

@@ -1,0 +1,184 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>ServerSetupWidget</class>
+<widget class="QWidget">
+    <property name="name">
+        <cstring>Form1</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>442</width>
+            <height>649</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Form1</string>
+    </property>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout1</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>10</x>
+                <y>100</y>
+                <width>412</width>
+                <height>132</height>
+            </rect>
+        </property>
+        <grid>
+            <property name="name">
+                <cstring>unnamed</cstring>
+            </property>
+            <widget class="QPushButton" row="2" column="2">
+                <property name="name">
+                    <cstring>name2</cstring>
+                </property>
+                <property name="text">
+                    <string>Options</string>
+                </property>
+            </widget>
+            <widget class="QPushButton" row="0" column="2">
+                <property name="name">
+                    <cstring>name0</cstring>
+                </property>
+                <property name="text">
+                    <string>Options</string>
+                </property>
+            </widget>
+            <widget class="QLabel" row="0" column="0">
+                <property name="name">
+                    <cstring>textLabel1</cstring>
+                </property>
+                <property name="text">
+                    <string>Type of fi&amp;rst player</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>type0</cstring>
+                </property>
+            </widget>
+            <widget class="QLabel" row="2" column="0">
+                <property name="name">
+                    <cstring>textLabel1_5_3</cstring>
+                </property>
+                <property name="text">
+                    <string>Type of third player</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>type0_3</cstring>
+                </property>
+            </widget>
+            <widget class="QComboBox" row="0" column="1">
+                <item>
+                    <property name="text">
+                        <string>Computer Player</string>
+                    </property>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>Connecting Human Player</string>
+                    </property>
+                </item>
+                <property name="name">
+                    <cstring>type0</cstring>
+                </property>
+            </widget>
+            <widget class="QComboBox" row="1" column="1">
+                <item>
+                    <property name="text">
+                        <string>Computer Player</string>
+                    </property>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>Connecting Human Player</string>
+                    </property>
+                </item>
+                <property name="name">
+                    <cstring>type1</cstring>
+                </property>
+            </widget>
+            <widget class="QPushButton" row="3" column="2">
+                <property name="name">
+                    <cstring>name3</cstring>
+                </property>
+                <property name="text">
+                    <string>Options</string>
+                </property>
+            </widget>
+            <widget class="QLabel" row="1" column="0">
+                <property name="name">
+                    <cstring>textLabel1_5</cstring>
+                </property>
+                <property name="text">
+                    <string>Type of &amp;second player</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>type0_2</cstring>
+                </property>
+            </widget>
+            <widget class="QPushButton" row="1" column="2">
+                <property name="name">
+                    <cstring>name1</cstring>
+                </property>
+                <property name="text">
+                    <string>Options</string>
+                </property>
+            </widget>
+            <widget class="QComboBox" row="2" column="1">
+                <item>
+                    <property name="text">
+                        <string>Computer Player</string>
+                    </property>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>Connecting Human Player</string>
+                    </property>
+                </item>
+                <property name="name">
+                    <cstring>type2</cstring>
+                </property>
+            </widget>
+            <widget class="QLabel" row="3" column="0">
+                <property name="name">
+                    <cstring>textLabel1_5_2</cstring>
+                </property>
+                <property name="text">
+                    <string>Type of fourth player</string>
+                </property>
+                <property name="buddy" stdset="0">
+                    <cstring>type0_4</cstring>
+                </property>
+            </widget>
+            <widget class="QComboBox" row="3" column="1">
+                <item>
+                    <property name="text">
+                        <string>Computer Player</string>
+                    </property>
+                </item>
+                <item>
+                    <property name="text">
+                        <string>Connecting Human Player</string>
+                    </property>
+                </item>
+                <property name="name">
+                    <cstring>type3</cstring>
+                </property>
+            </widget>
+        </grid>
+    </widget>
+</widget>
+<tabstops>
+    <tabstop>type0</tabstop>
+    <tabstop>name0</tabstop>
+    <tabstop>type1</tabstop>
+    <tabstop>name1</tabstop>
+    <tabstop>type2</tabstop>
+    <tabstop>name2</tabstop>
+    <tabstop>type3</tabstop>
+    <tabstop>name3</tabstop>
+</tabstops>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

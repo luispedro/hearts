@@ -3,8 +3,10 @@
 
 #include <qwidget.h>
 
-class QPushButton;
-class QLabel;
+#include "hearts/player_id.h"
+
+class ServerSetupWidget;
+class QComboBox;
 
 class ServerSetup : public QWidget
 {
@@ -19,17 +21,18 @@ class ServerSetup : public QWidget
 	public slots:
 		void execute();
 
-	public:
-		class PlayerSetup;
+	private slots:
+		void execute( player_id::type, QComboBox* );
+	
+		void optionsSelf();
+		void optionsRight();
+		void optionsFront();
+		void optionsLeft();
+		void options( player_id::type, QComboBox* );
 
 	private:
 
-
-		QLabel* self;
-		PlayerSetup* right;
-		PlayerSetup* front;
-		PlayerSetup* left;
-		QPushButton* go;
+		ServerSetupWidget* widget_;
 };
 
 

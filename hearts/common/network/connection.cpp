@@ -3,6 +3,7 @@
 #include <kextsock.h>
 
 #include <errno.h>
+#include <kdebug.h>
 
 namespace Network
 {
@@ -73,6 +74,8 @@ void Connection::changeProtocol()
 
 void Connection::socketClosed( int status )
 {
+	
+	kdDebug() << "Connection::socketClosed()" << endl;
 	if ( status & KExtendedSocket::involuntary )
 		emit connectionError( "socket closed by remote peer", ECONNRESET );
 }

@@ -16,15 +16,9 @@
  ***************************************************************************/
 
 #include "pointsbox.h"
-#include "pointsboxwidget.h"
 #include "general/helper.h"
-#include "general/widget_placement.h"
 
-#include <qfontmetrics.h>
-#include <qtimer.h>
-#include <qtable.h>
 #include <qlayout.h>
-#include <qgrid.h>
 #include <kdebug.h>
 #include <klocale.h>
 

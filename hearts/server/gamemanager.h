@@ -86,10 +86,8 @@ class GameManager
 			{ }
 			Player* player;
 			auto_init<unsigned> points;
-			std::set
-				<Card> hand;
-			std::set
-				<Card> gotten;
+			std::set<Card> hand;
+			std::set<Card> gotten;
 		};
 
 		typedef std::vector<Player_Control> control_cont_type;

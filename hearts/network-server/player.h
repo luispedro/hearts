@@ -57,10 +57,14 @@ class Player : public Network::ServerConnection
 		void createTable( Player*, QString );
 
 	private:
+
+		static const int maxLoginTries = 3;
+		
 		QString name_;
 		QCString cookie_;
 		Table* table_;
 		Validator* validator_;
 		bool valid_;
+		int loginTries_;
 };
 #endif // PLAYER_H

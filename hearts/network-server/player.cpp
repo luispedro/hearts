@@ -7,11 +7,13 @@
 #include "database.h"
 #include "validator.h"
 
+
 Player::Player( QObject* parent, KExtendedSocket* socket )
 		: ServerConnection( socket, parent ),
 		table_( 0 ),
 		validator_( new AuthenticationValidator<repeatedMD5Authenticator, VeryStupidDatabase> ),
-		valid_( false )
+		valid_( false ),
+		loginTries_( 0 )
 {
 	LOG_PLACE_NL();
 }
@@ -42,8 +44,15 @@ void Player::get( Message m )
 			if ( validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
 				valid_ = true;
 			} else {
-				// TODO sendError( "Invalid password/username" );
-				delete this;
+				++loginTries_;
+				if ( loginTries_ < maxLoginTries ) {
+					this->error( Message::authenticationFailed );
+					LOG_PLACE() << "Authentication failed, retrying...\n";
+					authQ( validator_->id(), cookie_ );
+				} else {
+					this->error( Message::authenticationFailed );
+					delete this;
+				}
 			} 
 			break;
 		case Message::createTable:

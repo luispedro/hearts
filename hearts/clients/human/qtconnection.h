@@ -47,7 +47,7 @@ class QtConnection : public QObject, private TypicalClient
 		void opponentname( player_id::type, QString );
 		void status( player_status::type );
 		void play();
-		void give3();
+		void give3( player_id::type );
 		void receive( Card );
 		void namequery();
 		void error( QString );
@@ -84,7 +84,7 @@ class QtConnection : public QObject, private TypicalClient
 		virtual void invalidmove_message( std::string reason );
 		virtual void status_message( player_status::type );
 		virtual void receive_message( Card );
-		virtual void give3query_message();
+		virtual void give3query_message( player_id::type );
 		virtual void points_message( unsigned, unsigned, unsigned, unsigned );
 		virtual void invalidMessage_message( Message )
 		{

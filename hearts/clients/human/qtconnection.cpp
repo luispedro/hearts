@@ -15,8 +15,7 @@ QtConnection::QtConnection( QObject* p, const char* n )
 QtConnection::~QtConnection()
 {
 	LOG_PLACE_NL();
-	delete connection;
-	delete watcher;
+	close();
 }
 
 void QtConnection::set_fd( int fd )
@@ -134,9 +133,9 @@ void QtConnection::receive_message( Card c )
 	emit receive( c );
 }
 
-void QtConnection::give3query_message()
+void QtConnection::give3query_message( player_id::type target )
 {
-	emit give3();
+	emit give3( target );
 }
 
 void QtConnection::points_message( unsigned a, unsigned b, unsigned c, unsigned d )

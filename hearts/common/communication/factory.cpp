@@ -20,6 +20,11 @@ using namespace std;
 	{	return Message(MessageTypes::type); }
 
 
+#define BUILD_RET( Type, ARGS ) \
+	INIT \
+	out << ARGS ; \
+	END( Type )
+
 namespace Factory
 {
 Message Common::terminate( std::string msg )
@@ -64,7 +69,11 @@ Message Server::points( unsigned self, unsigned rigth, unsigned front, unsigned 
 	END( Points )
 }
 
-JUST_RET( Server, give3query, Give3Query )
+Message Server::give3query( player_id::type towhom )
+{
+	BUILD_RET( Give3Query, towhom )
+}
+
 JUST_RET( Server, playquery, PlayQuery )
 
 Message Server::invalidplay( std::string reason )

@@ -33,7 +33,7 @@ void ComputerPlayer::playquery_message()
 	connection_->write( Factory::Client::playreply( player_->play() ) );
 }
 
-void ComputerPlayer::give3query_message()
+void ComputerPlayer::give3query_message( player_id::type )
 {
 	connection_->write( Factory::Client::give3reply( player_->give() ) );
 }

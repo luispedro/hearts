@@ -151,9 +151,13 @@ void Dispatch::receive_handler( Message m )
 		receive_message( c );
 }
 
-void Dispatch::give3query_handler( Message )
+void Dispatch::give3query_handler( Message m )
 {
-	give3query_message();
+	player_id::type target;
+	istrstream in( m.body().c_str() );
+	in >> target;
+	if ( !in ) bad_message( m );
+	else give3query_message( target );
 }
 
 void Dispatch::give3reply_handler( Message m )

@@ -10,7 +10,7 @@ class TypicalServer: public Dispatch
 	private:
 		virtual void namequery_message();
 		virtual void playquery_message();
-		virtual void give3query_message();
+		virtual void give3query_message( player_id::type );
 
 		virtual void receive_message( Card );
 		virtual void inform_message( Card, player_id::type );

@@ -26,9 +26,9 @@ void ConnectingPlayer::play()
 	write( Factory::Server::playquery() );
 }
 
-void ConnectingPlayer::give()
+void ConnectingPlayer::give( player_id::type target )
 {
-	write( Factory::Server::give3query() );
+	write( Factory::Server::give3query( target ) );
 }
 
 void ConnectingPlayer::receive( Card c )

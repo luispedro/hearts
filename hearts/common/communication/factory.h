@@ -26,7 +26,7 @@ Message receive( Card );
 Message status( player_status::type );
 Message points( unsigned, unsigned, unsigned, unsigned );
 
-Message give3query();
+Message give3query( player_id::type );
 Message playquery();
 Message namequery();
 Message usingquery( int, int );

@@ -11,7 +11,7 @@ void TypicalServer::playquery_message()
 	wrong_message( "playquery" );
 }
 
-void TypicalServer::give3query_message()
+void TypicalServer::give3query_message( player_id::type )
 
 {
 	wrong_message( "give3query" );

@@ -26,7 +26,7 @@ class ComputerPlayer : public TypicalClient
 	private:
 
 		virtual void playquery_message();
-		virtual void give3query_message();
+		virtual void give3query_message( player_id::type );
 		virtual void receive_message( Card );
 		virtual void inform_message( player_id::type, Card );
 		virtual void opponentname_message( player_id::type, std::string )

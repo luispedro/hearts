@@ -89,7 +89,7 @@ bool GameManager::ask_for_cards()
 	}
 	for ( control_cont_type::iterator iter = players.begin(); iter != players.end(); ++iter ) {
 		LOG_PLACE() << " asking for cards.\n";
-		iter->player->give();
+		iter->player->give( player_id::left ); // FIXME
 	}
 	current_state = WaitGive3;
 	return true;

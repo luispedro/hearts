@@ -58,7 +58,7 @@ class Player
 		virtual void receive( Card ) = 0;
 
 		/** This asks the player to give 3 cards to pass to the side */
-		virtual void give() = 0;
+		virtual void give( player_id::type ) = 0;
 
 
 		/** This informs the player of a move made by some player.

@@ -25,7 +25,7 @@ HumanClient::HumanClient()
 	mGive->setMapping( connection, i18n( "Give three cards to your opponent" ) );
 
 	connect( connection, SIGNAL( play() ), interface, SLOT( play() ) );
-	connect( connection, SIGNAL( give3() ), interface, SLOT( choose3() ) );
+	connect( connection, SIGNAL( give3( player_id::type ) ), interface, SLOT( choose3() ) );
 	connect( connection, SIGNAL( inform( player_id::type, Card ) ), interface, SLOT( setCard( player_id::type, Card ) ) );
 	connect( connection, SIGNAL( inform( player_id::type, Card ) ), SLOT( inform( player_id::type, Card ) ) );
 	connect( connection, SIGNAL( receive( Card ) ), interface, SLOT( addCard( Card ) ) );
@@ -42,7 +42,7 @@ HumanClient::HumanClient()
 	connect( connection, SIGNAL( play() ), mPlay, SLOT( map() ) );
 	connect( mPlay, SIGNAL( mapped( const QString& ) ), interface, SLOT( setStatus( const QString& ) ) );
 
-	connect( connection, SIGNAL( give3() ), mGive, SLOT( map() ) );
+	connect( connection, SIGNAL( give3( player_id::type ) ), SLOT( giveStatus( player_id::type ) ) );
 	connect( mGive, SIGNAL( mapped( const QString& ) ), interface, SLOT( setStatus( const QString& ) ) );
 
 
@@ -78,6 +78,7 @@ void HumanClient::showSetup()
 
 void HumanClient::connected_to_server( int fd )
 {
+	kdDebug() << "HumanClient::connected_to_server( " << fd << " )" << endl;
 	massert( connection );
 	massert( fd > 0 );
 	connection->set_fd( fd );
@@ -129,6 +130,7 @@ void HumanClient::status( player_status::type s )
 		case game_over:
 		clear = false;
 		break;
+		default: return;
 	}
 	if ( clear ) {
 		// This is to allow time for the user to look at the cards without them being taken away.
@@ -172,6 +174,23 @@ void HumanClient::invalidMove( QString reason )
 	LOG_PLACE() << " invalid move: " << reason << ".\n";
 	QMessageBox::warning( this, i18n( "Invalid Move" ), i18n( reason ), i18n( "Ok" ) );
 	interface->play();
+}
+
+void HumanClient::giveStatus( player_id::type whom )
+{
+	switch ( whom ) {
+			case player_id::right:
+					interface->setStatus( i18n( "Choose 3 cards to pass right" ) );
+					break;
+			case player_id::front:
+					interface->setStatus( i18n( "Choose 3 cards to pass across" ) );
+					break;
+			case player_id::left:
+					interface->setStatus( i18n( "Choose 3 cards to pass left" ) );
+					break;
+			default:
+					kdWarning() << "BUG: giveStatus( " << static_cast<int>( whom ) << " )" << endl;
+	}
 }
 
 #include "humanclient.moc"

@@ -21,6 +21,7 @@ class HumanClient : public KMainWindow
 		void namequery();
 		void connectionError( QString );
 		void status( player_status::type );
+		void giveStatus( player_id::type );
 		void inform( player_id::type, Card );
 		void points( unsigned, unsigned, unsigned, unsigned );
 		void invalidMove( QString );

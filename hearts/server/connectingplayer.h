@@ -21,7 +21,7 @@ class ConnectingPlayer : public FDConnection, public Player, public TypicalServe
 
 		// the player interface:
 		virtual void play();
-		virtual void give();
+		virtual void give( player_id::type );
 		virtual void invalidPlay( std::string );
 		virtual void receive( Card );
 		virtual void inform( Card, player_id::type );

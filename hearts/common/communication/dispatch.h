@@ -64,7 +64,7 @@ class Dispatch
 		virtual void invalidmove_message( std::string reason ) = 0;
 		virtual void status_message( player_status::type ) = 0;
 		virtual void receive_message( Card ) = 0;
-		virtual void give3query_message() = 0;
+		virtual void give3query_message( player_id::type ) = 0;
 		virtual void give3reply_message( const Holder3& ) = 0;
 		virtual void points_message( unsigned, unsigned, unsigned, unsigned ) = 0;
 

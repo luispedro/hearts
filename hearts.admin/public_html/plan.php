@@ -13,7 +13,7 @@
 <p>This is basically what I plan to do. There are no dates assigned to any of the steps,
 	and there is no guarantee that I will keep the plan 100%, but here it is.</p>
 
-<p>Latest update: <b>27th July 2004</b></p>
+<p>Latest update: <b>28th July 2004</b></p>
 
 <h2>Version 1.98</h2>
 
@@ -34,7 +34,7 @@
 
 <ul>
 <li>Show who's online <?=cvsdone()?>
-<li>Message of the Day
+<li>Message of the Day <?=cvsdone()?>
 <li>Allow Registration (and Authentication)
 <li>Generate Statistics
 </ul>

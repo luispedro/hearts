@@ -1,5 +1,5 @@
 <!DOCTYPE UI><UI version="3.3" stdsetdef="1">
-<class>OnlinePlayersWidget</class>
+<class>OnlinePlayersDialog</class>
 <author>Luís Pedro Coelho</author>
 <widget class="QDialog">
     <property name="name">

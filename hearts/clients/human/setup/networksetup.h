@@ -16,6 +16,7 @@ class NetworkSetup : public QWidget {
 	signals:
 		void connected(int);
 	public slots:
+		void execute();
 		void newTable();
 //X 		void joinTable();
 

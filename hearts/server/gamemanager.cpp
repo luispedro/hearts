@@ -9,8 +9,8 @@
 GameManager::GameManager()
 	:players(4),
 	 to_move(players.begin(),players.begin(),players.end()),
-	 current_state(Init),
-	 given_cards(4)
+	 given_cards(4),
+	 current_state(Init)
 {
 	LOG_PLACE_NL();
 }

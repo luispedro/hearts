@@ -1,3 +1,6 @@
+#ifndef DB_SMARTPAGE_H1080679200_INCLUDE_GUARD_
+#define DB_SMARTPAGE_H1080679200_INCLUDE_GUARD_
+
 #include <qwidget.h>
 class SetupWindow;
 
@@ -9,3 +12,6 @@ class SmartPage : public QWidget
 		{ }
 		virtual void doNext( SetupWindow * ) = 0;
 };
+
+
+#endif /* DB_SMARTPAGE_H1080679200_INCLUDE_GUARD_ */

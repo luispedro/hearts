@@ -1,7 +1,7 @@
 <!DOCTYPE UI><UI version="3.2" stdsetdef="1">
 <class>NetworkSetupWidget</class>
 <comment>This is the widget used to setup a network connection</comment>
-<author>Luis Pedro Coelho &lt;luis_pedro@netcabo.pt&gt;</author>
+<author>Luis Pedro Coelho &lt;luis@luispedro.org&gt;</author>
 <widget class="QWidget">
     <property name="name">
         <cstring>network_setup</cstring>

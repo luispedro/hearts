@@ -3,7 +3,7 @@
                              -------------------
     begin                : Sun Jan 2 2000
     copyright            : (C) 2000 by Luis Pedro Coelho
-    email                : luis.coelho@netc.pt
+    email                : luis@luispedro.org
  ***************************************************************************/
 
 /***************************************************************************
@@ -20,7 +20,7 @@
     * class OptionsSelectionDialog is declared a friend for it to acess the set functions. These are
     * however not available to the general user.
     *
-    * @author Luís Coelho <luis_pedro@netcabo.pt>
+    * @author Luís Coelho <luis@luispedro.org>
     */
 
  #ifndef OPTIONS_H_

@@ -6,7 +6,7 @@
                              -------------------
     begin                : Thu Dec 16 1999
     copyright            : (C) 1999 by Luis Pedro Coelho
-    email                : luis.coelho@netc.pt
+    email                : luis@luispedro.org
  ***************************************************************************/
 
 /***************************************************************************
@@ -22,7 +22,7 @@
 
  /** A game card class with value semantics.
     *
-    * @author Luis P. Coelho <luis_pedro@netcabo.pt>
+    * @author Luis P. Coelho <luis@luispedro.org>
     */
 
  class Card

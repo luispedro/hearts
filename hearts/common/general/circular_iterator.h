@@ -7,7 +7,7 @@
     begin                : Fri Dec 17 1999
     copyright            : Public Domain
     created by         :  Luis Pedro Coelho
-    email                : luis.coelho@netc.pt
+    email                : luis@luispedro.org
  ***************************************************************************/
 
 /***************************************************************************

@@ -102,9 +102,16 @@ int main(int argc, char* argv[])
 {
 		LOG_PLACE_NL();
 		KAboutData aboutData( "hearts", I18N_NOOP("Hearts, a card game"),
-		                VERSION, "Hearts game for the KDE", KAboutData::License_GPL,
-		                "(c) 2001, Luis Pedro Coelho", I18N_NOOP("Hearts - a card game"), "http://hearts.sf.net/", "luis_pedro@netcabo.pt");
-		aboutData.addAuthor("Luis Pedro Coelho",0, "luis_pedro@netcabo.pt");
+		                VERSION,
+				"Hearts game for the KDE",
+				KAboutData::License_GPL,
+		                "(c) 2001-2003  Luís Pedro Coelho"
+				I18N_NOOP("Hearts - a card game"),
+				"http://hearts.luispedro.org/",
+				"luis@luispedro.org" );
+
+		aboutData.addAuthor("Luís Pedro Coelho",0, "luis@luispedro.org");
+
 		KCmdLineArgs::init( argc, argv, &aboutData );
 //		KCmdLineArgs::addCmdLineOptions(app_options);
 		KApplication::addCmdLineOptions();

@@ -11,9 +11,10 @@
 <ul>
 	<li>Fix all known bugs:
 		<ul>
-			<li>The card passing was always to the right.
+			<li>The card passing is always to the right.
 			<li>Portability issue regarding setting the random seed.
-			<li>A lot of processes were left running.
+			<li>A lot of processes are left running.
+			<li>One one match (ie, a series of games until a player gets 100 points) is possible.
 			<li>Make it valgrind clean.
 		</ul>
 	<li>Have the status bar help on what the user should do at every step (play, give cards right, etc.)

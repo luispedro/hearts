@@ -27,8 +27,6 @@
 #include <netinet/in.h>
 #include <arpa/inet.h>
 
-
-
 ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 		QWidget( parent, name )
 {
@@ -62,26 +60,47 @@ ServerSetup::ServerSetup( QWidget* parent, const char* name ) :
 	}
 }
 
+
+
 void ServerSetup::execute()
 {
-	execute_server();
-	Options::savePlayerName( player_id::self, widget_->selfName->text() );
+	enum { client, server };
+	int pipe[ 2 ];
+	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) {
+			KMessageBox::error( 0, i18n( "<qt>Error: [socketpair failed]</qt>" ) );
+			return;
+	}
+	int fds[ 4 ];
+	fds[ 0 ] = pipe[ 0 ];
+	fds[ 1 ] = execute( player_id::right, widget_->type1 );
+	fds[ 2 ] = execute( player_id::front, widget_->type2 );
+	fds[ 3 ] = execute( player_id::left, widget_->type3 );
 
-	sleep( 1 ); // FIXME: hack
-	execute( player_id::right, widget_->type1 );
-	execute( player_id::front, widget_->type2 );
-	execute( player_id::left, widget_->type3 );
-	int fd = open_client_connection( generateLocalAddress().local8Bit() );
-	if ( fd < 0 ) {
-		KMessageBox::error( 0, i18n( "<qt>Error establishing connection: <nobr><strong>%1</strong></nobr></qt>" )
-				.arg( strerror( errno ) ) );
+	int stat = fork();
+	if ( stat < 0 ) {
+			KMessageBox::error( 0, i18n( "<qt>Error: [fork failed]</qt>" ) );
+			return;
+	} else if ( stat > 0 ) {
+			::close( pipe[ 0 ] );
+			char c = 0;
+			if ( write( pipe[ 1 ], &c, 1 ) < 0 ) {
+					KMessageBox::error( 0, i18n( "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>" )
+									.arg( strerror( errno ) ) );
+			}
+			Options::savePlayerName( player_id::self, widget_->selfName->text() );
+			emit connected( pipe[ 1 ] );
+			return;
+	} else {
+			::close( pipe[ 1 ] );
+			if ( fds[ 1 ] < 0 || 
+							fds[ 2 ] < 0 ||
+							fds[ 3 ] < 0 ) {
+					::close( pipe[ server ] );
+					exit( 1 );
+			}
+			execute::server( fds );
+			exit( 1 );
 	}
-	char c = 0;
-	if ( write( fd, &c, 1 ) < 0 ) {
-		KMessageBox::error( 0, i18n( "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>" )
-				.arg( strerror( errno ) ) );
-	}
-	emit connected( fd );
 }
 
 void ServerSetup::optionsSelf() {
@@ -116,13 +135,12 @@ void ServerSetup::options( player_id::type, QComboBox* type )
 	}
 }
 
-void ServerSetup::execute( player_id::type player, QComboBox* type ) {
+int ServerSetup::execute( player_id::type player, QComboBox* type ) {
 	enum { comp, remote };
 	if ( type->currentItem() == comp ) {
-		execute_computer_client( QString( Options::playerName( player ) ) );
-	} else {
-		; // remote player, do nothing
+		return execute::computerClient( QString( Options::playerName( player ) ) );
 	}
+	return 0; // remote player, do nothing
 }
 
 

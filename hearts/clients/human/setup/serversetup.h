@@ -10,7 +10,7 @@ class QComboBox;
 
 class ServerSetup : public QWidget
 {
-		Q_OBJECT
+	Q_OBJECT
 
 	public:
 		ServerSetup( QWidget* parent, const char* name = "server-setup" );
@@ -22,15 +22,14 @@ class ServerSetup : public QWidget
 		void execute();
 
 	private slots:
-		void execute( player_id::type, QComboBox* );
-	
 		void optionsSelf();
 		void optionsRight();
 		void optionsFront();
 		void optionsLeft();
-		void options( player_id::type, QComboBox* );
 
 	private:
+		int execute( player_id::type, QComboBox* );
+		void options( player_id::type, QComboBox* );
 
 		ServerSetupWidget* widget_;
 };

@@ -1,0 +1,12 @@
+#!/bin/bash
+
+destiny='sftp://luis_pedro@shell.sourceforge.net/home/groups/h/he/hearts/htdocs'
+
+cd public_html
+
+kfmclient copy *.css *.html $destiny
+
+cd screenshots 
+
+kfmclient copy *.png $destiny/screenshots
+

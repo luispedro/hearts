@@ -25,27 +25,27 @@ void Player::get
 {
 	switch ( m.type() ) {
 		case Message::joinTable:
-		emit joinTable( this, m.table() );
-		break;
+			emit joinTable( this, m.table() );
+			break;
 		case Message::leaveTable:
-		emit quitTable( m.table() );
-		break;
+			emit quitTable( this, m.table() );
+			break;
 		case Message::hello:
-		name_ = m.arg<QString>( 0 );
-		cookie_ = validator_->cookie();
-		auth( validator_->id(), cookie_ );
+			name_ = m.arg<QString>( 0 );
+			cookie_ = validator_->cookie();
+			auth( validator_->id(), cookie_ );
 		break;
-		case Message::auth:
-		if ( !validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
-			// TODO sendError( "Invalid password/username" );
-			delete this;
-		}
-		break;
+			case Message::auth:
+			if ( !validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
+				// TODO sendError( "Invalid password/username" );
+				delete this;
+			}
+			break;
 		case Message::createTable:
-		emit createTable( m.table() );
-		break;
+			emit createTable( this, m.table() );
+			break;
 		default:
-		LOG_PLACE() << " Unrecognised message = " << m << std::endl;
+			LOG_PLACE() << " Unrecognised message = " << m << std::endl;
 	}
 }
 

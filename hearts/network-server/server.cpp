@@ -72,7 +72,7 @@ void Server::acceptSlot()
 	socket_.accept( ext );
 	massert( ext );
 	Player* p = new Player( this, ext );
-	connect( p, SIGNAL( createTable( QString ) ), SLOT( createTable( QString ) ) );
+	connect( p, SIGNAL( createTable( Player*, QString ) ), SLOT( createTable( Player*, QString ) ) );
 	connect( p, SIGNAL( joinTable( Player*, QString ) ), SLOT( joinTable( Player*, QString ) ) );
 	connect( p, SIGNAL( connectionError( const char*, int ) ), SLOT( connectionError( const char*, int ) ) );
 	FOR_ALL_TABLES( p->lookAt( table ) );
@@ -95,7 +95,7 @@ void Server::connectionError( Player* p, const char* reason, int code )
 		if ( table->empty() )
 			delete table;
 	}
-	delete player;
+	delete p;
 }
 
 void Server::joinTable( Player* player, table_id tableName )
@@ -127,12 +127,6 @@ void Server::showTable( Table* table )
 	FOR_ALL_PLAYERS( player->lookAt( table ) );
 }
 
-
-void Server::createTable( QString name )
-{
-	Player * player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
-	createTable( player, name );
-}
 
 void Server::createTable( Player* player, QString name )
 {

@@ -15,9 +15,7 @@ class Server : public QObject
 		void acceptSlot();
 		void tableFull( Table* );
 
-		void createTable( QString );
 		void createTable( Player*, QString );
-
 		void joinTable( Player*, QString );
 
 		void connectionError( const char*, int );

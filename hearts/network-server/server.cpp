@@ -11,7 +11,7 @@
 #include <sys/types.h>
 #include <sys/socket.h>
 
-
+#include "logfile.h"
 #include "network/constants.h"
 
 #include "player.h"
@@ -68,7 +68,7 @@ Server::Server( QObject* parent )
 void Server::acceptSlot()
 {
 	KExtendedSocket * ext = 0;
-	LOG_PLACE_NL();
+	logfile() << "Player Connection\n";
 	socket_.accept( ext );
 	massert( ext );
 	Player* p = new Player( this, ext );
@@ -87,7 +87,7 @@ void Server::connectionError( const char* reason, int code )
 
 void Server::connectionError( Player* player, const char* reason, int code )
 {
-	LOG_PLACE() << " connection ended: " << reason << ".\n";
+	logfile() << " Connection Error (" << reason << ":" << code << ")\n";
 
 	Table* table = player->table();
 	if ( table ) {
@@ -158,6 +158,7 @@ void Server::createTable( Player* player, QString name )
 
 void Server::tableFull( Table* table )
 {
+	logfile() << "Table is full\n";
 	LOG_PLACE_NL();
 	int stat = fork();
 	if ( stat < 0 ) {

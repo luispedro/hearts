@@ -8,6 +8,7 @@
 
 #include <klocale.h>
 #include <kprocess.h>
+#include <qpushbutton.h>
 #include <kapp.h>
 
 ServerSetup::ServerSetup(QWidget* parent, const char* name):

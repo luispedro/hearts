@@ -9,7 +9,7 @@
 #include <kprocess.h>
 #include <klocale.h>
 #include <kmessagebox.h>
-
+#include <qpushbutton.h>
 #include <algorithm>
 
 namespace {

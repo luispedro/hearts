@@ -50,15 +50,15 @@ LocalSetup::LocalSetup(QWidget* parent, const char* name)
 	
 	right_message->move(x,below(self_message) + padding);
 	adjust_size(right_message);
-	max_x = max(max_x,right_of(right_message));
+	max_x = std::max(max_x,right_of(right_message));
 	
 	front_message->move(x,below(right_message) + padding);
 	adjust_size(front_message);
-	max_x = max(max_x,right_of(front_message));
+	max_x = std::max(max_x,right_of(front_message));
 
 	left_message->move(x,below(front_message) + padding);
 	adjust_size(left_message);
-	max_x = max(max_x, right_of(left_message));
+	max_x = std::max(max_x, right_of(left_message));
 
 	max_x += padding;
 

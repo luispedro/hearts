@@ -39,7 +39,7 @@ ServerSetup::PlayerSetup::PlayerSetup(player_id::type who,QWidget* parent, const
 		adjust_size(label);
 		
 		unsigned combo_x = right_of(label) + 10;
-		combo_x = min<unsigned>(combo_x,250);
+		combo_x = std::min<unsigned>(combo_x,250);
 		choice->move(combo_x,10);
 		
 		choice->insertItem(i18n("computer player"));
@@ -51,7 +51,7 @@ ServerSetup::PlayerSetup::PlayerSetup(player_id::type who,QWidget* parent, const
 		
 		
 		setMinimumWidth(right_of(options));
-		setMinimumHeight(10 + max(label->height(), choice->height()));
+		setMinimumHeight(10 + std::max(label->height(), choice->height()));
 		LOG_PLACE_NL();
 }
 

@@ -46,7 +46,7 @@ SetupWindow::SetupWindow()
 		
 		tabs->setMinimumSize( 250, 350 );
 
-		setMinimumSize(max(intro_text->width() + 20, tabs->width() + 20),
+		setMinimumSize(std::max(intro_text->width() + 20, tabs->width() + 20),
 						below(tabs) + 10);
 
 		connect(local,SIGNAL(connected(int)),SLOT(connected(int)));

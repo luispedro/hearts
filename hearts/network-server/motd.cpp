@@ -3,22 +3,22 @@
 #include <fstream>
 
 namespace {
-	const char* message = 0;
+	const char* msgstring = 0;
 	void initMessage() {
-		if ( message ) return;
-		if ( options().motdFile() != "" ) {
-			std::ifstream fin( options().motdFile().c_str() );
+		if ( msgstring ) return;
+		if ( options->motdFile() != "" ) {
+			std::ifstream fin( options->motdFile().c_str() );
 			std::string buffer;
 			if ( std::getline( fin, buffer ) ) {
-				message = strdup( buffer.c_str() );
+				msgstring = strdup( buffer.c_str() );
 			}
 		}
-		if ( !message ) message = "<qt>Welcome to <b>hearts.luispedro.org</b>.</qt>";
+		if ( !msgstring ) msgstring = "<qt>Welcome to <b>hearts.luispedro.org</b>.</qt>";
 	}
 }
 
 const char* MotD::message() {
-	if ( !message ) initMessage();
-	return message;
+	if ( !msgstring ) initMessage();
+	return msgstring;
 }
 

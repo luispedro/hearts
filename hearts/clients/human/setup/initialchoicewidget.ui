@@ -51,28 +51,6 @@
         </widget>
         <widget class="QRadioButton">
             <property name="name">
-                <cstring>radioLocal</cstring>
-            </property>
-            <property name="geometry">
-                <rect>
-                    <x>10</x>
-                    <y>40</y>
-                    <width>250</width>
-                    <height>21</height>
-                </rect>
-            </property>
-            <property name="text">
-                <string>Play against the &amp;computer</string>
-            </property>
-            <property name="accel">
-                <string>Alt+C</string>
-            </property>
-            <property name="checked">
-                <bool>true</bool>
-            </property>
-        </widget>
-        <widget class="QRadioButton">
-            <property name="name">
                 <cstring>radioNetwork</cstring>
             </property>
             <property name="geometry">
@@ -88,6 +66,28 @@
             </property>
             <property name="accel">
                 <string>Alt+W</string>
+            </property>
+        </widget>
+        <widget class="QRadioButton">
+            <property name="name">
+                <cstring>radioLocal</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>10</x>
+                    <y>40</y>
+                    <width>250</width>
+                    <height>21</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>Play against the com&amp;puter</string>
+            </property>
+            <property name="accel">
+                <string>Alt+P</string>
+            </property>
+            <property name="checked">
+                <bool>true</bool>
             </property>
         </widget>
     </widget>

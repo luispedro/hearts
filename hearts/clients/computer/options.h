@@ -5,6 +5,7 @@
 
 namespace Options {
 	std::string name();
+	bool send_zero();
 	void parse_args(char* argv[]);
 }
 

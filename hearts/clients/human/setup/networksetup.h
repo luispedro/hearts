@@ -34,6 +34,9 @@ class NetworkSetup : public QWidget
 		void protocolChanged();
 		void delayedProtocolChanged();
 	private:
+
+		void openConnection( const char* host, short port );
+		
 		NetworkSetupWidget* widget_;
 		Network::UserConnection* connection_;
 		QString delayedIp;

@@ -30,19 +30,42 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 		connection_( 0 ),
 		good_( true )
 {
-	KExtendedSocket * socket = new KExtendedSocket( Network::Server, Network::Port );
-	if ( socket->connect() < 0 ) {
-		KMessageBox::error( this, i18n( "Error connecting to Hearts Server: %1" ).arg( strerror( errno ) ) );
-		good_ = false;
-	}
-	
-	kdDebug() << "NetworkSetup::NetworkSetup() fd = " << socket->fd() << endl;
-
-	connection_ = new Network::UserConnection( socket, this );
 	setMinimumSize( 150, 350 );
 	connect( widget_, SIGNAL( joinTable( QString ) ), connection_, SLOT( joinTable( QString ) ) );
 	connect( widget_, SIGNAL( createNewTable() ), SLOT( newTable() ) );
 
+	openConnection( Network::Server, Network::Port );
+
+	widget_->connectingBox->hide();
+	widget_->server->insert( Network::Server );
+	widget_->port->insert( QString::number( Network::Port ) );
+
+	//FIXME remove lines below and implement functionality:
+	widget_->server->setEnabled( false );
+	widget_->port->setEnabled( false );
+	widget_->changeServer->setEnabled( false );
+}
+
+NetworkSetup::~NetworkSetup()
+{
+	LOG_PLACE_NL();
+}
+
+void NetworkSetup::openConnection( const char* server, short port )
+{
+	kdDebug() << "NetworkSetup::openConnection( " << server << ':' << port << " )" << endl;
+	KExtendedSocket * socket = new KExtendedSocket( server, port );
+	if ( socket->connect() < 0 ) {
+		KMessageBox::error( this, i18n( "<qt>Error connecting to Hearts Server:<br><strong>%1</strong></qt>" )
+				.arg( KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) ) );
+		good_ = false;
+		return;
+	}
+	
+	kdDebug() << "NetworkSetup::NetworkSetup() fd = " << socket->fd() << endl;
+
+	delete connection_; // possibly 0
+	connection_ = new Network::UserConnection( socket, this );
 	connect( connection_, SIGNAL( connectTo( const char*, short ) ), SLOT( connectTo( const char*, short ) ) );
 	connect( connection_, SIGNAL( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ),
 			 SLOT( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ) );
@@ -59,20 +82,8 @@ NetworkSetup::NetworkSetup( QWidget* parent, const char* name )
 #endif
 
 	connection_->hello( playerName );
-	widget_->connectingBox->hide();
-	widget_->server->insert( Network::Server );
-	widget_->port->insert( QString::fromLatin1( "%1" ).arg( Network::Port ) );
-
-	//FIXME remove lines below and implement functionality:
-	widget_->server->setEnabled( false );
-	widget_->port->setEnabled( false );
-	widget_->changeServer->setEnabled( false );
 }
 
-NetworkSetup::~NetworkSetup()
-{
-	LOG_PLACE_NL();
-}
 
 
 void NetworkSetup::newTable()

@@ -17,6 +17,7 @@
 #include <kapp.h>
 #include <qtimer.h>
 #include <kprocess.h>
+#include <kmessagebox.h>
 
 #include <sys/socket.h>
 #include <unistd.h>
@@ -93,6 +94,11 @@ void LocalSetup::execute2()
 	execute_computer_client(left_name->text());
 	int fd = open_client_connection(local_address); 
 #define SAVE(x)  Options::savePlayerName(player_id::x,x##_name->text())
+	
+	if ( fd < 0 ) {
+		KMessageBox::error( this, "Unable to connect to server!" );
+		return;
+	}
 
 	SAVE(self);
 	SAVE(right);

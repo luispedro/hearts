@@ -41,7 +41,6 @@ do_header('Translations');
 	<TD>No
 <TR>
 	<TD>Dutch
-	<TD>Japie
 	<TD><a href="mailto:House-Mouse@hetnet.nl">Japie</a>
 	<TD>Updated for v1.2pre6
 	<TD>No

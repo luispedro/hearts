@@ -12,6 +12,10 @@ do_header('Hearts for KDE');
 
 <h2>What's New:</h2>
 
+<h3>Release 1.95</h3>
+<p><strong>22 March 2004</strong><br />
+This is a beta version of a future 2.0. Play on a public server (basic functionality, right now).
+
 <h3>A hearts server where you can find other players on the internet was set up.</h3>
 <ul>
 	<li>A new version is in the works. Right now you can access it through <a href="download.php#CVS">anonymous CVS</a>, and more traditional release modes are planned.

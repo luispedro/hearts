@@ -2,11 +2,18 @@
 do_header('Download Hearts');
 ?>
 
-<h2 id="CVS"><a name="CVS">Unstable version</a></h2>
-<p>There is now public CVS access to a new version which includes the ability to connect to a public hearts server.
-<p>Due to the fact that it is still very basic in functionallity and stability, there is no traditional source tarball yet.
 
-<p>Here is how to download it and compile it:
+<h2>Beta Version</h2>
+<p><strong>Released on 22 March 2004</strong></p>
+<p>This is a beta version of hearts 2.0</p>
+
+<p><a href="http://prdownloads.sourceforge.net/hearts/hearts-1.95.tar.gz?download">Download it</a> (traditional source tarball). This is 
+	a <a href="http://www.sf.net/">SourceForge</a> link as I don't want my bandwith bill to shoot up.</p>
+
+<h2 id="CVS"><a name="CVS">CVS Version</a></h2>
+<p>There is public CVS access to a new version which includes the ability to connect to a public hearts server.</p>
+
+<p>Here is how to download it and compile it:</p>
 
 <pre>
 cvs -d:pserver:anonymous@hearts.luispedro.org:/hearts co hearts

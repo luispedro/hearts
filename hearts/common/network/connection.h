@@ -59,6 +59,7 @@ class UserConnection : public Connection
 		void playerStatus( QString, player_status::type );
 		void motd( const QString& );
 		void authQ( const QCString&, const QCString& );
+		void error( Message::errorType, const QString& );
 	public slots:
 		void hello( QString );
 		void authR( QCString cookie, QCString result );

@@ -145,6 +145,9 @@ void UserConnection::get( Message m )
 		case Message::authQ:
 			emit authQ( m.arg<QCString>( 0 ), m.arg<QCString>( 1 ) );
 			return;
+		case Message::error:
+			emit error( m.arg<Message::errorType>( 0 ), m.arg<QString>( 1 ) );
+			return;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }

@@ -26,10 +26,14 @@ class Player : public Network::ServerConnection
 			return name_;
 		}
 
+		bool valid() const { return valid_; }
+
 		void table( Table* t )
 		{
 			table_ = t;
 		}
+		void error( Message::errorType, const char* = 0 );
+
 		Table* table()
 		{
 			return table_;
@@ -57,5 +61,6 @@ class Player : public Network::ServerConnection
 		QCString cookie_;
 		Table* table_;
 		Validator* validator_;
+		bool valid_;
 };
 #endif // PLAYER_H

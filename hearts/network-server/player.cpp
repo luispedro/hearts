@@ -10,7 +10,8 @@
 Player::Player( QObject* parent, KExtendedSocket* socket )
 		: ServerConnection( socket, parent ),
 		table_( 0 ),
-		validator_( new AuthenticationValidator<repeatedMD5Authenticator, VeryStupidDatabase> )
+		validator_( new AuthenticationValidator<repeatedMD5Authenticator, VeryStupidDatabase> ),
+		valid_( false )
 {
 	LOG_PLACE_NL();
 }
@@ -33,13 +34,17 @@ void Player::get( Message m )
 			name_ = m.arg<QString>( 0 );
 			emit nameSet( this, name_ );
 			cookie_ = validator_->cookie();
+			LOG_PLACE() << "Requesting auth [ " << validator_->id() << '\n';
 			auth( validator_->id(), cookie_ );
 		break;
 			case Message::auth:
-			if ( !validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
+			LOG_PLACE() << "Got reply [ " << validator_->id() << '\n';
+			if ( validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
+				valid_ = true;
+			} else {
 				// TODO sendError( "Invalid password/username" );
 				delete this;
-			}
+			} 
 			break;
 		case Message::createTable:
 			emit createTable( this, m.table() );
@@ -82,6 +87,22 @@ void Player::lookAt( Table* table )
 			m << QString::fromLatin1( "[null]" );
 	}
 	write( m );
+}
+
+void Player::error( Message::errorType t, const char* msg )
+{
+	if ( !msg ) {
+		switch ( t ) {
+			case Message::notAuthenticated: msg = "Authentication needed";
+							break;
+			case Message::authenticationFailed: msg = "Authentication failed";
+							break;
+			case Message::inexistantTable: msg = "Table does not exist";
+							break;
+			default: msg = ""; break;
+		}
+	}
+	write( MessageConstructor() << t << msg );
 }
 
 #include "player.moc"

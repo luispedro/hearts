@@ -123,5 +123,6 @@ void open_connections()
 	}
 	close( listen_tcp_fd );
 	close( listen_local_fd );
+	unlink( options->unix_address() );
 }
 

@@ -95,10 +95,10 @@ void PointsBox::insertLine( unsigned self, unsigned right, unsigned front, unsig
 		labels_.append( x ## LastLabel_ ); \
 	} while ( 0 )
 
-	CASE( left );
+	CASE( self );
 	CASE( right );
 	CASE( front );
-	CASE( self );
+	CASE( left );
 }
 
 void PointsBox::setName( player_id::type who, QString name )

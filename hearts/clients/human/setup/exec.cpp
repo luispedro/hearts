@@ -91,23 +91,34 @@ void execute::server( const int fds[ 4 ] ) {
 }
 
 
-int execute::computerClient( QString name )
+int execute::computerClient( QString n )
 {
 	enum { client, server };
 	int pipe[2];
 	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) return -1;
-	coe( pipe[ server ] );
+
+	char name[ 64 ];
+	strncpy( name, n.utf8(), sizeof( name ) );
+	char fd[ 8 ];
+	snprintf( fd, sizeof( fd ), "%d", pipe[ client ] );
 	
-	KProcess p;
-	p << "heartscomputerclient"
-			<< "--playername" << name
-			<< "--fd" << QString::number( pipe[ client ] )
-			<< "--zero";
-
-	LOG_PLACE() << '!' << p.args() << "!\n";
-	LOG_PLACE() << " FDs: " << pipe[ server ] << " <-> " << pipe[ client ] << "\n";
-
-	if ( !p.start( KProcess::DontCare ) ) return -1;
+	int stat = fork();
+	if ( stat < 0 ) return -1;
+	if ( stat > 0 ) {
+		::close( pipe[ client ] );
+		return pipe[ server ];
+	} else {
+		close( pipe[ server ] );
+		execlp( "heartscomputerclient",
+						"heartscomputerclient",
+						"--playername",
+						name,
+						"--fd",
+						fd,
+						"--zero",
+						static_cast<const char*>( 0 ) );
+		exit( 1 );
+	}
 	close( pipe[ client ] );
 	return pipe[ server ];
 }

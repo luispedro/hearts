@@ -247,7 +247,7 @@ void GameManager::assign_points()
 			}
 	}
 
-	std::vector<unsigned>::iterator done_all = std::find( points_gotten.begin(), points_gotten.end(), 26 );
+	std::vector<unsigned>::iterator done_all = std::find( points_gotten.begin(), points_gotten.end(), unsigned( 26 ) );
 	if ( done_all != points_gotten.end() )
 	{
 		unsigned done_all_index = done_all - points_gotten.begin(); // 4 if none found

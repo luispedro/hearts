@@ -10,7 +10,7 @@
 #include <unistd.h>
 #include <cassert>
 
-const int number_of_players = 4;
+const unsigned number_of_players = 4;
 struct gameover_callback
 {
 	gameover_callback( Server& s ) : server( s )

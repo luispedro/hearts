@@ -59,13 +59,13 @@ void Holder3::clear(){
         cards.clear();
 }
 
-ostream& operator << (ostream& out, const Holder3& t)
+std::ostream& operator << (std::ostream& out, const Holder3& t)
 {
 		out << t.vector()[0] << ' ' << t.vector()[1] << ' ' << t.vector()[2];
 		return out;
 }
 
-istream& operator >> (istream& in, Holder3& t)
+std::istream& operator >> (std::istream& in, Holder3& t)
 {
 		t.clear();
 		while (!t.full())

@@ -30,7 +30,7 @@ Deck randomDeck();
 void fullDeck(Deck&);
 void randomDeck(Deck&);
 
-string deck2string(const Deck&);
-Deck string2deck(string);
+std::string deck2string(const Deck&);
+Deck string2deck(std::string);
 
 #endif /* DB_DECK_H_INCLUDE_GUARD_ */

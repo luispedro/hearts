@@ -96,7 +96,7 @@ std::istream& operator >> (std::istream& in, Card& ref)
                         break;
                 default:
                         in.putback(c);
-                        in.setstate(ios::failbit);
+                        in.setstate(std::ios::failbit);
                         return in;
         }
 
@@ -124,7 +124,7 @@ std::istream& operator >> (std::istream& in, Card& ref)
                         }
                         else
                         {
-                                in.setstate(ios::failbit);
+                                in.setstate(std::ios::failbit);
                         }
                         break;
                 }
@@ -141,7 +141,7 @@ std::istream& operator >> (std::istream& in, Card& ref)
 
                 default:
                         if (in.eof()) return in;
-                        in.setstate(ios::failbit);
+                        in.setstate(std::ios::failbit);
                         return in;
         }
         ref = Card(n,v);
@@ -150,7 +150,7 @@ std::istream& operator >> (std::istream& in, Card& ref)
 
 
 
- ostream& operator << (ostream& out, Card::suit_t s)
+ std::ostream& operator << (std::ostream& out, Card::suit_t s)
  {
         switch (s)
         {

@@ -13,7 +13,7 @@
 	CASE(hand_over_front_win)\
 	CASE(hand_over_left_win)
 
-ostream& player_status::operator << (ostream& out, player_status::type s)
+std::ostream& player_status::operator << (std::ostream& out, player_status::type s)
 {
 		switch (s)
 		{
@@ -25,7 +25,7 @@ ostream& player_status::operator << (ostream& out, player_status::type s)
 		return out;
 }
 
-istream& player_status::operator >> (istream& in, player_status::type& s)
+std::istream& player_status::operator >> (std::istream& in, player_status::type& s)
 {
 		std::string str;
 		in >> str;

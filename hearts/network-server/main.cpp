@@ -11,10 +11,10 @@
 
 void write_pid_file()
 {
-	std::ofstream pidf( options->logFile().c_str() );
+	std::ofstream pidf( options->pidFile().c_str() );
 	pidf << getpid() << std::endl;
 	if ( !pidf ) {
-		std::cerr << "Error writing pid file" << std::endl;
+		std::cerr << "Error writing pid file [" << options->pidFile() << ']' << std::endl;
 	}
 }
 

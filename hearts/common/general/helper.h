@@ -4,7 +4,7 @@
 #include <cstdlib>
 #include <iostream>
 
-#define LOG_PLACE() cerr << __PRETTY_FUNCTION__ << " in file " << __FILE__ << ':' <<  __LINE__
+#define LOG_PLACE() std::cerr << __PRETTY_FUNCTION__ << " in file " << __FILE__ << ':' <<  __LINE__
 
 #define massert(x) do { if (!(x)) { LOG_PLACE() << " ASSERTION FAILED: " << #x << ".\n"; abort(); }} while (0);
 

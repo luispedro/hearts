@@ -34,11 +34,11 @@
  {
         public:
 
-                typedef typename iterator_traits<It>::value_type value_type;
-                typedef typename iterator_traits<It>::difference_type difference_type;
-                typedef typename iterator_traits<It>::iterator_category iterator_category;
-                typedef typename iterator_traits<It>::pointer pointer;
-                typedef typename iterator_traits<It>::reference reference;
+                typedef typename std::iterator_traits<It>::value_type value_type;
+                typedef typename std::iterator_traits<It>::difference_type difference_type;
+                typedef typename std::iterator_traits<It>::iterator_category iterator_category;
+                typedef typename std::iterator_traits<It>::pointer pointer;
+                typedef typename std::iterator_traits<It>::reference reference;
        
                 circular_iterator(const It& it, const It& fir, const It& las):cur(it),first(fir),last(las) {  }
                 template <typename Cont>
@@ -153,6 +153,13 @@ template <typename It>
 inline bool circular_iterator<It>::operator == (const circular_iterator<It>& other) const
 {
         return (cur == other.cur) && (first == other.first) && (last == other.last);
+}
+
+
+template <typename  It>
+inline bool operator != (circular_iterator<It>& a, const circular_iterator<It>& b) 
+{
+	return !(a == b);
 }
 
 template <typename It>

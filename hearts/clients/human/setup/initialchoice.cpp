@@ -25,20 +25,25 @@ void InitialChoice::doNext( SetupWindow* parent )
 	{
 		case 0 : // InitialChoice::AgainstComputer:
 			{
-				LocalSetup* setup = new LocalSetup( this );
+				LOG_PLACE_NL();
+				LocalSetup* setup = new LocalSetup( parent );
 				parent->addPage( setup, "FIXME" );
 				parent->setFinishEnabled( setup, true );
+				parent->showPage( setup );
 				return;
 			}
 		case 1: // InitialChoice::Public:
 			{
-				NetworkSetup* setup = new NetworkSetup( this );
+				LOG_PLACE_NL();
+				NetworkSetup* setup = new NetworkSetup( parent );
 				parent->addPage( setup, "FIXME!!" );
 				parent->setFinishEnabled( setup, true );
+				parent->showPage( setup );
 			}
 		case 2: // InitialChoice::Private:
 			{
 				// TODO
+				LOG_PLACE() << "TODO\n\n\nTODO\n\n\n\n";
 				return;
 			}
 		default:

@@ -1,3 +1,6 @@
+#ifndef DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_
+#define DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_
+
 /****************************************************************************
 ** ui.h extension file, included from the uic-generated form implementation.
 **
@@ -45,3 +48,6 @@ void NetworkSetupWidget::server_returnPressed( const QString & )
 {
     emit serverChange(server->text());
 }
+
+
+#endif /* DB_NETWORKSETUPWIDGET_UI_H_INCLUDE_GUARD_ */

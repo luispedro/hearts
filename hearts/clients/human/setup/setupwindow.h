@@ -3,25 +3,19 @@
 
 #include <ktabctl.h>
 #include <kmainwindow.h>
-#include <qdialog.h>
+#include <qwizard.h>
 class QLabel;
 
-class SetupWindow : public QDialog {
+class SetupWindow : public QWizard {
 	Q_OBJECT
 		public:
 				SetupWindow();
+		private:
+				void next();
 		private slots:
 				void connected(int);
 		signals:
 				void connected_to(int);	
-
-		private:
-				KTabCtl* tabs;
-				QLabel* intro_text;
-				
-				// LocalSetup* local;
-				// RemoteSetup* remote;
-				// ServerSetup* server;
 };
 
 

@@ -41,6 +41,11 @@ dnl AC_ARG_PROGRAM
 
 AC_CHECK_HEADERS(unistd.h)
 
+AC_ARG_ENABLE(network-server,
+		AC_HELP_STRING([--enable-network-server],[Enables compilation of the network server])
+	     )
+	
+AM_CONDITIONAL(compile_network_server, test x"$enable_network_server" = xyes)
 
 CXXFLAGS="$CXXFLAGS -foperator-names"
 

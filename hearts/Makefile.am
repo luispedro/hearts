@@ -1,5 +1,11 @@
 AUTOMAKE_OPTIONS = foreign 
-SUBDIRS =common server misc po network-server clients
+
+if compile_network_server
+SUBDIRS = common server misc po network-server clients
+else
+SUBDIRS = common server misc po clients
+endif
+
 
 EXTRA_DIST = admin README TODO COPYING
 

@@ -103,9 +103,9 @@ void UserConnection::hello( QString name )
 	write( m );
 }
 
-void UserConnection::auth( QString auth )
+void UserConnection::auth( QCString cookie, QCString result )
 {
-	write( MessageConstructor() << Message::auth << auth );
+	write( MessageConstructor() << Message::auth << cookie << result );
 }
 
 void UserConnection::leaveTable()
@@ -164,10 +164,10 @@ void ServerConnection::lookAt( QString table, PlayerInfo p1, PlayerInfo p2, Play
 	write( m );
 }
 
-void ServerConnection::auth( QString type )
+void ServerConnection::auth( QCString method, QCString cookie )
 {
 	MessageConstructor m;
-	write( m << Message::auth << type );
+	write( m << Message::auth << method << cookie );
 }
 
 void ServerConnection::get( Message m )

@@ -92,6 +92,9 @@ inline const short to<short>( const QString& r ) { return r.toInt(); }
 template<>
 inline const char * const to<const char*>( const QString& r ) { return r.ascii(); }
 
+template<>
+inline const QCString to<QCString>( const QString& r ) { return r.utf8(); }
+
 template <typename T>
 inline const T Message::arg( size_t idx ) const
 {

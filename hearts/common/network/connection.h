@@ -54,7 +54,7 @@ class UserConnection : public Connection
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
 	public slots:
 		void hello( QString );
-		void auth( QString );
+		void auth( QCString cookie, QCString result );
 		void createTable( QString );
 		void joinTable( QString );
 		void leaveTable();
@@ -85,7 +85,7 @@ class ServerConnection : public Connection
 		void connectTo( const char*, short );
 		void startGame( short );
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
-		void auth( QString );
+		void auth( QCString method, QCString cookie );
 
 	private:
 		void get( Message );

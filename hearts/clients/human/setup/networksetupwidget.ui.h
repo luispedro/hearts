@@ -7,6 +7,7 @@
 ** place of a destructor.
 *****************************************************************************/
 
+#include <klineedit.h>
 
 void NetworkSetupWidget::changeServer_clicked()
 {

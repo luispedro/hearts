@@ -27,11 +27,6 @@ std::ostream& operator<<( std::ostream& s, const QValueList<QCString>& l )
 
 namespace execute {
 
-bool execute_server()
-{
-	return execute_server( Communication::Port );
-}
-
 bool execute_server( short port )
 {
 	KProcess p;

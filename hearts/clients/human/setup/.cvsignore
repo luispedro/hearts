@@ -18,3 +18,5 @@ clientorserverwidget.cpp
 clientorserverwidget.h
 serversetupwidget.cpp
 serversetupwidget.h
+remotesetupwidget.cpp
+remotesetupwidget.h

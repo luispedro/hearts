@@ -46,3 +46,37 @@ void Options::savePlayerName( player_id::type who, const QString& name )
 	LOG_PLACE_NL();
 }
 
+
+QString Options::networkLogin()
+{
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	return kc->readString( "login", QString::null );
+}
+
+void Options::saveNetworkLogin( const QString& name )
+{
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	kc->writeString( "login", name );
+}
+
+QCString Options::networkPassword()
+{
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	return kc->readString( "password", QString::null );
+}
+
+void Options::saveNetworkPassword( const QCString& pwd )
+{
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	kc->writeString( "password", pwd );
+}
+
+

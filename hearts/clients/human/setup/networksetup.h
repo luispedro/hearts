@@ -34,6 +34,7 @@ class NetworkSetup : public QWidget
 		void delayedConnectTo();
 		void protocolChanged();
 		void delayedProtocolChanged();
+		void playerStatus( QString, player_status::type );
 	private:
 
 		void openConnection( const char* host, short port );

@@ -40,7 +40,7 @@ class PointsBox : public KDialogBase
 {
 		Q_OBJECT
 	public:
-		PointsBox( const char* name = "" );
+		PointsBox( const char* name = "points" );
 		~PointsBox();
 
 	public slots:

@@ -71,6 +71,9 @@ void NetworkSetup::openConnection( const char* server, short port )
 	connect( connection_, SIGNAL( protocolChanged() ),
 			 SLOT( protocolChanged() ) );
 
+	connect( connection_, SIGNAL( playerStatus( QString, player_status::type ) ),
+			SLOT( playerStatus( QString, player_status::type ) ) );
+
 	QString playerName = Options::playerName( player_id::self );
 	connection_->hello( playerName );
 }
@@ -155,6 +158,12 @@ void NetworkSetup::lookAt( QString table, QString p1, QString p2, QString p3, QS
 	}
 	tableView = new QListViewItem( tables, table, p1, p2, p3, p4 );
 	tables->insertItem( tableView );
+}
+
+void NetworkSetup::playerStatus( QString p, player_status::type s )
+{
+		kdDebug() << "NetworkSetup::playerStatus( " << p << ")" << endl;
+		LOG_PLACE() << s << endl;
 }
 
 #include "networksetup.moc"

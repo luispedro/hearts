@@ -49,8 +49,8 @@ HumanClient::HumanClient()
 	connect( interface, SIGNAL( played( Card ) ), connection, SLOT( play( Card ) ) );
 
 
-	setMinimumWidth( interface->width() );
-	setMinimumHeight( interface->height() );
+	setFixedWidth( interface->width() );
+	setFixedHeight( interface->height() );
 
 #define SET_NAME(x) interface->setName(player_id::x,Options::playerName(player_id::x))
 	HANDLE_ALL_PLAYER_IDS( SET_NAME );

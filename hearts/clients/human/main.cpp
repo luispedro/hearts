@@ -17,7 +17,6 @@ KCmdLineOptions app_options [] = {
 
 int main( int argc, char* argv[] )
 {
-	LOG_PLACE_NL();
 	KAboutData aboutData( "hearts", I18N_NOOP( "Hearts, a card game" ),
 						  VERSION,
 						  "Hearts game for the KDE",
@@ -30,8 +29,8 @@ int main( int argc, char* argv[] )
 	aboutData.addAuthor( "Luís Pedro Coelho", 0, "luis@luispedro.org" );
 
 	KCmdLineArgs::init( argc, argv, &aboutData );
-	//		KCmdLineArgs::addCmdLineOptions(app_options);
-	KApplication::addCmdLineOptions();
+	KCmdLineArgs::addCmdLineOptions(app_options);
+
 	KApplication app;
 	HumanClient* main_win = new HumanClient;
 	main_win->show();

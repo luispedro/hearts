@@ -1,23 +1,18 @@
 #include "humanclient.h"
 #include "serveraddressdialog.h"
+#include "options.h"
+#include "general/helper.h"
+#include "communication/open_connections.h"
 #include "setup/setupwindow.h"
 
 #include <strstream>
-#include <unistd.h>
+#include <iomanip>
+
 #include <qtimer.h>
 #include <qsignalmapper.h>
 #include <qmessagebox.h>
-#include <kcmdlineargs.h>
 #include <kmessagebox.h>
 
-#include <cerrno>
-#include <cstring>
-#include <iomanip>
-
-#include "options.h"
-
-#include "general/helper.h"
-#include "communication/open_connections.h"
 
 HumanClient::HumanClient()
 	 :interface(new HumanInterface(this,"human-interface")),

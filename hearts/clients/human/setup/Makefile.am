@@ -6,7 +6,7 @@ AM_CXXFLAGS = -foperator-names -g
 
 METASOURCES = AUTO
 
-EXTRA_DIST = localsetup.cpp localsetup.moc.cpp playersetup.cpp playersetup.moc.cpp remotesetup.cpp remotesetup.moc.cpp serversetup.cpp serversetup.moc.cpp setupwindow.cpp setupwindow.moc.cpp exec.h localsetup.h playersetup.h remotesetup.h serversetup.h setupwindow.h 
+EXTRA_DIST = localsetup.cpp playersetup.cpp remotesetup.cpp serversetup.cpp setupwindow.cpp exec.h localsetup.h playersetup.h remotesetup.h serversetup.h setupwindow.h 
 
 INCLUDES = $(all_includes) -I../../../common
 

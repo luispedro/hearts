@@ -6,7 +6,7 @@ AM_CXXFLAGS = -foperator-names -g
 
 METASOURCES = AUTO
 
-EXTRA_DIST = authentication.h buffer.cpp buffer.h connection.cpp connection.h message.cpp message.h playerid.h  tableid.h tablemanager.h Makefile.am Makefile.in Makefile Protocol.html
+EXTRA_DIST = authentication.h buffer.cpp buffer.h connection.cpp connection.h message.cpp message.h playerid.h  tableid.h Makefile.am Makefile.in Makefile
 
 INCLUDES = $(all_includes) -I../../common
 

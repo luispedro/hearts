@@ -27,7 +27,8 @@ class MySQLDatabase : public Database
 		QCString password( QString login );
 
 	private:
-		MYSQL connection_;
+		static void init();
+		static MYSQL* connection_;
 };
 
 #endif /* DB_DATABASE_H1067811020_INCLUDE_GUARD_ */

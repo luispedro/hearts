@@ -36,6 +36,10 @@ int open_client_connection(int argc,char* argv[])
 		int open_client_local_connection(const char* address)
 		{	
 			int fd = socket(PF_LOCAL,SOCK_STREAM,0);
+			if ( fd < 0 ) {
+				std::cerr << "Error creating socket (local): " << strerror( errno ) << ".\n";
+				return -connection_errors::unix_error;
+			}
 			sockaddr_un addr;
 			memset(&addr,0,sizeof(addr));
 			addr.sun_family = AF_LOCAL;
@@ -54,6 +58,10 @@ int open_client_connection(int argc,char* argv[])
 		int open_client_tcp_connection(const char* address, short port = tcp_port)
 		{
 			int fd = socket(PF_INET,SOCK_STREAM,0);
+			if ( fd < 0 ) {
+				std::cerr << "Error creating socket (local): " << strerror( errno ) << ".\n";
+				return -connection_errors::unix_error;
+			}
 			sockaddr_in addr;
 			memset(&addr,0,sizeof(addr));
 			addr.sin_family = AF_INET;

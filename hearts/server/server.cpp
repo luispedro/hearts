@@ -66,10 +66,10 @@ void Server::advertise_points()
 {
 	using namespace player_id;
 	std::vector<unsigned> points;
-	points.push_back(manager.points(self));
-	points.push_back(manager.points(right));
-	points.push_back(manager.points(front));
-	points.push_back(manager.points(left));
+	points.push_back(manager.points(player_id::self));
+	points.push_back(manager.points(player_id::right));
+	points.push_back(manager.points(player_id::front));
+	points.push_back(manager.points(player_id::left));
 	circular_iterator<std::vector<unsigned>::iterator> iter(points.begin(),points.begin(),points.end());
 	for (unsigned i = 0; i != 4; ++i)
 	{

@@ -120,16 +120,16 @@ void HumanClient::status(player_status::type s)
 		switch (s)
 		{
 				case hand_over_self_win:
-						winner = self;
+						winner = player_id::self;
 						break;
 				case hand_over_right_win:
-						winner = right;
+						winner = player_id::right;
 						break;
 				case hand_over_front_win:
-						winner = front;
+						winner = player_id::front;
 						break;
 				case hand_over_left_win:
-						winner = left;
+						winner = player_id::left;
 						break;
 				case game_over:
 						clear = false;

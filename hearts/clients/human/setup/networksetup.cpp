@@ -2,10 +2,12 @@
 
 #include <qlistview.h>
 #include <qtimer.h>
+#include <qpushbutton.h>
 #include <kextsock.h>
 #include <klocale.h>
 #include <kmessagebox.h>
 #include <klineeditdlg.h>
+#include <klineedit.h>
 
 #include <string.h>
 #include <errno.h>
@@ -48,6 +50,11 @@ NetworkSetup::NetworkSetup(QWidget* parent, const char* name)
 #endif
 	connection_->hello( playerName );
 	widget_->connectingBox->hide();
+	widget_->server->insert( Network::Server );
+
+	//FIXME remove lines below and implement functionality:
+	widget_->server->setEnabled( false );
+	widget_->changeServer->setEnabled( false );
 }
 
 NetworkSetup::~NetworkSetup()

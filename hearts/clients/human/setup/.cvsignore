@@ -11,3 +11,5 @@ networksetupwidget.cpp
 
 initialchoicewidget.cpp
 initialchoicewidget.h
+localsetupwidget.cpp
+localsetupwidget.h

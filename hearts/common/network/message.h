@@ -3,6 +3,7 @@
 #include <qstring.h>
 #include <qstringlist.h>
 #include <iostream>
+#include <cassert>
 
 #include "tableid.h"
 #include "player_status.h"
@@ -20,6 +21,7 @@ class MessageConstructor;
 // playerStatus playerName player_status
 // motd message
 // changeProtocol
+// error errorType msg(english, user level)
 
 class Message
 {
@@ -44,6 +46,14 @@ class Message
 #define HANDLE( x ) x,
 
 		enum typeEnum { HANDLE_ALL_MESSAGE_TYPES tableInfo = lookAt };
+#undef HANDLE
+
+#define HANDLE_ALL_MESSAGE_ERRORS \
+					HANDLE( notAuthenticated ) \
+					HANDLE( authenticationFailed ) \
+					HANDLE( inexistantTable ) 
+#define HANDLE( x ) x,
+		enum errorType { HANDLE_ALL_MESSAGE_ERRORS unknown };
 #undef HANDLE
 
 		typeEnum type() const
@@ -84,6 +94,7 @@ class MessageConstructor : private QStringList
 		MessageConstructor& operator<< ( QString );
 		MessageConstructor& operator<< ( int number );
 		MessageConstructor& operator<< ( player_status::type );
+		MessageConstructor& operator<< ( Message::errorType );
 		const QStringList list() const
 		{
 			return * this;
@@ -105,6 +116,17 @@ MessageConstructor& MessageConstructor::operator<<( int n )
 {
 	QString r = QString::number( n );
 	return *this << r;
+}
+
+inline
+MessageConstructor& MessageConstructor::operator<<( Message::errorType e )
+{
+	assert( ( *this )[ 0 ] == QString::fromLatin1( "error" ) );
+#define HANDLE( x ) if ( e == Message::x ) return *this << #x;
+	HANDLE_ALL_MESSAGE_ERRORS
+#undef HANDLE
+	assert( 0 );
+	return *this;
 }
 
 template <typename T>
@@ -140,6 +162,14 @@ inline const player_status::type to<player_status::type>( const QString& r ) {
 		FOR_ALL_PLAYER_STATUS( IFRET )
 		return player_status::unknown;
 #undef IFRET
+}
+
+template <>
+inline const Message::errorType to<Message::errorType>( const QString& r ) {
+#define HANDLE( x ) if ( r == QString::fromLatin1( #x ) ) return Message::x;
+		HANDLE_ALL_MESSAGE_ERRORS
+		return Message::unknown;
+#undef HANDLE
 }
 
 template <typename T>

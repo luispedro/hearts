@@ -80,9 +80,14 @@ void Server::acceptSlot()
 
 void Server::connectionError( const char* reason, int code )
 {
+	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
+	connectionError( player, reason, code );
+}
+
+void Server::connectionError( Player* player, const char* reason, int code )
+{
 	LOG_PLACE() << " connection ended: " << reason << ".\n";
 
-	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
 	Table* table = player->table();
 	if ( table ) {
 		table->removePlayer( player );
@@ -95,7 +100,11 @@ void Server::joinTable( table_id tableName )
 {
 	LOG_PLACE_NL();
 	Player* player = static_cast<Player*>( const_cast<QObject*>( sender() ) );
+	joinTable( player, tableName );
+}
 
+void Server::joinTable( Player* player, table_id tableName )
+{
 	LOG_PLACE() << " player " <<  player->name().ascii() << " joining " << tableName.ascii() << std::endl;
 
 	//FIXME do not use QObject::sender !!
@@ -126,6 +135,11 @@ void Server::showTable( Table* table )
 	FOR_ALL_PLAYERS( player->lookAt( table ) );
 }
 
+
+void Server::createTable( Player*, QString name )
+{
+	createTable( name );
+}
 
 void Server::createTable( QString name )
 {

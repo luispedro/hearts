@@ -4,6 +4,7 @@
 #include <kextsock.h>
 
 class Table;
+class Player;
 class Server : public QObject
 {
 	Q_OBJECT
@@ -13,9 +14,15 @@ class Server : public QObject
 	public slots:
 		void acceptSlot();
 		void tableFull( Table* );
+
 		void createTable( QString );
+		void createTable( Player*, QString );
+		
 		void joinTable( QString );
+		void joinTable( Player*, QString );
+		
 		void connectionError( const char*, int );
+		void connectionError( Player*, const char*, int );
 
 	private:
 		void newConnection( int );

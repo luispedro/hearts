@@ -16,18 +16,18 @@ do_header('Hearts for KDE');
 <h3>Development Plan</h3>
 <p>I put a <a href="plan.php">Development Plan</a> online for all to see.
 
-<h3>Release 1.97</h3>
-<p><strong>11th April 2004</strong><br />
+<h3>Release 1.98</h3>
+<p><strong>19th April 2004</strong><br />
 <h4>Change Log</h4>
 <ul>
-	<li>Fix important bug regarding the points (you got your partners' points).</li>
-	<li>Make the local game start immediately (before you had a small delay).</li>
-	<li>Small GUI fixes:
-		<ul>
-			<li>Accelerator clashes fixed</li>
-			<li>Use the same strings in the local and remote game setup</li>
-		</ul></li>
-	<li>Code cleanup: removed unnecessary files, includes and fixed whitespace
+<li>Fix all known bugs:
+	<ul>
+		<li>The card passing is always to the right.</li>
+		<li>Portability issue regarding setting the random seed.</li>
+		<li>A lot of processes are left running.</li>
+		<li>Only one match (ie, a series of games until a player gets 100 points) is possible.</li>
+	</ul>
+<li>Have the status bar help on what the user should do at every step (play, give cards right, etc.)</li>
 </ul>
 
 

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 #
 # heartsserver This shell script takes care of starting and stopping
 #               heartsserver
@@ -8,35 +8,44 @@
 # Configuration
 # (this should be a separate file in a real system, keep here for now)
 
-HEARTSSERVER="/home/hearts/hearts/hearts/network-server/heartsd"
+HEARTSSERVER="/home/hearts/hearts/network-server/heartsd"
 HEARTSOPTIONS="--daemon"
 
 [ -x $HEARTSSERVER ] || exit 1
 
 RETVAL=0
 prog="heartsd"
-pidfile='/var/run/hearts.pid'
-logfile='/var/log/heartslog'
+pidfile='/home/hearts/hearts.pid'
+logfile='/home/hearts/heartslog'
 pid=`cat $pidfile`
 
 HEARTSOPTIONS="$HEARTSOPTIONS --logfile $logfile"
 HEARTSOPTIONS="$HEARTSOPTIONS --pidfile $pidfile"
 
+run() {
+	echo $@
+	$@
+	return $?
+} 
+
 start() {
 	# Start daemon
 
-	echo -n $"Starting $prog: "
-	$HEARTSSERVER $HEARTSOPTIONS
+	echo -n "Starting $prog: "
+	run $HEARTSSERVER $HEARTSOPTIONS
 	RETVAL=$?
-	echo
+	echo $RETSTR
 	return $RETVAL
 }
 
 stop() {
 	# Stop daemon
-	echo -n $"Shutting down $prog: "
+	echo -n "Shutting down $prog: "
+	kill $pid
 	RETVAL=$?
-	echo
+	RETSTR="Ok"
+	[ $RETVAL = "0" ] || RETSTR="Failed"
+	echo $RETSTR
 	return $RETVAL
 }
 

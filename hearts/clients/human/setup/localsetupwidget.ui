@@ -1,4 +1,4 @@
-<!DOCTYPE UI><UI version="3.2" stdsetdef="1">
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
 <class>LocalSetupWidget</class>
 <author>Luís Pedro Coelho &lt;luis@hearts.luispedro.org&gt;</author>
 <widget class="QWidget">
@@ -96,7 +96,7 @@
                         <cstring>textLabel1_2_3</cstring>
                     </property>
                     <property name="text">
-                        <string>Player in &amp;front</string>
+                        <string>Player in fron&amp;t</string>
                     </property>
                     <property name="buddy" stdset="0">
                         <cstring>front_</cstring>

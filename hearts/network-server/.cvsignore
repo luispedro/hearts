@@ -7,3 +7,5 @@ heartsd
 .libs
 
 .deps .libs
+ Makefile.calls.in
+ Makefile.rules.in

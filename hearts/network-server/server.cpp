@@ -68,7 +68,7 @@ Server::Server( QObject* parent )
 void Server::acceptSlot()
 {
 	KExtendedSocket * ext = 0;
-	logfile() << "Player Connection\n";
+	logfile() << "Player Connection" << std::endl;
 	socket_.accept( ext );
 	massert( ext );
 	Player* p = new Player( this, ext );
@@ -90,7 +90,7 @@ void Server::connectionError( const char* reason, int code )
 
 void Server::connectionError( Player* p, const char* reason, int code )
 {
-	logfile() << " Connection Error (" << reason << ":" << code << ")\n";
+	logfile() << "Connection Error (" << reason << ":" << code << ")" << std::endl;
 
 	FOR_ALL_PLAYERS( player->playerStatus( p->name(), player_status::logout ); )
 

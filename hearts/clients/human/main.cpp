@@ -10,7 +10,7 @@
 
 namespace {
 		KCmdLineOptions app_options [] = {
-			{ 0, 0, 0 }
+			KCmdLineLastOption
 	};
 }
 

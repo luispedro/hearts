@@ -7,6 +7,7 @@
 
 #include <klocale.h>
 #include <kprocess.h>
+#include <kmessagebox.h>
 #include <kapp.h>
 
 #include <qlineedit.h>
@@ -27,6 +28,12 @@ void RemoteSetup::execute()
 	c->writeEntry( "ip-address", widget_->address->text() );
 
 	Options::savePlayerName( player_id::self, widget_->selfName->text() );
+
+	char t = 0;
+	if ( fd < 0 || write( fd, &t, 1 ) < 0 ) {
+		KMessageBox::error( 0, i18n( "<qt>Error opening connection:<nobr><strong>%1</strong></nobr></qt>" )
+				.arg( strerror( errno ) ) );
+	}
 
 	emit connected( fd );
 }

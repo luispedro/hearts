@@ -62,13 +62,18 @@ void ServerSetup::execute()
 {
 	execute_server();
 	sleep( 1 ); // FIXME: hack
-
 	execute( player_id::right, widget_->type1 );
 	execute( player_id::front, widget_->type2 );
 	execute( player_id::left, widget_->type3 );
-	int fd = open_client_connection( local_address );
+	int fd = open_client_connection( generateLocalAddress().local8Bit() );
 	if ( fd < 0 ) {
-		KMessageBox::error( 0, i18n( "An error occurred:\n%1" ).arg( strerror( errno ) ) );
+		KMessageBox::error( 0, i18n( "<qt>Error establishing connection: <nobr><strong>%1</strong></nobr></qt>" )
+				.arg( strerror( errno ) ) );
+	}
+	char c = 0;
+	if ( write( fd, &c, 1 ) < 0 ) {
+		KMessageBox::error( 0, i18n( "<qt>Error establishing connection:<nobr><strong>%1</strong></nobr></qt>" )
+				.arg( strerror( errno ) ) );
 	}
 	emit connected( fd );
 }

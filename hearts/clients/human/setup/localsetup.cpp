@@ -82,7 +82,7 @@ void LocalSetup::execute()
 { // FIXME: add error handling
 		// FIXME: the whole thing with execute2 is really "hacky"
 	LOG_PLACE();
-	execute_server();
+	execute_server(false,true);
 	QTimer::singleShot(1500,this,SLOT(execute2()));
 }
 

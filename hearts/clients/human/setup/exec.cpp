@@ -34,8 +34,14 @@ bool execute_server( short port )
 		<< "--unix-port" << generateLocalAddress()
 		<< "--wait-zero";
 
-	LOG_PLACE() << '!' << p.args() << "!\n";
+	LOG_PLACE() << " !" << p.args() << "!\n";
 	return p.start(KProcess::DontCare);
+}
+
+bool execute_server( bool tcp, bool local ) {
+#warning execute_server( bool, bool ) not implemented
+
+	execute_server( 0 );
 }
 
 

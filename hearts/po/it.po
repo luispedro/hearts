@@ -1,0 +1,200 @@
+# translation of pt.po to Italian
+# Copyright (C) 2005 Free Software Foundation, Inc.
+# Michele Spagnuolo <mikispag@gmail.com>, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: pt\n"
+"POT-Creation-Date: 2001-09-07 03:52+0100\n"
+"PO-Revision-Date: 2005-11-23 20:23+0100\n"
+"Last-Translator: Michele Spagnuolo <mikispag@gmail.com>\n"
+"Language-Team: Italian <kde-i18n-it@kde.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: KBabel 1.10.2\n"
+
+#: server/gamemanager.cpp:354
+msgid "Unknown error"
+msgstr "Errore sconosciuto"
+
+#: server/gamemanager.cpp:355
+msgid "You do not have that card in your hand!"
+msgstr "Non hai quella carta nel mazzo!"
+
+#: server/gamemanager.cpp:356
+msgid "You must start the game with a two of clubs"
+msgstr "Devi iniziare il gioco con il due di fiori"
+
+#: server/gamemanager.cpp:357
+msgid "You must not play any points card on your first move"
+msgstr "Non puoi giocare una carta di cuori come tua prima mossa"
+
+#: server/gamemanager.cpp:358
+msgid ""
+"You cannot start a hand with hearts until they have been played unless you "
+"do not have anything else"
+msgstr "Non puoi iniziare una mano con i cuori a meno che tu non abbia nient'altro"
+
+#: server/gamemanager.cpp:359
+msgid "You must play clubs"
+msgstr "Devi giocare fiori"
+
+#: server/gamemanager.cpp:360
+msgid "You must play hearts"
+msgstr "Devi giocare cuori"
+
+#: server/gamemanager.cpp:361
+msgid "You must play spades"
+msgstr "Devi giocare picche"
+
+#: server/gamemanager.cpp:362
+msgid "You must play diamonds"
+msgstr "Devi giocare ori"
+
+#: setup/localsetup.cpp:35 setup/remotesetup.cpp:14 setup/serversetup.cpp:17
+msgid "Go!"
+msgstr "Vai!"
+
+#: setup/remotesetup.cpp:15
+msgid "ip address of server:"
+msgstr "Indirizzo IP del server:"
+
+#: setup/remotesetup.cpp:17
+msgid "name:"
+msgstr "nome:"
+
+#: setup/main.cpp:9
+msgid "Hearts Game setup"
+msgstr "Impostazioni di Hearts"
+
+#: setup/localsetup.cpp:27
+msgid "Your name"
+msgstr "Tuo nome"
+
+#: setup/localsetup.cpp:29
+msgid "Name of opponent on right"
+msgstr "Nome dell'avversario alla tua destra"
+
+#: setup/localsetup.cpp:31
+msgid "Name of opponent in front"
+msgstr "Nome dell'avversario di fronte"
+
+#: setup/localsetup.cpp:33
+msgid "Name of opponent on left"
+msgstr "Nome dell'avversario alla tua sinistra"
+
+#: setup/setup_window.cpp:12
+msgid ""
+"Please choose whether you would like to play a local game or a network.\n"
+"If you want to play a network game, one player must deal cards while others\n"
+"connect to it."
+msgstr ""
+"Per favore scegli se giocare una partita locale o in multigiocatore.\n"
+"Se vuoi giocare una partita multigiocatore su Internet, un giocatore deve dare le carte mentre\n"
+"gli altri si connettono ad esso."
+
+#: setup/setup_window.cpp:31
+msgid "Local Game"
+msgstr "Partita locale"
+
+#: setup/setup_window.cpp:32
+msgid "Connect to remote game"
+msgstr "Connettiti ad una partita remota"
+
+#: setup/setup_window.cpp:33
+msgid "Deal cards for a network game"
+msgstr "Dai le carte per la partita multigiocatore"
+
+#: setup/serversetup.cpp:13
+msgid "Type of first player"
+msgstr "Tipo del primo giocatore"
+
+#: setup/serversetup.cpp:14
+msgid "Type of second player"
+msgstr "Tipo del secondo giocatore"
+
+#: setup/serversetup.cpp:15
+msgid "Type of third player"
+msgstr "Tipo del terzo giocatore"
+
+#: setup/serversetup.cpp:16
+msgid "Type of forth player"
+msgstr "Tipo del quarto giocatore"
+
+#: setup/playersetup.cpp:21
+msgid "computer player"
+msgstr "Computer"
+
+#: setup/playersetup.cpp:22
+msgid "remote human player"
+msgstr "Giocatore umano remoto"
+
+#: setup/playersetup.cpp:23
+msgid "local player"
+msgstr "Giocatore locale"
+
+#: clients/human/main.cpp:14
+msgid ""
+"Specifies the address to which to connect in IP dot notation (for TCP) or a "
+"path which must start with '/'(for local connection)"
+msgstr "Specifica l'indirizzo a quale vuoi connetterti con la notazione punteggiata dell'IP (per TCP) o un percorso che inizi con '/' (per connessioni locali)"
+
+#: clients/human/main.cpp:15
+msgid "The name of the player"
+msgstr "Il nome del giocatore"
+
+#: clients/human/main.cpp:23
+msgid "This is a card game"
+msgstr "Questo è un gioco di carte"
+
+#: clients/human/main.cpp:25
+msgid "Hearts - a card game"
+msgstr "Hearts- un gioco di carte"
+
+#: clients/human/qtconnection.h:60
+msgid ""
+"You got a server message!\n"
+"Maybe there is a mistake in setup.\n"
+"\n"
+msgstr ""
+"Hai ricevuto un messaggio dal server!\n"
+"Magari c'è qualche errore nella configurazione.\n"
+"\n"
+
+#: clients/human/humaninterface.cpp:42
+msgid "Pass cards"
+msgstr "Passa le carte"
+
+#: clients/human/humanclient.cpp:24
+msgid "points"
+msgstr "punti"
+
+#: clients/human/humanclient.cpp:29
+msgid "This is your turn to play"
+msgstr "Questo è il tuo turno"
+
+#: clients/human/humanclient.cpp:30
+msgid "Give three cards to your opponent"
+msgstr "Dai tre carte ai tuoi avversari"
+
+#: clients/human/humanclient.cpp:161
+msgid "Invalid Move"
+msgstr "Mossa non regolare"
+
+#: clients/human/humanclient.cpp:161
+msgid "Ok"
+msgstr "Ok"
+
+#: clients/human/multilinebox.cpp:28
+msgid "Close"
+msgstr "Chiudi"
+
+#: clients/human/serveraddressdialog.cpp:12
+msgid "Please enter the address of the server"
+msgstr "Inserire l'indirizzo del server"
+
+#: clients/human/serveraddressdialog.cpp:14
+msgid "Connect"
+msgstr "Connetti"
+

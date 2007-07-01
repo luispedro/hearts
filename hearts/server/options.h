@@ -18,6 +18,14 @@
  *                                                                         *
  ***************************************************************************/
 
+/**This class manages the options of the user hiding away the details of KConfig.
+   *
+   * class OptionsSelectionDialog is declared a friend for it to acess the set functions. These are
+   * however not available to the general user.
+   *
+   * @author Luís Coelho <luis@luispedro.org>
+   */
+
 
 #include <player.h>
 #include <string>
@@ -91,8 +99,6 @@ class Options
 		/** returns the non const singleton. It is to be used by OptionsSelectionDialog. */
 		static Options* unconstAppOptions();
 };
-
-
 
 
 #endif /* LPC_OPTIONS_H1082425633_INCLUDE_GUARD_ */

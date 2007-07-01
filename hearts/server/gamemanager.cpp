@@ -342,7 +342,7 @@ const char* GameManager::error_msgs[] =
 	{
 		I18N_NOOP( "Unknown error" ),
 		I18N_NOOP( "You do not have that card in your hand!" ),
-		I18N_NOOP( "You must start the game with a two of clubs" ),
+		I18N_NOOP( "You must start the game with the two of clubs" ),
 		I18N_NOOP( "You must not play any points card on your first move" ),
 		I18N_NOOP( "You must not start a hand with hearts until they have been played" ),
 		I18N_NOOP( "You must play clubs" ),

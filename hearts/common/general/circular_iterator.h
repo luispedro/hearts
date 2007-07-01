@@ -137,7 +137,7 @@ template <typename It>
 inline circular_iterator<It>& circular_iterator<It>::operator += ( circular_iterator<It>::difference_type n )
 {
 	n %= last - first; // put it in range
-	circular_iterator::difference_type d = last - cur;
+	typename circular_iterator::difference_type d = last - cur;
 	if ( d > n ) {
 		cur += n;
 		return *this;

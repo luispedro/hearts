@@ -30,8 +30,7 @@ class Table
 
 		const std::vector<Card>& state() const throw();
 		void add_play( Card );
-		void add
-			( Card );
+		void add( Card );
 		void reset();
 
 		Card::suit_t push() const throw();

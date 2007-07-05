@@ -15,8 +15,8 @@
  *                                                                         *
  ***************************************************************************/
 
-#ifndef COMPUTERPLAYERBASE_H
-#define COMPUTERPLAYERBASE_H
+#ifndef COMPUTERPLAYERBASE_H_INCLUDE_GUARD_
+#define COMPUTERPLAYERBASE_H_INCLUDE_GUARD_
 
 #include "hearts/card.h"
 #include "hearts/player_id.h"
@@ -120,7 +120,7 @@ class ComputerPlayerBase
 
 		Table currentTable() const
 		{
-			return table;
+			return table_;
 		}
 
 		Card::suit_t push() const
@@ -135,6 +135,9 @@ class ComputerPlayerBase
 		/** Not really necessary, but a nice feature to have, anyway.
 		        It returns the highest card of a given suite or handEnd(), if the suite isn't available */
 		handIterator highestOf( Card::suit_t ) const;
+
+		/** Returns the highest card on table of the pulled suit */
+		Card winningCardOnTable() const;
 
 	private:
 		class SuitInfo
@@ -156,7 +159,7 @@ class ComputerPlayerBase
 				bool skippedAll;
 				bool hasIt;
 		};
-		Table table;
+		Table table_;
 		std::vector<Card> hand;
 		auto_init<bool> queenOut_;
 		auto_init<bool> hasQueen_;
@@ -178,10 +181,10 @@ class ComputerPlayerBase
 		{ }
 		/** This removes the card pointed by its arg, which must not be handEnd().
 			It makes sure that the invariants are maintained. */
-		Card remove
-			( handIterator );
+		Card remove( handIterator );
+
 		/** This tries to check as many facts as possible. */
 		void assertInvariants();
 };
 
-#endif
+#endif /* COMPUTERPLAYERBASE_H_INCLUDE_GUARD_ */

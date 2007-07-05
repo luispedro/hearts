@@ -25,7 +25,7 @@ email                : luis@luispedro.org
 void ComputerPlayerBase::inform( const Card c, const player_id::type from )
 {
 	LOG_PLACE() << ' ' << from << " played " << c << ".\n";
-	table.add( c );
+	table_.add( c );
 	if ( c == Cards::spadesQueen ) {
 		queenOut_ = true;
 	}
@@ -48,7 +48,7 @@ void ComputerPlayerBase::inform( const Card c, const player_id::type from )
 			whoDoingItAll = impossible;
 		}
 	}
-	if ( table.state().size() == 1 ) {
+	if ( table_.state().size() == 1 ) {
 		push_ = c.suit();
 		++suitInfo[ c.suit() ].played;
 	} else {
@@ -66,7 +66,7 @@ void ComputerPlayerBase::inform( const Card c, const player_id::type from )
 			hasHighSpades_ = true;
 		}
 	}
-	if ( table.full() ) {
+	if ( table_.full() ) {
 		if ( std::count_if( handBegin(), handEnd(), not1( OfSuite( c.suit() ) ) ) == 3 ) {
 			suitInfo[ c.suit() ].skippedAll = true;
 		}
@@ -77,7 +77,7 @@ void ComputerPlayerBase::inform( const Card c, const player_id::type from )
 void ComputerPlayerBase::hand_end()
 {
 	LOG_PLACE_NL();
-	table.reset();
+	table_.reset();
 }
 
 
@@ -88,16 +88,15 @@ Card ComputerPlayerBase::play()
 #endif
 
 	handIterator resIter;
-	if ( table.state().empty() ) {
+	if ( table_.state().empty() ) {
 		resIter = playStart();
-	} else if ( std::find_if ( hand.begin(), hand.end(), OfSuite( table.state().front().suit() ) ) != hand.end() ) {
+	} else if ( std::find_if ( hand.begin(), hand.end(), OfSuite( table_.state().front().suit() ) ) != hand.end() ) {
 		resIter = playAssist();
 	} else {
 		resIter = playNotAssist();
 	}
 	massert ( resIter >= handBegin() and resIter < handEnd() );
-	return remove
-			   ( resIter );
+	return remove( resIter );
 }
 
 /** If !suitHasIt(s) return handEnd() else return highestCardOf(s) */
@@ -123,7 +122,7 @@ ComputerPlayerBase::handIterator ComputerPlayerBase::highestOf( Card::suit_t s )
 /**  */
 void ComputerPlayerBase::reset()
 {
-	table.reset();
+	table_.reset();
 	hand.clear();
 	queenOut_.reset();
 	hasQueen_.reset();
@@ -211,4 +210,12 @@ void ComputerPlayerBase::assertInvariants()
 	std::vector<Card> tmp = hand;
 	std::sort( tmp.begin(), tmp.end() );
 	massert( tmp == hand );
+}
+
+Card ComputerPlayerBase::winningCardOnTable() const {
+	Card res = table_.state().front();
+	for (std::vector<Card>::const_iterator first = table_.state().begin(), past = table_.state().end(); first != past; ++first) {
+		if (first->suit() == push() && first->value() > res.value()) res = *first;
+	}
+	return res;
 }

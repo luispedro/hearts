@@ -19,15 +19,6 @@ email                : luis@luispedro.org
 
 #include "hearts/cards.h"
 
-namespace
-{
-inline bool byValue( Card a, Card b )
-{
-	return a.value() < b.value();
-}
-}
-
-
 ComputerPlayerBase::handIterator ComputerPlayer3_2::playAssist()
 {
 	const std::vector<Card> tableState = currentTable().state();
@@ -75,9 +66,7 @@ ComputerPlayerBase::handIterator ComputerPlayer3_2::playAssist()
 		return highestOf( Card::spades );
 	}
 
-	std::vector<Card> tmp = tableState;
-	std::sort( tmp.begin(), tmp.end(), byValue );
-	Card highestOnTable = tmp.back();
+	Card highestOnTable = winningCardOnTable();
 
 	if ( push() == Card::hearts ) {
 		LOG_PLACE() << " hearts on the table, I'll try not to win.\n";

@@ -1,9 +1,9 @@
 /***************************************************************************
-                     computerplayer4.cpp  -  description
+                     computerplayer4.cpp  -  description - modified computerplayer3_2.cpp -- not the original computerplayer4.cpp.
                         -------------------
-begin                : Tue Oct 17 2000
-copyright            : (C) 2000 by Luis Pedro Coelho
-email                : luis@luispedro.org
+begin                : Wed Oct 25 2000 ; Sun 11 Feb 2007
+copyright            : (C) 2000 by Luis Pedro Coelho : (C) 2007 by Phil Brunner
+email                : luis@luispedro.org : phil.brunner@gmail.com
 ***************************************************************************/
 
 /***************************************************************************
@@ -19,16 +19,6 @@ email                : luis@luispedro.org
 #include "hearts/cards.h"
 
 /** The code in this file was done taking computerplayer3_2.cpp as a basis */
-
-namespace
-{
-inline bool byValue( Card a, Card b )
-{
-	return a.value() < b.value();
-}
-}
-
-
 
 ComputerPlayerBase::handIterator ComputerPlayer4::playAssist()
 {
@@ -77,9 +67,7 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playAssist()
 		return highestOf( Card::spades );
 	}
 
-	std::vector<Card> tmp = tableState;
-	std::sort( tmp.begin(), tmp.end(), byValue );
-	Card highestOnTable = tmp.back();
+	Card highestOnTable = winningCardOnTable();
 
 	if ( push() == Card::hearts ) {
 		LOG_PLACE() << " hearts on the table, I'll try not to win.\n";
@@ -120,7 +108,7 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playAssist()
 	while ( ( res + 1 ) != handEnd() and
 			( res + 1 ) ->suit() == push() and
 			( res + 1 ) ->value() < highestOnTable.value() ) {
-		++res; // res = res + 1;
+		++res;
 	}
 	return res;
 }
@@ -130,6 +118,7 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playAssist()
 ComputerPlayerBase::handIterator ComputerPlayer4::playNotAssist()
 {
 	if ( handEnd() - handBegin() == 13 ) {
+// first round - I have 13 cards (and no clubs - C2 was led and I can't follow suit).
 		if ( hasHighSpades() and !hasQueen() ) {
 			//                        LOG_PLACE() << " getting rid of a high spade, first hand.\n";
 			return highestOf( Card::spades );
@@ -139,10 +128,10 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playNotAssist()
 		else if ( suitHasIt( Card::spades ) ) {
 			handIterator spade = highestOf( Card::spades );
 			if ( spade->value() == Card::queen ) {
-				if ( spade == std::find_if( handBegin(), handEnd(), OfSuite( Card::spades ) ) ) {       // it is the lowest spade, besides this there are only hearts.
-					return spade;
+				if ( spade == std::find_if( handBegin(), handEnd(), OfSuite( Card::spades ) ) ) {       // queen is the lowest spade, besides this there are only hearts.
+					return spade; // legal to play Sq on first round!
 				} else if ( spade != handBegin() and ( spade - 1 ) ->suit() == Card::spades )
-					return spade -1;
+					return spade -1; // best legal play is next-highest spade.
 				else {
 					LOG_PLACE() << "OOPS.\n";
 					massert( 0 );
@@ -153,7 +142,7 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playNotAssist()
 		LOG_PLACE() << "I have ALL the hearts!!!!!!!!!!!!!!!!!!!!!!!!!!!!\n";
 		return highestOf( Card::hearts );
 	}
-
+// not first round - I have less than 13 cards
 	if ( hasQueen() ) {
 		LOG_PLACE() << " dumping the queen.\n";
 		return std::find( handBegin(), handEnd(), Cards::spadesQueen );
@@ -167,7 +156,7 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playNotAssist()
 		handIterator it = handBegin();
 		++it;
 		while ( it != handEnd() ) {        // From here till end of func is where it differs from ComputerPlayerBase3_2
-			if ( doingItAll() != ComputerPlayerBase::impossible and * it == Cards::heartsAce )
+			if ( doingItAll() != ComputerPlayerBase::impossible and *it == Cards::heartsAce )
 				if ( it->value() > highest->value() )
 					highest = it;
 			++it;
@@ -209,10 +198,11 @@ ComputerPlayerBase::handIterator ComputerPlayer4::giveOne()
 ComputerPlayerBase::handIterator ComputerPlayer4::playStart()
 {
 	if ( std::find_if( handBegin(), handEnd(), not1( OfSuite( Card::hearts ) ) ) == handEnd() ) { // if I only have hearts, then it doesn't matter whether they have been played
-		//                LOG_PLACE() << " all I got is hearts.\n";
+		LOG_PLACE() << " all I got is hearts.\n";
 		return handBegin(); // might as well play the lowest
 	}
 	if ( handEnd() - handBegin() == 13 ) {
+		LOG_PLACE() << "starting the game.\n";
 		return std::find( handBegin(), handEnd(), Cards::clubsTwo );
 	}
 	if ( !hasQueen() and
@@ -224,11 +214,11 @@ ComputerPlayerBase::handIterator ComputerPlayer4::playStart()
 
 	// try a suit which hasn't been played much
 	if ( suitPlayed( Card::diamonds ) < 2 and suitHasIt( Card::diamonds ) ) {
-		//                LOG_PLACE() << " playing a high diamond 'cause they only came out " << suitInfo[Card::diamonds].played << " times.\n";
+		LOG_PLACE() << " playing a high diamond 'cause they only came out " << suitPlayed( Card::diamonds ) << " times.\n";
 		return highestOf( Card::diamonds );
 	}
 	if ( suitPlayed( Card::clubs ) == 1 and suitHasIt( Card::clubs ) ) {
-		//                LOG_PLACE() << " playing a high club 'cause they only came out " << suitInfo[Card::clubs].played << " times.\n";
+		LOG_PLACE() << " playing a high club 'cause they only came out " << suitPlayed( Card::clubs ) << " times.\n";
 		return highestOf( Card::clubs );
 	}
 

@@ -38,6 +38,7 @@ HumanClient::HumanClient()
 	pointsWindow->setName( player_id::self, Options::playerName( player_id::self ) );
 
 	connect( connection, SIGNAL( give3( player_id::type ) ), SLOT( giveStatus( player_id::type ) ) );
+	connect( connection, SIGNAL( play() ), SLOT( playStatus() ) );
 
 	connect( connection, SIGNAL( namequery() ), SLOT( namequery() ) );
 	connect( connection, SIGNAL( error( QString ) ), SLOT( connectionError( QString ) ) );
@@ -153,6 +154,11 @@ void HumanClient::invalidMove( QString reason )
 	LOG_PLACE() << " invalid move: " << reason << ".\n";
 	QMessageBox::warning( this, i18n( "Invalid Move" ), i18n( reason ), i18n( "Ok" ) );
 	interface->play();
+}
+
+void HumanClient::playStatus()
+{
+	interface->setStatus( i18n( "Your turn to play" ) );
 }
 
 void HumanClient::giveStatus( player_id::type whom )

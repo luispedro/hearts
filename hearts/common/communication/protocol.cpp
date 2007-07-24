@@ -9,7 +9,7 @@ using namespace MessageTypes;
 		PUT(Name)\
 		PUT(Opponentname)\
 		PUT(Receive)\
-    	PUT(Invalidmove)\
+		PUT(Invalidmove)\
 		PUT(Inform)\
 		PUT(Status)\
 		PUT(Points)\

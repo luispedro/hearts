@@ -11,7 +11,7 @@
 
 void NetworkSetupWidget::changeServer_clicked()
 {
- emit serverChange();
+ emit serverChange( server->text() );
 }
 
 void NetworkSetupWidget::join_clicked()
@@ -44,7 +44,7 @@ void NetworkSetupWidget::insertTable( QListViewItem * t )
 
 void NetworkSetupWidget::server_returnPressed( const QString & )
 {
- emit serverChange();
+ emit serverChange( server->text() );
 }
 
 void NetworkSetupWidget::activateJoin()

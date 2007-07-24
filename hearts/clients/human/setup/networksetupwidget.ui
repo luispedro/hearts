@@ -274,8 +274,6 @@
         </property>
     </widget>
 </widget>
-<customwidgets>
-</customwidgets>
 <connections>
     <connection>
         <sender>changeServer</sender>
@@ -313,10 +311,9 @@
     <include location="local" impldecl="in implementation">networksetupwidget.ui.h</include>
 </includes>
 <signals>
-    <signal>serverChanged(QString)</signal>
+    <signal>serverChange(QString)</signal>
     <signal>joinTable(QString)</signal>
     <signal>createNewTable()</signal>
-    <signal>serverChange()</signal>
 </signals>
 <slots>
     <slot access="private">changeServer_clicked()</slot>

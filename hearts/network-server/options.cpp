@@ -34,11 +34,15 @@ template<unsigned N, typename T>
 unsigned numelems( T ( & )[ N ] ) { return N; }
 
 std::auto_ptr<std::ifstream> findConfFile() {
-	const char* locations[] = { "/etc/heartsconf", "/etc/hearts.conf", "/etc/hearts/conf" };
+	const char* basenames[] = { "/etc/", "/etc/heartsd/", "./", "./etc/" };
+	const char* filenames[] = { "heartsdconf", "heartsd.conf", "heartsd/conf" };
 
-	for ( const char** iter = locations; iter != locations + numelems( locations ); ++iter ) {
-		std::auto_ptr<std::ifstream> res( new std::ifstream( *iter ) );
-		if ( *res ) return res;
+	for ( const char** base = basenames; base != basenames + numelems( basenames ); ++base ) {
+		for ( const char** file = filenames; file != filenames + numelems( filenames ); ++file ) {
+			std::string full = std::string( *base ) + *file;
+			std::auto_ptr<std::ifstream> res( new std::ifstream( full.c_str() ) );
+			if ( *res ) return res;
+		}
 	}
 	return std::auto_ptr<std::ifstream>( 0 );
 }

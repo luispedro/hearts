@@ -14,7 +14,7 @@ struct optionsDescrition {
 class INIFile {
 	public:
 		INIFile( std::istream& in, const optionsDescrition* options );
-		std::string INIFile::get( std::string group, std::string name ) const;
+		std::string get( std::string group, std::string name ) const;
 	private:
 		void parseLine( std::string line, std::string group, const optionsDescrition* info, unsigned count );
 

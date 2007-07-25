@@ -38,8 +38,8 @@ void Player::get( Message m )
 			cookie_ = validator_->cookie();
 			LOG_PLACE() << "Requesting auth [ " << validator_->id() << '\n';
 			authQ( validator_->id(), cookie_ );
-		break;
-			case Message::authR:
+			break;
+		case Message::authR:
 			LOG_PLACE() << "Got reply [ " << validator_->id() << '\n';
 			if ( validator_->validate( name_, cookie_, m.arg<QCString>( 1 ) ) ) {
 				valid_ = true;

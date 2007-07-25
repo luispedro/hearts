@@ -1,5 +1,5 @@
-#ifndef MESSAGE_H
-#define MESSAGE_H
+#ifndef COMMON_NETWORK_MESSAGE_H_LPC_INCLUDE_GUARD_
+#define COMMON_NETWORK_MESSAGE_H_LPC_INCLUDE_GUARD_
 #include <qstring.h>
 #include <qstringlist.h>
 #include <iostream>
@@ -184,7 +184,4 @@ inline const T Message::arg( size_t idx ) const
 }
 
 
-
-
-
-#endif // MESSAGE_H
+#endif // COMMON_NETWORK_MESSAGE_H_LPC_INCLUDE_GUARD_

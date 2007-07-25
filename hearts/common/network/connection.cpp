@@ -47,6 +47,7 @@ void Connection::read()
 	LOG_PLACE() << " available = " << socket_->bytesAvailable() << ", peeked = \'" << buffer << "\'." << std::endl;
 	while ( socket_->canReadLine() ) {
 		socket_->readLine( buffer, sizeof( buffer ) );
+		buffer[strlen(buffer)-1] = '\0'; // Remove the newline!
 		LOG_PLACE() << ", read = \"" << buffer << "\"." << std::endl;
 		Message m( QString::fromUtf8( buffer ) );
 		get( m );
@@ -107,6 +108,7 @@ void UserConnection::hello( QString name )
 
 void UserConnection::authR( QCString cookie, QCString result )
 {
+	LOG_PLACE() << "authR -" << cookie << "- -" << result << "-" << '\n';
 	write( MessageConstructor() << Message::authR << cookie << result );
 }
 
@@ -127,6 +129,7 @@ void UserConnection::get( Message m )
 			emit connectTo( m.arg<const char*>( 0 ), m.arg<short>( 1 ) );
 			return ;
 		case Message::tableInfo:
+			LOG_PLACE() << "numArgs(): " << m.numArgs() << "\n";
 			emit lookAt( m.arg<QString>( 0 ),
 					 m.numArgs() >= 1 ? m.arg<PlayerInfo>( 1 ) : QString::null,
 					 m.numArgs() >= 2 ? m.arg<PlayerInfo>( 2 ) : QString::null,

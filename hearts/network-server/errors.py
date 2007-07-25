@@ -1,0 +1,1 @@
+INEXISTANT_TABLE='inexistantTable'

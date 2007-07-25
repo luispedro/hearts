@@ -59,6 +59,6 @@ QString Message::asString() const
 
 unsigned Message::numArgs() const
 {
-	return pieces_.size();
+	return pieces_.size() - 1;
 }
 

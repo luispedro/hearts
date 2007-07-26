@@ -1,3 +1,4 @@
+# coding: utf-8
 #
 # Part of kde-hearts (http://hearts.luispedro.org/)
 # Copyright 2007 by Luís Pedro Coelho <luis@luispedro.org>

@@ -7,6 +7,13 @@
 
 from environment import *
 from table import Table
+from errors import *
+
+def stringify(s):
+    s.replace('\\','\\\\')
+    s.replace('\n','\\n')
+    s.replace('\t','\\t')
+    return '"%s"' % s
 
 class Player(object):
     def __init__(self,socket):
@@ -41,7 +48,7 @@ class Player(object):
         newline=self.buffer.find('\n')
         if newline < 0:
             return
-        msg=self.buffer[:newline]
+        msg=self.buffer[:newline-1]
         print 'Got (%s)' % msg
         self.buffer=self.buffer[newline+1:]
         self.handlemsg(msg)
@@ -86,7 +93,7 @@ class Player(object):
 
     def joinTable(self,args):
         name=args.strip()
-        table=table.get(name,None)
+        table=tables.get(name,None)
         if table:
             if not table.full():
                 table.add(self)
@@ -98,6 +105,9 @@ class Player(object):
 
     def greet(self):
         pass
+
+    def error(self,code,msg):
+        self.output('error %s %s' % (code,stringify(msg)))
 
     def output(self,msg):
         print "OUTPUT(-%s-)" % msg

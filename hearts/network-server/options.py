@@ -27,7 +27,7 @@ def readoptions():
     parser.add_option('--deamon',action='store_true',dest='daemon') # For bad spellers
     parser.add_option('--conffile',dest='conffile',help='Path to configuration file')
     (options, args) = parser.parse_args()
-    bases=['/etc','/etc/heartsd','./']
+    bases=['/etc/','/etc/heartsd/','./']
     fnames=['heartsd.conf','heartsdconf','conf/heartsd']
     if options.conffile:
         if exists(options.conffile):

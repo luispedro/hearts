@@ -18,7 +18,7 @@ class Table(object):
         if full():
             assert False
     def full(self):
-        return len(self.members) <= 4
+        return len(self.members) >= 4
 
     def playernames(self):
         return [p.name for p in self.members]

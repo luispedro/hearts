@@ -107,7 +107,7 @@ class GameManager
 			Idle,    // players have registered, waiting for start_game()
 			WaitGive3,    // waiting for players to give cards
 			WaitPlay // waiting for players to play
-	};
+		};
 		State current_state;
 
 		struct functor0_base
@@ -115,7 +115,7 @@ class GameManager
 			virtual void operator() () = 0;
 		};
 		template <typename T>
-	struct functor0 : functor0_base
+		struct functor0 : functor0_base
 		{
 			functor0( const T& o ) : obj( o )
 			{ }
@@ -124,8 +124,8 @@ class GameManager
 			{
 				obj();
 			}
-private:
-			T obj;
+			private:
+				T obj;
 		};
 
 		functor0_base* game_over_callback;

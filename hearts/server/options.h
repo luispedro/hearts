@@ -95,9 +95,6 @@ class Options
 		bool wait_zero_;
 		bool daemon_;
 
-		static Options* singleton;
-		/** returns the non const singleton. It is to be used by OptionsSelectionDialog. */
-		static Options* unconstAppOptions();
 };
 
 

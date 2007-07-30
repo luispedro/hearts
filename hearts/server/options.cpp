@@ -22,8 +22,6 @@ email                : luis@luispedro.org
 
 const unsigned defaultMaxPoints = 99;
 
-Options* Options::singleton = 0;
-
 namespace
 {
 Options* single;
@@ -39,16 +37,6 @@ const Options* &options = const_cast<const Options*&>( single );
 unsigned Options::maxPoints() const
 {
 	return defaultMaxPoints;
-}
-
-const Options* Options::appOptions()
-{
-	return singleton;
-}
-
-Options* Options::unconstAppOptions()
-{
-	return singleton;
 }
 
 extern char *optarg;

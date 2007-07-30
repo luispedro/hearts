@@ -250,6 +250,14 @@ void HumanInterface::refresh()
 	#undef SET_LABEL
 } */
 
+void HumanInterface::reset()
+{
+	cards.clear();
+	status->clear();
+	hand->setHand( Deck() );
+	table->clear();
+	move_info.counter = 0;
+}
 /** This sets the Card of the player */
 void HumanInterface::setCard( player_id::type who, Card which )
 {

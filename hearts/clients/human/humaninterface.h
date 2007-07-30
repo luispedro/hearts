@@ -58,7 +58,8 @@ class HumanInterface : public QWidget
 
 		void setName( player_id::type who, QString name );
 
-
+		/** Clears all the GUI elements */
+		void reset();
 	signals:
 
 		void played( Card );

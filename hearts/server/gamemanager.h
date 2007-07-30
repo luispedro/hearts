@@ -68,6 +68,15 @@ class GameManager
 		{
 			game_over_callback = new functor0<T>( callb_obj );
 		}
+		/** This registers an object to call back on when a match is over.
+			The object must have an accessible operator(player_id::type) and be copyable. A function pointer is an example.
+			The argument passed is the name of the winner
+		  */
+		template <typename T>
+		void register_match_over_callback( const T& callb_obj )
+		{
+			match_over_callback = new functor1<player_id::type,T>( callb_obj );
+		}
 
 	private:
 
@@ -110,6 +119,25 @@ class GameManager
 		};
 		State current_state;
 
+		template<typename T>
+		struct functor1_base
+		{
+			virtual void operator() (T) = 0;
+		};
+
+		template<typename T, typename T2>
+		struct functor1 : functor1_base<T>
+		{
+			functor1( const T2& o) : obj(o) { }
+
+			virtual void operator()(T t)
+			{
+				obj(t);
+			}
+			private:
+				T2 obj;
+		};
+
 		struct functor0_base
 		{
 			virtual void operator() () = 0;
@@ -129,6 +157,7 @@ class GameManager
 		};
 
 		functor0_base* game_over_callback;
+		functor1_base<player_id::type>* match_over_callback;
 		auto_init<unsigned> number_games;
 		auto_init<bool, false> hearts_been_played;
 		Table table;

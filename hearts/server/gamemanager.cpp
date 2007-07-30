@@ -2,6 +2,7 @@
 #include "general/helper.h"
 #include "hearts/cards.h"
 #include "hearts/deck.h"
+#include "options.h"
 #include <unistd.h>
 #include <cassert>
 
@@ -109,7 +110,16 @@ void GameManager::give3_reply( player_id::type id, const Holder3& cards )
 {
 	assert( current_state == WaitGive3 );
 	LOG_PLACE() << " Receiving cards from " << id << ".\n";
+	for ( std::vector<Card>::const_iterator iter = cards.vector().begin(), past = cards.vector().end();
+			iter != past;
+			++iter) {
+		if ( !players[ id ].hand.count( *iter ) ) {
+			// TODO
+			// players[ id ].player->listen( "You cheat!!!!" );
+		}
+	}
 	given_cards[ id ] = cards.vector();
+
 
 	// I had written this as a nice std::find_if, but it didn't compile
 	bool start = true;
@@ -214,8 +224,17 @@ void GameManager::hand_end()
 		status_every_player( player_status::game_over );
 		current_state = Idle;
 		++number_games;
-		if ( game_over_callback )
-			( *game_over_callback ) ();
+		if ( game_over_callback ) ( *game_over_callback ) ();
+		unsigned mostP = most_points(*this);
+		if ( mostP > options->maxPoints() ) {
+			unsigned match_winner = 0;
+			for ( unsigned i = 1; i != 4; ++i) {
+				if (players[i].points < players[match_winner].points) { // FIXME: what about ties ?
+					match_winner = i;
+				}
+			}
+			if ( match_over_callback) (*match_over_callback)(player_id::type(match_winner));
+		}
 	} else {
 		to_move->player->play();
 	}
@@ -375,7 +394,6 @@ unsigned GameManager::points( player_id::type who ) const
 {
 	return players[ who ].points;
 }
-
 
 unsigned most_points( const GameManager& m )
 {

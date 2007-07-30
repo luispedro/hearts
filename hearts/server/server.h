@@ -19,21 +19,22 @@ class Server
 {
 	public:
 		Server();
-		/** This is a return code like that of main. */
+		/** This function returns a code with similar semantics to main(). */
 		int exec();
-
-		void game_over();
 
 		void name( ConnectingPlayer*, std::string );
 
+		void game_over();
+		void match_over(player_id::type);
 	private:
 
 		void ask_names();
 		void advertise_points();
-		void advertise_match_over();
+		void advertise_match_over( player_id::type );
 
 		std::vector<ConnectingPlayer*> players;
 		std::vector< pollfd > fds;
+		std::vector<std::string> playernames_;
 
 		GameManager manager;
 };

@@ -27,7 +27,7 @@ class ConnectingPlayer : public FDConnection, public Player, public TypicalServe
 		virtual void inform( Card, player_id::type );
 		virtual void currentStatus( player_status::type );
 		virtual void points( unsigned, unsigned, unsigned, unsigned );
-		virtual void matchOver();
+		virtual void matchOver(player_id::type);
 		virtual void reset()
 		{
 			assert( 0 );

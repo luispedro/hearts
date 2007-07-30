@@ -73,7 +73,7 @@ void ConnectingPlayer::opponentname( player_id::type who, std::string name )
 	write( Factory::Server::opponentname( name, who ) );
 }
 
-void ConnectingPlayer::matchOver()
+void ConnectingPlayer::matchOver( player_id::type winner )
 {
 	write( Factory::Common::terminate( "Game Over" ) );
 }

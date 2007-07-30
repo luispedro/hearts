@@ -23,8 +23,21 @@ private:
 	Server& server;
 };
 
+struct matchover_callback
+{
+	matchover_callback( Server& s ) : server( s )
+	{ }
+	void operator()(player_id::type winner)
+	{
+		server.match_over(winner);
+	}
+private:
+	Server& server;
+};
+
 Server::Server()
 {
+	playernames_.resize(number_of_players);
 	fds.resize( number_of_players );
 	for ( unsigned i = 0; i != number_of_players; ++i ) {
 		players.push_back( new ConnectingPlayer( player_id::all_players[ i ], this ) );
@@ -32,6 +45,7 @@ Server::Server()
 		manager.register_player( *players.back(), player_id::all_players[ i ] );
 	}
 	manager.register_game_over_callback( gameover_callback( *this ) );
+	manager.register_match_over_callback( matchover_callback( *this ) );
 }
 
 int Server::exec()
@@ -74,9 +88,23 @@ void Server::advertise_points()
 	}
 }
 
-void Server::advertise_match_over()
+void Server::advertise_match_over(player_id::type winner)
 {
-	for_each( players.begin(), players.end(), mem_fun( &ConnectingPlayer::matchOver ) );
+	using namespace player_id;
+	player_id::type translator[4][4] = {
+			{  player_id::self,   player_id::left, player_id::front, player_id::right },
+			{ player_id::right,   player_id::self,  player_id::left, player_id::front },
+			{ player_id::front,  player_id::right,  player_id::self,  player_id::left },
+			{  player_id::left,  player_id::front, player_id::right,  player_id::self } };
+	for (unsigned i = 0; i != 4; ++i) {
+		players[i]->matchOver(translator[winner][i]);
+	}
+}
+
+void Server::match_over(player_id::type who)
+{
+	advertise_match_over(who);
+	std::cout << 'winner: ' << std::endl;
 }
 
 void Server::game_over()
@@ -84,11 +112,7 @@ void Server::game_over()
 	LOG_PLACE_NL();
 	advertise_points();
 	unsigned mostP = most_points( manager );
-	if ( mostP > options->maxPoints() ) {
-		advertise_match_over();
-	} else {
-		manager.start_game();
-	}
+	if ( mostP <= options->maxPoints() ) manager.start_game();
 }
 
 
@@ -102,11 +126,14 @@ void Server::ask_names()
 void Server::name( ConnectingPlayer* who, std::string name )
 {
 	LOG_PLACE_NL();
+	unsigned id = 0;
 	circular_iterator<std::vector<ConnectingPlayer*>::iterator> circler( players.begin(), players.begin(), players.end() );
 	while ( *circler != who ) {
 		++circler;
+		++id;
 		assert( *circler != players.front() );
 	}
+	playernames_[id] = name;
 	for ( int i = 1; i != 4; ++i )      // self does not matter
 	{
 		( *( circler + i ) ) ->opponentname( player_id::all_players[ i ], name );

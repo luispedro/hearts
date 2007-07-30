@@ -33,6 +33,10 @@ class HumanClient : public KMainWindow
 
 		void showSetup();
 
+		void newGame();
+		void privateGame();
+		void heartsNetwork();
+
 	private:
 		SetupWindow* setup_;
 		PointsBox* pointsWindow;

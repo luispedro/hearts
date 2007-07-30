@@ -1,0 +1,434 @@
+<!DOCTYPE UI><UI version="3.3" stdsetdef="1">
+<class>PrivateGameDialog</class>
+<widget class="QWizard">
+    <property name="name">
+        <cstring>PrivateGameDialog</cstring>
+    </property>
+    <property name="geometry">
+        <rect>
+            <x>0</x>
+            <y>0</y>
+            <width>636</width>
+            <height>625</height>
+        </rect>
+    </property>
+    <property name="caption">
+        <string>Configure a Private Game</string>
+    </property>
+    <property name="modal">
+        <bool>true</bool>
+    </property>
+    <widget class="QWidget">
+        <property name="name">
+            <cstring>initialChoice</cstring>
+        </property>
+        <attribute name="title">
+            <string>Deal or Join Table?</string>
+        </attribute>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>30</x>
+                    <y>50</y>
+                    <width>540</width>
+                    <height>61</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>To play a private game, one player must &lt;b&gt;deal cards&lt;/b&gt; while the other players connect to it to join the table.</string>
+            </property>
+        </widget>
+        <widget class="QButtonGroup">
+            <property name="name">
+                <cstring>buttonGroup1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>50</x>
+                    <y>140</y>
+                    <width>480</width>
+                    <height>200</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Deal or Join Table?</string>
+            </property>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>radioServer</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>40</x>
+                        <y>60</y>
+                        <width>120</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>&amp;Deal Cards</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+D</string>
+                </property>
+            </widget>
+            <widget class="QRadioButton">
+                <property name="name">
+                    <cstring>radioClient</cstring>
+                </property>
+                <property name="geometry">
+                    <rect>
+                        <x>40</x>
+                        <y>30</y>
+                        <width>430</width>
+                        <height>21</height>
+                    </rect>
+                </property>
+                <property name="text">
+                    <string>Connec&amp;t to a Card Dealer</string>
+                </property>
+                <property name="accel">
+                    <string>Alt+T</string>
+                </property>
+                <property name="checked">
+                    <bool>true</bool>
+                </property>
+            </widget>
+        </widget>
+    </widget>
+    <widget class="QWidget">
+        <property name="name">
+            <cstring>joinTable</cstring>
+        </property>
+        <attribute name="title">
+            <string>Join Table</string>
+        </attribute>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel1_3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>44</x>
+                    <y>-23</y>
+                    <width>66</width>
+                    <height>20</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>textLabel1</string>
+            </property>
+        </widget>
+        <widget class="QLabel">
+            <property name="name">
+                <cstring>textLabel2_2</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>24</x>
+                    <y>7</y>
+                    <width>411</width>
+                    <height>81</height>
+                </rect>
+            </property>
+            <property name="text">
+                <string>You need to know the IP address of the card dealer to connect to him.</string>
+            </property>
+            <property name="alignment">
+                <set>WordBreak|AlignVCenter</set>
+            </property>
+        </widget>
+        <widget class="QGroupBox">
+            <property name="name">
+                <cstring>groupBox1</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>30</x>
+                    <y>110</y>
+                    <width>410</width>
+                    <height>100</height>
+                </rect>
+            </property>
+            <property name="title">
+                <string>Connection Options</string>
+            </property>
+            <grid>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel" row="1" column="0">
+                    <property name="name">
+                        <cstring>textLabel2</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Your &amp;name</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>selfName</cstring>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="1" column="1">
+                    <property name="name">
+                        <cstring>selfName</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>The name you want to use for the game</string>
+                    </property>
+                </widget>
+                <widget class="QLineEdit" row="0" column="1">
+                    <property name="name">
+                        <cstring>address</cstring>
+                    </property>
+                    <property name="whatsThis" stdset="0">
+                        <string>This must be the IP address (either a hostname or a numeric address) of the card dealer.</string>
+                    </property>
+                </widget>
+                <widget class="QLabel" row="0" column="0">
+                    <property name="name">
+                        <cstring>textLabel1</cstring>
+                    </property>
+                    <property name="text">
+                        <string>IP Adress of card &amp;dealer</string>
+                    </property>
+                    <property name="buddy" stdset="0">
+                        <cstring>address</cstring>
+                    </property>
+                </widget>
+            </grid>
+        </widget>
+    </widget>
+    <widget class="QWidget">
+        <property name="name">
+            <cstring>dealCards</cstring>
+        </property>
+        <attribute name="title">
+            <string>Deal Cards</string>
+        </attribute>
+        <widget class="QLayoutWidget">
+            <property name="name">
+                <cstring>layout3</cstring>
+            </property>
+            <property name="geometry">
+                <rect>
+                    <x>40</x>
+                    <y>20</y>
+                    <width>460</width>
+                    <height>310</height>
+                </rect>
+            </property>
+            <vbox>
+                <property name="name">
+                    <cstring>unnamed</cstring>
+                </property>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>textLabel4</cstring>
+                    </property>
+                    <property name="text">
+                        <string>Configure your game below.
+
+You need to have four players, but may decide to have some of the roles filled by computer players.</string>
+                    </property>
+                    <property name="alignment">
+                        <set>WordBreak|AlignVCenter</set>
+                    </property>
+                </widget>
+                <widget class="QLayoutWidget">
+                    <property name="name">
+                        <cstring>layout7</cstring>
+                    </property>
+                    <hbox>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QLabel">
+                            <property name="name">
+                                <cstring>textLabel1_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Your &amp;Name</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>selfName</cstring>
+                            </property>
+                        </widget>
+                        <spacer>
+                            <property name="name">
+                                <cstring>spacer1</cstring>
+                            </property>
+                            <property name="orientation">
+                                <enum>Horizontal</enum>
+                            </property>
+                            <property name="sizeType">
+                                <enum>Expanding</enum>
+                            </property>
+                            <property name="sizeHint">
+                                <size>
+                                    <width>188</width>
+                                    <height>20</height>
+                                </size>
+                            </property>
+                        </spacer>
+                        <widget class="QLineEdit">
+                            <property name="name">
+                                <cstring>selfName_2</cstring>
+                            </property>
+                        </widget>
+                    </hbox>
+                </widget>
+                <widget class="QGroupBox">
+                    <property name="name">
+                        <cstring>groupBox1_2</cstring>
+                    </property>
+                    <property name="title">
+                        <string>Other Players</string>
+                    </property>
+                    <grid>
+                        <property name="name">
+                            <cstring>unnamed</cstring>
+                        </property>
+                        <widget class="QPushButton" row="0" column="2">
+                            <property name="name">
+                                <cstring>options1</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Options</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox" row="2" column="1">
+                            <item>
+                                <property name="text">
+                                    <string>Computer Player</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Connecting Human Player</string>
+                                </property>
+                            </item>
+                            <property name="name">
+                                <cstring>type3</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="1" column="0">
+                            <property name="name">
+                                <cstring>textLabel1_5_3</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Player on the &amp;Right</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>type2</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox" row="1" column="1">
+                            <item>
+                                <property name="text">
+                                    <string>Computer Player</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Connecting Human Player</string>
+                                </property>
+                            </item>
+                            <property name="name">
+                                <cstring>type2</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="0" column="0">
+                            <property name="name">
+                                <cstring>textLabel1_5</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Player on the &amp;Left</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>type1</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="1" column="2">
+                            <property name="name">
+                                <cstring>options2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Options</string>
+                            </property>
+                        </widget>
+                        <widget class="QLabel" row="2" column="0">
+                            <property name="name">
+                                <cstring>textLabel1_5_2</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Player in Fron&amp;t</string>
+                            </property>
+                            <property name="buddy" stdset="0">
+                                <cstring>type3</cstring>
+                            </property>
+                        </widget>
+                        <widget class="QPushButton" row="2" column="2">
+                            <property name="name">
+                                <cstring>options3</cstring>
+                            </property>
+                            <property name="text">
+                                <string>Options</string>
+                            </property>
+                        </widget>
+                        <widget class="QComboBox" row="0" column="1">
+                            <item>
+                                <property name="text">
+                                    <string>Computer Player</string>
+                                </property>
+                            </item>
+                            <item>
+                                <property name="text">
+                                    <string>Connecting Human Player</string>
+                                </property>
+                            </item>
+                            <property name="name">
+                                <cstring>type1</cstring>
+                            </property>
+                        </widget>
+                    </grid>
+                </widget>
+                <widget class="QLabel">
+                    <property name="name">
+                        <cstring>message</cstring>
+                    </property>
+                    <property name="text">
+                        <string>MESSAGE WHICH YOU SHOULD
+NOT SEE</string>
+                    </property>
+                </widget>
+            </vbox>
+        </widget>
+    </widget>
+</widget>
+<tabstops>
+    <tabstop>radioClient</tabstop>
+    <tabstop>address</tabstop>
+    <tabstop>selfName</tabstop>
+    <tabstop>selfName_2</tabstop>
+    <tabstop>type1</tabstop>
+    <tabstop>options1</tabstop>
+    <tabstop>type2</tabstop>
+    <tabstop>options2</tabstop>
+    <tabstop>type3</tabstop>
+    <tabstop>options3</tabstop>
+</tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">privategamedialog.ui.h</include>
+</includes>
+<signals>
+    <signal>connected_to(int)</signal>
+</signals>
+<slots>
+    <slot>next()</slot>
+    <slot access="private">accept()</slot>
+</slots>
+<layoutdefaults spacing="6" margin="11"/>
+</UI>

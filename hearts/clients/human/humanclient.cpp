@@ -1,16 +1,33 @@
 #include "humanclient.h"
 #include "options.h"
 #include "general/helper.h"
+#include "setup/exec.h"
+#include "setup/networkdialog.h"
+#include "setup/privategamedialog.h"
 #include "setup/setupwindow.h"
 
 #include <iomanip>
 
 #include <qtimer.h>
 #include <qsignalmapper.h>
+#include <qlineedit.h>
 #include <qmessagebox.h>
 #include <kmessagebox.h>
+#include <kpopupmenu.h>
+#include <kmenubar.h>
 #include <kapplication.h>
 #include <kdebug.h>
+
+
+#include <string.h> // strerror
+#include <errno.h>  // errno
+#include <unistd.h>
+
+// For hostname discovery:
+#include <netdb.h>
+#include <sys/socket.h>
+#include <netinet/in.h>
+#include <arpa/inet.h>
 
 
 HumanClient::HumanClient()
@@ -51,16 +68,21 @@ HumanClient::HumanClient()
 
 
 	setFixedWidth( interface->width() );
-	setFixedHeight( interface->height() );
+	setMinimumHeight( interface->height() );
 
 #define SET_NAME(x) interface->setName(player_id::x,Options::playerName(player_id::x))
 	HANDLE_ALL_PLAYER_IDS( SET_NAME );
 #undef SET_NAME
+	
+	KMenuBar* menu = menuBar();
+	KPopupMenu* gamemenu = new KPopupMenu( this );
+	gamemenu->insertItem( "&New Game", this, SLOT( newGame() ) );
+	gamemenu->insertItem( "Hearts &network game", this, SLOT( heartsNetwork() ) );
+	gamemenu->insertItem( "Private &network game", this, SLOT( privateGame() ) );
+	menu->insertItem( i18n( "&Game" ), gamemenu );
 
 	LOG_PLACE_NL();
-	setup_ = new SetupWindow;
-	connect( setup_, SIGNAL( connected_to( int ) ), SLOT( connected_to_server( int ) ) );
-	QTimer::singleShot( 0, this, SLOT( showSetup() ) );
+	QTimer::singleShot( 500, this, SLOT( newGame() ) ); 
 }
 
 void HumanClient::showSetup()
@@ -164,19 +186,66 @@ void HumanClient::playStatus()
 void HumanClient::giveStatus( player_id::type whom )
 {
 	switch ( whom ) {
-			case player_id::right:
-					interface->setStatus( i18n( "Choose three cards to pass right" ) );
-					break;
-			case player_id::front:
-					interface->setStatus( i18n( "Choose three cards to pass across" ) );
-					break;
-			case player_id::left:
-					interface->setStatus( i18n( "Choose three cards to pass left" ) );
-					break;
-			default:
-					kdWarning() << "BUG: giveStatus( " << static_cast<int>( whom ) << " )" << endl;
+		case player_id::right:
+			interface->setStatus( i18n( "Choose three cards to pass right" ) );
+			break;
+		case player_id::front:
+			interface->setStatus( i18n( "Choose three cards to pass across" ) );
+			break;
+		case player_id::left:
+			interface->setStatus( i18n( "Choose three cards to pass left" ) );
+			break;
+		default:
+			kdWarning() << "BUG: giveStatus( " << static_cast<int>( whom ) << " )" << endl;
 	}
 }
 
+void HumanClient::newGame()
+{
+	using namespace Options;
+	interface->reset();
+	int fd = execute::start_new_private_game( playerName( player_id::self ), playerName( player_id::right ), playerName( player_id::front ), playerName( player_id::left ) );
+	if ( !fd ) {
+		KMessageBox::error( this, i18n( "Problem starting a new game.\nThis is most likely an installation problem." ) );
+	} else {
+		connected_to_server( fd );
+	}
+}
+
+void HumanClient::privateGame()
+{
+	interface->reset();
+	PrivateGameDialog* p = new PrivateGameDialog();
+	connect( p, SIGNAL( connected_to( int ) ),  SLOT( connected_to_server( int ) ) );
+	p->selfName->setText( Options::playerName( player_id::self ) );
+	p->selfName_2->setText( Options::playerName( player_id::self ) );
+
+        const char* error = 0;
+        char buffer[ 128 ];
+        if ( !gethostname( buffer, sizeof( buffer ) ) ) {
+               if ( struct hostent* host = gethostbyname( buffer ) ) {
+                        p->message->setText(
+                                i18n( "<qt>You hostname (and IP address) seem to be <nobr><strong>%1 (%2)</strong></nobr></qt>" )
+                                        .arg( host->h_name )
+                                        .arg( inet_ntoa( *reinterpret_cast<struct in_addr *>( host->h_addr ) ) ) );
+               } else {
+                       error = hstrerror( h_errno );
+               }
+        } else {
+                error = strerror( errno );
+        }
+        if ( error ) {
+                p->message->setText( i18n( "<qt>Error guessing host address:<nobr><strong>%1</strong></nobr></qt>" )
+                        .arg( error ) );
+        }
+	p->exec();
+}
+
+void HumanClient::heartsNetwork()
+{
+	interface->reset();
+	NetworkDialog* h = new NetworkDialog;
+	h->exec();
+}
 #include "humanclient.moc"
 

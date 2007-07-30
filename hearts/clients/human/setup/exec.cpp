@@ -60,33 +60,34 @@ void execute::server( const int fds[ 4 ] ) {
 	char port[ 32 ];
 	bool tcp = false;
 	for ( int i = 0; i != 4; ++i ) {
-			if ( fds[ i ] ) uncoe( fds[ i ] );
-			else tcp = true;
+		if ( fds[ i ] ) uncoe( fds[ i ] );
+		else tcp = true;
 	}
 	if ( snprintf( buffer, sizeof( buffer ), "%d,%d,%d,%d", fds[ 0 ], fds[ 1 ], fds[ 2 ], fds[ 3 ] ) > 0) {
-			if ( tcp ) {
-					if ( snprintf( port, sizeof( port ), "%d", Communication::tcp_port ) > 0 ) {
-							execlp( "heartsserver",
-											"heartsserver",
-											"--daemon",
-											"--fds",
-											buffer,
-											"--tcp-port",
-											port,
-											"--wait-zero",
-											static_cast<const char*>( 0 )
-									);
-					}
-			} else {
-					execlp( "heartsserver",
-									"heartsserver",
-									"--daemon",
-									"--fds",
-									buffer,
-									"--wait-zero",
-									( const char* )0 );
+		if ( tcp ) {
+			if ( snprintf( port, sizeof( port ), "%d", Communication::tcp_port ) > 0 ) {
+				execlp( "heartsserver",
+					"heartsserver",
+					"--daemon",
+					"--fds",
+					buffer,
+					"--tcp-port",
+					port,
+					"--wait-zero",
+					static_cast<const char*>( 0 )
+					);
 			}
+		} else {
+			execlp( "heartsserver",
+				"heartsserver",
+				"--daemon",
+				"--fds",
+				buffer,
+				"--wait-zero",
+				( const char* )0 );
+		}	
 	}
+	LOG_PLACE_NL();
 	exit( 1 ); // An error occurred
 }
 
@@ -123,3 +124,40 @@ int execute::computerClient( QString n )
 	return pipe[ server ];
 }
 
+int execute::start_new_private_game( QString self, QString right, QString front, QString left) 
+{
+	LOG_PLACE_NL();
+	enum { client, server };
+	int pipe[2];
+	int stat;
+	if ( socketpair( AF_LOCAL, SOCK_STREAM, PF_LOCAL, pipe ) < 0 ) {
+		goto error;
+	}
+	stat = fork();
+	if ( stat < 0 ) goto error;
+	if ( stat > 0 ) {
+		::close( pipe[ server ] );
+		char c = 0;
+		::write( pipe[ client ], &c, 1);
+		return pipe[ client ];
+	} else {
+		::close( pipe[ client ] );
+
+		int fds[ 4 ];
+		fds[ 0 ] = pipe[ server ];
+		fds[ 1 ] = execute::computerClient( right );
+		fds[ 2 ] = execute::computerClient( front );
+		fds[ 3 ] = execute::computerClient( left );
+		if ( fds[ 1 ] < 0 ||
+			fds[ 2 ] < 0 ||
+			fds[ 3 ] < 0 ) {
+			::close( pipe[ server ] );
+			exit( 1 );
+		}
+		execute::server( fds );
+		return 0;
+	}
+error:
+	LOG_PLACE_NL();
+	return 0;
+}	

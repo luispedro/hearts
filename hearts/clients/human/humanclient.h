@@ -31,8 +31,6 @@ class HumanClient : public KMainWindow
 		void clearTable();
 		void connected_to_server( int );
 
-		void showSetup();
-
 		void newGame();
 		void privateGame();
 		void heartsNetwork();

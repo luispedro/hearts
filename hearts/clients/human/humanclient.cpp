@@ -1,10 +1,9 @@
 #include "humanclient.h"
 #include "options.h"
 #include "general/helper.h"
-#include "setup/exec.h"
-#include "setup/networkdialog.h"
-#include "setup/privategamedialog.h"
-#include "setup/setupwindow.h"
+#include "exec.h"
+#include "networkdialog.h"
+#include "privategamedialog.h"
 
 #include <iomanip>
 
@@ -85,11 +84,6 @@ HumanClient::HumanClient()
 	QTimer::singleShot( 500, this, SLOT( newGame() ) ); 
 }
 
-void HumanClient::showSetup()
-{
-	if ( setup_->exec() == QWizard::Rejected ) QTimer::singleShot( 0, kapp, SLOT( quit() ) );
-}
-
 void HumanClient::connected_to_server( int fd )
 {
 	kdDebug() << "HumanClient::connected_to_server( " << fd << " )" << endl;
@@ -153,8 +147,7 @@ void HumanClient::terminate( QString )
 	LOG_PLACE_NL();
 	connection->close();
 	KMessageBox::information( this, i18n( "Game Over" ) );
-	setup_->showPage( setup_->page( 0 ) );
-	showSetup();
+	QTimer::singleShot( 500, this, SLOT( newGame() ) );
 }
 
 

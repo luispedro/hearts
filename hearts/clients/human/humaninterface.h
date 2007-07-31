@@ -107,12 +107,12 @@ class HumanInterface : public QWidget
 		QLabel* rightLabel;
 		/** This is the name of the person on the front. */
 		QLabel* frontLabel;
+		/** This is the name of the person on the left. */
+		QLabel* leftLabel;
 		/** This is the button that appears when the user is asked to select three cards to pass. */
 		QPushButton* pass;
 		/** This is what keeps the result for choose3 */
 		Holder3 result3;
-		/** This is the name of the person on the left. */
-		QLabel* leftLabel;
 		/** This is to remember what we are doing. */
 		enum { idle, play_wait, give3_wait } mode;
 };

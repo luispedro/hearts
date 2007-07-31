@@ -38,8 +38,8 @@ HumanInterface::HumanInterface( QWidget *parent, const char *name )
 		selfLabel( new QLabel( Options::playerName( player_id::self ), this ) ),
 		rightLabel( new QLabel( Options::playerName( player_id::right ), this ) ),
 		frontLabel( new QLabel( Options::playerName( player_id::front ), this ) ),
+		leftLabel( new QLabel( Options::playerName( player_id::left ), this ) ),
 		pass( new QPushButton( i18n( "Pass cards" ), this, "passing button" ) ),
-		leftLabel( new QLabel( "Calvin", this ) ),     //(HumanClientOptions::options()->playerName(player_id::left),this)),
 		mode( idle )
 {
 	const QColor table_green( 40, 160, 40 );
@@ -203,8 +203,7 @@ void HumanInterface::choose3()
 /** This is connected to each of the CardDisplay's unselected signals. */
 void HumanInterface::gotUnselected( Card res )
 {
-	if ( mode != give3_wait )
-		return ;
+	if ( mode != give3_wait ) return ;
 	const bool wasFull = result3.full();
 	result3.erase( res );
 	if ( wasFull ) {

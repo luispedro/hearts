@@ -4,6 +4,7 @@
 #include "exec.h"
 #include "networkdialog.h"
 #include "privategamedialog.h"
+#include "preferencesdialog.h"
 
 #include <iomanip>
 
@@ -15,6 +16,8 @@
 #include <kpopupmenu.h>
 #include <kmenubar.h>
 #include <kapplication.h>
+#include <kaction.h>
+#include <kstdaccel.h>
 #include <kdebug.h>
 
 
@@ -32,8 +35,8 @@
 HumanClient::HumanClient()
 		: pointsWindow( new PointsBox ),
 		interface( new HumanInterface( this, "human-interface" ) ),
-		connection( new QtConnection( this, "client-connection" ) )
-
+		connection( new QtConnection( this, "client-connection" ) ),
+		preferences_(0)
 {
 
 	connect( connection, SIGNAL( play() ), interface, SLOT( play() ) );
@@ -75,10 +78,25 @@ HumanClient::HumanClient()
 	
 	KMenuBar* menu = menuBar();
 	KPopupMenu* gamemenu = new KPopupMenu( this );
-	gamemenu->insertItem( "&New Game", this, SLOT( newGame() ) );
+
+	KAction* newGameAct = new KAction(i18n("&New Game"), "gamenew",
+                               KStdAccel::shortcut( KStdAccel::New ),
+                               this, SLOT( newGame() ),
+                               actionCollection(), "new" );
+
+
+	newGameAct->plug(gamemenu);
 	gamemenu->insertItem( "Hearts &network game", this, SLOT( heartsNetwork() ) );
 	gamemenu->insertItem( "Private &network game", this, SLOT( privateGame() ) );
+	gamemenu->insertSeparator();
+	KAction* qAct = KStdAction::quit( kapp, SLOT( quit() ), actionCollection() );
+	qAct->plug(gamemenu);
 	menu->insertItem( i18n( "&Game" ), gamemenu );
+
+	KPopupMenu* editmenu = new KPopupMenu(this);
+	KAction* pAct = KStdAction::preferences(this, SLOT(preferencesDialog()), actionCollection());
+	pAct->plug(editmenu);
+	menu->insertItem(i18n("E&dit"), editmenu);
 
 	LOG_PLACE_NL();
 	QTimer::singleShot( 500, this, SLOT( newGame() ) ); 
@@ -239,6 +257,13 @@ void HumanClient::heartsNetwork()
 	interface->reset();
 	NetworkDialog* h = new NetworkDialog;
 	h->exec();
+}
+
+void HumanClient::preferencesDialog()
+{
+	LOG_PLACE_NL();
+	if (!preferences_) preferences_ = new PreferencesDialog(this);
+	QTimer::singleShot(0, preferences_, SLOT(exec()));
 }
 #include "humanclient.moc"
 

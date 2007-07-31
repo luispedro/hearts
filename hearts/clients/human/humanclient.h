@@ -10,6 +10,7 @@
 #include "hearts/card.h"
 
 class SetupWindow;
+class PreferencesDialog;
 
 class HumanClient : public KMainWindow
 {
@@ -35,11 +36,13 @@ class HumanClient : public KMainWindow
 		void privateGame();
 		void heartsNetwork();
 
+		void preferencesDialog();
+
 	private:
-		SetupWindow* setup_;
 		PointsBox* pointsWindow;
 		HumanInterface* interface;
 		QtConnection* connection;
+		PreferencesDialog* preferences_;
 		player_id::type winner;
 };
 

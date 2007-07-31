@@ -34,7 +34,10 @@ def launch_server(listener):
                     greet(nsocket[0])
                 else:
                     if event & POLLIN:
-                        players[fd].hasinput()
+                        print 'b...'
+                        alive=players[fd].hasinput()
+                        if not alive:
+                            sockets.unregister(fd)
                     if event & (POLLERR|POLLHUP):
                         print 'Bye bye ', fd
                         sockets.unregister(fd)

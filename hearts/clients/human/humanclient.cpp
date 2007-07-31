@@ -1,10 +1,11 @@
 #include "humanclient.h"
 #include "options.h"
-#include "general/helper.h"
 #include "exec.h"
 #include "networkdialog.h"
 #include "privategamedialog.h"
 #include "preferencesdialog.h"
+#include "general/helper.h"
+#include "communication/open_connections.h"
 
 #include <iomanip>
 
@@ -19,6 +20,7 @@
 #include <kaction.h>
 #include <kstdaccel.h>
 #include <kdebug.h>
+#include <kextsock.h>
 
 
 #include <string.h> // strerror
@@ -36,7 +38,8 @@ HumanClient::HumanClient()
 		: pointsWindow( new PointsBox ),
 		interface( new HumanInterface( this, "human-interface" ) ),
 		connection( new QtConnection( this, "client-connection" ) ),
-		preferences_(0)
+		preferences_(0),
+		networkconnection_(0)
 {
 
 	connect( connection, SIGNAL( play() ), interface, SLOT( play() ) );
@@ -254,8 +257,38 @@ void HumanClient::privateGame()
 
 void HumanClient::heartsNetwork()
 {
+	using namespace Options;
+	const Account& n = getNetwork();
+	KExtendedSocket * socket = new KExtendedSocket( n.host(), n.port() );
+	if ( socket->connect() < 0 ) {
+		KMessageBox::error( this, i18n( "<qt>Error connecting to Hearts Server:<br><strong>%1</strong></qt>" )
+				.arg( KExtendedSocket::strError( socket->socketStatus(), socket->systemError() ) ) );
+		delete socket;
+		return;
+	}
 	interface->reset();
+	delete networkconnection_;
+	networkconnection_ = new Network::UserConnection( socket, this );
 	NetworkDialog* h = new NetworkDialog;
+	h->state->setText( i18n( "<qt>Connected to Hearts servert:<br><strong>%1</strong></qt>" ).arg( n.host() ) );
+
+	connect( networkconnection_, SIGNAL( connectTo( const char*, short ) ), SLOT( connectTo( const char*, short ) ) );
+	connect( networkconnection_, SIGNAL( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ),
+			 h, SLOT( lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo ) ) );
+	connect( networkconnection_, SIGNAL( protocolChanged() ), SLOT( protocolChanged() ) );
+
+	connect( networkconnection_, SIGNAL( playerStatus( QString, player_status::type ) ),
+			h, SLOT( playerStatus( QString, player_status::type ) ) );
+	connect( networkconnection_, SIGNAL( motd( const QString& ) ),
+			h->motd, SLOT( setText( const QString& ) ) );
+
+	connect( networkconnection_, SIGNAL( authQ( const QCString&, const QCString& ) ),
+			SLOT( doAuthentication( const QCString&, const QCString& ) ) );
+	connect( networkconnection_, SIGNAL( error( Message::errorType, const QString& ) ),
+			SLOT( error( Message::errorType, const QString& ) ) );
+
+
+	connect( h, SIGNAL( joinTable( QString ) ), networkconnection_, SLOT( joinTable( QString ) ) );
 	h->exec();
 }
 

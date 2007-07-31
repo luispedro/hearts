@@ -3,11 +3,12 @@
 
 #include <kmainwindow.h>
 
-#include "communication/connection.h"
 #include "humaninterface.h"
-#include "qtconnection.h"
 #include "pointsbox.h"
+#include "qtconnection.h"
+#include "communication/connection.h"
 #include "hearts/card.h"
+#include "network/connection.h"
 
 class SetupWindow;
 class PreferencesDialog;
@@ -43,6 +44,7 @@ class HumanClient : public KMainWindow
 		HumanInterface* interface;
 		QtConnection* connection;
 		PreferencesDialog* preferences_;
+		Network::UserConnection* networkconnection_;
 		player_id::type winner;
 };
 

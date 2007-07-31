@@ -9,8 +9,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>600</width>
-            <height>480</height>
+            <width>702</width>
+            <height>816</height>
         </rect>
     </property>
     <property name="caption">
@@ -45,24 +45,15 @@
                     <property name="text">
                         <string>Name</string>
                     </property>
-                    <property name="pixmap">
-                        <pixmap></pixmap>
-                    </property>
                 </column>
                 <column>
                     <property name="text">
                         <string>Status</string>
                     </property>
-                    <property name="pixmap">
-                        <pixmap></pixmap>
-                    </property>
                 </column>
                 <column>
                     <property name="text">
                         <string>Message</string>
-                    </property>
-                    <property name="pixmap">
-                        <pixmap></pixmap>
                     </property>
                 </column>
                 <property name="name">
@@ -196,7 +187,7 @@
                     </widget>
                     <widget class="QPushButton">
                         <property name="name">
-                            <cstring>join</cstring>
+                            <cstring>joinTableButton</cstring>
                         </property>
                         <property name="enabled">
                             <bool>false</bool>
@@ -224,7 +215,7 @@
                     </widget>
                     <widget class="QPushButton">
                         <property name="name">
-                            <cstring>newTable</cstring>
+                            <cstring>newTableButton</cstring>
                         </property>
                         <property name="text">
                             <string>Create &amp;New Table</string>
@@ -279,11 +270,25 @@
         </property>
     </widget>
 </widget>
+<connections>
+</connections>
 <tabstops>
     <tabstop>table</tabstop>
     <tabstop>tables</tabstop>
-    <tabstop>join</tabstop>
-    <tabstop>newTable</tabstop>
+    <tabstop>joinTableButton</tabstop>
+    <tabstop>newTableButton</tabstop>
 </tabstops>
+<includes>
+    <include location="local" impldecl="in implementation">networkdialog.ui.h</include>
+</includes>
+<signals>
+    <signal>newTable(QString)</signal>
+    <signal>joinTable(QString)</signal>
+</signals>
+<slots>
+    <slot access="private">newTable_clicked()</slot>
+    <slot>lookAt( QString table, QString p1, QString p2, QString p3, QString p4 )</slot>
+    <slot>joinTable_clicked()</slot>
+</slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

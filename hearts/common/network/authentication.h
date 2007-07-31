@@ -18,15 +18,16 @@ class Authenticator
 class repeatedMD5Authenticator : public Authenticator
 {
 	public:
+		static const char* staticId() { return "md5(md5(pass)*md5(cookie))"; }
 		const char* id()
 		{
-			return "md5(md5(pass)*md5(cookie))";
+			return staticId();
 		}
 		bool need_cookie()
 		{
 			return true;
 		}
-		int generate( const char*, const char*, char** );
+		int generate( const char* pwd, const char* cookie, char** result );
 		QCString generateCookie();
 };
 

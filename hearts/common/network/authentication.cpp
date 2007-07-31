@@ -8,7 +8,7 @@
 #include <iostream>
 #endif
 
-namespace Network {
+namespace {
 void pretty_printing( const char* input, char** result )
 {
 	const unsigned res_size = 128 / 8 * 2 + 1;
@@ -67,6 +67,13 @@ void do_xor( char* io, const char* input, unsigned nbytes )
 		--nbytes;
 	}
 }
+unsigned rand_mod( unsigned max )
+{
+	return unsigned( rand() ) % max;
+}
+}
+
+namespace Network { 
 
 int repeatedMD5Authenticator::generate( const char* password, const char* cookie, char** result )
 {
@@ -83,11 +90,6 @@ int repeatedMD5Authenticator::generate( const char* password, const char* cookie
 	do_md5( password5, result5 );
 	pretty_printing( result5, result );
 	return 0;
-}
-
-unsigned rand_mod( unsigned max )
-{
-	return unsigned( rand() ) % max;
 }
 
 QCString repeatedMD5Authenticator::generateCookie()

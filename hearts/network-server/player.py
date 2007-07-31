@@ -11,9 +11,10 @@ from errors import *
 from motd import motd
 
 def stringify(s):
-    s.replace('\\','\\\\')
-    s.replace('\n','\\n')
-    s.replace('\t','\\t')
+    s=s.replace('\\','\\\\')
+    s=s.replace('\n','\\n')
+    s=s.replace('\t','\\t')
+    s=s.replace(' ','\\_')
     return '"%s"' % s
 
 class Player(object):

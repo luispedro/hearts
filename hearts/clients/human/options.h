@@ -16,11 +16,11 @@ class Account {
 		QCString password() const;
 		void savePassword( const QCString& );
 
-		const char* host() const;
-		void saveHost( const char* );
+		QString host() const;
+		void saveHost( QString );
 
 		short port() const;
-		void savePort( short );
+		//void savePort( short );
 };
 
 Account& getNetwork();

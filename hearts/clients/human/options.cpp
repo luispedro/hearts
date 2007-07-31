@@ -87,9 +87,20 @@ void Options::Account::savePassword( const QCString& pwd )
 	kc->writeEntry( "password", QString::fromUtf8( pwd ) );
 }
 
-const char* Options::Account::host() const
+QString Options::Account::host() const
 {
-	return "hearts.luispedro.org";
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	return kc->readEntry( "host", QString::fromUtf8( "hearts.luispedro.org" ) );
+}
+
+void Options::Account::saveHost( QString h )
+{
+	KConfig* kc = KGlobal::config();
+	KConfigGroupSaver s( kc, QString::fromLatin1( "network" ) );
+	
+	kc->writeEntry( "host", h );
 }
 
 short Options::Account::port() const

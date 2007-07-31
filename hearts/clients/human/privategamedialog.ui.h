@@ -12,7 +12,7 @@
 
 
 
-#include "setup/exec.h"
+#include "exec.h"
 #include "options.h"
 #include "hearts/player_id.h"
 #include "communication/open_connections.h"

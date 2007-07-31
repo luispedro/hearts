@@ -14,10 +14,16 @@
 
 void PreferencesDialog::init()
 {
-    selfName->setText(Options::playerName(player_id::self));
-    rightName->setText(Options::playerName(player_id::right));
-    frontName->setText(Options::playerName(player_id::front));
-    leftName->setText(Options::playerName(player_id::left));
+    using namespace Options;
+    selfName->setText(playerName(player_id::self));
+    rightName->setText(playerName(player_id::right));
+    frontName->setText(playerName(player_id::front));
+    leftName->setText(playerName(player_id::left));
+
+    const Account& n = getNetwork();
+    server->setText( n.host() );
+    username->setText( n.login() );
+    password->setText( n.password() );
 }
 
 
@@ -31,6 +37,11 @@ void PreferencesDialog::saveback()
     SAVE(right);
     SAVE(front);
     SAVE(left);
+
+    Account& n = getNetwork();
+    n.saveHost( server->text() );
+    n.saveLogin( username->text() );
+    n.savePassword( password->text().utf8() );
 }
 
 

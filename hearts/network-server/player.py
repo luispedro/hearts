@@ -8,6 +8,7 @@
 from environment import *
 from table import Table
 from errors import *
+from motd import motd
 
 def stringify(s):
     s.replace('\\','\\\\')
@@ -104,7 +105,7 @@ class Player(object):
             self.error(INEXISTANT_TABLE,'What table?')
 
     def greet(self):
-        pass
+        self.output('motd %s' % stringify(motd()))
 
     def error(self,code,msg):
         self.output('error %s %s' % (code,stringify(msg)))

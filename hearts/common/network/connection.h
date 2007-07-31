@@ -56,7 +56,7 @@ class UserConnection : public Connection
 		void connectTo( const char*, short );
 		void startGame( short );
 		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
-		void playerStatus( QString, player_status::type );
+		void userStatus( QString, user_status::type );
 		void motd( const QString& );
 		void authQ( const QCString&, const QCString& );
 		void error( Message::errorType, const QString& );

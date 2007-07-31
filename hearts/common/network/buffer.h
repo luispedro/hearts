@@ -6,6 +6,7 @@
 
 #include "message.h"
 
+namespace Network {
 class InBuffer
 {
 	public:
@@ -41,4 +42,7 @@ class OutBuffer
 	private:
 		std::vector<char> buffer_;
 };
+
+} // namespace Network
+
 #endif // /HOME/LUIS/HEARTS/NETWORK/BUFFER_H

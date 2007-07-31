@@ -8,6 +8,7 @@
 #include "tableid.h"
 #include "player_status.h"
 
+namespace Network {
 class MessageConstructor;
 
 // Messages (this isn't very clean, but this is very simple):
@@ -20,7 +21,7 @@ class MessageConstructor;
 // hello name
 // authQ method cookie
 // authR cookie result
-// playerStatus playerName player_status
+// userStatus userName user_status
 // motd message
 // changeProtocol
 // error errorType msg(english, user level)
@@ -43,7 +44,7 @@ class Message
 					HANDLE( authQ ) \
 					HANDLE( authR ) \
 					HANDLE( lookAt ) \
-					HANDLE( playerStatus ) \
+					HANDLE( userStatus ) \
 					HANDLE( motd ) \
 					HANDLE( changeProtocol ) \
 					HANDLE( error )
@@ -97,7 +98,7 @@ class MessageConstructor : private QStringList
 		MessageConstructor& operator<< ( Message::typeEnum );
 		MessageConstructor& operator<< ( QString );
 		MessageConstructor& operator<< ( int number );
-		MessageConstructor& operator<< ( player_status::type );
+		MessageConstructor& operator<< ( user_status::type );
 		MessageConstructor& operator<< ( Message::errorType );
 		const QStringList list() const
 		{
@@ -161,10 +162,10 @@ inline const QCString to<QCString>( const QString& r )
 }
 
 template <>
-inline const player_status::type to<player_status::type>( const QString& r ) {
-#define IFRET( x ) if ( r == QString::fromLatin1( #x ) ) return player_status::x;
-		FOR_ALL_PLAYER_STATUS( IFRET )
-		return player_status::unknown;
+inline const user_status::type to<user_status::type>( const QString& r ) {
+#define IFRET( x ) if ( r == QString::fromLatin1( #x ) ) return user_status::x;
+		FOR_ALL_USER_STATUS( IFRET )
+		return user_status::unknown;
 #undef IFRET
 }
 
@@ -183,5 +184,8 @@ inline const T Message::arg( size_t idx ) const
 	return to<T>( rep );
 }
 
+
+
+} // namespace Network 
 
 #endif // COMMON_NETWORK_MESSAGE_H_LPC_INCLUDE_GUARD_

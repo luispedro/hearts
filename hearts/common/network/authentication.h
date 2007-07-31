@@ -3,6 +3,7 @@
 
 #include <qcstring.h>
 
+namespace Network {
 class Authenticator
 {
 	public:
@@ -29,6 +30,5 @@ class repeatedMD5Authenticator : public Authenticator
 		QCString generateCookie();
 };
 
-
-
+}
 #endif /* DB_AUTHENTICATION_H1067808401_INCLUDE_GUARD_ */

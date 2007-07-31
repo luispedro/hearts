@@ -8,6 +8,7 @@
 #include <iostream>
 #endif
 
+namespace Network {
 void pretty_printing( const char* input, char** result )
 {
 	const unsigned res_size = 128 / 8 * 2 + 1;
@@ -100,6 +101,8 @@ QCString repeatedMD5Authenticator::generateCookie()
 	}
 	return QCString( buff );
 }
+
+} // namespace Network
 
 
 #ifdef TEST_ME

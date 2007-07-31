@@ -1,6 +1,8 @@
 #include "message.h"
 #include <general/helper.h>
 
+namespace Network {
+
 Message::typeEnum fromString( QString s )
 {
 #define HANDLE( t ) LOG_PLACE() << " - \'" << s.ascii() << "\' == " << #t << std::endl; if ( s == #t ) return Message::t;
@@ -23,12 +25,12 @@ MessageConstructor& MessageConstructor::operator << ( Message::typeEnum t )
 	return static_cast<MessageConstructor&>( *this << toString( t ) );
 }
 
-MessageConstructor& MessageConstructor::operator << ( player_status::type s ) 
+MessageConstructor& MessageConstructor::operator << ( user_status::type s ) 
 {
-	using namespace player_status;
+	using namespace user_status;
 #define HANDLE( c ) case c: return *this << #c;
 	switch ( s ) {
-		FOR_ALL_PLAYER_STATUS( HANDLE )
+		FOR_ALL_USER_STATUS( HANDLE )
 		default: return *this;
 #undef HANDLE
 	}
@@ -61,4 +63,7 @@ unsigned Message::numArgs() const
 {
 	return pieces_.size() - 1;
 }
+
+
+} // namespace Network
 

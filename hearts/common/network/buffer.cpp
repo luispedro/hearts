@@ -3,6 +3,8 @@
 #include <qstringlist.h>
 #include <cassert>
 
+namespace Network {
+
 InBuffer& InBuffer::operator >> ( Message& m )
 {
 	if ( queue_.empty() ) {
@@ -45,4 +47,6 @@ void InBuffer::putLine( const char* line )
 	queue_.push( decodeMessage( QString::fromUtf8( line ) ) );
 }
 
+
+} // namespace Network
 

@@ -139,8 +139,8 @@ void UserConnection::get( Message m )
 		case Message::changeProtocol:
 			emit protocolChanged();
 			return ;
-		case Message::playerStatus:
-			emit playerStatus( m.arg<QString>( 0 ), m.arg<player_status::type>( 1 ) );
+		case Message::userStatus:
+			emit userStatus( m.arg<QString>( 0 ), m.arg<user_status::type>( 1 ) );
 			return;
 		case Message::motd:
 			emit motd( m.arg<QString>( 0 ) );

@@ -6,7 +6,7 @@
 #include <cassert>
 
 #include "tableid.h"
-#include "player_status.h"
+#include "user_status.h"
 
 namespace Network {
 class MessageConstructor;

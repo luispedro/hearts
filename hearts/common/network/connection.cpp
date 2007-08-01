@@ -131,10 +131,10 @@ void UserConnection::get( Message m )
 		case Message::tableInfo:
 			LOG_PLACE() << "numArgs(): " << m.numArgs() << "\n";
 			emit lookAt( m.arg<QString>( 0 ),
-					 m.numArgs() >= 1 ? m.arg<PlayerInfo>( 1 ) : QString::null,
-					 m.numArgs() >= 2 ? m.arg<PlayerInfo>( 2 ) : QString::null,
-					 m.numArgs() >= 3 ? m.arg<PlayerInfo>( 3 ) : QString::null,
-					 m.numArgs() >= 4 ? m.arg<PlayerInfo>( 4 ) : QString::null );
+					 m.numArgs() >= 1 ? m.arg<QString>( 1 ) : QString::null,
+					 m.numArgs() >= 2 ? m.arg<QString>( 2 ) : QString::null,
+					 m.numArgs() >= 3 ? m.arg<QString>( 3 ) : QString::null,
+					 m.numArgs() >= 4 ? m.arg<QString>( 4 ) : QString::null );
 			return ;
 		case Message::changeProtocol:
 			emit protocolChanged();
@@ -173,7 +173,7 @@ void ServerConnection::connectTo( const char* server, short port )
 	write( m );
 }
 
-void ServerConnection::lookAt( QString table, PlayerInfo p1, PlayerInfo p2, PlayerInfo p3, PlayerInfo p4 )
+void ServerConnection::lookAt( QString table, QString p1, QString p2, QString p3, QString p4 )
 {
 	MessageConstructor m;
 	m << Message::lookAt << table << p1 << p2 << p3 << p4;

@@ -55,7 +55,7 @@ class UserConnection : public Connection
 	signals:
 		void connectTo( const char*, short );
 		void startGame( short );
-		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
+		void lookAt( QString, QString, QString, QString, QString );
 		void userStatus( QString, user_status::type );
 		void motd( const QString& );
 		void authQ( const QCString&, const QCString& );
@@ -92,7 +92,7 @@ class ServerConnection : public Connection
 	public slots:
 		void connectTo( const char*, short );
 		void startGame( short );
-		void lookAt( QString, PlayerInfo, PlayerInfo, PlayerInfo, PlayerInfo );
+		void lookAt( QString, QString, QString, QString, QString );
 		void authQ( QCString method, QCString cookie );
 		void motd( const QString& );
 

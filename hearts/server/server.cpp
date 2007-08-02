@@ -73,7 +73,7 @@ void Server::advertise_points()
 {
 	using namespace player_id;
 	std::vector<unsigned> points;
-	for ( int i = 0; i != number_of_players; ++i ) points.push_back( manager.points( player_id::all_players[ i ] ) );
+	for ( unsigned i = 0; i != number_of_players; ++i ) points.push_back( manager.points( player_id::all_players[ i ] ) );
 	LOG_PLACE() 
 		<< "\n\n\n"
 		<< "\n\t POINTS[ 0 ]: " << points[ 0 ] << "."
@@ -104,7 +104,7 @@ void Server::advertise_match_over(player_id::type winner)
 void Server::match_over(player_id::type who)
 {
 	advertise_match_over(who);
-	std::cout << 'winner: ' << std::endl;
+	std::cout << "winner: " << who << std::endl;
 }
 
 void Server::game_over()

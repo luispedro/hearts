@@ -44,3 +44,19 @@ void NetworkDialog::joinTable_clicked()
  massert( !tableName.isNull() );
  emit joinTable( tableName );
 }
+
+
+void NetworkDialog::activateJoin()
+{
+    joinTableButton->setEnabled(true);
+}
+
+void NetworkDialog::userStatus( QString u, int st )
+{
+   (void)st;
+ int idx = usertable->numRows();
+    usertable->setNumRows( idx + 1 );
+    usertable->setText( idx, 0, u);
+    usertable->setText( idx, 1, i18n( "Online"));
+
+}

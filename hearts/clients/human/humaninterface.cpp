@@ -135,7 +135,6 @@ void HumanInterface::setName( player_id::type who, QString name )
 		CASE( front );
 		CASE( left );
 #undef CASE
-
 	}
 	adjustLabels();
 }
@@ -251,9 +250,11 @@ void HumanInterface::refresh()
 
 void HumanInterface::reset()
 {
+	mode = idle;
 	cards.clear();
 	status->clear();
 	hand->setHand( Deck() );
+	hand->setSelectable( false );
 	table->clear();
 	move_info.counter = 0;
 }

@@ -9,23 +9,39 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>702</width>
-            <height>816</height>
+            <width>411</width>
+            <height>536</height>
         </rect>
     </property>
     <property name="caption">
         <string>Form1</string>
     </property>
-    <widget class="QLayoutWidget">
+    <widget class="QLabel">
         <property name="name">
-            <cstring>layout5</cstring>
+            <cstring>state</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>50</x>
-                <y>50</y>
-                <width>385</width>
-                <height>600</height>
+                <x>20</x>
+                <y>10</y>
+                <width>470</width>
+                <height>50</height>
+            </rect>
+        </property>
+        <property name="text">
+            <string>STATE LABEL -- SHOULD NOT SEE</string>
+        </property>
+    </widget>
+    <widget class="QLayoutWidget">
+        <property name="name">
+            <cstring>layout3</cstring>
+        </property>
+        <property name="geometry">
+            <rect>
+                <x>51</x>
+                <y>63</y>
+                <width>337</width>
+                <height>414</height>
             </rect>
         </property>
         <vbox>
@@ -57,7 +73,16 @@
                     </property>
                 </column>
                 <property name="name">
-                    <cstring>table</cstring>
+                    <cstring>usertable</cstring>
+                </property>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>60</height>
+                    </size>
+                </property>
+                <property name="resizePolicy">
+                    <enum>AutoOne</enum>
                 </property>
                 <property name="numRows">
                     <number>0</number>
@@ -88,7 +113,7 @@
                 <property name="sizeHint">
                     <size>
                         <width>20</width>
-                        <height>31</height>
+                        <height>20</height>
                     </size>
                 </property>
             </spacer>
@@ -253,27 +278,29 @@
             </widget>
         </vbox>
     </widget>
-    <widget class="QLabel">
-        <property name="name">
-            <cstring>state</cstring>
-        </property>
-        <property name="geometry">
-            <rect>
-                <x>20</x>
-                <y>20</y>
-                <width>470</width>
-                <height>20</height>
-            </rect>
-        </property>
-        <property name="text">
-            <string>STATE LABEL -- SHOULD NOT SEE</string>
-        </property>
-    </widget>
 </widget>
 <connections>
+    <connection>
+        <sender>newTableButton</sender>
+        <signal>clicked()</signal>
+        <receiver>NetworkDialog</receiver>
+        <slot>newTable_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>joinTableButton</sender>
+        <signal>clicked()</signal>
+        <receiver>NetworkDialog</receiver>
+        <slot>joinTable_clicked()</slot>
+    </connection>
+    <connection>
+        <sender>tables</sender>
+        <signal>selectionChanged()</signal>
+        <receiver>NetworkDialog</receiver>
+        <slot>activateJoin()</slot>
+    </connection>
 </connections>
 <tabstops>
-    <tabstop>table</tabstop>
+    <tabstop>usertable</tabstop>
     <tabstop>tables</tabstop>
     <tabstop>joinTableButton</tabstop>
     <tabstop>newTableButton</tabstop>
@@ -289,6 +316,8 @@
     <slot access="private">newTable_clicked()</slot>
     <slot>lookAt( QString table, QString p1, QString p2, QString p3, QString p4 )</slot>
     <slot>joinTable_clicked()</slot>
+    <slot access="private">activateJoin()</slot>
+    <slot>userStatus( QString u, int st )</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

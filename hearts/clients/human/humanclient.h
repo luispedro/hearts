@@ -1,17 +1,16 @@
 #ifndef DB_HUMANCLIENT_H_INCLUDE_GUARD_
 #define DB_HUMANCLIENT_H_INCLUDE_GUARD_
 
-#include <kmainwindow.h>
 
 #include "humaninterface.h"
 #include "pointsbox.h"
 #include "qtconnection.h"
 #include "communication/connection.h"
 #include "hearts/card.h"
-#include "network/connection.h"
 
-class SetupWindow;
+#include <kmainwindow.h>
 class PreferencesDialog;
+class NetworkManager;
 
 class HumanClient : public KMainWindow
 {
@@ -44,8 +43,8 @@ class HumanClient : public KMainWindow
 		HumanInterface* interface;
 		QtConnection* connection;
 		PreferencesDialog* preferences_;
-		Network::UserConnection* networkconnection_;
 		player_id::type winner;
+		NetworkManager* networkmanager_;
 };
 
 

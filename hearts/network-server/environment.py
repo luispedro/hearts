@@ -5,7 +5,9 @@
 #
 # Distributed under GNU Public License, version 2
 
+from select import poll
 tables={}
-players={}
+listeners={}
+sockets=poll()
 
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:

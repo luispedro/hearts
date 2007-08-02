@@ -17,16 +17,20 @@ def stringify(s):
     s=s.replace(' ','\\_')
     return '"%s"' % s
 
+_players=[]
+
 class Player(object):
     def __init__(self,socket):
         self.socket=socket
         self.buffer=''
         self.table=None
+        _players.append(self)
+        self.name='Unkown'
 
 
-    def hasinput(self):
+    def process_input(self):
         """
-        Player.hasinput(self)
+        Player.process_input(self)
         
         Process input
         Returns true if this player is to be kept alive and false if it is dead
@@ -41,7 +45,8 @@ class Player(object):
             # cleanup
             if self.table:
                 self.table.remove(self)
-            del players[self.socket.fileno()]
+            del listeners[self.socket.fileno()]
+            _players.remove(self)
             self.socket.close()
             return False
 
@@ -83,30 +88,41 @@ class Player(object):
     def createTable(self, args):
         name = args.strip()
         tables[name]=Table(name)
-        for p in players.values():
+        for p in _players:
             p.announcetable(name)
 
     def announcetable(self,tablename):
+        print 1
         table=tables[tablename]
+        print 2
         msg = 'lookAt %s' % tablename
+        print 3
         for p in table.playernames():
             msg += ' %s' % p
+        print 4
         self.output(msg)
 
     def joinTable(self,args):
-        name=args.strip()
-        table=tables.get(name,None)
+        tname=args.strip()
+        table=tables.get(tname,None)
         if table:
             if not table.full():
                 table.add(self)
                 self.table=table
+                for p in _players:
+                    p.announcetable(tname)
             else:
                 self.error(INEXISTANT_TABLE,'Table full') # FIXME: Maybe a better error code ?
         else:
             self.error(INEXISTANT_TABLE,'What table?')
 
+    def changeProtocol(self):
+        self.output('changeProtocol')
+
     def greet(self):
         self.output('motd %s' % stringify(motd()))
+        for t in tables.keys():
+            self.announcetable(t)
 
     def error(self,code,msg):
         self.output('error %s %s' % (code,stringify(msg)))

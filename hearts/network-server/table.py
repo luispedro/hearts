@@ -5,6 +5,7 @@
 #
 # Distributed under GNU Public License, version 2
 
+from change_protocol import change_protocol
 from environment import *
 class Table(object):
     def __init__(self,name):
@@ -15,8 +16,22 @@ class Table(object):
         if self.full():
             raise Exception('Too many players!')
         self.members.append(player)
-        if full():
-            assert False
+        if self.full():
+            fds=[]
+            names=[]
+            for p in self.members: 
+                fd=p.socket.fileno()
+                del listeners[fd]
+                sockets.unregister(fd)
+                fds.append(fd)
+                names.append(p.name)
+                p.changeProtocol()
+            del tables[self.name]
+            change_protocol(names,fds)
+
+    def remove(self,player):
+        self.members.remove(player)
+
     def full(self):
         return len(self.members) >= 4
 

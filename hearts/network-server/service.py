@@ -1,4 +1,4 @@
-# coding: utf-8
+#) coding: utf-8
 #
 # Part of kde-hearts (http://hearts.luispedro.org/)
 # Copyright 2007 by Luís Pedro Coelho <luis@luispedro.org>
@@ -7,40 +7,40 @@
 
 from select import * # get all of POLLIN, POLLPRI,...*
 from player import Player
+import environment
 from environment import *
 
 def greet(nsocket):
     print 'New Player (%s)' % nsocket.fileno()
     player=Player(nsocket)
-    players[nsocket.fileno()]=player
+    listeners[nsocket.fileno()]=player
     player.greet()
 
 def launch_server(listener):
-    sockets=poll()
     pollmask=(POLLIN|POLLPRI|POLLERR|POLLHUP)
     sockets.register(listener,pollmask)
     while True:
         try:
             print 'will poll()'
-            ready=sockets.poll()
+            ready=environment.sockets.poll()
             print 'poll()ed'
             for fd, event in ready:
                 if fd == listener.fileno():
                     nsocket=listener.accept()
                     print 'a'
-                    sockets.register(nsocket[0], pollmask)
+                    environment.sockets.register(nsocket[0], pollmask)
                     print nsocket[0]
                     print type(nsocket[0])
                     greet(nsocket[0])
                 else:
                     if event & POLLIN:
                         print 'b...'
-                        alive=players[fd].hasinput()
+                        alive=listeners[fd].process_input()
                         if not alive:
-                            sockets.unregister(fd)
+                            environment.sockets.unregister(fd)
                     if event & (POLLERR|POLLHUP):
                         print 'Bye bye ', fd
-                        sockets.unregister(fd)
+                        environment.sockets.unregister(fd)
         except Exception, e:
             print 'Something wrong!'
             print e	

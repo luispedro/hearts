@@ -122,9 +122,6 @@ void UserConnection::get( Message m )
 {
 	LOG_PLACE() << "Got message: " << m << '\n';
 	switch ( m.type() ) {
-		case Message::startGame:
-			emit startGame( m.arg<short>( 0 ) );
-			return ;
 		case Message::connectTo:
 			emit connectTo( m.arg<const char*>( 0 ), m.arg<short>( 1 ) );
 			return ;
@@ -158,13 +155,6 @@ void UserConnection::get( Message m )
 ServerConnection::ServerConnection( KExtendedSocket* socket, QObject* parent, const char* name )
 		: Connection( socket, parent, name )
 {}
-
-void ServerConnection::startGame( short port )
-{
-	MessageConstructor m;
-	m << Message::startGame << port;
-	write( m );
-}
 
 void ServerConnection::connectTo( const char* server, short port )
 {

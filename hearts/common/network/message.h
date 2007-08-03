@@ -13,7 +13,6 @@ class MessageConstructor;
 
 // Messages (this isn't very clean, but this is very simple):
 // The file Protocol.html as a bit more information
-// startGame port  // FIXME
 // connectTo server port
 // joinTable table
 // createTable name
@@ -35,7 +34,6 @@ class Message
 		Message( QString );
 
 #define HANDLE_ALL_MESSAGE_TYPES \
-					HANDLE( startGame ) \
 					HANDLE( connectTo ) \
 					HANDLE( createTable ) \
 					HANDLE( joinTable ) \

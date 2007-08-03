@@ -9,6 +9,10 @@ from environment import *
 from table import Table
 from errors import *
 from motd import motd
+from users import get_user
+from validate import validate
+
+_Authentication_Method='md5(md5(pass)*md5(cookie))'
 
 def stringify(s):
     s=s.replace('\\','\\\\')
@@ -23,6 +27,7 @@ class Player(object):
     def __init__(self,socket):
         self.socket=socket
         self.buffer=''
+        self.user=None
         self.table=None
         _players.append(self)
         self.name='Unkown'
@@ -79,11 +84,23 @@ class Player(object):
 
     def hello(self,args):
         self.name=args.strip()
-        self.cookie='chocolate_chip'
-        self.output('authQ md5(md5(pass)*md5(cookie)) %s' % self.cookie)
+        self.user=get_user(self.name)
+        if not self.user:
+            self.error('unknownUser','Did you register at http://hearts.luispedro.org/?')
+        else:
+            self.cookie='chocolate_chip'
+            self.output('authQ %s %s' % (_Authentication_Method,self.cookie))
 
     def authR(self,args):
-        print 'authR -%s-' % args
+        cookie,key = args.split(' ')
+        if not self.user or not self.cookie:
+           self.error('unexpectedMessage','Your software seems to be malfunctioning<br />Technical note: it sent message authR without a previous authQ')
+        elif cookie != self.cookie:
+           self.error('unexpectedMessage','Your software seems to be malfunctioning<br />Technical note: It replied with a different cookie')
+        elif not validate(_Authentication_Method,self.cookie,self.user.passwd(),key):
+            self.error('authenticationError','Authentication error. Please check your user name and password')
+        else:
+            self.authenticated=True
 
     def createTable(self, args):
         name = args.strip()

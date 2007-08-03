@@ -4,6 +4,8 @@
 #include <cstdlib>
 #include <cstdio>
 #include <cassert>
+#include <openssl/md5.h>
+
 #ifdef TEST_ME
 #include <iostream>
 #endif
@@ -11,11 +13,11 @@
 namespace {
 void pretty_printing( const char* input, char** result )
 {
-	const unsigned res_size = 128 / 8 * 2 + 1;
-	*result = static_cast<char*>( std::malloc( res_size ) );
-	( *result ) [ res_size - 1 ] = '\0';
+	const unsigned res_size = 128 / 8 * 2;
+	*result = static_cast<char*>( std::malloc( res_size + 1 ) );
+	( *result ) [ res_size ] = '\0';
 	for ( unsigned i = 0; i != res_size; ++i ) {
-		switch ( 0xf & ( input[ i / 2 ] >> ( ( i % 2 ) * 4 ) ) ) {
+		switch ( 0xf & ( input[ i / 2 ] >> ( ( (i+1) % 2 ) * 4 ) ) ) {
 #define			CASE( X ) case 0x ## X : ( *result )[ i ] = #X [ 0 ]; break
 			CASE( 0 );
 			CASE( 1 );
@@ -43,10 +45,8 @@ void pretty_printing( const char* input, char** result )
 
 void do_md5( const char* input, char* result )
 {
-	KMD5 calculator( input );
-	unsigned char dig[ 16 ];
-	calculator.rawDigest( dig );
-	for ( int i = 0; i != 16; ++i ) result[ i ] = static_cast<char>( dig[ i ] );
+	MD5(reinterpret_cast<const unsigned char*>(input),strlen(input),reinterpret_cast<unsigned char*>(result));
+
 #ifdef TEST_ME
 
 	char* pretty;
@@ -111,7 +111,7 @@ QCString repeatedMD5Authenticator::generateCookie()
 
 int main()
 {
-	repeatedMD5Authenticator auth;
+	Network::repeatedMD5Authenticator auth;
 	std::string pass, cookie;
 	std::cin >> pass >> cookie;
 	char* result;

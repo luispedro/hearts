@@ -11,7 +11,7 @@ EXTRA_DIST = carddisplay.h hand.h humanclient.h humanclientoptions.h humaninterf
 
 SUBDIRS = pics 
 
-hearts_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_KIO)
+hearts_LDFLAGS = $(all_libraries) $(KDE_RPATH) $(LIB_KIO) -lcrypto
 
 hearts_LDADD = ../../common/communication/libcomhearts.a ../../common/hearts/libhearts.a ../../common/general/libgenhearts.a  -lkdeui -lkdecore -lXext -lX11 $(LIBSOCKET) ../../common/network/libnethearts.a
 

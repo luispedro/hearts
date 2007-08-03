@@ -33,6 +33,8 @@ NetworkManager::NetworkManager( NetworkDialog* dialog, Network::UserConnection* 
 	connect( dialog_, SIGNAL( newTable( QString ) ), networkconnection_, SLOT( createTable( QString ) ) );
 	connect( dialog_, SIGNAL( joinTable( QString ) ), networkconnection_, SLOT( joinTable( QString ) ) );
 
+	QString playerName = Options::playerName( player_id::self );
+	networkconnection_->hello( playerName );
 }
 
 NetworkManager::~NetworkManager()

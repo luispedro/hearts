@@ -224,6 +224,7 @@ void HumanInterface::gotClicked( Card c )
 /** This is what the button is connected to. */
 void HumanInterface::passCards()
 {
+	if ( mode != give3_wait ) return ;
 	LOG_PLACE() << " passing " << result3 << ".\n";
 	status->clear();
 

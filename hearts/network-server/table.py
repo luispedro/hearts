@@ -11,6 +11,8 @@ class Table(object):
     def __init__(self,name):
         self.name=name
         self.members=[]
+        self.owner=None
+        self.nbots=0
 
     def add(self,player):
         if self.full():
@@ -27,14 +29,15 @@ class Table(object):
                 names.append(p.name)
                 p.changeProtocol()
             del tables[self.name]
-            change_protocol(names,fds)
+            change_protocol(names,fds,self.nbots)
 
     def remove(self,player):
         self.members.remove(player)
 
     def full(self):
-        return len(self.members) >= 4
+        return len(self.members)+self.nbots >= 4
 
     def playernames(self):
         return [p.name for p in self.members]
+
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:

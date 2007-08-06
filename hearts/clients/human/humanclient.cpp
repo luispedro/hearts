@@ -100,7 +100,10 @@ HumanClient::HumanClient()
 	KPopupMenu* editmenu = new KPopupMenu(this);
 	KAction* pAct = KStdAction::preferences(this, SLOT(preferencesDialog()), actionCollection());
 	pAct->plug(editmenu);
-	menu->insertItem(i18n("E&dit"), editmenu);
+	menu->insertItem(i18n("&Edit"), editmenu);
+
+	KPopupMenu* helpmenu = helpMenu( i18n( "KDE hearts is a card game with an option for network play") );
+	menu->insertItem(i18n("&Help"),helpmenu);
 
 	LOG_PLACE_NL();
 	QTimer::singleShot( 500, this, SLOT( newGame() ) ); 

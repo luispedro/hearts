@@ -78,6 +78,7 @@ void NetworkManager::doAuthentication(const QCString& method, const QCString& co
 
 void NetworkManager::error(Network::Message::errorType e, const QString& msg)
 {
+	(void)e;
 	KMessageBox::error(0, i18n("<qt>Error from server:<strong>%1</strong></qt>" ).arg(msg));
 }
 
@@ -104,6 +105,7 @@ void NetworkManager::protocolChanged()
 		const char c = 0;
 		::write( fd, &c, 1 );
 		emit connected_to( fd );
+		dialog_->accept();
 	}
 }
 

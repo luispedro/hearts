@@ -318,6 +318,7 @@
     <slot>joinTable_clicked()</slot>
     <slot access="private">activateJoin()</slot>
     <slot>userStatus( QString u, int st )</slot>
+    <slot>accept()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

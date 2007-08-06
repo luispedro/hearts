@@ -60,3 +60,9 @@ void NetworkDialog::userStatus( QString u, int st )
     usertable->setText( idx, 1, i18n( "Online"));
 
 }
+
+
+void NetworkDialog::accept()
+{
+    this->QDialog::accept();
+}

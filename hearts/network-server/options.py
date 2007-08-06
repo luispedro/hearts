@@ -16,12 +16,20 @@ class Options(object):
         self.config=ConfigParser()
         self.config.read(inputfile)
 
+    def getopt(self,group,opt):
+        assert group in ['database']
+        return self.config.get(group,opt)
+
+    def getdbopt(self,opt):
+        return self.getopt('database',opt)
+
     def daemon(self):
         return self.options.daemon
-    
-     
 
+_options = None
 def readoptions():
+    global _options
+    if _options: return _options
     parser=OptionParser()
     parser.add_option('--daemon',action='store_true',dest='daemon',help='Run in daemon mode')
     parser.add_option('--deamon',action='store_true',dest='daemon') # For bad spellers
@@ -31,15 +39,16 @@ def readoptions():
     fnames=['heartsd.conf','heartsdconf','conf/heartsd']
     if options.conffile:
         if exists(options.conffile):
-            return Options(options,options.conffile)
+            _options=Options(options,options.conffile)
+            return _options
         else:
             raise Exception('The configuration file specified on the command line [%s] does not exist.' % options.conffile)
     for b in bases:
         for f in fnames:
             if exists(b+f):
-                return Options(options,b+f)
+                _options=Options(options,b+f)
+                return _options
     raise Exception('No configuration file found!')
-
 
 if __name__ == '__main__':
     options=readoptions()

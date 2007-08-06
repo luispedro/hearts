@@ -5,19 +5,25 @@
 #
 # Distributed under GNU Public License, version 2
 
+from database import get_database
+
 class User(object):
-    def __init__(self,username):
+    def __init__(self,uid,username,pwd):
         self.username = username
+        self.uid=uid
+        self.passwd=pwd
 
     def passwd(self):
-        return 'secret'
+        return self.passwd
 
     def username(self):
         return self.username
 
 def get_user(name):
-    return User('Mario')
-#    connection=get_database()
-#    record=connection.q('SELECT * FROM %(prefix)susers WHERE name = %s',name)
-#    return record
+    connection=get_database()
+    record=connection.query('SELECT * FROM ${userstable} WHERE name = %s',name)
+    A=record.fetchone()
+    return User(*A)
+#    return User(A['uid'],A['name'],A['pass'])
+
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:

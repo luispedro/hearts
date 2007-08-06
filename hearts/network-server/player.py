@@ -11,6 +11,7 @@ from errors import *
 from motd import motd
 from users import get_user
 from validate import validate
+import userstatus
 
 _Authentication_Method='md5(md5(pass)*md5(cookie))'
 
@@ -30,7 +31,7 @@ class Player(object):
         self.user=None
         self.table=None
         _players.append(self)
-        self.name='Unkown'
+        self.name=None
 
 
     def process_input(self):
@@ -101,6 +102,8 @@ class Player(object):
             self.error('authenticationError','Authentication error. Please check your user name and password')
         else:
             self.authenticated=True
+            for p in _players:
+                p.userStatus(self.name,userstatus.ONLINE)
 
     def createTable(self, args):
         name = args.strip()
@@ -120,6 +123,9 @@ class Player(object):
         self.output(msg)
 
     def joinTable(self,args):
+        if self.table:
+            self.error(UNEXPECTED_MSG, 'You have already joined a table')
+            return
         tname=args.strip()
         table=tables.get(tname,None)
         if table:
@@ -140,6 +146,9 @@ class Player(object):
         self.output('motd %s' % stringify(motd()))
         for t in tables.keys():
             self.announcetable(t)
+        for p in _players:
+            if p.name:
+                self.output('userStatus %s online' % p.name)
 
     def error(self,code,msg):
         self.output('error %s %s' % (code,stringify(msg)))

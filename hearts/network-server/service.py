@@ -9,6 +9,8 @@ from select import * # get all of POLLIN, POLLPRI,...*
 from player import Player
 import environment
 from environment import *
+import sys
+import traceback
 
 def greet(nsocket):
     print 'New Player (%s)' % nsocket.fileno()
@@ -42,8 +44,8 @@ def launch_server(listener):
                         print 'Bye bye ', fd
                         environment.sockets.unregister(fd)
         except Exception, e:
-            print 'Something wrong!'
-            print e	
+            print 'Something wrong!', e
+            traceback.print_exc(file=sys.stderr)
 
 
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:

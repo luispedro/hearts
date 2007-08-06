@@ -16,6 +16,7 @@ class MessageConstructor;
 // hello name
 // authQ method cookie
 // authR cookie result
+// authOK
 // 
 // connectTo server port
 //
@@ -47,6 +48,7 @@ class Message
 					HANDLE( hello ) \
 					HANDLE( authQ ) \
 					HANDLE( authR ) \
+					HANDLE( authOK ) \
 					HANDLE( lookAt ) \
 					HANDLE( tableClosed ) \
 					HANDLE( addBot ) \

@@ -58,6 +58,7 @@ class UserConnection : public Connection
 		void userStatus( QString, user_status::type );
 		void motd( const QString& );
 		void authQ( const QCString&, const QCString& );
+		void authOK();
 		void error( Network::Message::errorType, const QString& );
 		void tableClosed( const QString& );
 	public slots:
@@ -96,6 +97,7 @@ class ServerConnection : public Connection
 		void connectTo( const char*, short );
 		void lookAt( QString, QString, QString, QString, QString );
 		void authQ( QCString method, QCString cookie );
+		void authOK();
 		void motd( const QString& );
 
 	private:

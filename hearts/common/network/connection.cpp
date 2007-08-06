@@ -1,8 +1,11 @@
 #include "connection.h"
 #include "general/helper.h"
-#include <kextsock.h>
+
+#include <iostream>
 
 #include <errno.h>
+
+#include <kextsock.h>
 #include <kdebug.h>
 
 namespace Network
@@ -153,9 +156,14 @@ void UserConnection::get( Message m )
 		case Message::authQ:
 			emit authQ( m.arg<QCString>( 0 ), m.arg<QCString>( 1 ) );
 			return;
+		case Message::authOK:
+			emit authOK();
+			return;
 		case Message::error:
 			emit error( m.arg<Message::errorType>( 0 ), m.arg<QString>( 1 ) );
 			return;
+		default:
+			std::cerr << "Unknown message: " << m << std::endl;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';
 }
@@ -191,6 +199,11 @@ void ServerConnection::authQ( QCString method, QCString cookie )
 {
 	MessageConstructor m;
 	write( m << Message::authQ << method << cookie );
+}
+
+void ServerConnection::authOK()
+{
+	write( MessageConstructor() << Message::authOK );
 }
 
 void ServerConnection::get( Message m )

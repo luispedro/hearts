@@ -59,7 +59,9 @@ class UserConnection : public Connection
 		void motd( const QString& );
 		void authQ( const QCString&, const QCString& );
 		void error( Network::Message::errorType, const QString& );
+		void tableClosed( const QString& );
 	public slots:
+		void addBot( QString );
 		void hello( QString );
 		void authR( QCString cookie, QCString result );
 		void createTable( QString );
@@ -88,7 +90,9 @@ class ServerConnection : public Connection
 		void createTable( ServerConnection*, QString );
 		void joinTable( ServerConnection*, QString );
 		void leaveTable( ServerConnection* );
+		void addBot( ServerConnection*, QString );
 	public slots:
+		void tableClosed( QString );
 		void connectTo( const char*, short );
 		void lookAt( QString, QString, QString, QString, QString );
 		void authQ( QCString method, QCString cookie );

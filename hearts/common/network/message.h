@@ -13,15 +13,21 @@ class MessageConstructor;
 
 // Messages (this isn't very clean, but this is very simple):
 // The file Protocol.html as a bit more information
-// connectTo server port
-// joinTable table
-// createTable name
-// leaveTable name
 // hello name
 // authQ method cookie
 // authR cookie result
+// 
+// connectTo server port
+//
+// joinTable table
+// createTable tname
+// leaveTable tname
+// tableClose tname
+// addBot tname
+//
 // userStatus userName user_status
 // motd message
+//
 // changeProtocol
 // error errorType msg(english, user level)
 
@@ -42,6 +48,8 @@ class Message
 					HANDLE( authQ ) \
 					HANDLE( authR ) \
 					HANDLE( lookAt ) \
+					HANDLE( tableClosed ) \
+					HANDLE( addBot ) \
 					HANDLE( userStatus ) \
 					HANDLE( motd ) \
 					HANDLE( changeProtocol ) \

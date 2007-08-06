@@ -99,6 +99,11 @@ void UserConnection::joinTable( QString name )
 	write( m );
 }
 
+void UserConnection::addBot( QString tname )
+{
+	write( MessageConstructor() << Message::addBot << tname );
+}
+
 void UserConnection::hello( QString name )
 {
 	MessageConstructor m;
@@ -132,10 +137,13 @@ void UserConnection::get( Message m )
 					 m.numArgs() >= 2 ? m.arg<QString>( 2 ) : QString::null,
 					 m.numArgs() >= 3 ? m.arg<QString>( 3 ) : QString::null,
 					 m.numArgs() >= 4 ? m.arg<QString>( 4 ) : QString::null );
-			return ;
+			return;
+		case Message::tableClosed:
+			emit tableClosed( m.arg<QString>( 0 ) );
+			return;
 		case Message::changeProtocol:
 			emit protocolChanged();
-			return ;
+			return;
 		case Message::userStatus:
 			emit userStatus( m.arg<QString>( 0 ), m.arg<user_status::type>( 1 ) );
 			return;
@@ -170,6 +178,11 @@ void ServerConnection::lookAt( QString table, QString p1, QString p2, QString p3
 	write( m );
 }
 
+void ServerConnection::tableClosed( QString tname )
+{
+	write( MessageConstructor() << Message::tableClosed << tname );
+}
+
 void ServerConnection::motd( const QString& message ) {
 	write( MessageConstructor() << Message::motd << message );
 }
@@ -198,6 +211,9 @@ void ServerConnection::get( Message m )
 			return ;
 		case Message::changeProtocol:
 			emit protocolChanged();
+			return ;
+		case Message::addBot:
+			emit addBot( this, m.arg<QString>( 0 ) );
 			return ;
 	}
 	LOG_PLACE() << "Unknown message: " << m << '\n';

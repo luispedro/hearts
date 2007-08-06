@@ -5,4 +5,7 @@
 #
 # Distributed under GNU Public License, version 2
 
+AUTHENTICATION_ERROR='authenticationError'
 INEXISTANT_TABLE='inexistantTable'
+UNEXPECTED_MSG='unexpectedMessage'
+

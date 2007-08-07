@@ -21,10 +21,13 @@ class _WaitServer(threading.Thread):
         threading.Thread.__init__(self)
 
     def run(self):
-        bnames=random.sample(_botNames,self.nbots)
+        pids=[]
+        bnames=['bot:%s' % n for n in random.sample(_botNames,self.nbots)]
         for n in bnames:
-            self.fds.append(execute_computer_server(n))
-        pid,read_fd=execute_server(*self.fds)
+            f,p=execute_computer_server(n)
+            self.fds.append(f)
+            pids.append(p)
+        serverpid,read_fd=execute_server(*self.fds)
         for line in fdopen(read_fd):
             M=_winner_pattern.match(line)
             if M:
@@ -32,8 +35,9 @@ class _WaitServer(threading.Thread):
                 winner2idx={'self' : 0, 'right' : 1, 'front' : 2, 'left' : 3 }
                 print 'Winner: ', winner, winner2idx[winner], self.names[winner]
         while True:
-            p=wait4(pid,10000)
-            if p == pid: return
+            wait4(serverpid,1000000)
+            for p in pids:
+                wait4(p,10000)
         
 
 def change_protocol(names,fds,nbots):

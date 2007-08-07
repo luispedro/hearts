@@ -13,9 +13,6 @@ class User(object):
         self.uid=uid
         self.passwd=pwd
 
-    def passwd(self):
-        return self.passwd
-
     def username(self):
         return self.username
 

@@ -80,6 +80,8 @@ class Player(object):
             self.leaveTable(args)
         elif code == 'authR':
             self.authR(args)
+        elif code == 'addBot':
+            self.addBot(args)
         else:
             print 'Unknown message code: (%s)' % code
 
@@ -98,10 +100,11 @@ class Player(object):
            self.error('unexpectedMessage','Your software seems to be malfunctioning<br />Technical note: it sent message authR without a previous authQ')
         elif cookie != self.cookie:
            self.error('unexpectedMessage','Your software seems to be malfunctioning<br />Technical note: It replied with a different cookie')
-        elif not validate(_Authentication_Method,self.cookie,self.user.passwd(),key):
+        elif not validate(_Authentication_Method,self.cookie,self.user.passwd,key):
             self.error('authenticationError','Authentication error. Please check your user name and password')
         else:
             self.authenticated=True
+            
             for p in _players:
                 p.userStatus(self.name,userstatus.ONLINE)
 
@@ -112,14 +115,12 @@ class Player(object):
             p.announcetable(name)
 
     def announcetable(self,tablename):
-        print 1
         table=tables[tablename]
-        print 2
         msg = 'lookAt %s' % tablename
-        print 3
         for p in table.playernames():
             msg += ' %s' % p
-        print 4
+        for i in xrange(table.nbots):
+            msg += ' <bot> '
         self.output(msg)
 
     def joinTable(self,args):
@@ -134,10 +135,23 @@ class Player(object):
                 self.table=table
                 for p in _players:
                     p.announcetable(tname)
+                self.output('joinedTable %s' % tname)
             else:
                 self.error(INEXISTANT_TABLE,'Table full') # FIXME: Maybe a better error code ?
         else:
             self.error(INEXISTANT_TABLE,'What table?')
+
+    def addBot(self,args):
+        tname=args.strip()
+        if not self.table:
+            self.error(UNEXPECTED_MSG,'You must have be at a table to send this message.')
+            return
+        if tname != self.table.name:
+            self.error(UNEXPECTED_MSG,'Wrong table, mate!')
+            return
+        self.table.addBot()
+        for p in _players:
+            p.announcetable(tname)
 
     def changeProtocol(self):
         self.output('changeProtocol')
@@ -149,6 +163,9 @@ class Player(object):
         for p in _players:
             if p.name:
                 self.output('userStatus %s online' % p.name)
+
+    def userStatus(self,uname,status):
+        self.output('userStatus %s %s' % (stringify(uname),status))
 
     def error(self,code,msg):
         self.output('error %s %s' % (code,stringify(msg)))

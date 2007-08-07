@@ -19,20 +19,28 @@ class Table(object):
             raise Exception('Too many players!')
         self.members.append(player)
         if self.full():
-            fds=[]
-            names=[]
-            for p in self.members: 
-                fd=p.socket.fileno()
-                del listeners[fd]
-                sockets.unregister(fd)
-                fds.append(fd)
-                names.append(p.name)
-                p.changeProtocol()
-            del tables[self.name]
-            change_protocol(names,fds,self.nbots)
+            self._launch_game()
+
+    def _launch_game(self):
+        fds=[]
+        names=[]
+        for p in self.members: 
+            fd=p.socket.fileno()
+            del listeners[fd]
+            sockets.unregister(fd)
+            fds.append(fd)
+            names.append(p.name)
+            p.changeProtocol()
+        del tables[self.name]
+        change_protocol(names,fds,self.nbots)
 
     def remove(self,player):
         self.members.remove(player)
+
+    def addBot(self):
+        self.nbots = self.nbots + 1
+        if self.full():
+            self._launch_game()
 
     def full(self):
         return len(self.members)+self.nbots >= 4

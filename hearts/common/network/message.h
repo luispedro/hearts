@@ -20,11 +20,15 @@ class MessageConstructor;
 // 
 // connectTo server port
 //
-// joinTable table
-// createTable tname
-// leaveTable tname
-// tableClose tname
-// addBot tname
+// TABLE MANAGEMENT:
+//  USER
+//     joinTable tname
+//     createTable tname
+//     leaveTable tname
+//  SERVER
+//     joinedTable tname
+//     tableClose tname
+//     addBot tname
 //
 // userStatus userName user_status
 // motd message
@@ -44,13 +48,14 @@ class Message
 					HANDLE( connectTo ) \
 					HANDLE( createTable ) \
 					HANDLE( joinTable ) \
+					HANDLE( joinedTable ) \
 					HANDLE( leaveTable ) \
+					HANDLE( lookAt ) \
+					HANDLE( tableClosed ) \
 					HANDLE( hello ) \
 					HANDLE( authQ ) \
 					HANDLE( authR ) \
 					HANDLE( authOK ) \
-					HANDLE( lookAt ) \
-					HANDLE( tableClosed ) \
 					HANDLE( addBot ) \
 					HANDLE( userStatus ) \
 					HANDLE( motd ) \

@@ -144,6 +144,9 @@ void UserConnection::get( Message m )
 		case Message::tableClosed:
 			emit tableClosed( m.arg<QString>( 0 ) );
 			return;
+		case Message::joinedTable:
+			emit joinedTable( m.arg<QString>( 0 ) );
+			return;
 		case Message::changeProtocol:
 			emit protocolChanged();
 			return;
@@ -189,6 +192,11 @@ void ServerConnection::lookAt( QString table, QString p1, QString p2, QString p3
 void ServerConnection::tableClosed( QString tname )
 {
 	write( MessageConstructor() << Message::tableClosed << tname );
+}
+
+void ServerConnection::joinedTable( QString tname )
+{
+	write( MessageConstructor() << Message::joinedTable << tname );
 }
 
 void ServerConnection::motd( const QString& message ) {

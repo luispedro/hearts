@@ -61,6 +61,7 @@ class UserConnection : public Connection
 		void authOK();
 		void error( Network::Message::errorType, const QString& );
 		void tableClosed( const QString& );
+		void joinedTable( QString );
 	public slots:
 		void addBot( QString );
 		void hello( QString );
@@ -94,6 +95,7 @@ class ServerConnection : public Connection
 		void addBot( ServerConnection*, QString );
 	public slots:
 		void tableClosed( QString );
+		void joinedTable( QString );
 		void connectTo( const char*, short );
 		void lookAt( QString, QString, QString, QString, QString );
 		void authQ( QCString method, QCString cookie );

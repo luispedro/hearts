@@ -23,15 +23,17 @@ NetworkManager::NetworkManager( NetworkDialog* dialog, Network::UserConnection* 
 	connect( networkconnection_, SIGNAL( error( Network::Message::errorType, const QString& ) ),
 			SLOT( error( Network::Message::errorType, const QString& ) ) );
 
+	connect( networkconnection_, SIGNAL( joinedTable( QString ) ), dialog_, SLOT( joinedTable( QString ) ) );
 	connect( networkconnection_, SIGNAL( lookAt( QString, QString, QString, QString, QString ) ),
 			 dialog_, SLOT( lookAt( QString, QString, QString, QString, QString ) ) );
 	connect( networkconnection_, SIGNAL( motd( const QString& ) ),
 			dialog_->motd, SLOT( setText( const QString& ) ) );
-
 	connect( networkconnection_, SIGNAL( userStatus( QString, user_status::type ) ),
 	 		SLOT( userStatus( QString, user_status::type ) ) );
+
 	connect( dialog_, SIGNAL( newTable( QString ) ), networkconnection_, SLOT( createTable( QString ) ) );
 	connect( dialog_, SIGNAL( joinTable( QString ) ), networkconnection_, SLOT( joinTable( QString ) ) );
+	connect( dialog_, SIGNAL( addBot( QString ) ), networkconnection_, SLOT( addBot( QString ) ) );
 
 	QString playerName = Options::playerName( player_id::self );
 	networkconnection_->hello( playerName );

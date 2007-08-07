@@ -9,8 +9,8 @@
         <rect>
             <x>0</x>
             <y>0</y>
-            <width>411</width>
-            <height>536</height>
+            <width>505</width>
+            <height>656</height>
         </rect>
     </property>
     <property name="caption">
@@ -34,14 +34,14 @@
     </widget>
     <widget class="QLayoutWidget">
         <property name="name">
-            <cstring>layout3</cstring>
+            <cstring>layout7</cstring>
         </property>
         <property name="geometry">
             <rect>
-                <x>51</x>
-                <y>63</y>
+                <x>70</x>
+                <y>70</y>
                 <width>337</width>
-                <height>414</height>
+                <height>510</height>
             </rect>
         </property>
         <vbox>
@@ -78,7 +78,7 @@
                 <property name="minimumSize">
                     <size>
                         <width>0</width>
-                        <height>60</height>
+                        <height>140</height>
                     </size>
                 </property>
                 <property name="resizePolicy">
@@ -113,160 +113,303 @@
                 <property name="sizeHint">
                     <size>
                         <width>20</width>
-                        <height>20</height>
+                        <height>54</height>
                     </size>
                 </property>
             </spacer>
-            <widget class="QLabel">
+            <widget class="QWidgetStack">
                 <property name="name">
-                    <cstring>textLabel2</cstring>
+                    <cstring>tableStack</cstring>
                 </property>
-                <property name="text">
-                    <string>Game Ta&amp;bles</string>
+                <property name="minimumSize">
+                    <size>
+                        <width>0</width>
+                        <height>260</height>
+                    </size>
                 </property>
-                <property name="buddy" stdset="0">
-                    <cstring>tables</cstring>
-                </property>
-            </widget>
-            <widget class="QLayoutWidget">
-                <property name="name">
-                    <cstring>layout15</cstring>
-                </property>
-                <vbox>
+                <widget class="QWidget">
                     <property name="name">
-                        <cstring>unnamed</cstring>
+                        <cstring>WStackPage</cstring>
                     </property>
-                    <widget class="Line">
+                    <attribute name="id">
+                        <number>0</number>
+                    </attribute>
+                    <widget class="QLayoutWidget">
                         <property name="name">
-                            <cstring>line2</cstring>
+                            <cstring>layout6</cstring>
                         </property>
-                        <property name="frameShape">
-                            <enum>HLine</enum>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>20</y>
+                                <width>301</width>
+                                <height>267</height>
+                            </rect>
                         </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>textLabel2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Game Ta&amp;bles</string>
+                                </property>
+                                <property name="buddy" stdset="0">
+                                    <cstring>tables</cstring>
+                                </property>
+                            </widget>
+                            <widget class="Line">
+                                <property name="name">
+                                    <cstring>line2</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>HLine</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                            </widget>
+                            <widget class="QListView">
+                                <column>
+                                    <property name="text">
+                                        <string>Table Name</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <column>
+                                    <property name="text">
+                                        <string>Player</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <column>
+                                    <property name="text">
+                                        <string>Player</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <column>
+                                    <property name="text">
+                                        <string>Player</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <column>
+                                    <property name="text">
+                                        <string>Player</string>
+                                    </property>
+                                    <property name="clickable">
+                                        <bool>true</bool>
+                                    </property>
+                                    <property name="resizable">
+                                        <bool>true</bool>
+                                    </property>
+                                </column>
+                                <property name="name">
+                                    <cstring>tables</cstring>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>joinTableButton</cstring>
+                                </property>
+                                <property name="enabled">
+                                    <bool>false</bool>
+                                </property>
+                                <property name="text">
+                                    <string>&amp;Join Table</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+J</string>
+                                </property>
+                            </widget>
+                            <widget class="Line">
+                                <property name="name">
+                                    <cstring>line1</cstring>
+                                </property>
+                                <property name="frameShape">
+                                    <enum>HLine</enum>
+                                </property>
+                                <property name="frameShadow">
+                                    <enum>Sunken</enum>
+                                </property>
+                                <property name="orientation">
+                                    <enum>Horizontal</enum>
+                                </property>
+                            </widget>
+                            <widget class="QPushButton">
+                                <property name="name">
+                                    <cstring>newTableButton</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>Create &amp;New Table</string>
+                                </property>
+                                <property name="accel">
+                                    <string>Alt+N</string>
+                                </property>
+                            </widget>
+                        </vbox>
                     </widget>
-                    <widget class="QListView">
-                        <column>
-                            <property name="text">
-                                <string>Table Name</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Player</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Player</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Player</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
-                        <column>
-                            <property name="text">
-                                <string>Player</string>
-                            </property>
-                            <property name="clickable">
-                                <bool>true</bool>
-                            </property>
-                            <property name="resizable">
-                                <bool>true</bool>
-                            </property>
-                        </column>
+                </widget>
+                <widget class="QWidget">
+                    <property name="name">
+                        <cstring>WStackPage</cstring>
+                    </property>
+                    <attribute name="id">
+                        <number>1</number>
+                    </attribute>
+                    <widget class="QLabel">
                         <property name="name">
-                            <cstring>tables</cstring>
+                            <cstring>tnamelabel</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>10</y>
+                                <width>170</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>TABLE NAME</string>
                         </property>
                     </widget>
                     <widget class="QPushButton">
                         <property name="name">
-                            <cstring>joinTableButton</cstring>
+                            <cstring>pushButton1</cstring>
                         </property>
-                        <property name="enabled">
-                            <bool>false</bool>
-                        </property>
-                        <property name="text">
-                            <string>&amp;Join Table</string>
-                        </property>
-                        <property name="accel">
-                            <string>Alt+J</string>
-                        </property>
-                    </widget>
-                    <widget class="Line">
-                        <property name="name">
-                            <cstring>line1</cstring>
-                        </property>
-                        <property name="frameShape">
-                            <enum>HLine</enum>
-                        </property>
-                        <property name="frameShadow">
-                            <enum>Sunken</enum>
-                        </property>
-                        <property name="orientation">
-                            <enum>Horizontal</enum>
-                        </property>
-                    </widget>
-                    <widget class="QPushButton">
-                        <property name="name">
-                            <cstring>newTableButton</cstring>
+                        <property name="geometry">
+                            <rect>
+                                <x>210</x>
+                                <y>110</y>
+                                <width>110</width>
+                                <height>24</height>
+                            </rect>
                         </property>
                         <property name="text">
-                            <string>Create &amp;New Table</string>
+                            <string>Add &amp;bot</string>
                         </property>
                         <property name="accel">
-                            <string>Alt+N</string>
+                            <string>Alt+B</string>
+                        </property>
+                        <property name="toolTip" stdset="0">
+                            <string>Add a bot (computer player to this table).</string>
                         </property>
                     </widget>
-                    <spacer>
+                    <widget class="QLabel">
                         <property name="name">
-                            <cstring>spacer2</cstring>
+                            <cstring>textLabel7</cstring>
                         </property>
-                        <property name="orientation">
-                            <enum>Vertical</enum>
+                        <property name="geometry">
+                            <rect>
+                                <x>10</x>
+                                <y>160</y>
+                                <width>310</width>
+                                <height>90</height>
+                            </rect>
                         </property>
-                        <property name="sizeType">
-                            <enum>Expanding</enum>
+                        <property name="text">
+                            <string>We are waiting for enough players to join us so that the game can start.
+
+If you are impatient, you can add computer players to the game.</string>
                         </property>
-                        <property name="sizeHint">
-                            <size>
-                                <width>20</width>
-                                <height>40</height>
-                            </size>
+                        <property name="alignment">
+                            <set>WordBreak|AlignVCenter</set>
                         </property>
-                    </spacer>
-                </vbox>
+                    </widget>
+                    <widget class="QLayoutWidget">
+                        <property name="name">
+                            <cstring>layout1</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>60</x>
+                                <y>60</y>
+                                <width>140</width>
+                                <height>80</height>
+                            </rect>
+                        </property>
+                        <vbox>
+                            <property name="name">
+                                <cstring>unnamed</cstring>
+                            </property>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>namelabel1</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>YOU</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>namelabel2</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>RIGHT</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>namelabel3</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>FRONT</string>
+                                </property>
+                            </widget>
+                            <widget class="QLabel">
+                                <property name="name">
+                                    <cstring>namelabel4</cstring>
+                                </property>
+                                <property name="text">
+                                    <string>LEFT</string>
+                                </property>
+                            </widget>
+                        </vbox>
+                    </widget>
+                    <widget class="QLabel">
+                        <property name="name">
+                            <cstring>textLabel1_2</cstring>
+                        </property>
+                        <property name="geometry">
+                            <rect>
+                                <x>30</x>
+                                <y>30</y>
+                                <width>220</width>
+                                <height>20</height>
+                            </rect>
+                        </property>
+                        <property name="text">
+                            <string>&lt;b&gt;Players&lt;/b&gt;</string>
+                        </property>
+                    </widget>
+                </widget>
             </widget>
             <widget class="QLabel">
                 <property name="name">
@@ -298,6 +441,12 @@
         <receiver>NetworkDialog</receiver>
         <slot>activateJoin()</slot>
     </connection>
+    <connection>
+        <sender>pushButton1</sender>
+        <signal>clicked()</signal>
+        <receiver>NetworkDialog</receiver>
+        <slot>addBot_clicked()</slot>
+    </connection>
 </connections>
 <tabstops>
     <tabstop>usertable</tabstop>
@@ -308,9 +457,13 @@
 <includes>
     <include location="local" impldecl="in implementation">networkdialog.ui.h</include>
 </includes>
+<variables>
+    <variable>QString tname_;</variable>
+</variables>
 <signals>
     <signal>newTable(QString)</signal>
     <signal>joinTable(QString)</signal>
+    <signal>addBot(QString)</signal>
 </signals>
 <slots>
     <slot access="private">newTable_clicked()</slot>
@@ -319,6 +472,9 @@
     <slot access="private">activateJoin()</slot>
     <slot>userStatus( QString u, int st )</slot>
     <slot>accept()</slot>
+    <slot access="private">addBot_clicked()</slot>
+    <slot>joinedTable( QString tn )</slot>
+    <slot>leftTable()</slot>
 </slots>
 <layoutdefaults spacing="6" margin="11"/>
 </UI>

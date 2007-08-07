@@ -34,6 +34,13 @@ void NetworkDialog::lookAt( QString table, QString p1, QString p2, QString p3, Q
 	}
 	tableView = new QListViewItem( tables, table, p1, p2, p3, p4 );
 	tables->insertItem( tableView );
+
+	if (tname_) {
+	    namelabel1->setText(p1);
+	    namelabel2->setText(p2);
+	    namelabel3->setText(p3);
+	    namelabel4->setText(p4);
+	}
 }
 
 void NetworkDialog::joinTable_clicked()
@@ -65,4 +72,24 @@ void NetworkDialog::userStatus( QString u, int st )
 void NetworkDialog::accept()
 {
     this->QDialog::accept();
+}
+
+
+void NetworkDialog::addBot_clicked()
+{
+    if (tname_) addBot(tname_);
+}
+
+
+void NetworkDialog::joinedTable( QString tn)
+{
+    tname_ = tn;
+    tableStack->raiseWidget(1);
+}
+
+
+void NetworkDialog::leftTable()
+{
+    tname_ = QString::null;
+    tableStack->raiseWidget(0);
 }

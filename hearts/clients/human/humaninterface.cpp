@@ -255,9 +255,12 @@ void HumanInterface::reset()
 	cards.clear();
 	status->clear();
 	hand->setHand( Deck() );
+	hand->unselectAll();
 	hand->setSelectable( false );
+	pass->hide();
 	table->clear();
 	move_info.counter = 0;
+	result3.clear();
 }
 /** This sets the Card of the player */
 void HumanInterface::setCard( player_id::type who, Card which )
@@ -294,3 +297,4 @@ void HumanInterface::adjustLabels()
 
 #include "humaninterface.moc"
 
+// vim: ts=4 sts=4 sw=4 expandtab smartindent:

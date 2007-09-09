@@ -79,6 +79,11 @@ class CardDisplay : public QWidget
 		    * A paintEvent is also triggered */
 		void unselect();
 		void setCard( Card );
+		/**
+ 		 * Sets the selectable flag
+ 		 *
+ 		 * The actual selected flag is maintained.
+ 		 */
 		void setSelectable( bool );
 	signals:
 		/** This is emited whenever the card is clicked upon with the mouse, no matter what else */

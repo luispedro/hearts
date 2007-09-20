@@ -10,8 +10,10 @@ from execute import execute_server, execute_computer_server
 import threading
 import re
 import random
+from subprocess import *
 _botNames=['Rita','Anna','Jacob','Ahmet','Ming','Tom','Sarah','Justin']
 _winner_pattern=re.compile('^winner: ([a-z]*)$')
+
 class _WaitServer(threading.Thread):
     def __init__(self,names,fds,nbots):
         self.names=names
@@ -27,18 +29,16 @@ class _WaitServer(threading.Thread):
             f,p=execute_computer_server(n)
             self.fds.append(f)
             pids.append(p)
-        serverpid,read_fd=execute_server(*self.fds)
-        for line in fdopen(read_fd):
+        Server=execute_server(*self.fds)
+        for line in Server.stdout:
             M=_winner_pattern.match(line)
             if M:
                 winner=M.group(1)
                 winner2idx={'self' : 0, 'right' : 1, 'front' : 2, 'left' : 3 }
                 print 'Winner: ', winner, winner2idx[winner], self.names[winner]
-        while True:
-            wait4(serverpid,1000000)
-            for p in pids:
-                wait4(p,10000)
-        
+        Server.wait()
+        for p in pids:
+            wait4(p,10000)
 
 def change_protocol(names,fds,nbots):
     _WaitServer(names,fds,nbots).start()

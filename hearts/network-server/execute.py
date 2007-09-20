@@ -6,6 +6,7 @@
 # Distributed under GNU Public License, version 2
 
 from os import *
+from subprocess import *
 from socket import socketpair
 
 def Fork():
@@ -30,18 +31,11 @@ def execute_computer_server(name):
         print 'EXECL(heartscomputerclient) FAILED!'
 
 def execute_server(fd1,fd2,fd3,fd4):
+    print "Executing server..."
     fds=[fd1,fd2,fd3,fd4]
-    print ",".join([str(f) for f in fds])
-    r,w=pipe()
-    b = Fork()
-    if b == 0:
-        dup2(w,1)
-        close(w)
-        execlp('heartsserver',\
+    return Popen(('heartsserver',\
             'heartsserver',\
             '--wait-zero',\
-            '--fds',",".join([str(f) for f in fds]))
-        print "EXECL(heartsserver) FAILED!"
-    return b,r
-
+            '--fds',",".join([str(f) for f in fds])),
+            stdout=PIPE)
 # vim: set ts=4 sts=4 sw=4 expandtab smartindent:

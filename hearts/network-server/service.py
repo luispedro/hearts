@@ -23,20 +23,17 @@ def launch_server(listener):
     sockets.register(listener,pollmask)
     while True:
         try:
-            print 'will poll()'
+            print 'poll()'
             ready=environment.sockets.poll()
-            print 'poll()ed'
             for fd, event in ready:
                 if fd == listener.fileno():
                     nsocket=listener.accept()
-                    print 'a'
                     environment.sockets.register(nsocket[0], pollmask)
                     print nsocket[0]
                     print type(nsocket[0])
                     greet(nsocket[0])
                 else:
                     if event & POLLIN:
-                        print 'b...'
                         alive=listeners[fd].process_input()
                         if not alive:
                             environment.sockets.unregister(fd)

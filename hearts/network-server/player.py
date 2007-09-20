@@ -32,7 +32,33 @@ class Player(object):
         self.table=None
         _players.append(self)
         self.name=None
+        self.mytable=None
 
+    def _toall(self,msg):
+        for p in _players:
+            p.output(msg)
+    def _announcetabletoall(self,name):
+        for p in _players:
+            p.announcetable(name)
+
+    def _cleanup(self):
+        """
+        This is a sort of destructor
+        """
+        if self.table:
+            t=self.table
+            t.remove(self)
+            self._announcetabletoall(t.name)
+            if t.owner == self:
+                    if len(t.members) > 0:
+                        t.owner = t.members[0]
+                    else:
+                        t.cleanup()
+                        self._toall('tableClosed %s' % stringify(t.name))
+            self.table=None
+        del listeners[self.socket.fileno()]
+        _players.remove(self)
+        self.socket.close()
 
     def process_input(self):
         """
@@ -48,12 +74,7 @@ class Player(object):
             self.process()
             return True
         else:
-            # cleanup
-            if self.table:
-                self.table.remove(self)
-            del listeners[self.socket.fileno()]
-            _players.remove(self)
-            self.socket.close()
+            self._cleanup()
             return False
 
     def process(self):
@@ -107,12 +128,12 @@ class Player(object):
             
             for p in _players:
                 p.userStatus(self.name,userstatus.ONLINE)
-
     def createTable(self, args):
         name = args.strip()
-        tables[name]=Table(name)
-        for p in _players:
-            p.announcetable(name)
+        mytable=Table(name)
+        tables[name]=mytable
+        mytable.owner=self
+        self._announcetabletoall(name)
 
     def announcetable(self,tablename):
         table=tables[tablename]
@@ -133,8 +154,7 @@ class Player(object):
             if not table.full():
                 table.add(self)
                 self.table=table
-                for p in _players:
-                    p.announcetable(tname)
+                self._announcetabletoall(tname)
                 self.output('joinedTable %s' % tname)
             else:
                 self.error(INEXISTANT_TABLE,'Table full') # FIXME: Maybe a better error code ?

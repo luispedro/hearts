@@ -14,6 +14,10 @@ class Table(object):
         self.owner=None
         self.nbots=0
 
+    def cleanup(self):
+        del tables[self.name]
+        self.name=None
+
     def add(self,player):
         if self.full():
             raise Exception('Too many players!')
@@ -44,6 +48,9 @@ class Table(object):
 
     def full(self):
         return len(self.members)+self.nbots >= 4
+
+    def empty(self):
+        return len(self.members) > 0
 
     def playernames(self):
         return [p.name for p in self.members]

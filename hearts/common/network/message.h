@@ -191,7 +191,7 @@ inline const Message::errorType to<Message::errorType>( const QString& r ) {
 }
 
 template <typename T>
-inline const T Message::arg( size_t idx ) const
+inline const T Message::arg( unsigned idx ) const
 {
 	QString rep = arg( idx );
 	return to<T>( rep );

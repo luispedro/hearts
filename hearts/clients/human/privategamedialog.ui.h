@@ -34,7 +34,7 @@ void PrivateGameDialog::next()
 	setFinishEnabled(page(1), true);
 	setFinishEnabled(page(2), true);
     }
-    KWizard::next();
+    QWizard::next();
 }
 
 
@@ -96,5 +96,5 @@ void PrivateGameDialog::accept()
 	}
 	emit connected_to( fd );
     }
-    KWizard::accept();
+    QWizard::accept();
 }

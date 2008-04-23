@@ -1,11 +1,10 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
 
 
 ########### install files ###############
 
 
-kde4_install_icons(${ICON_INSTALL_DIR})
+kde3_install_icons(hicolor)
 
 
 

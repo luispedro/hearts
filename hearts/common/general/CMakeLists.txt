@@ -1,8 +1,17 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ..)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ..)
 
 
 ########### next target ###############
+
+SET(genhearts_STAT_SRCS
+   error.cpp
+   utilitario.cpp
+   min_time.cpp
+)
+
+kde3_automoc(${genhearts_STAT_SRCS})
+
+add_library(genhearts STATIC ${genhearts_STAT_SRCS})
 
 
 ########### install files ###############

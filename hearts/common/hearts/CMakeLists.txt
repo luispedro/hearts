@@ -1,8 +1,20 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ..)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ..)
 
 
 ########### next target ###############
+
+SET(heartslib_STAT_SRCS
+   card.cpp
+   deck.cpp
+   holder3.cpp
+   player_id.cpp
+   table.cpp
+   player_status.cpp
+)
+
+kde3_automoc(${heartslib_STAT_SRCS})
+
+add_library(heartslib STATIC ${heartslib_STAT_SRCS})
 
 
 ########### install files ###############

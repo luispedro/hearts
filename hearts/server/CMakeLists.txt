@@ -1,24 +1,26 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ../common)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ../common)
 
 
 ########### next target ###############
 
-set(heartsserver_SRCS
-    connectingplayer.cpp
-    gamemanager.cpp
-    main.cpp
-    player.cpp
-    options.cpp
-    server.cpp
-    id_to_fd.cpp
-    open.cpp)
+SET(heartsserver_SRCS
+   connectingplayer.cpp
+   gamemanager.cpp
+   main.cpp
+   player.cpp
+   options.cpp
+   server.cpp
+   id_to_fd.cpp
+   open.cpp
+)
 
-kde4_add_executable(heartsserver ${heartsserver_SRCS})
+kde3_automoc(${heartsserver_SRCS})
 
-target_link_libraries(heartsserver ${KDE4_KDECORE_LIBS} comhearts hearts genhearts)
+kde3_add_executable(heartsserver ${heartsserver_SRCS})
 
-install(TARGETS heartsserver DESTINATION ${BIN_INSTALL_DIR})
+target_link_libraries(heartsserver ${QT_AND_KDECORE_LIBS} comhearts heartslib genhearts)
+
+install(TARGETS heartsserver DESTINATION bin)
 
 
 ########### install files ###############

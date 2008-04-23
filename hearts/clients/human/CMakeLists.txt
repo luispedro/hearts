@@ -1,31 +1,39 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ../../common)
-
 add_subdirectory(pics)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ../../common)
 
 
 ########### next target ###############
 
-set(hearts_SRCS
-    carddisplay.cpp
-    hand.cpp
-    humanclient.cpp
-    humaninterface.cpp
-    main.cpp
-    qtconnection.cpp
-    tabledisplayer.cpp
-    options.cpp
-    pointsbox.cpp
-    exec.cpp
-    networkmanager.cpp)
+SET(hearts_SRCS
+   carddisplay.cpp
+   hand.cpp
+   humanclient.cpp
+   humaninterface.cpp
+   main.cpp
+   qtconnection.cpp
+   tabledisplayer.cpp
+   options.cpp
+   pointsbox.cpp
+   exec.cpp
+   networkmanager.cpp
+)
 
-kde4_add_ui_files(hearts_SRCS networkdialog.ui privategamedialog.ui preferencesdialog.ui)
+kde3_automoc(${hearts_SRCS})
 
-kde4_add_executable(hearts ${hearts_SRCS})
+set(hearts_UI
+    networkdialog.ui
+    privategamedialog.ui
+    preferencesdialog.ui
+)
 
-target_link_libraries(hearts ${KDE4_KDECORE_LIBS} ${KDE4_KIO_LIBS} crypto comhearts genhearts kdeui kdecore Xext X11 nethearts)
+kde3_add_ui_files(hearts_SRCS ${hearts_UI})
 
-install(TARGETS hearts DESTINATION ${BIN_INSTALL_DIR})
+kde3_add_executable(hearts ${hearts_SRCS})
+
+target_link_libraries(hearts ${QT_AND_KDECORE_LIBS} kio crypto comhearts heartslib genhearts kdeui kdecore Xext X11 nethearts)
+
+install(TARGETS hearts DESTINATION bin)
 
 
 ########### install files ###############

@@ -1,21 +1,18 @@
+find_package(KDE3 REQUIRED)
 
-find_package(KDE4 REQUIRED)
+set(CMAKE_VERBOSE_MAKEFILE ON)
 
-add_definitions(${QT_DEFINITIONS} ${KDE4_DEFINITIONS})
+add_definitions(${QT3_DEFINITIONS} ${KDE3_DEFINITIONS})
 
-include(KDE4Defaults)
-
-include(MacroLibrary)
-
-include(ConvenienceLibs.cmake)
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
+link_directories(${KDE3_LIB_DIR})
 
 add_subdirectory(common)
 add_subdirectory(server)
 add_subdirectory(misc)
 add_subdirectory(po)
 add_subdirectory(clients)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
 
 
 ########### install files ###############

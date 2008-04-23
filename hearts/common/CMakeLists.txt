@@ -1,10 +1,9 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} )
-
 add_subdirectory(communication)
 add_subdirectory(hearts)
 add_subdirectory(general)
 add_subdirectory(network)
+
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} )
 
 
 ########### install files ###############

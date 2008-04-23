@@ -1,22 +1,24 @@
-
-include_directories(${KDE4_INCLUDES} ${KDE4_INCLUDE_DIR} ${QT_INCLUDES} ../../common)
+include_directories(${CMAKE_CURRENT_SOURCE_DIR} ${CMAKE_CURRENT_BINARY_DIR} ${KDE3_INCLUDE_DIR} ${QT_INCLUDE_DIR} ../../common)
 
 
 ########### next target ###############
 
-set(heartscomputerclient_SRCS
-    computerplayer.cpp
-    computerplayer3_2.cpp
-    computerplayer4.cpp
-    computerplayerbase.cpp
-    main.cpp
-    options.cpp)
+SET(heartscomputerclient_SRCS
+   computerplayer.cpp
+   computerplayer3_2.cpp
+   computerplayer4.cpp
+   computerplayerbase.cpp
+   main.cpp
+   options.cpp
+)
 
-kde4_add_executable(heartscomputerclient ${heartscomputerclient_SRCS})
+kde3_automoc(${heartscomputerclient_SRCS})
 
-target_link_libraries(heartscomputerclient ${KDE4_KDECORE_LIBS} comhearts hearts genhearts)
+kde3_add_executable(heartscomputerclient ${heartscomputerclient_SRCS})
 
-install(TARGETS heartscomputerclient DESTINATION ${BIN_INSTALL_DIR})
+target_link_libraries(heartscomputerclient ${QT_AND_KDECORE_LIBS} comhearts heartslib genhearts)
+
+install(TARGETS heartscomputerclient DESTINATION bin)
 
 
 ########### install files ###############

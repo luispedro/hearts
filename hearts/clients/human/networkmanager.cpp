@@ -111,3 +111,4 @@ void NetworkManager::protocolChanged()
 	}
 }
 
+#include "networkmanager.moc"

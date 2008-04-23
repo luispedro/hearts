@@ -1,5 +1,4 @@
 #include "humanclient.h"
-#include "config.h"
 #include "general/helper.h"
 
 
@@ -18,7 +17,7 @@ KCmdLineOptions app_options [] = {
 int main( int argc, char* argv[] )
 {
 	KAboutData aboutData( "hearts", I18N_NOOP( "Hearts, a Card Game" ),
-						  VERSION,
+						  "1.99",
 						  "Hearts game for the KDE",
 						  KAboutData::License_GPL,
 						  "(c) 2001-2004  Luís Pedro Coelho",
